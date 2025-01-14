@@ -50,8 +50,14 @@
 ## Démarrer le serveur de développement
 
 Pour démarrer le serveur de développement Laravel, exécutez :
+
+Ces commandes permettent de démarrer le serveur de développement Laravel et le serveur de développement Vite.
+
 ```bash
   npm run dev
+```
+```bash
+  php artisan serve --port=8000
 ```
 ## Pour effectuer les tests unitaires
 ```bash
