@@ -1,0 +1,23 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreatePartnerTable extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('GRV1_Partner', function (Blueprint $table) {
+            $table->id('Id_partner');
+            $table->string('name', 100);
+            $table->string('logo', 100);
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('GRV1_Partner');
+    }
+}
