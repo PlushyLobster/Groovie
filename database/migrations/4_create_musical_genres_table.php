@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMusicalGenresTable extends Migration
+return new class extends Migration
 {
     public function up(): void
     {
@@ -19,4 +19,4 @@ class CreateMusicalGenresTable extends Migration
     {
         Schema::dropIfExists('GRV1_Musical_genres');
     }
-}
+};

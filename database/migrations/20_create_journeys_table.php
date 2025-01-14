@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateJourneysTable extends Migration
+return new class extends Migration
 {
     public function up(): void
     {
@@ -27,4 +27,4 @@ class CreateJourneysTable extends Migration
     {
         Schema::dropIfExists('GRV1_Journeys');
     }
-}
+};

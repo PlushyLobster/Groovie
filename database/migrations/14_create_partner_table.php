@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePartnerTable extends Migration
+return new class extends Migration
 {
     public function up(): void
     {
@@ -20,4 +20,4 @@ class CreatePartnerTable extends Migration
     {
         Schema::dropIfExists('GRV1_Partner');
     }
-}
+};
