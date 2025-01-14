@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
         $this->call(MusicalGenresSeeder::class);
+        $this->call(FestivalsTableSeeder::class);
     }
 }
