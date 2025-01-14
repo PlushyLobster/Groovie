@@ -11,7 +11,6 @@ return new class extends Migration
         Schema::create('GRV1_Partner', function (Blueprint $table) {
             $table->id('Id_partner');
             $table->string('name', 100);
-            $table->string('logo', 100);
             $table->timestamps();
         });
     }
