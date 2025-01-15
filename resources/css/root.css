@@ -1,0 +1,207 @@
+:root {
+    /* COULEURS PRIMAIRES */
+    --yellowPrimary: #E2FC98;
+    --midnightBlue: #000B58;
+    --violetRehausse: #9747FF;
+    --blueRegular: #021997;
+    --magenta: #F866A4;
+    --contraste_labeur: #1E1E1E;
+    --whiteBkg: #F7F7F7;
+
+    /* COULEURS TRAJET */
+    --TRJ_Section: #63FF9C;
+    --TRJ_BtnAjout: #33CD6B;
+    --TRJ_Rehausse: #1E4D2F;
+
+    /* COULEURS MES TRAJETS */
+    --MTRJ_Section: #BC96E3;
+    --MTRJ_BtnAjout: #8D6CD9;
+    --MTRJ_rehausse: #9747FF;
+    --MTRJ_BkgBtn-PuceOFF: #BC96E3;
+    --MTRJ_PuceON-Underline: #9747FF;
+    --MTRJ_Text-PuceBorder: #fff;
+
+
+    /* COULEURS PREFERENCES */
+    --PRF_Section: #F6C8C7;
+    --PRF_BtnAjout: #E29998;
+    --PRF_Rehausse: #E989B2;
+
+
+    /* COULEURS GROOVIE */
+    --GRV_Section: #8F49EA;
+    --GRV_Profil: #8F49EA;
+    --GRV_BtnAjout: #862FF8;
+    --GRV_Rehausse: #9C80E4;
+
+    /* COULEURS FICHE USER TOTAL GROOVIES */
+    --FU_Section: #382396;
+    --FU_Rehausse: #C96DFB;
+    --FU_ErrorInfos: #F6C8C7;
+    --FU_Contraste: #000B58;
+
+    /* COULEURS WALLET */
+    --WLT_Section: #BDC5E0;
+    --WLT_Rehausse: #9747FF;
+    --WLT_CTA: #D16DFC;
+
+    /* COULEURS CATEGORIES WALLET */
+    --violetUseGroovies: #9747FF;
+    --yellowQrCode: #E2FC98;
+    --roseMesFestivals: #FFC6C6;
+    --vertParametres: #63FF9C;
+
+    /* COULEURS UTILISER MES GROOVIES */
+    --UG_Bkg: #76A793;
+    --UG_Titrage: #9747FF;
+    --UG_TotalPoints: #382396;
+    --UG_MenuFiltrage: #000B58;
+
+    /* COULEURS MON QR CODE */
+    --QR_Bkg: #E2FC98;
+    --QR_Rehausse: #919090;
+
+    /* COULEURS MES FESTIVALS */
+    --MFEST_Bkg: #F6C8C7;
+    --MFEST_BtnAjout: #F866A4;
+    --MFEST_Btn-CTA: #000B58;
+    --MFEST_BtnTicket: #A88B8A;
+
+    /* COULEURS PARAMETRES */
+    --PRM_Bkg: #E4F7EB;
+    --PRM_Titrage: #63FF9C;
+    --PRM_Contraste-Labeur: #057A4D;
+    --PRM_Rehausse-CTA: #074C03;
+
+    /* COULEURS PROFIL UTILISATEUR */
+    --PRFL_Bkg: #DDD9DF;
+    --PRFL_NiveauGroover: #C96DFB;
+    --PRFL_BtnClotureCompte: #9747FF;
+    --PRFL_InfoUser: #382396;
+
+    /* COULEURS MENU EXPERIENCE */
+    --EXP_Section: #E2FC98;
+    --EXP_Citrus: #DAF969;
+    --EXP_Rose: #D16DFC;
+    --EXP_Violet: #43139D;
+
+    /* COULEURS ACTUALITES */
+    --ACTU_Section: #E2FC98;
+    --ACTU_ReplayVideo: #A7E1F1;
+    --ACTU_Info-ActuTransport: #9999FF;
+    --ACTU_NewsGroovie: #000B58;
+    --ACTU_billetBtn: #5951E4;
+    --ACTU_FrequentationUser: #2B7073;
+
+    /* COULEURS TOUS LES FESTIVALS */
+    --TFEST_Section: #FFC6C6;
+    --TFEST_DateFest-Scan-ValidBillet: #F866A4;
+    --TFEST_Input-Search-PanneauBillet: #000B58;
+
+    /* COULEURS DISCOVER TICKET VALID USER NON CONNECTE */
+    --DISC_ActuFest: #C2E890;
+    --DISC_JeuxPartager: #57E2CA;
+    --DISC_Playlist: #FFC6C6;
+    --DISC_TrajetAugmente: #BC96E3;
+
+    /* COULEURS TRAJET:AUCUN FESTIVAL USER NON CONNECTE */
+    --NOFEST_Bkg: #76A793;
+    --NOFEST_ErrorMsg: #000B58;
+    --NOFEST_BtnCTA: #FFC6C6;
+    --NOFEST_InfoError: #fff;
+
+    /* COULEURS MENU TRAJET : AUCUN TRAJET SÉLECTIONNÉ / AUCUN TRAJET RÉSERVÉ OU ENREGISTRÉ */
+    --jsp: #BC96E3;
+    --jsp: #000B58;
+    --jsp: #9747FF;
+    --jsp: #fff;
+
+    /* COULEURS MENU GROOVIE : AUCUN TRAJET SÉLECTIONNÉ / AUCUN GROOVIES GAGNÉS */
+    --clc_Bkg: #382396;
+    --clc_ErrorMsg: #C96DFB;
+    --clc_BtnCTA: #F6C8C7;
+    --clc_InfoError: #fff;
+
+    /* COULEURS NAVBAR */
+    --NAV_BkgMobile: #000B58;
+    --NAV_BtnTrajet: #63FF9C;
+    --NAV_BtnExperience: #E2FC98;
+    --NAV_BtnGroovie: #9747FF;
+
+    /* COULEURS NOTIFS */
+    --NOTIF_BkgPicto: #F866A4;
+    --NOTIF_Puce: #021997;
+    --NOTIF_Icon-Nombre: #fff;
+
+    /* COULEURS TITRAGES HEADER ET SECTIONS */
+    --TITRE_Bleu: #021997;
+    --TITRE_Rose: #F866A4;
+    --TITRE_Noir: #272727;
+
+    /* COULEURS FILTRAGE SECTION TRAJET / VOYAGER */
+    --FLTR-TRJ_FiltreSelect: #1E4D2F;
+    --FLTR-TRJ_FiltreNonSelect: #1E1E1E;
+    --FLTR-TRJ_BkgMenuDropdown: #63FF9C;
+    --FLTR-TRJ_TextsOptionsFiltre: #000B58;
+    --FLTR-TRJ_ToggleOFF: #E4F7EB;
+    --FLTR-TRJ_ToggleON: #14BC52;
+    --FLTR-TRJ_BtnToggleOFF: #96ABA1;
+    --FLTR-TRJ_BtnToggleON: #fff;
+
+    /* COULEURS FILTRAGE MENU GROOVIE */
+    --FLTR-GRV_BkgBorderBtn: #000B58;
+    --FLTR-GRV_Titrage: #9747FF;
+    --FLTR-GRV_Bkg: #76A793;
+    --FLTR-GRV_Text-PuceBorder: #fff;
+
+    /* COULEURS FILTRAGE PREFERENCES MENU TRAJET */
+    --FLTR-PREF-TRJ_IconNonSelect: #1E1E1E;
+    --FLTR-PREF-TRJ_BkgBtnSelect: #E989B2;
+    --FLTR-PREF-TRJ_BkgBtnNonSelect-IconSelect: #fff;
+
+    /* COULEURS PAGE OFFRE PROMO */
+    --PROMO_BkgDescriptif: #9C80E4;
+    --PROMO_LabelBtnCTA: #9747FF;
+    --PROMO_TextDescriptDetailsOffre: #010F5C;
+    --PROMO_Rehausse-Contraste: #1E1E1E;
+    --PROMO_OngletNonSelect: #EAEAEA;
+    --PROMO_TitreOngletSelect-BkgCTA: #FFFFFF;
+    --PROMO_Transports: #F6C8C7;
+    --PROMO_Festival: #E2FC98;
+    --PROMO_Hebergement: #63FF9C;
+
+    /* COULEURS DETAILS OFFRE TRAJET */
+    --DETAIL-OFFRE-TRJ_BkgBtnResever: #9747FF;
+    --DETAIL-OFFRE-TRJ_BkgBtnEnregistrer: #AD6FFD;
+    --DETAIL-OFFRE-TRJ_Titre-Rehausse: #000B58;
+    --DETAIL-OFFRE-TRJ_Text-Infos: #1E1E1E;
+    --DETAIL-OFFRE-TRJ_BkgInfodDetails: #63FF9C;
+    --DETAIL-OFFRE-TRJ_BkgSection: #EDE4F8;
+
+    /* COULEURS PAGE D'UN FESTIVAL */
+    --FEST_NomFest-BkgBtnValid: #010F5C;
+    --FEST_LabelCTAAcheter: #010F5C;
+    --FEST_Intertitre-Dropdown-Text: #1E1E1E;
+    --FEST_BkgPicto: #E2FC98;
+    --FEST_Dates: #999999;
+    --FEST_BkgBtnAcheter: #FFC6C6;
+    --FEST_TextBtnValid: #F866A4;
+
+    /* COULEURS VALIDATION BILLET */
+    --BILLET_Bkg: #E2FC98;
+    --BILLET_TextBtnValider-BkgPicto: #63FF9C;
+    --BILLET_BkgBtnValid-TextInput: #000B58;
+    --BILLET_TextDefilant: #F866A4;
+
+    /* COULEURS VALIDATION BILLET VIA PAGE FESTIVAL */
+    --VLD-BILLET_Bkg-TextInput-PictoInput: #000B58;
+    --VLD-BILLET_Rose: #F866A4;
+    --VLD-BILLET_BtnInput: #fff;
+
+    /* COULEURS MAP */
+    --MAP_BkgMap: #CCEFDA;
+    --MAP_Autoroute: #A7BCD6;
+    --MAP_RouteSecondaires: #B5CFCF;
+    --MAP_Tracé: #F866A4;
+    --MAP_Contraste-Picto: #010F5C;
+}
