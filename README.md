@@ -91,9 +91,16 @@ la configuration initiale.
 ```
 ### Pour fusionner la branche main avec toutes les autres branches
 ```bash
-  git checkout main
-  git merge Amelie
-  git merge Florian
-  git merge Theo
-  git merge Thomas
+  git checkout Amelie
+  git merge main
+  git push
+  git checkout Florian
+  git merge main
+  git push
+  git checkout Theo
+  git merge main
+  git push
+  git checkout Thomas
+  git merge main
+  git push
 ```
