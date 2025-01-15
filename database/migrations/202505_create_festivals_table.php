@@ -10,7 +10,8 @@ return new class extends Migration
     {
         Schema::create('GRV1_Festivals', function (Blueprint $table) {
             $table->id('Id_festival');
-            $table->string('name', 100);
+            $table->string('type', 50);
+            $table->string('name', 100)->unique();
             $table->dateTime('start_datetime');
             $table->dateTime('end_datetime');
             $table->timestamps();

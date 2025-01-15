@@ -15,10 +15,10 @@ return new class extends Migration
             $table->time('departure_time');
             $table->time('arrival_time');
             $table->smallInteger('status');
-            $table->string('Id_parent', 50)->nullable();
+            $table->unsignedBigInteger('Id_parent')->nullable();
             $table->integer('groovie_won')->comment('nombre de groovies gagnés');
             $table->timestamps();
-            $table->foreignId('Id_journey_1')->constrained('GRV1_Journeys')->references('Id_journey')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('Id_parent')->references('Id_journey')->on('GRV1_Journeys')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('Id_transport')->constrained('GRV1_Transports')->references('Id_transport')->onDelete('cascade')->onUpdate('cascade');
         });
     }

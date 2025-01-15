@@ -13,7 +13,7 @@ return new class extends Migration
             $table->id('Id_transport');
             $table->boolean('creator')->nullable();
             $table->dateTime('type');
-            $table->smallInteger('nb_places');
+            $table->smallInteger('nb_slot');
             $table->timestamps();
         });
     }

@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('GRV1_Musical_genres', function (Blueprint $table) {
             $table->id('Id_musical_genre');
-            $table->string('type', 50);
+            $table->string('name', 100)->unique();
             $table->timestamps();
         });
     }

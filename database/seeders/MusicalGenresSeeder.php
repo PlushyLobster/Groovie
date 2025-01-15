@@ -7,23 +7,23 @@ use Illuminate\Support\Facades\DB;
 
 class MusicalGenresSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         $genres = [
-            ['type' => 'Rock', 'created_at' => now(), 'updated_at' => now()],
-            ['type' => 'Pop', 'created_at' => now(), 'updated_at' => now()],
-            ['type' => 'Jazz', 'created_at' => now(), 'updated_at' => now()],
-            ['type' => 'Classical', 'created_at' => now(), 'updated_at' => now()],
-            ['type' => 'Hip Hop', 'created_at' => now(), 'updated_at' => now()],
-            ['type' => 'Musique électronique', 'created_at' => now(), 'updated_at' => now()],
-            ['type' => 'Chanson française', 'created_at' => now(), 'updated_at' => now()],
-            ['type' => 'Musiques celtiques', 'created_at' => now(), 'updated_at' => now()],
-            ['type' => 'Variété internationale', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Rock', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Jazz', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Pop', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Musique électronique', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Chanson française', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Musiques celtiques', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Variété internationale', 'created_at' => now(), 'updated_at' => now()],
         ];
 
-        DB::table('GRV1_Musical_genres')->insert($genres);
+        foreach ($genres as $genre) {
+            DB::table('GRV1_Musical_genres')->updateOrInsert(
+                ['name' => $genre['name']],
+                ['created_at' => $genre['created_at'], 'updated_at' => $genre['updated_at']]
+            );
+        }
     }
 }
