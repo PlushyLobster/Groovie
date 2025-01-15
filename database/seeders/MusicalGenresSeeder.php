@@ -19,11 +19,6 @@ class MusicalGenresSeeder extends Seeder
             ['name' => 'Variété internationale', 'created_at' => now(), 'updated_at' => now()],
         ];
 
-        foreach ($genres as $genre) {
-            DB::table('GRV1_Musical_genres')->updateOrInsert(
-                ['name' => $genre['name']],
-                ['created_at' => $genre['created_at'], 'updated_at' => $genre['updated_at']]
-            );
-        }
+        DB::table('GRV1_Musical_genres')->insert($genres);
     }
 }

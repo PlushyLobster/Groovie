@@ -9,6 +9,7 @@ class FestivalsMusicalGenresSeeder extends Seeder
 {
     public function run(): void
     {
+
         $festivalGenres = [
             ['Id_festival' => 1, 'Id_musical_genre' => 1, 'created_at' => now(), 'updated_at' => now()],
             ['Id_festival' => 2, 'Id_musical_genre' => 1, 'created_at' => now(), 'updated_at' => now()],
