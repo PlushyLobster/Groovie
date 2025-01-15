@@ -12,6 +12,8 @@ return new class extends Migration
             $table->id('Id_journey');
             $table->string('departure_city', 75);
             $table->string('arrival_city', 75);
+            $table->date('departure_date');
+            $table->date('arrival_date');
             $table->time('departure_time');
             $table->time('arrival_time');
             $table->smallInteger('status');

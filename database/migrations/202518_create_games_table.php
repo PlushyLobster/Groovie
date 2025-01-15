@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('games', function (Blueprint $table) {
+        Schema::create('GRV1_games', function (Blueprint $table) {
             $table->id('Id_game');
             $table->string('name', 100);
             $table->string('link', 255);
