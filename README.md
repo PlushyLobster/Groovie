@@ -53,6 +53,7 @@ Pour démarrer le serveur de développement Laravel, exécutez :
 
 Ces commandes permettent de démarrer le serveur de développement Laravel et le serveur de développement Vite.
 
+**À effectuer dans deux terminaux différents :**
 ```bash
   npm run dev
 ```
@@ -65,9 +66,34 @@ Ces commandes permettent de démarrer le serveur de développement Laravel et le
 ```
 
 Adresses du serveur de développement :
-http://localhost:5173.
+http://localhost:8000.
 
 
 Ce `README.md` fournit des instructions de base pour démarrer 
 un projet Laravel, y compris l'installation des dépendances et 
 la configuration initiale.
+
+
+## Pour Thomas
+### Pour récupérer les modifications des autres membres
+```bash
+  git checkout main
+  git pull
+  git checkout Amelie
+  git pull
+  git checkout Florian
+  git pull
+  git checkout Theo
+  git pull
+  git checkout Thomas
+  git pull
+  git checkout main
+```
+### Pour fusionner la branche main avec toutes les autres branches
+```bash
+  git checkout main
+  git merge Amelie
+  git merge Florian
+  git merge Theo
+  git merge Thomas
+```
