@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('GRV1_Partner', function (Blueprint $table) {
+        Schema::create('GRV1_Partners', function (Blueprint $table) {
             $table->id('Id_partner');
             $table->string('name', 100);
             $table->timestamps();
@@ -17,6 +17,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('GRV1_Partner');
+        Schema::dropIfExists('GRV1_Partners');
     }
 };

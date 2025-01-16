@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('number', 50);
             $table->dateTime('date_of_use');
             $table->timestamps();
-            $table->foreignId('Id_user')->constrained('GRV1_Users')->references('Id_user')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('Id_user')->nullable()->constrained('GRV1_Users')->references('Id_user')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('Id_festival')->constrained('GRV1_Festivals')->references('Id_festival')->onDelete('cascade')->onUpdate('cascade');
         });
     }

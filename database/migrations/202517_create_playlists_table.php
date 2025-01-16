@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('GRV1_Playlists', function (Blueprint $table) {
-            $table->id('id_playlist');
+            $table->id('Id_playlist');
             $table->string('name', 100);
             $table->string('link',200);
             $table->timestamps();
-            $table->foreignId('id_partner')->constrained('GRV1_Partner')->references('id_partner')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('id_festival')->constrained('GRV1_Festivals')->references('id_festival')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('Id_partner')->constrained('GRV1_Partners')->references('Id_partner')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('Id_festival')->constrained('GRV1_Festivals')->references('Id_festival')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

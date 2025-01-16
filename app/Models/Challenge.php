@@ -11,5 +11,8 @@ class Challenge extends Model
     public $timestamps = true;
     protected $fillable = ['name', 'reward', 'titled'];
 
-    // relations a rajouter
+    public function groovers(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Groover::class, 'GRV1_Groovers_Challenges', 'Id_challenge', 'Id_groover');
+    }
 }
