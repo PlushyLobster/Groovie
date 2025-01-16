@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        <div id="signinDropdown">
+        <div id="signinDropdown" class="hidden">
                 <div class="signin-logo">
                     <svg width="106" height="106" viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_133_51)">
@@ -53,87 +53,81 @@
                     </svg>
                 </div>
             <form>
-                <div class="mb-4">
-                    <label for="dropdown-name" class="sr-only">Nom</label>
-                    <div class="relative">
-                        <input type="text" id="dropdown-name" name="dropdown-name" placeholder="Nom" class="w-full p-3 bg-lime-100 rounded-md placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                    </div>
+                <div class="signin-div">
+                    <label for="signin-name" class="sr-only">Nom</label>
+                    <input type="text" id="signin-name" name="signin-name" placeholder="Nom">
                 </div>
-                <div class="mb-4">
-                    <label for="dropdown-firstname" class="sr-only">Prénom</label>
-                    <div class="relative">
-                        <input type="text" id="dropdown-firstname" name="dropdown-firstname" placeholder="Prénom" class="w-full p-3 bg-lime-100 rounded-md placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-
-                    </div>
+                <div class="signin-div">
+                    <label for="signin-firstname" class="sr-only">Prénom</label>
+                    <input type="text" id="signin-firstname" name="signin-firstname" placeholder="Prénom">
                 </div>
-                <div class="mb-4">
-                    <label for="dropdown-email" class="sr-only">Adresse email</label>
-                    <div class="relative">
-                        <input type="email" id="dropdown-email" name="dropdown-email" placeholder="Adresse email" class="w-full p-3 bg-lime-100 rounded-md placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-
-                    </div>
+                <div class="signin-div">
+                    <label for="signin-email" class="sr-only">Adresse email</label>
+                    <input type="email" id="signin-email" name="signin-email" placeholder="Adresse email">
                 </div>
-                <div class="mb-4">
-                    <label for="dropdown-city" class="sr-only">Ville</label>
-                    <div class="relative">
-                        <input type="text" id="dropdown-city" name="dropdown-city" placeholder="Ville" class="w-full p-3 bg-lime-100 rounded-md placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-
-                    </div>
+                <div class="signin-div">
+                    <label for="signin-city" class="sr-only">Ville</label>
+                    <input type="text" id="signin-city" name="signin-city" placeholder="Ville">
                 </div>
-                <div class="mb-4">
-                    <label for="dropdown-password" class="sr-only">Mot de passe</label>
-                    <div class="relative">
-                        <input type="password" id="dropdown-password" name="dropdown-password" placeholder="Mot de passe" class="w-full p-3 bg-lime-100 rounded-md placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-
-                    </div>
+                <div class="signin-div">
+                    <label for="signin-password" class="sr-only">Mot de passe</label>
+                    <input type="password" id="signin-password" name="signin-password" placeholder="Mot de passe">
                 </div>
-                <div class="flex justify-center">
-                    <button type="submit" class="w-full bg-indigo-500 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center space-x-2">
-                        <span>Confirmer l'inscription</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </button>
-                </div>
-                <p class="text-xs text-center mt-4 text-indigo-900">
-                    En validant votre inscription, vous acceptez la <a href="#" class="underline">Politique de confidentialité</a> et les <a href="#" class="underline">Conditions générales</a>.
+                <button type="submit" class="signinBtn">
+                    Confirmer l'inscription
+                    <span>
+                        <svg width="19" height="15" viewBox="0 0 19 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 7.09985L7.625 12.5999L17 1.59985" stroke="#9747FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                            
+                    </span>
+                </button>
+                <p id="signin-cgu">
+                    En validant votre inscription vous acceptez <br> <a href="#">la Politique de confidentialité</a> et les <br> <a href="#">Conditions Générales d’utilisation</a> de Groovie.
                 </p>
             </form>
         </div>
+
+
+        
         <!-- Dropdown Connexion -->
-        <div id="loginDropdown" class="absolute bg-lime-200 border rounded-lg shadow-lg p-6 w-80 mt-2 hidden z-10 right-0">
-            <div class="flex justify-between items-center mb-4">
-                <div class="w-12 h-12 bg-indigo-900 rounded-full flex items-center justify-center">
-                    <span class="text-white font-bold text-xl">G</span>
-                </div>
-                <button id="closeLoginDropdown" class="text-indigo-900 text-xl font-bold">×</button>
+        <div id="loginDropdown" class="hidden">
+            <div class="login-logo">
+                <svg width="106" height="106" viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_133_51)">
+                    <path d="M61.6221 32.9066C57.9827 33.0549 54.3658 33.8459 50.5776 35.0683C53.536 36.2638 56.49 37.4772 59.4574 38.6457C62.0461 39.6614 64.7925 39.8322 63.0247 44.3399C61.2523 48.8701 59.1327 48.0836 55.9894 46.6319C53.27 45.3736 50.4333 44.3668 47.0554 43.7556C49.36 46.7623 51.5111 49.8947 54.0096 52.7306C56.1923 55.2069 54.9747 56.5058 52.8596 57.8226C50.9835 58.9911 49.396 61.773 47.0374 58.1641C45.0395 55.1125 42.5727 52.3666 39.4293 49.7195C39.966 53.5081 40.3178 57.3372 41.0844 61.0809C41.7744 64.4336 39.5195 64.3662 37.5262 64.4246C36.543 64.4515 35.3299 65.0043 34.3107 65.0043C33.2915 65.0043 32.4977 64.474 32.2677 62.4022C31.8528 58.6225 31.2305 54.8654 30.5946 50.3397C27.9518 54.1508 26.8379 57.8945 25.5932 61.4809C24.4522 64.7706 22.6438 63.5842 20.8895 62.6539C19.1667 61.746 15.6626 62.1415 17.3989 58.272C18.9954 54.7081 20.3348 51.0273 21.1826 46.8701C18.125 49.2296 14.9636 51.4767 12.0322 53.9845C8.65434 56.8743 8.00493 53.3059 6.52571 51.8273C4.98335 50.2857 3.86942 48.8656 6.67002 47.0769C9.93513 44.987 12.8349 42.3355 15.604 39.2749C11.7345 39.8187 7.82453 40.1647 4.00923 40.9557C0.374315 41.7108 0.662943 39.2254 0.455492 37.1491C0.360785 36.2233 0 35.1762 0 34.2728C0 33.1717 0.545688 32.2909 2.79609 32.1246C6.46708 31.8549 10.111 31.1493 14.0977 29.7291C10.8371 28.4213 7.64865 26.8933 4.30237 25.8686C0.969611 24.8529 1.15451 23.1676 2.2504 20.4845C3.36432 17.7565 4.24825 15.9139 7.72983 17.7206C10.8416 19.334 14.2465 20.3812 17.5206 21.6755C17.6875 21.4553 17.8499 21.2351 18.0167 21.0148C15.604 17.9048 13.2724 14.7274 10.7514 11.7028C8.23493 8.68718 11.3647 7.97709 12.7718 6.81309C14.0932 5.72548 15.4957 3.25366 17.6108 6.27378C19.9244 9.56805 22.5536 12.6421 25.6834 15.5319C25.1377 11.6713 24.7679 7.77934 24.0058 3.96375C23.194 -0.0855527 26.2607 0.781833 28.263 0.399824C30.315 0.00882641 32.633 -0.934961 32.8766 2.79075C33.1291 6.65579 33.8958 10.4894 35.1134 14.3904C36.6062 10.7905 38.374 7.27599 39.506 3.56376C40.4982 0.314434 42.2119 1.21328 44.0925 2.19751C45.9731 3.18175 49.4682 2.93906 47.6282 6.91196C46.0272 10.359 44.7464 13.9544 43.0462 18.1835C46.7037 16.4262 49.2156 14.1971 51.6194 11.9814C54.5643 9.27143 56.2013 9.83321 58.6502 12.8713C61.2343 16.0847 59.3763 17.1768 57.2161 18.7857C54.6274 20.7092 52.129 22.7541 49.8696 25.581C53.4278 25.0821 57.0537 24.8529 60.5308 24.0125C64.4678 23.0597 64.3145 25.5495 64.7475 28.0393C64.8827 28.8258 65 29.5539 65 30.1921C65 31.756 64.319 32.7942 61.6221 32.9021V32.9066Z" fill="#000B58"/>
+                    <path d="M32.2993 42.6592C35.5689 42.6592 35.6907 41.8457 37.2872 41.8457C38.8836 41.8457 41.4948 44.0434 41.4948 41.3154C41.4948 38.5874 42.7621 37.6481 42.7621 35.41C42.7621 33.6168 41.4542 32.8034 38.8385 32.8034C36.2228 32.8034 35.1179 33.6168 35.1179 35.41C35.1179 36.7538 35.9342 38.4256 36.2634 39.5222C30.8697 39.5222 24.4522 27.5092 28.2946 24.5744C30.0534 23.2307 33.1562 23.5138 34.8744 25.716C36.5521 27.7923 35.5689 31.4596 38.5093 31.4596C42.1036 31.4596 43.5378 24.7003 39.4068 23.5992C37.7291 23.1093 35.605 21.7251 32.2948 21.7251C25.8367 21.7251 20.6459 26.4081 20.6459 32.1921C20.6459 37.9762 25.8367 42.6592 32.2948 42.6592" fill="#DAF969"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0_133_51">
+                    <rect width="65" height="65" fill="white"/>
+                    </clipPath>
+                    </defs>
+                </svg>
             </div>
             <form>
-                <div class="mb-4">
+                <div class="login-div">
                     <label for="login-identifier" class="sr-only">Identifiant</label>
-                    <div class="relative">
-                        <input type="text" id="login-identifier" placeholder="Identifiant" class="w-full p-3 bg-lime-100 rounded-md placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                    </div>
+                    <input type="text" id="login-identifier" placeholder="Identifiant" class="w-full p-3 bg-lime-100 rounded-md placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                 </div>
-                <div class="mb-4">
+
+                <div class="login-div">
                     <label for="login-password" class="sr-only">Mot de passe</label>
-                    <div class="relative">
-                        <input type="password" id="login-password" placeholder="Mot de passe" class="w-full p-3 bg-lime-100 rounded-md placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                    </div>
+                    <input type="password" id="login-password" placeholder="Mot de passe" class="w-full p-3 bg-lime-100 rounded-md placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                 </div>
-                <div class="flex justify-end text-sm mb-4">
-                    <a href="#" class="text-indigo-700 underline">Mot de passe oublié ?</a>
+
+                <div class="signin-forgot">
+                    <a href="#" class="text-indigo-700 underline">Mot De Passe Oublié ?</a>
                 </div>
-                <div class="flex justify-center">
-                    <button type="submit" class="w-full bg-indigo-900 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center space-x-2">
-                        <span>Connexion</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                    </button>
-                </div>
-                <p class="text-xs text-center mt-4 text-indigo-900">
-                    Pas encore de compte ? <a href="#" class="underline">Inscrivez-vous</a>.
+                <button type="submit" class="loginBtn">
+                    Connexion
+                    <span>
+                        <svg width="19" height="15" viewBox="0 0 19 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 7.5L7.625 13L17 2" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>                                
+                    </span>
+                </button>
+                <p class="login-signin">
+                    Pas encore de compte ? <br> <a href="#" class="underline">Inscrivez-vous</a>
                 </p>
             </form>
         </div>

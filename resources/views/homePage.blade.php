@@ -7,15 +7,9 @@
     <title>Concept Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
     @vite(['resources/css/reset.css', 'resources/css/root.css', 'resources/css/style.css'])
-    <style>
-        .collapsed {
-            height: 100px; /* Ajustez cette valeur selon vos besoins */
-            overflow: hidden;
-        }
-        .expanded {
-            height: calc(100% - 40px); /* Ajustez cette valeur selon vos besoins */
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 @endsection
 
@@ -77,12 +71,14 @@
             event.stopPropagation(); // Empêche le clic de remonter
             loginDropdown.classList.add('hidden'); // Masque le dropdown de connexion
             signinDropdown.classList.toggle('hidden'); // Affiche ou masque le menu d'inscription
+            signinDropdown.classList.add('flex');
         });
 
         logInBtn.addEventListener("click", (event) => {
             event.stopPropagation(); // Empêche le clic de remonter
             signinDropdown.classList.add('hidden'); // Masque le menu d'inscription
             loginDropdown.classList.toggle("hidden"); // Affiche ou masque le dropdown de connexion
+            loginDropdown.classList.add("flex");
         });
 
         document.addEventListener('click', (event) => {
