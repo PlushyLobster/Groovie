@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('GRV1_groovers_challenges', function (Blueprint $table) {
+        Schema::create('GRV1_Groovers_Challenges', function (Blueprint $table) {
             $table->id('Id_groover_challenge');
             $table->timestamps();
             $table->foreignId('Id_groover')->constrained('GRV1_Groovers')->references('Id_groover')->onDelete('cascade')->onUpdate('cascade');
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('GRV1_groovers_challenges');
+        Schema::dropIfExists('GRV1_Groovers_Challenges');
     }
 };

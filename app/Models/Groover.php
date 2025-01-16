@@ -9,8 +9,8 @@ class Groover extends Model
 {
     protected $table = 'GRV1_Groovers';
     protected $primaryKey = 'Id_groover';
-    public $timestamps = false;
-    protected $fillable = ['Id_user', 'Name', 'Surname', 'Email', 'Password'];
+    public $timestamps = true;
+    protected $fillable = ['Id_user','nb_groovies', 'name', 'firstname','city'];
 
     // relations a rajouter
 }

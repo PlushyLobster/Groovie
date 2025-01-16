@@ -8,8 +8,8 @@ class User extends Model
 {
     protected $table = 'GRV1_Users';
     protected $primaryKey = 'Id_user';
-    public $timestamps = false;
-    protected $fillable = ['Id_user','active','username','email','password','cgu_validated'];
+    public $timestamps = true;
+    protected $fillable = ['active','username','email','password','cgu_validated'];
 
     public function notifications(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
