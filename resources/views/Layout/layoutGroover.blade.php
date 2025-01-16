@@ -10,4 +10,5 @@
 @include('include.footer')
 
 @yield('scripts')
+
 </html>
