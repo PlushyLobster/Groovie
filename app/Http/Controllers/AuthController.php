@@ -18,40 +18,39 @@ class AuthController extends Controller
         // Créer un nouvel utilisateur et assigner les données validées
         $newUser = User::create([
             'active' => 1,
-            'username' => $validated['dropdown-username'],
-            'email' => $validated['dropdown-email'],
-            'password' => Hash::make($validated['dropdown-password']), // Hacher le mot de passe
+            'username' => $validated['signin-username'],
+            'email' => $validated['signin-email'],
+            'password' => Hash::make($validated['signin-password']), // Hacher le mot de passe
             'cgu_validated' => 1,
         ]);
         // Créer une nouvelle instance de Groover et assigner les données nécessaires
         $newGroover = Groover::create([
             'nb_groovies' => 0,
             'Id_user' => $newUser->Id_user,
-            'name' => $validated['dropdown-name'],
-            'firstname' => $validated['dropdown-firstname'],
-            'city' => $validated['dropdown-city'],
+            'name' => $validated['signin-name'],
+            'firstname' => $validated['signin-firstname'],
+            'city' => $validated['signin-city'],
         ]);
 
         // Authentifier l'utilisateur nouvellement créé
         Auth::login($newUser);
 
         // Rediriger vers une page de succès ou de connexion
-        return redirect()->route('home')->with('success', 'Inscription réussie. Vous êtes connecté.');
+        return redirect()->route('home');
     }
     public function login(AuthRequest $authRequest): RedirectResponse
     {
         // Valider les données du formulaire
         $validated = $authRequest->validated();
 
-        // Authentifier l'utilisateur avec l'email ou l'username
-        if (Auth::attempt(['email' => $validated['dropdown-identifier'], 'password' => $validated['dropdown-password']]) ||
-            Auth::attempt(['username' => $validated['dropdown-identifier'], 'password' => $validated['dropdown-password']])) {
-            // Rediriger vers une page de succès ou de connexion
-            return redirect()->route('home')->with('success', 'Connexion réussie.');
+        // Authentifier l'utilisateur avec l'email et le mot de passe
+        if (Auth::attempt(['email' => $validated['login-email'], 'password' => $validated['login-password']])) {
+            // Rediriger vers la page d'accueil en cas de succès
+            return redirect()->route('home');
         }
 
-        // Rediriger vers une page d'erreur ou de connexion
-        return redirect()->route('home')->with('error', 'Connexion échouée.');
+        // Rediriger vers la page de connexion avec un message d'erreur en cas d'échec
+        return redirect()->route('home')->withErrors(['login-error' => 'Les informations d\'identification sont incorrectes.']);
     }
     public function logout(): RedirectResponse
     {
@@ -59,6 +58,6 @@ class AuthController extends Controller
         Auth::logout();
 
         // Rediriger vers une page de succès ou de connexion
-        return redirect()->route('home')->with('success', 'Déconnexion réussie.');
+        return redirect()->route('home');
     }
 }
