@@ -1,0 +1,400 @@
+@import url('root.css');
+
+
+body {
+    background-color: var(--whiteBkg);
+    padding: 0px 76px 0px 76px;
+    font-family: poppins;
+}
+
+/*** DESKTOP NAV ***/
+
+#desktop-nav {
+    width: 100%;
+    height: 150px;
+    display: flex;
+}
+
+#left-nav {
+    width: 25%;
+    display: flex;
+    align-items: center;
+    gap: 62px;
+}
+
+#picto-ticket {
+    height: 52px;
+    width: 52px;
+    background-color: #63FF9C;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#right-nav {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 28px;
+}
+
+.logs-btn {
+    width: 166px;
+    height: 42px;
+    color: white;
+    border-radius: 100px;
+    font-size: 14px;
+}
+
+#logIn-btn {
+    background-color: var(--midnightBlue);
+}
+
+#signIn-btn {
+    background-color: var(--violetRehausse);
+}
+
+#notif-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: var(--NOTIF_BkgPicto);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/***   FORM INSCRIPTION   ***/
+
+#signinDropdown {
+    position: absolute;
+    height: 750px;
+    width: 360px;
+    background-color: var(--yellowPrimary);
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+    right: -380px;
+    top: 150px;
+    padding: 21px;
+    border-radius: 25px;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 25%);
+}
+
+.signin-logo{
+    margin: 57px 0px 50px 0px;
+}
+
+.signin-div {
+    margin-bottom: 14px;
+}   
+
+.signin-div input {
+    background-color: rgba(1, 15, 92, 10%);
+    width: 318px;
+    height: 52px;
+    border-radius: 31px;
+    padding-left: 26px;
+    color: var(--midnightBlue);
+}
+
+.signin-div input::placeholder {
+    color: var(--midnightBlue);
+}
+
+.signinBtn {
+    width: 318px;
+    height: 52px;
+    background-color: var(--violetRehausse);
+    color: #fff;
+    font-family: poppins;
+    font-weight: 500;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-right: 13px;
+    border-radius: 39px;
+    margin-top: 24px;
+}
+
+.signinBtn span {
+    width: 34px;
+    height: 34px;
+    background-color: #fff;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 17px;
+}
+
+#signin-cgu {
+    font-size: 14px;
+    color: var(--midnightBlue);
+    text-align: center;
+    margin-top: 30px;
+}
+
+#signin-cgu a {
+    text-decoration: underline;
+}
+
+@keyframes slideInFromRight {
+    from {
+        right: -380px;
+    }
+
+    to {
+        right: 76px;
+    }
+}
+
+.transition-right {
+    animation: slideInFromRight 0.8s forwards;
+}
+
+@keyframes slideInBackRight {
+    from {
+        right: 76px;
+    }
+
+    to {
+        right: -380px;
+    }
+}
+
+.transition-backRight {
+    animation: slideInBackRight 0.8s forwards;
+}
+
+@keyframes slideInFromRightLogin {
+    from {
+        right: -380px;
+    }
+
+    to {
+        right: 76px;
+    }
+}
+
+.transition-right-login {
+    animation: slideInFromRightLogin 0.8s forwards;
+}
+
+@keyframes slideInBackRightLogin {
+    from {
+        right: 76px;
+    }
+
+    to {
+        right: -380px;
+    }
+}
+
+.transition-backRight-login {
+    animation: slideInBackRightLogin 0.8s forwards;
+}
+
+
+/***   FORM CONNEXION   ***/
+
+#loginDropdown {
+    position: absolute;
+    height: 650px;
+    width: 360px;
+    background-color: var(--yellowPrimary);
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+    right: -380px;
+    top: 150px;
+    padding: 21px;
+    border-radius: 39px;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 25%);  
+}
+
+.login-logo{
+    margin: 78px 0px;
+}
+
+.login-div {
+    margin-bottom: 14px;
+}   
+
+.login-div input {
+    background-color: rgba(1, 15, 92, 10%);
+    width: 318px;
+    height: 52px;
+    border-radius: 31px;
+    padding-left: 26px;
+    color: var(--midnightBlue);
+}
+
+.login-div input::placeholder {
+    color: var(--midnightBlue);
+}
+
+.signin-forgot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 24px;
+}
+
+.signin-forgot a {
+    color: var(--midnightBlue);
+}
+
+.loginBtn {
+    width: 318px;
+    height: 52px;
+    background-color: var(--midnightBlue);
+    color: #fff;
+    font-family: poppins;
+    font-weight: 500;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-right: 13px;
+    border-radius: 39px;
+    margin-top: 24px;
+}
+
+.loginBtn span {
+    width: 34px;
+    height: 34px;
+    background-color: var(--magenta);
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 68px;
+}
+
+.login-signin {
+    margin-top: 38px;
+    font-size: 16px;
+    text-align: center;
+    color: var(--midnightBlue);
+}
+
+
+
+
+
+main {
+    width: 100%;
+    max-height: 892px;
+    display: grid;
+    grid-template-columns: repeat(21, 1fr);
+    grid-template-rows: 1fr;
+    gap: 20px;
+}
+
+#home-left {
+    grid-column: 1/12;
+    height: 100%;
+    width: 100%;
+    background-color: var(--midnightBlue);
+    border-radius: 39px;
+}
+
+#home-left .concept-title {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#home-left .concept-title h2 {
+    font-size: 42px;
+    color: white;
+    font-weight: 500;
+}
+
+#home-right {
+    grid-column: 12/22;
+    position: relative;
+}
+
+#home-actu {
+    width: 100%;
+    height: 778px;
+    background-color: var(--ACTU_Section);
+    border-radius: 39px;
+    padding: 0px 28px;
+}
+
+#home-actu .actu-title {
+    width: 100%;
+    height: 126px;
+    display: flex;
+    align-items: center;
+}
+
+#home-actu h2 {
+    font-size: 26px;
+    font-weight: 500;
+}
+
+#actu-picto {
+    width: 52px;
+    height: 52px;
+    background-color: var(--ACTU_Picto);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 24px;
+}
+
+#home-fest {
+    width: 100%;
+    height: 138px;
+    background-color: #FFC6C6;
+    border-radius: 25px;
+    position: absolute;
+    z-index: 10;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 28px;
+}
+
+.fest-left {
+    display: flex;
+    align-items: center;
+}
+
+.festival-picto {
+    width: 46px;
+    height: 46px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--FEST_Picto);
+    margin-right: 26px;
+}
+
+#home-fest h2 {
+    font-size: 42px ;
+    font-weight: 500;
+}
+
+.arrow {
+    width: 42px;
+    height: 42px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #000;
+}
