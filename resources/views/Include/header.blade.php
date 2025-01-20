@@ -38,24 +38,26 @@
             </div>
         </div>
 
-        <div id="signinDropdown" class="hidden">
+        <div id="signinDropdown" class="flex">
             <div class="signin-logo">
                 @include('Include.svg.logoAuth')
             </div>
             <form action="{{route('register')}}" method="POST">
                 @method('POST')
                 @csrf
-                <div class="signin-div">
-                    <input type="text" id="signin-name" name="signin-name" placeholder="Nom" required>
-                    @error('signin-name')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="signin-div">
-                    <input type="text" id="signin-firstname" name="signin-firstname" placeholder="Prénom" required>
-                    @error('signin-firstname')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                    @enderror
+                <div class="nameDiv">
+                    <div class="signin-div">
+                        <input type="text" id="signin-name" name="signin-name" placeholder="Nom" required>
+                        @error('signin-name')
+                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="signin-div">
+                        <input type="text" id="signin-firstname" name="signin-firstname" placeholder="Prénom" required>
+                        @error('signin-firstname')
+                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
+                    </div>
                 </div>
                 <div class="signin-div">
                     <input type="email" id="signin-email" name="signin-email" placeholder="Adresse email" required>
@@ -75,6 +77,13 @@
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
+                <div class="signin-div">
+                    <input type="password" id="signin-password" name="signin-password" placeholder="Mot de passe oublié" required>
+                    @error('signin-password')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                </div>
+
                 <button type="submit" class="signinBtn">
                     Confirmer l'inscription
                     <span>

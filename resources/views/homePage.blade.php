@@ -1,18 +1,5 @@
 @extends('layout.layoutGroover')
 
-@section('head')
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Concept Page</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    @vite(['resources/css/reset.css', 'resources/css/root.css', 'resources/css/style.css'])
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-</head>
-@endsection
-
 @section('content')
 <body>
     <main>
@@ -47,11 +34,13 @@
                     </div>
                     <h2>Liste des festivals</h2>
                 </div>
-                <a href="#" class="arrow">
-                    <svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.7307 0.727051L11.2724 2.23116L14.652 5.68383L0.59082 5.69762L0.592888 7.81907L14.6159 7.80528L11.293 11.2314L12.7576 12.7271L18.5908 6.71273L12.7307 0.727051Z" fill="#1E1E1E"/>
-                    </svg>
-                </a>
+                <form action="{{route('festival.index')}}" method="GET" class="arrow">
+                    <button type="submit">
+                        <svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.7307 0.727051L11.2724 2.23116L14.652 5.68383L0.59082 5.69762L0.592888 7.81907L14.6159 7.80528L11.293 11.2314L12.7576 12.7271L18.5908 6.71273L12.7307 0.727051Z" fill="#1E1E1E"/>
+                        </svg>
+                    </button>
+                </form>
             </div>
         </div>
     </main>
