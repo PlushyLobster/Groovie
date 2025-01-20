@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date('arrival_date');
             $table->time('departure_time');
             $table->time('arrival_time');
-            $table->smallInteger('status');
+            $table->string('status',50);
             $table->unsignedBigInteger('Id_parent')->nullable();
             $table->integer('groovie_won')->comment('nombre de groovies gagnés');
             $table->timestamps();

@@ -12,7 +12,7 @@ return new class extends Migration
         Schema::create('GRV1_Transports', function (Blueprint $table) {
             $table->id('Id_transport');
             $table->boolean('creator')->nullable();
-            $table->dateTime('type');
+            $table->string('type',50);
             $table->smallInteger('nb_slot');
             $table->timestamps();
         });

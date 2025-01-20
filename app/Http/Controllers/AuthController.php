@@ -60,4 +60,8 @@ class AuthController extends Controller
         // Rediriger vers une page de succès ou de connexion
         return redirect()->route('home');
     }
+//    public function ()
+//    {
+//
+//    }
 }
