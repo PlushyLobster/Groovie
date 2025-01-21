@@ -12,7 +12,6 @@ return new class extends Migration
         Schema::create('GRV1_Users', function (Blueprint $table) {
             $table->id('Id_user');
             $table->boolean('active')->nullable();
-            $table->string('username', 50)->unique();
             $table->string('email', 100)->unique();
             $table->string('password', 255);
             $table->boolean('cgu_validated')->nullable();

@@ -88,6 +88,7 @@
 
     /* COULEURS ACTUALITES */
     --ACTU_Section: #E2FC98;
+    --ACTU_Picto: #000B58;
     --ACTU_ReplayVideo: #A7E1F1;
     --ACTU_Info-ActuTransport: #9999FF;
     --ACTU_NewsGroovie: #000B58;
@@ -187,6 +188,7 @@
     --FEST_Dates: #999999;
     --FEST_BkgBtnAcheter: #FFC6C6;
     --FEST_TextBtnValid: #F866A4;
+    --FEST_Picto: #F866A4;
 
     /* COULEURS VALIDATION BILLET */
     --BILLET_Bkg: #E2FC98;
