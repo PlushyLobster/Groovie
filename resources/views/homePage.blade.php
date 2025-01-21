@@ -2,7 +2,7 @@
 
 @section('content')
 <body>
-    <main>
+    <main id="home-main">
         <div id="home-left">
             <div class="concept-title">
                 <h2>Concept</h2>
@@ -55,7 +55,7 @@
     const loginDropdown = document.getElementById("loginDropdown");
     const loginClose = document.getElementById('login-close');
     const signinClose = document.getElementById('signin-close');
-    
+
     if (signInBtn && signinDropdown && logInBtn && loginDropdown) {
         signInBtn.addEventListener('click', (event) => {
             event.stopPropagation();

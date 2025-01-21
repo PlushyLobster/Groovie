@@ -3,7 +3,7 @@
 
 body {
     background-color: var(--whiteBkg);
-    padding: 0px 76px 0px 76px;
+    padding: 0rem 4.75rem;
     font-family: poppins;
 }
 
@@ -11,7 +11,7 @@ body {
 
 #desktop-nav {
     width: 100%;
-    height: 150px;
+    height: 9.375rem;
     display: flex;
 }
 
@@ -19,12 +19,12 @@ body {
     width: 25%;
     display: flex;
     align-items: center;
-    gap: 62px;
+    gap: 3.875rem;
 }
 
 #picto-ticket {
-    height: 52px;
-    width: 52px;
+    height: 3.25rem;
+    width: 3.25rem;
     background-color: #63FF9C;
     border-radius: 50%;
     display: flex;
@@ -37,15 +37,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: end;
-    gap: 28px;
+    gap: 1.75rem;
 }
 
 .logs-btn {
-    width: 166px;
-    height: 42px;
+    width: 10.375rem;
+    height: 2.625rem;
     color: white;
-    border-radius: 100px;
-    font-size: 14px;
+    border-radius: 6.25rem;
+    font-size: 0.875rem;
 }
 
 #logIn-btn {
@@ -57,8 +57,8 @@ body {
 }
 
 #notif-btn {
-    width: 42px;
-    height: 42px;
+    width: 2.625rem;
+    height: 2.625rem;
     border-radius: 50%;
     background-color: var(--NOTIF_BkgPicto);
     display: flex;
@@ -71,22 +71,22 @@ body {
 
 #signinDropdown {
     position: absolute;
-    height: 892px;
-    width: 560px;
+    height: 55.75rem;
+    width: 35rem;
     background-color: var(--whiteBkg);
     flex-direction: column;
     align-items: center;
     z-index: 20;
-    right: -560px;
-    top: 150px;
-    padding: 21px;
-    border-radius: 25px;
-    box-shadow: 0px 0px 24px rgba(0, 0, 0, 25%);
+    right: -35rem;
+    top: 9.375rem;
+    padding: 1.313rem;
+    border-radius: 1.563rem;
+    box-shadow: 0rem 0rem 1.5rem rgba(0, 0, 0, 25%);
 }
 
 .signin-logo {
-    margin: 10px 21px 46px 50px;
-    width: 470px;
+    margin: 0.625rem 1.313rem 2.875rem 3.125rem;
+    width: 29.375rem;
     display: flex;
     flex-direction: column;
 }
@@ -96,9 +96,9 @@ body {
 }
 
 #signin-close {
-    height: 52px;
-    width: 52px;
-    border: 2px solid var(--midnightBlue);
+    height: 3.25rem;
+    width: 3.25rem;
+    border: 0.125rem solid var(--midnightBlue);
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -109,23 +109,23 @@ body {
 
 .nameDiv {
     display: flex;
-    gap: 16px;
+    gap: 1rem;
 }
 
 .nameDiv .signin-div input {
-    width: 222px;
+    width: 13.875rem;
 }
 
 .signin-div {
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
 }   
 
 .signin-div input {
     background-color: rgba(1, 15, 92, 10%);
-    width: 460px;
-    height: 58px;
-    border-radius: 31px;
-    padding-left: 26px;
+    width: 28.75rem;
+    height: 3.625rem;
+    border-radius: 1.938rem;
+    padding-left: 1.625rem;
     color: var(--midnightBlue);
 }
 
@@ -134,37 +134,37 @@ body {
 }
 
 .signinBtn {
-    width: 460px;
-    height: 58px;
+    width: 28.75rem;
+    height: 3.625rem;
     background-color: var(--violetRehausse);
     color: #fff;
     font-family: poppins;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 1.125rem;
     display: flex;
     align-items: center;
     justify-content: end;
-    padding-right: 13px;
-    border-radius: 39px;
-    margin-top: 24px;
+    padding-right: 0.813rem;
+    border-radius: 2.438rem;
+    margin-top: 1.5rem;
 }
 
 .signinBtn span {
-    width: 34px;
-    height: 34px;
+    width: 2.125rem;
+    height: 2.125rem;
     background-color: #fff;
-    border-radius: 50px;
+    border-radius: 3.125rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 80px;
+    margin-left: 5rem;
 }
 
 #signin-cgu {
-    font-size: 16px;
+    font-size: 1rem;
     color: var(--midnightBlue);
     text-align: center;
-    margin-top: 30px;
+    margin-top: 1.875rem;
 }
 
 #signin-cgu a {
@@ -173,11 +173,11 @@ body {
 
 @keyframes slideInFromRight {
     from {
-        right: -560px;
+        right: -35rem;
     }
 
     to {
-        right: 76px;
+        right: 4.75rem;
     }
 }
 
@@ -187,11 +187,11 @@ body {
 
 @keyframes slideInBackRight {
     from {
-        right: 76px;
+        right: 4.75rem;
     }
 
     to {
-        right: -560px;
+        right: -35rem;
     }
 }
 
@@ -201,11 +201,11 @@ body {
 
 @keyframes slideInFromRightLogin {
     from {
-        right: -560px;
+        right: -35rem;
     }
 
     to {
-        right: 76px;
+        right: 4.75rem;
     }
 }
 
@@ -215,11 +215,11 @@ body {
 
 @keyframes slideInBackRightLogin {
     from {
-        right: 76px;
+        right: 4.75rem;
     }
 
     to {
-        right: -560px;
+        right: -35rem;
     }
 }
 
@@ -232,22 +232,22 @@ body {
 
 #loginDropdown {
     position: absolute;
-    height: 700px;
-    width: 550px;
+    height: 43.75rem;
+    width: 34.375rem;
     background-color: var(--whiteBkg);
     flex-direction: column;
     align-items: center;
     z-index: 10;
-    right: -560px;
-    top: 150px;
-    padding: 21px;
-    border-radius: 39px;
-    box-shadow: 0px 0px 24px rgba(0, 0, 0, 25%);  
+    right: -35rem;
+    top: 9.375rem;
+    padding: 1.313rem;
+    border-radius: 2.438rem;
+    box-shadow: 0rem 0rem 1.5rem rgba(0, 0, 0, 25%);  
 }
 
 .login-logo {
-    margin: 10px 31px 46px 31px;
-    width: 470px;
+    margin: 0.625rem 1.938rem 2.875rem 1.938rem;
+    width: 29.375rem;
     display: flex;
     flex-direction: column;
 }
@@ -257,9 +257,9 @@ body {
 }
 
 #login-close {
-    height: 52px;
-    width: 52px;
-    border: 2px solid var(--midnightBlue);
+    height: 3.25rem;
+    width: 3.25rem;
+    border: 0.125rem solid var(--midnightBlue);
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -269,15 +269,15 @@ body {
 }
 
 .login-div {
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
 }   
 
 .login-div input {
     background-color: rgba(1, 15, 92, 10%);
-    width: 460px;
-    height: 58px;
-    border-radius: 31px;
-    padding-left: 26px;
+    width: 28.75rem;
+    height: 3.625rem;
+    border-radius: 1.938rem;
+    padding-left: 1.625rem;
     color: var(--midnightBlue);
 }
 
@@ -289,7 +289,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 34px;
+    margin-top: 2.125rem;
 }
 
 .signin-forgot a {
@@ -297,51 +297,51 @@ body {
 }
 
 .loginBtn {
-    width: 460px;
-    height: 58px;
+    width: 28.75rem;
+    height: 3.625rem;
     background-color: var(--midnightBlue);
     color: #fff;
     font-family: poppins;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 1.125rem;
     display: flex;
     align-items: center;
     justify-content: end;
-    padding-right: 13px;
-    border-radius: 39px;
-    margin-top: 34px;
+    padding-right: 0.813rem;
+    border-radius: 2.438rem;
+    margin-top: 2.125rem;
 }
 
 
 .loginBtn span {
-    width: 34px;
-    height: 34px;
+    width: 2.125rem;
+    height: 2.125rem;
     background-color: var(--magenta);
-    border-radius: 50px;
+    border-radius: 3.125rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 130px;
+    margin-left: 8.125rem;
 }
 
 .login-signin {
-    margin-top: 38px;
-    font-size: 16px;
+    margin-top: 2.375rem;
+    font-size: 1rem;
     text-align: center;
     color: var(--midnightBlue);
 }
 
 
+/***      HOME PAGE     ***/
 
 
-
-main {
+#home-main {
     width: 100%;
-    max-height: 892px;
+    max-height: 55.75rem;
     display: grid;
     grid-template-columns: repeat(21, 1fr);
     grid-template-rows: 1fr;
-    gap: 20px;
+    gap: 1.25rem;
 }
 
 #home-left {
@@ -349,19 +349,19 @@ main {
     height: 100%;
     width: 100%;
     background-color: var(--midnightBlue);
-    border-radius: 39px;
+    border-radius: 2.438rem;
 }
 
 #home-left .concept-title {
     width: 100%;
-    height: 100px;
+    height: 6.25rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 #home-left .concept-title h2 {
-    font-size: 42px;
+    font-size: 2.625rem;
     color: white;
     font-weight: 500;
 }
@@ -373,47 +373,47 @@ main {
 
 #home-actu {
     width: 100%;
-    height: 778px;
+    height: 48.625rem;
     background-color: var(--ACTU_Section);
-    border-radius: 39px;
-    padding: 0px 28px;
+    border-radius: 2.438rem;
+    padding: 0rem 1.75rem;
 }
 
 #home-actu .actu-title {
     width: 100%;
-    height: 126px;
+    height: 7.875rem;
     display: flex;
     align-items: center;
 }
 
 #home-actu h2 {
-    font-size: 26px;
+    font-size: 1.625rem;
     font-weight: 500;
 }
 
 #actu-picto {
-    width: 52px;
-    height: 52px;
+    width: 3.25rem;
+    height: 3.25rem;
     background-color: var(--ACTU_Picto);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 24px;
+    margin-right: 1.5rem;
 }
 
 #home-fest {
     width: 100%;
-    height: 138px;
+    height: 8.625rem;
     background-color: #FFC6C6;
-    border-radius: 25px;
+    border-radius: 1.563rem;
     position: absolute;
     z-index: 10;
     bottom: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 28px;
+    padding: 0rem 1.75rem;
 }
 
 .fest-left {
@@ -422,27 +422,44 @@ main {
 }
 
 .festival-picto {
-    width: 46px;
-    height: 46px;
-    border-radius: 50px;
+    width: 2.875rem;
+    height: 2.875rem;
+    border-radius: 3.125rem;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--FEST_Picto);
-    margin-right: 26px;
+    margin-right: 1.625rem;
 }
 
 #home-fest h2 {
-    font-size: 42px ;
+    font-size: 2.625rem;
     font-weight: 500;
 }
 
 .arrow {
-    width: 42px;
-    height: 42px;
-    border-radius: 50px;
+    width: 2.625rem;
+    height: 2.625rem;
+    border-radius: 3.125rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid #000;
+    border: 0.125rem solid #000;
 }
+
+
+
+/***      PAGE FESTIVAL      ***/
+
+#festival-main {
+    width: 100%;
+    max-height: 55.75rem;
+    display: grid;
+    grid-template-columns: repeat(21, 1fr);
+    grid-template-rows: 1fr;
+    gap: 1.25rem;
+}
+
+#festival-left {}
+
+#festival-right {}
