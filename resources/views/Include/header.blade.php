@@ -38,9 +38,16 @@
             </div>
         </div>
 
-        <div id="signinDropdown" class="flex">
+        <div id="signinDropdown" class="hidden">
             <div class="signin-logo">
-                @include('Include.svg.logoAuth')
+                <div id="signin-close">
+                    <svg width="20" height="20" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 1L1 13M1 1L13 13" stroke="#000B58" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="signin-logoSvg">
+                    @include('Include.svg.logoAuth')   
+                </div>
             </div>
             <form action="{{route('register')}}" method="POST">
                 @method('POST')
@@ -104,7 +111,14 @@
         <!-- Dropdown Connexion -->
         <div id="loginDropdown" class="hidden">
             <div class="login-logo">
-             @include('Include.svg.logoAuth')
+                <div id="login-close">
+                    <svg width="20" height="20" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 1L1 13M1 1L13 13" stroke="#000B58" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="login-logoSvg">
+                    @include('Include.svg.logoAuth')     
+                </div>
             </div>
 
             <form action="{{route('login')}}" method="POST">
