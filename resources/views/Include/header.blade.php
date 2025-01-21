@@ -40,22 +40,31 @@
 
         <div id="signinDropdown" class="hidden">
             <div class="signin-logo">
-                @include('Include.svg.logoAuth')
+                <div id="signin-close">
+                    <svg width="20" height="20" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 1L1 13M1 1L13 13" stroke="#000B58" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="signin-logoSvg">
+                    @include('Include.svg.logoAuth')   
+                </div>
             </div>
             <form action="{{route('register')}}" method="POST">
                 @method('POST')
                 @csrf
-                <div class="signin-div">
-                    <input type="text" id="signin-name" name="signin-name" placeholder="Nom" required>
-                    @error('signin-name')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="signin-div">
-                    <input type="text" id="signin-firstname" name="signin-firstname" placeholder="Prénom" required>
-                    @error('signin-firstname')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                    @enderror
+                <div class="nameDiv">
+                    <div class="signin-div">
+                        <input type="text" id="signin-name" name="signin-name" placeholder="Nom" required>
+                        @error('signin-name')
+                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="signin-div">
+                        <input type="text" id="signin-firstname" name="signin-firstname" placeholder="Prénom" required>
+                        @error('signin-firstname')
+                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
+                    </div>
                 </div>
                 <div class="signin-div">
                     <input type="email" id="signin-email" name="signin-email" placeholder="Adresse email" required>
@@ -75,6 +84,13 @@
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
+                <div class="signin-div">
+                    <input type="password" id="signin-password" name="signin-password" placeholder="Mot de passe oublié" required>
+                    @error('signin-password')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                </div>
+
                 <button type="submit" class="signinBtn">
                     Confirmer l'inscription
                     <span>
@@ -95,7 +111,14 @@
         <!-- Dropdown Connexion -->
         <div id="loginDropdown" class="hidden">
             <div class="login-logo">
-             @include('Include.svg.logoAuth')
+                <div id="login-close">
+                    <svg width="20" height="20" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 1L1 13M1 1L13 13" stroke="#000B58" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="login-logoSvg">
+                    @include('Include.svg.logoAuth')     
+                </div>
             </div>
 
             <form action="{{route('login')}}" method="POST">

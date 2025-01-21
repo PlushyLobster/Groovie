@@ -1,8 +1,9 @@
 @import url('root.css');
 
+
 body {
     background-color: var(--whiteBkg);
-    padding: 0px 76px 0px 76px;
+    padding: 0rem 4.75rem;
     font-family: poppins;
 }
 
@@ -10,7 +11,7 @@ body {
 
 #desktop-nav {
     width: 100%;
-    height: 150px;
+    height: 9.375rem;
     display: flex;
 }
 
@@ -18,12 +19,12 @@ body {
     width: 25%;
     display: flex;
     align-items: center;
-    gap: 62px;
+    gap: 3.875rem;
 }
 
 #picto-ticket {
-    height: 52px;
-    width: 52px;
+    height: 3.25rem;
+    width: 3.25rem;
     background-color: #63FF9C;
     border-radius: 50%;
     display: flex;
@@ -36,15 +37,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: end;
-    gap: 28px;
+    gap: 1.75rem;
 }
 
 .logs-btn {
-    width: 166px;
-    height: 42px;
+    width: 10.375rem;
+    height: 2.625rem;
     color: white;
     border-radius: 100px;
-    font-size: 14px;
+    font-size: 0.875rem;
 }
 
 #logIn-btn {
@@ -56,8 +57,8 @@ body {
 }
 
 #notif-btn {
-    width: 42px;
-    height: 42px;
+    width: 2.625rem;
+    height: 2.625rem;
     border-radius: 50%;
     background-color: var(--NOTIF_BkgPicto);
     display: flex;
@@ -65,25 +66,54 @@ body {
     align-items: center;
 }
 
+
 /***   FORM INSCRIPTION   ***/
 
 #signinDropdown {
     position: absolute;
-    height: 750px;
-    width: 360px;
-    background-color: var(--yellowPrimary);
+    height: 55.75rem;
+    width: 35rem;
+    background-color: var(--whiteBkg);
     flex-direction: column;
     align-items: center;
-    z-index: 10;
-    right: -380px;
-    top: 150px;
-    padding: 21px;
-    border-radius: 25px;
-    box-shadow: 0px 0px 24px rgba(0, 0, 0, 25%);
+    z-index: 20;
+    right: -35rem;
+    top: 9.375rem;
+    padding: 1.313rem;
+    border-radius: 39px;
+    box-shadow: 0rem 0rem 1.5rem rgba(0, 0, 0, 25%);
 }
 
-.signin-logo{
-    margin: 57px 0px 50px 0px;
+.signin-logo {
+    margin: 0.625rem 1.313rem 2.875rem 3.125rem;
+    width: 29.375rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.signin-logoSvg {
+    align-self: center;
+}
+
+#signin-close {
+    height: 3.25rem;
+    width: 3.25rem;
+    border: 0.125rem solid var(--midnightBlue);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 6rem;
+    align-self: end;
+}
+
+.nameDiv {
+    display: flex;
+    gap: 1rem;
+}
+
+.nameDiv .signin-div input {
+    width: 13.875rem;
 }
 
 .signin-div {
@@ -92,10 +122,10 @@ body {
 
 .signin-div input {
     background-color: rgba(1, 15, 92, 10%);
-    width: 318px;
-    height: 52px;
-    border-radius: 31px;
-    padding-left: 26px;
+    width: 28.75rem;
+    height: 3.625rem;
+    border-radius: 1.938rem;
+    padding-left: 1.625rem;
     color: var(--midnightBlue);
 }
 
@@ -104,37 +134,37 @@ body {
 }
 
 .signinBtn {
-    width: 318px;
-    height: 52px;
+    width: 28.75rem;
+    height: 3.625rem;
     background-color: var(--violetRehausse);
     color: #fff;
     font-family: poppins;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 1.125rem;
     display: flex;
     align-items: center;
     justify-content: end;
-    padding-right: 13px;
+    padding-right: 0.813rem;
     border-radius: 39px;
-    margin-top: 24px;
+    margin-top: 1.5rem;
 }
 
 .signinBtn span {
-    width: 34px;
-    height: 34px;
+    width: 2.125rem;
+    height: 2.125rem;
     background-color: #fff;
     border-radius: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 17px;
+    margin-left: 5rem;
 }
 
 #signin-cgu {
-    font-size: 14px;
+    font-size: 1rem;
     color: var(--midnightBlue);
     text-align: center;
-    margin-top: 30px;
+    margin-top: 1.875rem;
 }
 
 #signin-cgu a {
@@ -143,11 +173,11 @@ body {
 
 @keyframes slideInFromRight {
     from {
-        right: -380px;
+        right: -35rem;
     }
 
     to {
-        right: 76px;
+        right: 4.75rem;
     }
 }
 
@@ -157,11 +187,11 @@ body {
 
 @keyframes slideInBackRight {
     from {
-        right: 76px;
+        right: 4.75rem;
     }
 
     to {
-        right: -380px;
+        right: -35rem;
     }
 }
 
@@ -171,11 +201,11 @@ body {
 
 @keyframes slideInFromRightLogin {
     from {
-        right: -380px;
+        right: -35rem;
     }
 
     to {
-        right: 76px;
+        right: 4.75rem;
     }
 }
 
@@ -185,11 +215,11 @@ body {
 
 @keyframes slideInBackRightLogin {
     from {
-        right: 76px;
+        right: 4.75rem;
     }
 
     to {
-        right: -380px;
+        right: -35rem;
     }
 }
 
@@ -197,25 +227,45 @@ body {
     animation: slideInBackRightLogin 0.8s forwards;
 }
 
+
 /***   FORM CONNEXION   ***/
 
 #loginDropdown {
     position: absolute;
-    height: 650px;
-    width: 360px;
-    background-color: var(--yellowPrimary);
+    height: 43.75rem;
+    width: 34.375rem;
+    background-color: var(--whiteBkg);
     flex-direction: column;
     align-items: center;
     z-index: 10;
-    right: -380px;
-    top: 150px;
-    padding: 21px;
+    right: -35rem;
+    top: 9.375rem;
+    padding: 1.313rem;
     border-radius: 39px;
     box-shadow: 0px 0px 24px rgba(0, 0, 0, 25%);
 }
 
-.login-logo{
-    margin: 78px 0px;
+.login-logo {
+    margin: 0.625rem 1.938rem 2.875rem 1.938rem;
+    width: 29.375rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-logoSvg {
+    align-self: center;
+}
+
+#login-close {
+    height: 3.25rem;
+    width: 3.25rem;
+    border: 0.125rem solid var(--midnightBlue);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 6rem;
+    align-self: end;
 }
 
 .login-div {
@@ -224,10 +274,10 @@ body {
 
 .login-div input {
     background-color: rgba(1, 15, 92, 10%);
-    width: 318px;
-    height: 52px;
-    border-radius: 31px;
-    padding-left: 26px;
+    width: 28.75rem;
+    height: 3.625rem;
+    border-radius: 1.938rem;
+    padding-left: 1.625rem;
     color: var(--midnightBlue);
 }
 
@@ -239,7 +289,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 24px;
+    margin-top: 2.125rem;
 }
 
 .signin-forgot a {
@@ -247,47 +297,51 @@ body {
 }
 
 .loginBtn {
-    width: 318px;
-    height: 52px;
+    width: 28.75rem;
+    height: 3.625rem;
     background-color: var(--midnightBlue);
     color: #fff;
     font-family: poppins;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 1.125rem;
     display: flex;
     align-items: center;
     justify-content: end;
-    padding-right: 13px;
+    padding-right: 0.813rem;
     border-radius: 39px;
-    margin-top: 24px;
+    margin-top: 2.125rem;
 }
 
+
 .loginBtn span {
-    width: 34px;
-    height: 34px;
+    width: 2.125rem;
+    height: 2.125rem;
     background-color: var(--magenta);
     border-radius: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 68px;
+    margin-left: 8.125rem;
 }
 
 .login-signin {
-    margin-top: 38px;
-    font-size: 16px;
+    margin-top: 2.375rem;
+    font-size: 1rem;
     text-align: center;
     color: var(--midnightBlue);
 }
 
+
+
+
+
 main {
     width: 100%;
-    max-height: 892px;
+    max-height: 55.75rem;
     display: grid;
     grid-template-columns: repeat(21, 1fr);
     grid-template-rows: 1fr;
     gap: 20px;
-    background-color: #F7F7F7;
 }
 
 #home-left {
@@ -300,14 +354,14 @@ main {
 
 #home-left .concept-title {
     width: 100%;
-    height: 100px;
+    height: 6.25rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 #home-left .concept-title h2 {
-    font-size: 42px;
+    font-size: 2.625rem;
     color: white;
     font-weight: 500;
 }
@@ -319,47 +373,47 @@ main {
 
 #home-actu {
     width: 100%;
-    height: 778px;
+    height: 50rem;
     background-color: var(--ACTU_Section);
     border-radius: 39px;
-    padding: 0px 28px;
+    padding: 0rem 1.75rem;
 }
 
 #home-actu .actu-title {
     width: 100%;
-    height: 126px;
+    height: 7.875rem;
     display: flex;
     align-items: center;
 }
 
 #home-actu h2 {
-    font-size: 26px;
+    font-size: 1.625rem;
     font-weight: 500;
 }
 
 #actu-picto {
-    width: 52px;
-    height: 52px;
+    width: 3.25rem;
+    height: 3.25rem;
     background-color: var(--ACTU_Picto);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 24px;
+    margin-right: 1.5rem;
 }
 
 #home-fest {
     width: 100%;
-    height: 138px;
+    height: 8.625rem;
     background-color: #FFC6C6;
-    border-radius: 25px;
+    border-radius: 39px;
     position: absolute;
     z-index: 10;
     bottom: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 28px;
+    padding: 0rem 1.75rem;
 }
 
 .fest-left {
@@ -368,40 +422,168 @@ main {
 }
 
 .festival-picto {
-    width: 46px;
-    height: 46px;
+    width: 2.875rem;
+    height: 2.875rem;
     border-radius: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--FEST_Picto);
-    margin-right: 26px;
+    margin-right: 1.625rem;
 }
 
 #home-fest h2 {
-    font-size: 42px ;
+    font-size: 2.625rem;
     font-weight: 500;
 }
 
 .arrow {
-    width: 42px;
-    height: 42px;
+    width: 2.625rem;
+    height: 2.625rem;
     border-radius: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid #000;
+    border: 0.125rem solid #000;
 }
 
-/*** ADMIN CARDS ***/
 
-.admin-card {
+
+/***      PAGE FESTIVAL      ***/
+
+#festival-main {
+    width: 100%;
+    max-height: 55.75rem;
+    display: grid;
+    grid-template-columns: repeat(21, 1fr);
+    grid-template-rows: 1fr;
+    gap: 1.25rem;
+}
+
+#festival-left {
+    grid-column: 1/15;
+    grid-row: 1/2;
+    background-color: var(--TFEST_Section);
+    border-radius: 39px;
+    padding: 0rem 2.5rem ;
+}
+
+#fest-title {
+    width: 100%;
+    height: 7.250rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+#fest-title h2{
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--midnightBlue);
+}
+
+#fest-titleLeft {
+    height: 100%;
+    width: 30rem;
+    display: flex;
+    align-items: center;
+}
+
+#fest-titleLeft .festival-picto{
+    margin-right: 1.375rem;
+}
+
+#festival-right {
+    grid-column: 15/22;
+    grid-row: 1/2;
+    background-color: var(--yellowPrimary);
     border-radius: 39px;
 }
 
-/*** SIDENAV ***/
+#fest-searchDiv {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
 
-.sidenav {
-    background-color: #E2FC98;
-    color: #000B58;
+.fest-searchBar {
+    background-color: var(--whiteBkg);
+    width: 21.75rem;
+    height: 2.625rem;
+    padding: 0px 20px 0px 0px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 50px;
+}
+
+#fest-searchInput {
+    height: 100%;
+    background: none;
+    padding-left: 20px;
+    border-radius: 50px;
+    width: 18.75rem;
+}
+
+#fest-searchInput::placeholder {
+    color: var(--contraste_labeur);
+    font-weight: 500;
+}
+
+.fest-cate {
+    width: 60.25rem;
+    height: 14.500rem;
+    margin-bottom: 1.65rem;
+}
+.fest-cate hr {
+    border: 1px solid var(--contraste_labeur);
+}
+
+.fest-cateTitle {
+    display: flex;
+    justify-content: space-between;
+    height: 1.5rem;
+    margin-bottom: 0.813rem;
+}
+
+.fest-cateTitle p {
+    font-size: 20px;
+    color: #2F2F2F;
+    font-weight: 500;
+}
+
+.fest-cateSlider {
+    width: 58.250rem;
+    height: 12.75rem;
+    display: flex;
+    align-items: center;
+    gap: 1.875rem;
+}
+
+.fest-card {
+    width: 9.5rem;
+    height: 9.875rem;
+    border-radius: 20px;
+    background-color: #fff;
+}
+
+.fest-cardTitle {
+    height: 4.25rem;
+    padding: 12px 14px 0px 14px;
+}
+
+.fest-cardName {
+    font-size: 16px;
+}
+
+.fest-cardDate {
+    font-size: 12px;
+    color: #ababab;
+}
+
+.fest-cardImage {
+    width: 100%;
+    height: 5.625rem;
+    background-color: #737373;
+    border-radius: 0px 0px 20px 20px;
 }

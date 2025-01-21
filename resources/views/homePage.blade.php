@@ -1,21 +1,8 @@
 @extends('layout.layoutGroover')
 
-@section('head')
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Concept Page</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    @vite(['resources/css/reset.css', 'resources/css/root.css', 'resources/css/style.css'])
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-</head>
-@endsection
-
 @section('content')
 <body>
-    <main>
+    <main id="home-main">
         <div id="home-left">
             <div class="concept-title">
                 <h2>Concept</h2>
@@ -47,11 +34,13 @@
                     </div>
                     <h2>Liste des festivals</h2>
                 </div>
-                <a href="#" class="arrow">
-                    <svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.7307 0.727051L11.2724 2.23116L14.652 5.68383L0.59082 5.69762L0.592888 7.81907L14.6159 7.80528L11.293 11.2314L12.7576 12.7271L18.5908 6.71273L12.7307 0.727051Z" fill="#1E1E1E"/>
-                    </svg>
-                </a>
+                <form action="{{route('festival.index')}}" method="GET" class="arrow">
+                    <button type="submit">
+                        <svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.7307 0.727051L11.2724 2.23116L14.652 5.68383L0.59082 5.69762L0.592888 7.81907L14.6159 7.80528L11.293 11.2314L12.7576 12.7271L18.5908 6.71273L12.7307 0.727051Z" fill="#1E1E1E"/>
+                        </svg>
+                    </button>
+                </form>
             </div>
         </div>
     </main>
@@ -64,6 +53,8 @@
     const signinDropdown = document.getElementById('signinDropdown');
     const logInBtn = document.getElementById("logIn-btn");
     const loginDropdown = document.getElementById("loginDropdown");
+    const loginClose = document.getElementById('login-close');
+    const signinClose = document.getElementById('signin-close');
 
     if (signInBtn && signinDropdown && logInBtn && loginDropdown) {
         signInBtn.addEventListener('click', (event) => {
@@ -82,21 +73,22 @@
             loginDropdown.classList.add("transition-right-login");
         });
 
-        document.addEventListener('click', (event) => {
-            if (!signinDropdown.contains(event.target) && event.target !== signInBtn) {
-                signinDropdown.classList.add('transition-backRight');
-                setTimeout(() => {
-                    signinDropdown.classList.add('hidden');
-                    signinDropdown.classList.remove('transition-backRight');
-                }, 800);
-            }
-            if (!loginDropdown.contains(event.target) && event.target !== logInBtn) {
-                loginDropdown.classList.add('transition-backRight-login');
-                setTimeout(() => {
-                    loginDropdown.classList.add('hidden'); 
-                    loginDropdown.classList.remove('transition-backRight-login');
-                }, 800);
-            }
+        loginClose.addEventListener('click', (event) => {
+            event.stopPropagation();
+            loginDropdown.classList.add('transition-backRight-login');
+            setTimeout(() => {
+                loginDropdown.classList.add('hidden');
+                loginDropdown.classList.remove('transition-backRight-login');
+            }, 800);
+        });
+
+        signinClose.addEventListener('click', (event) => {
+            event.stopPropagation();
+            signinDropdown.classList.add('transition-backRight');
+            setTimeout(() => {
+                signinDropdown.classList.add('hidden');
+                signinDropdown.classList.remove('transition-backRight');
+            }, 800);
         });
 
         // Ouvrir le dropdown si une erreur est présente
