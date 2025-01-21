@@ -25,3 +25,4 @@ Route::get('/admin/transactions', [AdminController::class, 'transactions'])->nam
 Route::get('/admin/festivals', [AdminController::class, 'festivals'])->name('admin.festivals');
 Route::get('/admin/promotions', [AdminController::class, 'promotions'])->name('admin.promotions');
 Route::get('/admin/actualites', [AdminController::class, 'actualites'])->name('admin.actualites');
+Route::get('/admin/notifications', [AdminController::class, 'notifications'])->name('admin.notifications');
