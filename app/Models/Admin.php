@@ -15,4 +15,9 @@ class Admin extends Model
     {
         return $this->belongsTo(User::class, 'Id_user');
     }
+    public function festivals()
+    {
+        $festivals = \DB::table('GRV1_Festivals')->get(['Id_festival', 'type', 'name', 'start_datetime', 'end_datetime', 'created_at', 'updated_at', 'Id_musical_genre']);
+        return view('admin.festivals', compact('festivals'));
+    }
 }
