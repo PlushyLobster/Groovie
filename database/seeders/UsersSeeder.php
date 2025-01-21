@@ -20,6 +20,7 @@ class UsersSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'active' => $faker->boolean,
                 'cgu_validated' => 1,
+                'role' => $faker->randomElement(['admin', 'groover']),
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
