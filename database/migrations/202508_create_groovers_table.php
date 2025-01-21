@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('name', 50);
             $table->string('firstname', 50);
             $table->string('city', 110);
+            $table->smallInteger('level')->default(0);
             $table->timestamps();
             $table->foreignId('Id_user')->unique()->constrained('GRV1_Users')->references('Id_user')->onDelete('cascade')->onUpdate('cascade');
         });

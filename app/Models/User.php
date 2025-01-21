@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use App\Notifications\ResetPasswordNotification;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
-class User extends Model implements AuthenticatableContract
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
-    use Authenticatable;
+    use Authenticatable, Notifiable;
 
     protected $table = 'GRV1_Users';
 
@@ -17,7 +20,14 @@ class User extends Model implements AuthenticatableContract
     public $timestamps = true;
 
     protected $fillable = ['active','username','email','password','cgu_validated'];
-
+    public function getEmailForPasswordReset()
+    {
+        return $this->email; // Assurez-vous que 'email' est le champ correct
+    }
+    public function sendPasswordResetNotification($token): void
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
     public function admins(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
         return $this->hasOne(Admin::class, 'Id_user');

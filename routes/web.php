@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\{
+    AuthController,
+};
 use App\Http\Middleware\IsAuth;
 use App\Http\Middleware\IsGuest;
 use Illuminate\Support\Facades\Route;
@@ -14,3 +16,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/login', 'login')->name('login')->middleware(IsGuest::class);
     Route::post('/logout', 'logout')->name('logout')->middleware(IsAuth::class);
 });
+
+Route::post('/password/email', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::post('/password/verify-code', [AuthController::class, 'verifyResetCode'])->name('password.verifyCode');
+Route::post('/password/reset', [AuthController::class, 'resetPassword'])->name('password.reset');

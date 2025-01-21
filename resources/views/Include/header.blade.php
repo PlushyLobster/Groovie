@@ -119,7 +119,7 @@
                     <input type="password" name="login-password" id="login-password" placeholder="Mot de passe">
                 </div>
                 <div class="signin-forgot">
-                    <a href="#" class="text-indigo-700 underline">Mot De Passe Oublié ?</a>
+                    <a href="#" class="text-indigo-700 underline" id="openResetModal">Mot De Passe Oublié ?</a>
                 </div>
                 <button type="submit" class="loginBtn">
                     Connexion
@@ -135,5 +135,57 @@
                 </p>
             </form>
         </div>
+        <!-- Modal de réinitialisation de mot de passe -->
+        <modal id="resetPasswordModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center" style="z-index: 9999;">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h2 class="text-xl font-bold mb-4" id="modalTitle">Réinitialiser le mot de passe</h2>
+                <form id="resetPasswordForm">
+                    @csrf
+                    <!-- Étape 1 : Email -->
+                    <div id="emailStep">
+                        <div class="mb-4">
+                            <label for="reset-email" class="block text-sm font-medium text-gray-700">Adresse email</label>
+                            <input id="reset-email" type="email" name="email" placeholder="Entrez votre email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" required>
+                            @error('email')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="flex justify-end">
+                            <button type="button" class="mr-2 bg-gray-500 text-white px-4 py-2 rounded" id="closeResetModal">Annuler</button>
+                            <button type="button" class="bg-indigo-600 text-white px-4 py-2 rounded" id="sendResetLink">Envoyer le lien</button>
+                        </div>
+                    </div>
+
+                    <!-- Étape 2 : Code de vérification -->
+                    <div id="codeStep" class="hidden">
+                        <div class="mb-4">
+                            <label for="reset-code" class="block text-sm font-medium text-gray-700">Code de vérification</label>
+                            <input id="reset-code" type="text" name="code" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm">
+                        </div>
+                        <div class="flex justify-end">
+                            <button type="button" class="mr-2 bg-gray-500 text-white px-4 py-2 rounded" id="backToEmailStep">Retour</button>
+                            <button type="button" class="bg-indigo-600 text-white px-4 py-2 rounded" id="verifyCode">Vérifier le code</button>
+                        </div>
+                    </div>
+
+                    <!-- Étape 3 : Nouveau mot de passe -->
+                    <div id="passwordStep" class="hidden">
+                        <div class="mb-4">
+                            <label for="new-password" class="block text-sm font-medium text-gray-700">Nouveau mot de passe</label>
+                            <input id="new-password" type="password" name="password" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm">
+                        </div>
+                        <div class="mb-4">
+                            <label for="confirm-password" class="block text-sm font-medium text-gray-700">Confirmer le mot de passe</label>
+                            <input id="confirm-password" type="password" name="password_confirmation" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm">
+                        </div>
+                        <div class="flex justify-end">
+                            <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded">Réinitialiser le mot de passe</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </modal>
+
     </nav>
 </header>
+
