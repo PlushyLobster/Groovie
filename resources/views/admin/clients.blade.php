@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container mx-auto p-4">
-        <h1 class="text-3xl font-bold mb-6">Gestion des comptes clients</h1>
+        <h1 class="text-3xl font-bold mb-6">Liste des Clients</h1>
         <div class="bg-white p-6 rounded-lg shadow-md">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
@@ -11,22 +11,13 @@
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID
                     </th>
                     <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actif
-                    </th>
-                    <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email
                     </th>
                     <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">CGU
-                        Validées
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Créé le
                     </th>
                     <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date de
-                        création
-                    </th>
-                    <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date de
-                        mise à jour
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mis à jour le
                     </th>
                 </tr>
                 </thead>
@@ -34,9 +25,7 @@
                 @foreach($users as $user)
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $user->Id_user }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $user->active ? 'Oui' : 'Non' }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $user->email }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $user->cgu_validated ? 'Oui' : 'Non' }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $user->created_at }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $user->updated_at }}</td>
                     </tr>

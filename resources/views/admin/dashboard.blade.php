@@ -27,8 +27,19 @@
     <script>
         const ctx = document.getElementById('monthlyRegistrationsChart').getContext('2d');
         const monthlyRegistrations = @json($monthlyRegistrations);
-        const labels = Array.from({ length: 12 }, (_, i) => new Date(2024, i).toLocaleString('fr', { month: 'long' }));
-        const data = labels.map((label, index) => monthlyRegistrations[index + 1] || 0);
+
+        // Générer les labels des mois à partir de janvier 2024 jusqu'à aujourd'hui
+        const startDate = new Date(2024, 0); // Janvier 2024
+        const endDate = new Date(); // Aujourd'hui
+        const labels = [];
+        const data = [];
+
+        for (let date = startDate; date <= endDate; date.setMonth(date.getMonth() + 1)) {
+            const monthLabel = date.toLocaleString('fr', { month: 'long', year: 'numeric' });
+            labels.push(monthLabel);
+            const monthIndex = date.getMonth() + 1;
+            data.push(monthlyRegistrations[monthIndex] || 0);
+        }
 
         new Chart(ctx, {
             type: 'line',

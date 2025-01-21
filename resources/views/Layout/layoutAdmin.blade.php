@@ -48,6 +48,9 @@
             <li class="mb-4">
                 <a href="{{ route('admin.notifications') }}" class="block py-2 px-4 rounded hover:bg-blue-700">Notifications</a>
             </li>
+            <li class="mb-4">
+                <a href="{{ url('/admin/connexion') }}" class="block py-2 px-4 rounded hover:bg-blue-700">Déconnexion</a>
+            </li>
         </ul>
     </nav>
 </aside>
