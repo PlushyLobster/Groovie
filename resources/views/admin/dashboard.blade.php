@@ -4,7 +4,7 @@
     <div class="container mx-auto p-4">
         <h1 class="text-center text-3xl font-bold mb-6">Dashboard Administrateur</h1>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="bg-[#E2FC98] p-6 rounded-lg shadow-md admin-card">
+            <div class="bg-[#63FF9C] p-6 rounded-lg shadow-md admin-card">
                 <h2 class="text-xl font-bold mb-2">Nombre d'utilisateurs</h2>
                 <p>{{ $userCount }}</p>
             </div>

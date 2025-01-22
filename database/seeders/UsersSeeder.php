@@ -26,6 +26,17 @@ class UsersSeeder extends Seeder
             ];
         }
 
+        // Ajout de  l'utilisateur avec le mot de passe haché
+        $users[] = [
+            'email' => 'test@example.com',
+            'password' => Hash::make('test'),
+            'active' => 1,
+            'cgu_validated' => 1,
+            'role' => 'admin',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+
         DB::table('GRV1_Users')->insert($users);
     }
 }

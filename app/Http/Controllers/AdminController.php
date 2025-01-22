@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -31,6 +32,33 @@ class AdminController extends Controller
             });
 
         return view('admin.dashboard', compact('admins', 'userCount', 'festivalCount', 'partnerCount', 'monthlyRegistrations'));
+    }
+    // CONNEXION ADMIN
+    public function showLoginForm()
+    {
+        return view('admin.login');
+    }
+
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
+
+        $user = DB::table('GRV1_Users')->where('email', $request->email)->first();
+
+        if ($user && Hash::check($request->password, $user->password)) {
+            $admin = Admin::where('Id_user', $user->Id_user)->first();
+            if ($admin) {
+                Auth::login($admin);
+                return redirect()->route('admin.dashboard');
+            } else {
+                return back()->withErrors(['message' => 'Cet utilisateur n\'est pas un administrateur']);
+            }
+        } else {
+            return back()->withErrors(['message' => 'Email ou mot de passe incorrect']);
+        }
     }
 // ADMIN/CLIENTS
     public function clients(Request $request)
@@ -129,28 +157,5 @@ class AdminController extends Controller
     {
         return view('admin.notifications');
     }
-    // CONNEXION ADMIN
-    public function showLoginForm()
-    {
-        return view('admin.login');
-    }
 
-    public function login(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string',
-            'firstname' => 'required|string',
-        ]);
-
-        $admin = Admin::where('name', $request->name)
-            ->where('firstname', $request->firstname)
-            ->first();
-
-        if ($admin) {
-            // Logique de connexion (par exemple, créer une session)
-            return redirect()->route('admin.dashboard');
-        } else {
-            return back()->withErrors(['message' => 'Nom ou prénom incorrect']);
-        }
-    }
 }
