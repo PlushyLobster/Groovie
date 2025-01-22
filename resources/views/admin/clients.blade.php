@@ -6,8 +6,7 @@
             <h1 class="text-3xl font-bold">Liste des Clients</h1>
             <button id="add-client" class="bg-green-500 text-white px-4 py-2 rounded">Ajouter un Client</button>
         </div>
-        <div class="bg-white rounded-lg shadow-md overflow-y-auto">
-
+        <div class="bg-white p-6 rounded-lg shadow-md">
             <table id="clients-table" class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                 <tr>
@@ -21,8 +20,8 @@
                 @foreach($users as $user)
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $user->email }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $user->created_at }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $user->updated_at }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y') }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($user->updated_at)->format('d/m/Y') }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <button class="bg-red-500 text-white px-4 py-2 rounded">Supprimer</button>
                         </td>
@@ -30,13 +29,14 @@
                 @endforeach
                 </tbody>
             </table>
-
         </div>
     </div>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#clients-table').DataTable({

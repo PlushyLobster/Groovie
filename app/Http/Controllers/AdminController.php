@@ -197,15 +197,42 @@ class AdminController extends Controller
         $offers = \DB::table('GRV1_Offers')->select('type', 'name', 'description', 'created_at')->get();
         return view('admin.promotions', compact('offers'));
     }
+    public function addOffer(Request $request)
+    {
+        $request->validate([
+            'type' => 'required|string|max:50',
+            'name' => 'required|string|max:50',
+            'description' => 'required|string',
+        ]);
+
+        $offerId = \DB::table('GRV1_Offers')->insertGetId([
+            'type' => $request->type,
+            'name' => $request->name,
+            'description' => $request->description,
+            'created_at' => now(),
+            'updated_at' => now(),
+            'Id_journey' => 1, // Remplacez par la valeur appropriée
+            'Id_partner' => 1, // Remplacez par la valeur appropriée
+        ]);
+
+
+
+        return response()->json($offer);
+    }
     // ADMIN/ACTUALITES
     public function actualites(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         return view('admin.actualites');
     }
     // ADMIN/NOTIFICATIONS
-    public function notifications(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
+    public function notifications()
     {
-        return view('admin.notifications');
-    }
+        $notifications = \DB::table('GRV1_Notifications')
+            ->join('GRV1_Users_Notifications', 'GRV1_Notifications.Id_notification', '=', 'GRV1_Users_Notifications.Id_notification')
+            ->join('GRV1_Users', 'GRV1_Users_Notifications.Id_user', '=', 'GRV1_Users.Id_user')
+            ->select('GRV1_Notifications.importance', 'GRV1_Notifications.message', 'GRV1_Notifications.created_at', 'GRV1_Users.email')
+            ->get();
 
+        return view('admin.notifications', compact('notifications'));
+    }
 }

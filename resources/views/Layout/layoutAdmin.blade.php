@@ -31,7 +31,7 @@
                 <a href="{{ route('admin.dashboard') }}" class="block py-2 px-4 rounded text-center hover:bg-[#A7BCD6] {{ request()->routeIs('admin.dashboard') ? 'bg-[#A7BCD6]' : '' }}">Dashboard</a>
             </li>
             <li class="mb-4">
-                <a href="{{ route('admin.clients') }}" class="block py-2 px-4 rounded text-center hover:bg-[#A7BCD6] {{ request()->routeIs('admin.clients') ? 'bg-[#A7BCD6]' : '' }}">Gestion des comptes clients</a>
+                <a href="{{ route('admin.clients') }}" class="block py-2 px-4 rounded text-center hover:bg-[#A7BCD6] {{ request()->routeIs('admin.clients') ? 'bg-[#A7BCD6]' : '' }}">Gestion des clients</a>
             </li>
             <li class="mb-4">
                 <a href="{{ route('admin.festivals') }}" class="block py-2 px-4 rounded text-center hover:bg-[#A7BCD6] {{ request()->routeIs('admin.festivals') ? 'bg-[#A7BCD6]' : '' }}">Gestion des festivals</a>

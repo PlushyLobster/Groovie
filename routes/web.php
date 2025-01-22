@@ -39,6 +39,7 @@ Route::put('/admin/festivals/{id}', [AdminController::class, 'updateFestival'])-
 //PROMOTIONS
 Route::get('/admin/promotions', [AdminController::class, 'promotions'])->name('admin.promotions');
 Route::get('/admin/promotions', [AdminController::class, 'getOffers'])->name('admin.promotions');
+Route::post('/admin/offers/add', [AdminController::class, 'addOffer'])->name('admin.offers.add');
 //PASSWORD RESET
 Route::post('/password/email', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
 Route::post('/password/verify-code', [AuthController::class, 'verifyResetCode'])->name('password.verifyCode');
