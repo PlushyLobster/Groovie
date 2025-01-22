@@ -39,7 +39,18 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#clients-table').DataTable();
+            $('#clients-table').DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.13.5/i18n/fr-FR.json"
+                },
+                "pageLength": 10,
+                "lengthMenu": [5, 10, 20, 50],
+                "deferRender": true,
+                "destroy": true,
+                "drawCallback": function() {
+                    $('#clients-table').css("visibility", "visible");
+                }
+            });
         });
     </script>
 @endsection

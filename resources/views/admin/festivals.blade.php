@@ -22,18 +22,10 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                 @foreach($festivals as $festival)
                     <tr id="festival-{{ $festival->Id_festival }}">
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <input type="text" value="{{ $festival->type }}" id="type-{{ $festival->Id_festival }}" class="border rounded px-2 py-1">
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <input type="text" value="{{ $festival->name }}" id="name-{{ $festival->Id_festival }}" class="border rounded px-2 py-1">
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <input type="datetime-local" value="{{ $festival->start_datetime }}" id="start_datetime-{{ $festival->Id_festival }}" class="border rounded px-2 py-1">
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <input type="datetime-local" value="{{ $festival->end_datetime }}" id="end_datetime-{{ $festival->Id_festival }}" class="border rounded px-2 py-1">
-                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $festival->type }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $festival->name }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $festival->start_datetime }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $festival->end_datetime }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $festival->created_at }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $festival->updated_at }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">
@@ -52,7 +44,18 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#festivals-table').DataTable();
+            $('#festivals-table').DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.13.5/i18n/fr-FR.json"
+                },
+                "pageLength": 10,
+                "lengthMenu": [5, 10, 20, 50],
+                "deferRender": true,
+                "destroy": true,
+                "drawCallback": function() {
+                    $('#festivals-table').css("visibility", "visible");
+                }
+            });
         });
     </script>
 @endsection
