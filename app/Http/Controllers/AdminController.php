@@ -19,18 +19,52 @@ class AdminController extends Controller
         $partnerCount = \DB::table('GRV1_Partners')->count();
 
         $monthlyRegistrations = \DB::table('GRV1_Users')
-            ->select(\DB::raw('COUNT(*) as count'), \DB::raw('MONTH(created_at) as month'))
-            ->whereYear('created_at', Carbon::now()->year)
-            ->groupBy('month')
-            ->pluck('count', 'month')->toArray();
+            ->select(\DB::raw('COUNT(*) as count'), \DB::raw('MONTH(created_at) as month'), \DB::raw('YEAR(created_at) as year'))
+            ->whereYear('created_at', '>=', 2024)
+            ->groupBy('year', 'month')
+            ->orderBy('year')
+            ->orderBy('month')
+            ->get()
+            ->groupBy('year')
+            ->map(function ($yearData) {
+                return $yearData->pluck('count', 'month');
+            });
 
         return view('admin.dashboard', compact('admins', 'userCount', 'festivalCount', 'partnerCount', 'monthlyRegistrations'));
     }
 // ADMIN/CLIENTS
-    public function clients()
+    public function clients(Request $request)
     {
-        $users = \DB::table('GRV1_Users')->select('Id_user', 'email', 'created_at', 'updated_at')->get();
+        $query = \DB::table('GRV1_Users')->select('Id_user', 'email', 'created_at', 'updated_at');
+
+        if ($request->has('search')) {
+            $query->where('email', 'like', '%' . $request->search . '%');
+        }
+
+        $users = $query->paginate(10);
+
         return view('admin.clients', compact('users'));
+    }
+    public function addClient(Request $request)
+    {
+        $newUser = \DB::table('GRV1_Users')->insertGetId([
+            'email' => 'nouveauclient@example.com', // Remplacez par les données nécessaires
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        $user = \DB::table('GRV1_Users')->where('Id_user', $newUser)->first();
+
+        return response()->json($user);
+    }
+    public function autocomplete(Request $request)
+    {
+        $term = $request->get('term');
+        $results = \DB::table('GRV1_Users')
+            ->where('email', 'LIKE', '%' . $term . '%')
+            ->pluck('email');
+
+        return response()->json($results);
     }
 
     // ADMIN/TRANSACTIONS
@@ -56,10 +90,34 @@ class AdminController extends Controller
         \DB::table('GRV1_Festivals')->where('Id_festival', $id)->delete();
         return response()->json(['message' => 'Festival supprimé avec succès.'], 200);
     }
+    public function updateFestival(Request $request, $id)
+    {
+        $request->validate([
+            'type' => 'required|string|max:50',
+            'name' => 'required|string|max:100',
+            'start_datetime' => 'required|date',
+            'end_datetime' => 'required|date',
+        ]);
+
+        \DB::table('GRV1_Festivals')->where('Id_festival', $id)->update([
+            'type' => $request->type,
+            'name' => $request->name,
+            'start_datetime' => $request->start_datetime,
+            'end_datetime' => $request->end_datetime,
+            'updated_at' => now(),
+        ]);
+
+        return response()->json(['message' => 'Festival mis à jour avec succès.'], 200);
+    }
     // ADMIN/PROMOTIONS
     public function promotions(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         return view('admin.promotions');
+    }
+    public function getOffers()
+    {
+        $offers = \DB::table('GRV1_Offers')->select('type', 'name', 'description', 'created_at')->get();
+        return view('admin.promotions', compact('offers'));
     }
     // ADMIN/ACTUALITES
     public function actualites(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application

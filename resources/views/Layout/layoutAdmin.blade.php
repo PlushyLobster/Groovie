@@ -11,9 +11,10 @@
 <aside class="w-64 bg-[#E2FC98] text-[#000B58] h-screen p-4">
     <div class="flex flex-col items-center space-y-2 mb-6">
         <!-- svg à rajouter ici -->
-        <svg width="179" height="177" viewBox="0 0 179 177" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <rect width="179" height="177" fill="url(#pattern0_153_43)"/>
-            <defs>
+        <a href="{{ url('/admin/dashboard') }}">
+            <svg width="150" height="150" viewBox="0 0 179 177" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <rect width="179" height="177" fill="url(#pattern0_153_43)"/>
+                <defs>
                 <pattern id="pattern0_153_43" patternContentUnits="objectBoundingBox" width="1" height="1">
                     <use xlink:href="#image0_153_43" transform="matrix(0.00113248 0 0 0.00115032 -0.0435129 0)"/>
                 </pattern>
@@ -22,34 +23,35 @@
         </svg>
 
 
-        <span class="text-2xl font-bold">Admin</span>
+        <span class="text-2xl font-bold">Espace Admin</span>
     </div>
     <nav>
         <ul>
             <li class="mb-4">
-                <a href="{{ route('admin.dashboard') }}" class="block py-2 px-4 rounded hover:bg-blue-700">Dashboard</a>
+                <a href="{{ route('admin.dashboard') }}" class="block py-2 px-4 rounded text-center hover:bg-[#A7BCD6] {{ request()->routeIs('admin.dashboard') ? 'bg-[#A7BCD6]' : '' }}">Dashboard</a>
             </li>
             <li class="mb-4">
-                <a href="{{ route('admin.clients') }}" class="block py-2 px-4 rounded hover:bg-blue-700">Gestion des comptes clients</a>
+                <a href="{{ route('admin.clients') }}" class="block py-2 px-4 rounded text-center hover:bg-[#A7BCD6] {{ request()->routeIs('admin.clients') ? 'bg-[#A7BCD6]' : '' }}">Gestion des comptes clients</a>
             </li>
             <li class="mb-4">
-                <a href="{{ route('admin.transactions') }}" class="block py-2 px-4 rounded hover:bg-blue-700">Surveillance des transactions</a>
+                <a href="{{ route('admin.festivals') }}" class="block py-2 px-4 rounded text-center hover:bg-[#A7BCD6] {{ request()->routeIs('admin.festivals') ? 'bg-[#A7BCD6]' : '' }}">Gestion des festivals</a>
             </li>
             <li class="mb-4">
-                <a href="{{ route('admin.festivals') }}" class="block py-2 px-4 rounded hover:bg-blue-700">Gestion des festivals</a>
+                <a href="{{ route('admin.promotions') }}" class="block py-2 px-4 rounded text-center hover:bg-[#A7BCD6] {{ request()->routeIs('admin.promotions') ? 'bg-[#A7BCD6]' : '' }}">Gestion des offres promo</a>
             </li>
             <li class="mb-4">
-                <a href="{{ route('admin.promotions') }}" class="block py-2 px-4 rounded hover:bg-blue-700">Gestion des offres promo</a>
+                <a href="{{ route('admin.transactions') }}" class="block py-2 px-4 rounded text-center hover:bg-[#A7BCD6] {{ request()->routeIs('admin.transactions') ? 'bg-[#A7BCD6]' : '' }}">Surveillance des transactions</a>
             </li>
+
             <li class="mb-4">
-                <a href="{{ route('admin.actualites') }}" class="block py-2 px-4 rounded hover:bg-blue-700">Mise à jour des actualités</a>
+                <a href="{{ route('admin.actualites') }}" class="block py-2 px-4 rounded text-center hover:bg-[#A7BCD6] {{ request()->routeIs('admin.actualites') ? 'bg-[#A7BCD6]' : '' }}">Mise à jour des actualités</a>
             </li>
             <hr style="border-color: #000B58;">
             <li class="mb-4">
-                <a href="{{ route('admin.notifications') }}" class="block py-2 px-4 rounded hover:bg-blue-700">Notifications</a>
+                <a href="{{ route('admin.notifications') }}" class="block py-2 px-4 rounded text-center hover:bg-[#A7BCD6]">Notifications</a>
             </li>
             <li class="mb-4">
-                <a href="{{ url('/admin/connexion') }}" class="block py-2 px-4 rounded hover:bg-blue-700">Déconnexion</a>
+                <a href="{{ url('/admin/connexion') }}" class="block py-2 px-4 rounded text-white text-center" style="background-color: #F866A4;">Déconnexion</a>
             </li>
         </ul>
     </nav>
