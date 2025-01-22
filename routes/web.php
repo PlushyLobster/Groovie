@@ -14,7 +14,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::resource('festival', FestivalController::class)->only(['index', 'show']);
-// Route::resource('festivals', FestivalController::class)->except(['index', 'show'])->middleware(IsAuth::class);
+// Route::resource('festival', FestivalController::class)->except(['index', 'show'])->middleware(IsAuth::class);
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('/register', 'register')->name('register')->middleware(IsGuest::class);

@@ -10,10 +10,11 @@ class Festival extends Model
     protected $primaryKey = 'Id_festival';
     public $timestamps = true;
     protected $fillable = ['type', 'name', 'start_datetime', 'end_datetime', 'Id_musical_genre'];
+    protected $dates = ['start_datetime', 'end_datetime'];
 
-    public function musicalGenre(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function musicalGenre(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsTo(MusicalGenre::class, 'Id_musical_genre');
+        return $this->belongsToMany(MusicalGenre::class, 'GRV1_Festivals_Musical_genres', 'Id_festival', 'Id_musical_genre');
     }
 
     public function tickets(): \Illuminate\Database\Eloquent\Relations\HasMany
