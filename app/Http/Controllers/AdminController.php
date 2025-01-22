@@ -101,22 +101,72 @@ class AdminController extends Controller
         return view('admin.transactions');
     }
     // ADMIN/FESTIVALS
+    // app/Http/Controllers/AdminController.php
+
     public function festivals(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         $festivals = \DB::table('GRV1_Festivals')->get(['Id_festival', 'type', 'name', 'start_datetime', 'end_datetime', 'created_at', 'updated_at']);
-        return view('admin.festivals', compact('festivals'));
+        $musicalGenres = \DB::table('GRV1_Musical_genres')->get(['Id_musical_genre', 'name']);
+        return view('admin.festivals', compact('festivals', 'musicalGenres'));
+    }
+    // app/Http/Controllers/AdminController.php
+    // app/Http/Controllers/AdminController.php
+
+    // app/Http/Controllers/AdminController.php
+
+    public function addFestival(Request $request)
+    {
+        try {
+            $request->validate([
+                'type' => 'required|string|max:50',
+                'name' => 'required|string|max:100',
+                'start_datetime' => 'required|date',
+                'end_datetime' => 'required|date',
+                'Id_musical_genre' => 'required|integer',
+            ]);
+
+            // Insérer le festival dans la table GRV1_Festivals
+            $festivalId = \DB::table('GRV1_Festivals')->insertGetId([
+                'type' => $request->type,
+                'name' => $request->name,
+                'start_datetime' => $request->start_datetime,
+                'end_datetime' => $request->end_datetime,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+            // Insérer la relation dans la table GRV1_Festivals_Musical_genres
+            \DB::table('GRV1_Festivals_Musical_genres')->insert([
+                'Id_festival' => $festivalId,
+                'Id_musical_genre' => $request->Id_musical_genre,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+            $festival = \DB::table('GRV1_Festivals')->where('Id_festival', $festivalId)->first();
+
+            return response()->json($festival);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Erreur lors de l\'ajout du festival : ' . $e->getMessage()], 500);
+        }
     }
     public function deleteFestival($id)
     {
-        $festival = \DB::table('GRV1_Festivals')->where('Id_festival', $id)->first();
-        $userFestival = \DB::table('GRV1_Users_Festivals')->where('Id_festival', $id)->exists();
+        try {
+            $festival = \DB::table('GRV1_Festivals')->where('Id_festival', $id)->first();
+            $userFestival = \DB::table('GRV1_Users_Festivals')->where('Id_festival', $id)->exists();
 
-        if ($userFestival) {
-            return response()->json(['message' => 'Ce festival est lié à un utilisateur et ne peut pas être supprimé.'], 400);
+            if ($userFestival) {
+                return response()->json(['message' => 'Ce festival est lié à un utilisateur et ne peut pas être supprimé.'], 400);
+            }
+
+            \DB::table('GRV1_Festivals')->where('Id_festival', $id)->delete();
+            \DB::table('GRV1_Festivals_Musical_genres')->where('Id_festival', $id)->delete();
+
+            return response()->json(['message' => 'Festival supprimé avec succès.'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Erreur lors de la suppression du festival : ' . $e->getMessage()], 500);
         }
-
-        \DB::table('GRV1_Festivals')->where('Id_festival', $id)->delete();
-        return response()->json(['message' => 'Festival supprimé avec succès.'], 200);
     }
     public function updateFestival(Request $request, $id)
     {
