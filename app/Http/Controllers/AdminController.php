@@ -63,13 +63,8 @@ class AdminController extends Controller
 // ADMIN/CLIENTS
     public function clients(Request $request)
     {
-        $query = \DB::table('GRV1_Users')->select('Id_user', 'email', 'created_at', 'updated_at');
-
-        if ($request->has('search')) {
-            $query->where('email', 'like', '%' . $request->search . '%');
-        }
-
-        $users = $query->paginate(10);
+        $users = User::where('role', '=', "groover")->get();
+        $users->load('groovers');
 
         return view('admin.clients', compact('users'));
     }
