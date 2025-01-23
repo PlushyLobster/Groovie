@@ -39,32 +39,36 @@
         </div>
     </div>
 
-    <!-- Modale pour ajouter un festival -->
-    <div id="addFestivalModal" class="hidden fixed z-10 inset-0 overflow-y-auto">
+    <!-- Modale pour afficher les détails du festival -->
+    <div id="festivalDetailsModal" class="hidden fixed z-10 inset-0 overflow-y-auto">
         <div class="flex items-center justify-center min-h-screen">
             <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
-                <h2 class="text-2xl font-bold mb-4">Ajouter un Festival</h2>
-                <form id="addFestivalForm">
+                <h2 class="text-2xl font-bold mb-4">Détails du Festival</h2>
+                <form id="festivalDetailsForm">
                     @csrf
+                    <input type="hidden" id="detail-festival-id">
                     <div class="mb-4">
-                        <label for="add-type" class="block text-sm font-medium text-gray-700">Type</label>
-                        <input type="text" name="type" id="add-type" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <label for="detail-type" class="block text-sm font-medium text-gray-700">Type</label>
+                        <select id="detail-type" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm">
+                            <option value="Intérieur">Intérieur</option>
+                            <option value="Extérieur">Extérieur</option>
+                        </select>
                     </div>
                     <div class="mb-4">
-                        <label for="add-name" class="block text-sm font-medium text-gray-700">Nom</label>
-                        <input type="text" name="name" id="add-name" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <label for="detail-name" class="block text-sm font-medium text-gray-700">Nom</label>
+                        <input type="text" id="detail-name" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm">
                     </div>
                     <div class="mb-4">
-                        <label for="add-start-datetime" class="block text-sm font-medium text-gray-700">Début</label>
-                        <input type="datetime-local" name="start_datetime" id="add-start-datetime" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <label for="detail-start-datetime" class="block text-sm font-medium text-gray-700">Début</label>
+                        <input type="datetime-local" id="detail-start-datetime" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm">
                     </div>
                     <div class="mb-4">
-                        <label for="add-end-datetime" class="block text-sm font-medium text-gray-700">Fin</label>
-                        <input type="datetime-local" name="end_datetime" id="add-end-datetime" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <label for="detail-end-datetime" class="block text-sm font-medium text-gray-700">Fin</label>
+                        <input type="datetime-local" id="detail-end-datetime" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm">
                     </div>
                     <div class="flex justify-center">
-                        <button type="submit" class="py-2 px-4 rounded bg-green-500 text-white">Ajouter</button>
-                        <button type="button" class="py-2 px-4 rounded bg-gray-500 text-white ml-2" onclick="closeModal()">Annuler</button>
+                        <button type="button" class="py-2 px-4 rounded bg-gray-500 text-white ml-2" onclick="closeDetailModal()">Fermer</button>
+                        <button type="button" class="py-2 px-4 rounded bg-blue-500 text-white ml-2" onclick="updateFestival()">Mettre à jour</button>
                     </div>
                 </form>
             </div>
@@ -126,25 +130,55 @@
             $('#addFestivalModal').addClass('hidden');
         }
 
-        function deleteFestival(id) {
-            if (confirm('Êtes-vous sûr de vouloir supprimer ce festival ?')) {
-                $.ajax({
-                    url: '{{ route("admin.festivals.delete", "") }}/' + id,
-                    method: 'DELETE',
-                    data: {
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function(response) {
-                        if (response.message) {
-                            $('#festivals-table').DataTable().row($('#festival-' + id)).remove().draw();
-                            alert('Festival supprimé avec succès !');
-                        }
-                    },
-                    error: function(response) {
-                        alert('Erreur lors de la suppression du festival');
-                    }
-                });
-            }
+        function showFestivalDetails(festivalId) {
+            $.get("/admin/festivals/" + festivalId, function(data) {
+                $('#detail-festival-id').val(festivalId);
+                $('#detail-type').val(data.type);
+                $('#detail-name').val(data.name);
+                $('#detail-start-datetime').val(data.start_datetime);
+                $('#detail-end-datetime').val(data.end_datetime);
+                $('#festivalDetailsModal').removeClass('hidden');
+            }).fail(function() {
+                alert('Erreur lors de la récupération des informations.');
+            });
+        }
+
+        function closeDetailModal() {
+            $('#festivalDetailsModal').addClass('hidden');
+        }
+
+        function updateFestival() {
+            let festivalId = $('#detail-festival-id').val();
+            let data = {
+                _token: '{{ csrf_token() }}',
+                type: $('#detail-type').val(),
+                name: $('#detail-name').val(),
+                start_datetime: $('#detail-start-datetime').val(),
+                end_datetime: $('#detail-end-datetime').val()
+            };
+
+            $.ajax({
+                url: '/admin/festivals/' + festivalId,
+                method: 'PUT',
+                data: data,
+                success: function(response) {
+                    $('#festivals-table').DataTable().row('#festival-' + festivalId).data([
+                        data.type,
+                        data.name,
+                        data.start_datetime,
+                        data.end_datetime,
+                        response.created_at,
+                        response.updated_at,
+                        '<button class="bg-blue-500 text-white px-4 py-2 rounded" onclick="showFestivalDetails(' + festivalId + ')">Détail</button>' +
+                        '<button class="bg-red-500 text-white px-4 py-2 rounded" onclick="deleteFestival(' + festivalId + ')">Supprimer</button>'
+                    ]).draw(false);
+                    closeDetailModal();
+                    alert('Festival mis à jour avec succès !');
+                },
+                error: function(response) {
+                    alert('Erreur lors de la mise à jour du festival');
+                }
+            });
         }
     </script>
 @endsection

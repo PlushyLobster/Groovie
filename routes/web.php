@@ -36,7 +36,8 @@ Route::put('/admin/clients/{id}', [AdminController::class, 'update'])->name('adm
 Route::get('/admin/transactions', [AdminController::class, 'transactions'])->name('admin.transactions');
 //FESTIVALS
 Route::get('/admin/festivals', [AdminController::class, 'festivals'])->name('admin.festivals');
-Route::post('/admin/festivals/add', [AdminController::class, 'addFestival'])->name('admin.festivals.add');Route::delete('/admin/festivals/{id}', [AdminController::class, 'deleteFestival'])->name('admin.festivals.delete');
+Route::post('/admin/festivals/add', [AdminController::class, 'addFestival'])->name('admin.festivals.add');
+Route::delete('/admin/festivals/{id}', [AdminController::class, 'deleteFestival'])->name('admin.festivals.delete');
 Route::get('/admin/festivals/{id}', [AdminController::class, 'showFestival'])->name('admin.festivals.show');
 Route::put('/admin/festivals/{id}', [AdminController::class, 'updateFestival'])->name('admin.festivals.update');
 //PROMOTIONS

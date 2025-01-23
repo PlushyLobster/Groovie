@@ -197,7 +197,9 @@ class AdminController extends Controller
             'updated_at' => now(),
         ]);
 
-        return response()->json(['message' => 'Festival mis à jour avec succès.'], 200);
+        $festival = \DB::table('GRV1_Festivals')->where('Id_festival', $id)->first();
+
+        return response()->json($festival);
     }
     // ADMIN/PROMOTIONS
     public function promotions(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
