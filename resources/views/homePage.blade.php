@@ -4,7 +4,8 @@
 <main id="home-main">
     <div id="home-left">
         <div class="concept-title">
-            <h2>Concept</h2>
+            <h1>Groovie</h1>
+            <h2>L'Expérience de la mobilité durable :</h2>
         </div>
 
         <div>

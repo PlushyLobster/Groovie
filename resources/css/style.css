@@ -121,6 +121,8 @@ body {
 
 .signin-div {
     margin-bottom: 14px;
+    display: flex;
+    flex-direction: column;
 }
 
 .signin-div input {
@@ -505,19 +507,28 @@ main {
     background-color: var(--midnightBlue);
     border-radius: 39px;
     box-shadow: 0px 0px 24px rgba(0, 0, 0, 25%);
+    padding: 21px;
 }
 
 #home-left .concept-title {
     width: 100%;
-    height: 6.25rem;
+    height: 12rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: start;
+    padding-left: 21px;
 }
 
-#home-left .concept-title h2 {
-    font-size: 2.625rem;
+.concept-title h1 {
+    font-size: 5rem;
     color: white;
+    font-weight: 500;
+}
+
+.concept-title h2 {
+    font-size: 1.8rem;
+    color: var(--magenta);
     font-weight: 500;
 }
 
