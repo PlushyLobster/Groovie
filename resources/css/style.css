@@ -199,33 +199,153 @@ body {
     animation: slideInBackRight 0.8s forwards;
 }
 
-@keyframes slideInFromRightLogin {
+
+
+
+
+
+
+/***   FORM BILLET   ***/
+
+#ticketDropdown {
+    position: absolute;
+    height: 36rem;
+    width: 34.375rem;
+    background-color: var(--yellowPrimary);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    left: 4.718rem;
+    top: 9.375rem;
+    padding: 1.313rem;
+    border-radius: 39px;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 25%);
+}
+
+#ticket-header {
+    margin: 0.625rem 0px 2.875rem 0px;
+    width: 29.375rem;
+    height: 4rem;
+    display: flex;
+}
+
+#ticket-title  {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#ticket-title h3 {
+    font-size: 1.625rem;
+    color: var(--midnightBlue);
+    font-weight: 500;
+}
+
+#ticket-close {
+    height: 3.25rem;
+    width: 3.25rem;
+    border: 0.125rem solid var(--midnightBlue);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 6rem;
+    align-self: start;
+}
+
+#ticket-form {
+    width: 29.375rem;
+    height: 24.7rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.ticket-div {
+    margin-bottom: 14px;
+}
+
+#ticket-form .dateScan-div {
+    display: flex;
+    gap: 1.8rem;
+}
+
+#ticket-form .dateScan-div .ticket-div input {
+    width: 13.5rem;
+}
+
+.ticket-div input {
+    background-color: var(--whiteBkg);
+    width: 29.375rem;
+    height: 3.625rem;
+    border-radius: 1.938rem;
+    padding-left: 1.625rem;
+    color: var(--midnightBlue);
+}
+
+.ticket-div input::placeholder {
+    color: var(--midnightBlue);
+}
+
+.ticketBtn {
+    width: 29.375rem;
+    height: 3.625rem;
+    background-color: var(--violetRehausse);
+    color: #fff;
+    font-family: poppins;
+    font-weight: 500;
+    font-size: 1.125rem;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-right: 0.813rem;
+    border-radius: 39px;
+}
+
+.ticketBtn span {
+    width: 2.125rem;
+    height: 2.125rem;
+    background-color: #fff;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5.5rem;
+}
+
+@keyframes slideInFromLeftTicket {
     from {
-        right: -35rem;
+        left: -35rem;
     }
 
     to {
-        right: 4.75rem;
+        left: 4.718rem;
     }
 }
 
-.transition-right-login {
-    animation: slideInFromRightLogin 0.8s forwards;
+.transition-left-ticket {
+    animation: slideInFromLeftTicket 0.8s forwards;
 }
 
-@keyframes slideInBackRightLogin {
+@keyframes slideInBackLeftTicket {
     from {
-        right: 4.75rem;
+        left: 4.718rem;
     }
 
     to {
-        right: -35rem;
+        left: -35rem;
     }
 }
 
-.transition-backRight-login {
-    animation: slideInBackRightLogin 0.8s forwards;
+.transition-backLeft-ticket {
+    animation: slideInBackLeftTicket 0.8s forwards;
 }
+
+
+
+
 
 
 /***   FORM CONNEXION   ***/
@@ -330,6 +450,37 @@ body {
     text-align: center;
     color: var(--midnightBlue);
 }
+
+@keyframes slideInFromRightLogin {
+    from {
+        right: -35rem;
+    }
+
+    to {
+        right: 4.75rem;
+    }
+}
+
+.transition-right-login {
+    animation: slideInFromRightLogin 0.8s forwards;
+}
+
+@keyframes slideInBackRightLogin {
+    from {
+        right: 4.75rem;
+    }
+
+    to {
+        right: -35rem;
+    }
+}
+
+.transition-backRight-login {
+    animation: slideInBackRightLogin 0.8s forwards;
+}
+
+
+
 
 
 
@@ -794,10 +945,6 @@ main {
     gap: 2rem;
 }
 
-.ticket-div input {
-    width: 13.875rem;
-}
-
 .ticket-div {
     margin-bottom: 14px;
 }
@@ -807,11 +954,11 @@ main {
     gap: 4.5rem;
 }
 
-.dateScan-div .ticket-div input {
+.dateScan-div .validBillet-div input {
     width: 13.75rem;
 }
 
-.ticket-div input {
+.validBillet-div input {
     background-color: var(--whiteBkg);
     width: 31.75rem;
     height: 3.625rem;
@@ -820,7 +967,7 @@ main {
     color: var(--midnightBlue);
 }
 
-.ticket-div input::placeholder {
+.validBillet-div input::placeholder {
     color: var(--midnightBlue);
 }
 

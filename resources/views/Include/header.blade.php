@@ -2,14 +2,74 @@
     <nav id="desktop-nav">
         <div id="left-nav">
             @include('Include.svg.logoNav')
-
-            <div class="picto-ticket">
+            <div class="picto-ticket" id="ticket-open">
                 <svg width="29" height="21" viewBox="0 0 29 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M13.0524 16.7474V19.6667M13.0524 1.17778V4.09708M13.0524 8.96258V11.8819M27.2889 1.17778H1.86666V7.01638C1.86666 7.01638 5.93421 7.01638 5.93421 10.4222C5.93421 13.8281 1.86666 13.8281 1.86666 13.8281V19.6667H27.2889V13.8281C27.2889 13.8281 23.2213 13.8281 23.2213 10.4222C23.2213 7.01638 27.2889 7.01638 27.2889 7.01638V1.17778Z"
                         stroke="#000B58" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
+        </div>
+
+        <div id="ticketDropdown" class="hidden">
+            <div id="ticket-header">
+                <div id="ticket-title">
+                    <div class="picto-ticket">
+                        <svg width="29" height="21" viewBox="0 0 29 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M13.0524 16.7474V19.6667M13.0524 1.17778V4.09708M13.0524 8.96258V11.8819M27.2889 1.17778H1.86666V7.01638C1.86666 7.01638 5.93421 7.01638 5.93421 10.4222C5.93421 13.8281 1.86666 13.8281 1.86666 13.8281V19.6667H27.2889V13.8281C27.2889 13.8281 23.2213 13.8281 23.2213 10.4222C23.2213 7.01638 27.2889 7.01638 27.2889 7.01638V1.17778Z"
+                                stroke="#000B58" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>Informations billet :</h3>
+                </div>
+                <div id="ticket-close">
+                    <svg width="20" height="20" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 1L1 13M1 1L13 13" stroke="#000B58" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <form id="ticket-form" method="POST">
+                @method('POST')
+                @csrf
+                <div class="ticket-div">
+                    <input type="text" id="ticket-code" name="ticket-code" placeholder="Code billet" required>
+                    @error('ticket-code')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="dateScan-div">
+                    <div class="ticket-div">
+                        <input type="text" id="ticket-date" name="ticket-date" placeholder="Date" required>
+                        @error('ticket-date')
+                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
+                    </div>
+                        
+                    <div class="ticket-div">
+                        <input type="text" id="ticket-scan" name="scan" placeholder="Scan">
+                    </div>
+                </div>
+                    
+                <div class="ticket-div">
+                    <input type="password" id="ticket-password" name="ticket-password" placeholder="Mot de passe" required>
+                    @error('ticket-password')
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <button type="submit" class="ticketBtn">
+                    Confirmer l'inscription
+                    <span>
+                        <svg width="19" height="15" viewBox="0 0 19 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 7.09985L7.625 12.5999L17 1.59985" stroke="#9747FF" stroke-width="3"
+                                stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </button>
+            </form>       
         </div>
 
         <div id="right-nav">

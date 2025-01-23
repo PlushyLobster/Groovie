@@ -73,7 +73,7 @@
             <form id="validTicket-form" method="POST">
                 @method('POST')
                 @csrf
-                <div class="ticket-div">
+                <div class="validBillet-div">
                     <input type="text" id="validTicket-code" name="validTicket-code" placeholder="Code billet" required>
                     @error('validTicket-code')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -81,19 +81,19 @@
                 </div>
 
                 <div class="dateScan-div">
-                    <div class="ticket-div">
+                    <div class="validBillet-div">
                         <input type="text" id="validTicket-date" name="validTicket-date" placeholder="Date" required>
                         @error('validTicket-date')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
                     
-                    <div class="ticket-div">
+                    <div class="validBillet-div">
                         <input type="text" id="validTicket-scan" name="scan" placeholder="Scan">
                     </div>
                 </div>
                 
-                <div class="ticket-div">
+                <div class="validBillet-div">
                     <input type="password" id="validTicket-password" name="validTicket-password" placeholder="Mot de passe" required>
                     @error('validTicket-password')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
