@@ -27,7 +27,6 @@ class FestivalsSeeder extends Seeder
                 'name' => $name,
                 'start_datetime' => $faker->dateTimeBetween('2024-01-01', '2024-12-31'),
                 'end_datetime' => $faker->dateTimeBetween('2024-01-01', '2024-12-31'),
-                'Id_musical_genre' => $faker->numberBetween(1, 7),
                 'created_at' => now(),
                 'updated_at' => now(),
             ];

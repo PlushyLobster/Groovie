@@ -48,8 +48,6 @@ class DatabaseSeeder extends Seeder
             MusicalGenresSeeder::class,
             FestivalsSeeder::class,
             UsersSeeder::class,
-            AdminsSeeder::class,
-            GrooversSeeder::class,
             TransportsSeeder::class,
             SettingsSeeder::class,
             PartnersSeeder::class,
