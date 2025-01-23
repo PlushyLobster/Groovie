@@ -21,8 +21,10 @@ class AuthController extends Controller
             'active' => 1,
             'email' => $validated['signin-email'],
             'password' => Hash::make($validated['signin-password']), // Hacher le mot de passe
+            'role' => 'groover',
             'cgu_validated' => 1,
         ]);
+
         // Créer une nouvelle instance de Groover et assigner les données nécessaires
         $newGroover = Groover::create([
             'nb_groovies' => 0,
@@ -32,8 +34,8 @@ class AuthController extends Controller
             'city' => $validated['signin-city'],
         ]);
 
-        // Authentifier l'utilisateur nouvellement créé
-        Auth::login($newUser);
+        // Authentifier l'utilisateur nouvellement créé en utilisant le guard approprié
+        Auth::guard('web')->login($newUser);
 
         // Rediriger vers une page de succès ou de connexion
         return redirect()->route('home');
@@ -44,8 +46,8 @@ class AuthController extends Controller
         // Valider les données du formulaire
         $validated = $authRequest->validated();
 
-        // Authentifier l'utilisateur avec l'email et le mot de passe
-        if (Auth::attempt(['email' => $validated['login-email'], 'password' => $validated['login-password']])) {
+        // Authentifier l'utilisateur avec l'email et le mot de passe en utilisant le guard approprié
+        if (Auth::guard('web')->attempt(['email' => $validated['login-email'], 'password' => $validated['login-password']])) {
             // Rediriger vers la page d'accueil en cas de succès
             return redirect()->route('home');
         }

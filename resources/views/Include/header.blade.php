@@ -1,7 +1,9 @@
 <header class="flex justify-between items-center">
     <nav id="desktop-nav">
-        <div id="left-nav">
-            @include('Include.svg.logoNav')
+        <form action="{{route('home')}}" method="GET" id="left-nav">
+            <button type="submit">
+                @include('Include.svg.logoNav')
+            </button>
             <div class="picto-ticket" id="ticket-open">
                 <svg width="29" height="21" viewBox="0 0 29 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -9,7 +11,7 @@
                         stroke="#000B58" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
-        </div>
+        </form>
 
         <div id="ticketDropdown" class="hidden">
             <div id="ticket-header">

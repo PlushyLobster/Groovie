@@ -30,6 +30,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 25%);
 }
 
 #right-nav {
@@ -46,6 +47,7 @@ body {
     color: white;
     border-radius: 100px;
     font-size: 0.875rem;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 25%);
 }
 
 #logIn-btn {
@@ -64,6 +66,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 25%);
 }
 
 
@@ -501,6 +504,7 @@ main {
     width: 100%;
     background-color: var(--midnightBlue);
     border-radius: 39px;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 25%);
 }
 
 #home-left .concept-title {
@@ -528,6 +532,7 @@ main {
     background-color: var(--ACTU_Section);
     border-radius: 39px;
     padding: 0rem 1.75rem;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 25%);
 }
 
 #home-actu .actu-title {
@@ -565,6 +570,7 @@ main {
     justify-content: space-between;
     align-items: center;
     padding: 0rem 1.75rem;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 25%);
 }
 
 .fest-left {
@@ -616,7 +622,8 @@ main {
     grid-row: 1/2;
     background-color: var(--TFEST_Section);
     border-radius: 39px;
-    padding: 0rem 2.5rem ;
+    padding: 0rem 2.5rem;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 25%);
 }
 
 #fest-title {
@@ -648,6 +655,7 @@ main {
     grid-row: 1/2;
     background-color: var(--yellowPrimary);
     border-radius: 39px;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 25%);
 }
 
 #fest-searchDiv {

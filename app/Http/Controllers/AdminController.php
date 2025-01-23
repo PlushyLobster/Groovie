@@ -34,24 +34,20 @@ class AdminController extends Controller
         return view('admin.dashboard', compact('admins', 'userCount', 'festivalCount', 'partnerCount', 'monthlyRegistrations'));
     }
     // CONNEXION ADMIN
-    public function showLoginForm()
+    public function showLoginForm(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         return view('admin.login');
     }
 
-    public function login(Request $request)
+    public function login(Request $request): \Illuminate\Http\RedirectResponse
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|string',
-        ]);
 
         $user = DB::table('GRV1_Users')->where('email', $request->email)->first();
 
         if ($user && Hash::check($request->password, $user->password)) {
             $admin = Admin::where('Id_user', $user->Id_user)->first();
             if ($admin) {
-                Auth::login($admin);
+                Auth::guard('admin')->login($admin);
                 return redirect()->route('admin.dashboard');
             } else {
                 return back()->withErrors(['message' => 'Cet utilisateur n\'est pas un administrateur']);
@@ -61,7 +57,7 @@ class AdminController extends Controller
         }
     }
 // ADMIN/CLIENTS
-    public function clients(Request $request)
+    public function clients(Request $request): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         $users = User::where('role', '=', "groover")->with('groovers')->get();
         return view('admin.clients', compact('users'));
@@ -201,7 +197,7 @@ class AdminController extends Controller
 
         return response()->json($festival);
     }
-    // ADMIN/PROMOTIONS////
+    // ADMIN/PROMOTIONS
     public function promotions(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         return view('admin.promotions');
