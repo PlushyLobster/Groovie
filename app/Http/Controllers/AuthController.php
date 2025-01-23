@@ -21,6 +21,7 @@ class AuthController extends Controller
             'active' => 1,
             'email' => $validated['signin-email'],
             'password' => Hash::make($validated['signin-password']), // Hacher le mot de passe
+            'role' => 'groover',
             'cgu_validated' => 1,
         ]);
         // Créer une nouvelle instance de Groover et assigner les données nécessaires
