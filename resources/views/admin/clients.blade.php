@@ -11,6 +11,7 @@
                 <thead class="bg-gray-50">
                 <tr>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Compte</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Créé le</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mis à jour le</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
@@ -19,11 +20,19 @@
                 <tbody id="user-table" class="bg-white divide-y divide-gray-200">
                 @foreach($users as $user)
                     <tr>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $user->email }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ e($user->email) }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            {{ $user->active ? 'Actif' : 'Suspendu' }}
+                        </td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y') }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($user->updated_at)->format('d/m/Y') }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <button class="bg-red-500 text-white px-4 py-2 rounded">Supprimer</button>
+                            @if($user->active)
+                                <button class="bg-red-500 text-white px-4 py-2 rounded">Supprimer</button>
+                            @else
+                                <button class="bg-green-500 text-white px-4 py-2 rounded">Activer</button>
+                            @endif
+                            <a href="{{}}" class="bg-blue-500 text-white px-4 py-2 rounded ml-2">Détail</a>
                         </td>
                     </tr>
                 @endforeach
