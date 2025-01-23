@@ -46,6 +46,10 @@
     ```bash
     php artisan migrate
     ```
+7. Création du lien symbolique pour le stockage :
+    ```bash
+    php artisan storage:link
+    ```
 
 ## Démarrer le serveur de développement
 
