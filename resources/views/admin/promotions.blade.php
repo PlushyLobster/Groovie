@@ -3,7 +3,7 @@
 @section('content')
     <div class="container mx-auto p-4">
         <div class="flex items-center justify-between mb-4">
-            <h1 class="text-3xl font-bold">Gestion des offres promotionnelles</h1>
+            <h1 class="text-3xl font-bold">Catalogue des offres promotionnelles</h1>
             <button id="add-offer" class="bg-green-500 text-white px-4 py-2 rounded">Ajouter une Offre</button>
         </div>
         <table id="offers-table" class="min-w-full divide-y divide-gray-200">
