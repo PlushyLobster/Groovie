@@ -22,7 +22,7 @@ body {
     gap: 3.875rem;
 }
 
-#picto-ticket {
+.picto-ticket {
     height: 3.25rem;
     width: 3.25rem;
     background-color: #63FF9C;
@@ -567,6 +567,10 @@ main {
     background-color: #fff;
 }
 
+.fest-card button {
+    border: none;
+}
+
 .fest-cardTitle {
     height: 4.25rem;
     padding: 12px 14px 0px 14px;
@@ -574,11 +578,12 @@ main {
 
 .fest-cardName {
     font-size: 16px;
+    text-align: start;
 }
 
 .fest-cardDate {
     font-size: 12px;
-    color: #ababab;
+    color: #747474;
 }
 
 .fest-cardImage {
@@ -586,4 +591,262 @@ main {
     height: 5.625rem;
     background-color: #737373;
     border-radius: 0px 0px 20px 20px;
+}
+
+
+
+
+
+
+/***      PAGE DETAIL FESTIVAL      ***/
+
+#detailFest-main {
+    width: 100%;
+    max-height: 55.75rem;
+    display: grid;
+    grid-template-columns: repeat(21, 1fr);
+    grid-template-rows: 1fr;
+    gap: 1.25rem;
+}
+
+#detailFest-left {
+    grid-column: 1/14;
+    grid-row: 1/2;
+    background-color: var(--whiteBkg);
+    border-radius: 39px;
+    padding: 0rem 2.5rem;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 25%);
+}
+
+#detailFest-left hr {
+    border: 1px solid var(--contraste_labeur);
+}
+
+#detailFest-title {
+    width: 100%;
+    height: 7.250rem;
+    display: flex;
+    align-items: center;
+}
+
+#detailFest-title h2 {
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--midnightBlue);
+}
+
+#detailFest-title .festival-picto{
+    margin-right: 1.375rem;
+}
+
+#detailFest-infos {
+    width: 100%;
+    height: 42.875rem;
+    display: flex;
+    margin-top: 3rem;
+}
+
+#detailFest-bloc1 {
+    width: 33.313rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#detailFest-nameDate {
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#detailFest-nameDate h1 {
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--midnightBlue);
+}
+
+#detailFest-nameDate p {
+    font-size: 20px;
+    color: var(--contraste_labeur);
+}
+
+#detailFest-image {
+    width: 90%;
+    height: 18rem;
+    background-color: #737373;
+    border-radius: 20px;
+    margin-top: 1.5rem;
+}
+
+#detailFest-genreMusic {
+    width: 100%;
+    height: 3.5rem;
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+#detailFest-genreMusic p {
+    font-size: 20px;
+    color: var(--contraste_labeur);
+}
+
+#detailFest-artistes {
+    width: 100%;
+    height: 3.5rem;
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+#detailFest-artistes p {
+    font-size: 20px;
+    color: var(--contraste_labeur);
+}
+
+
+
+#detailFest-bloc2 {
+    width: 22.144rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#detailFest-progTitle {
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#detailFest-progTitle p {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--contraste_labeur);
+}
+
+#detailFest-progText {
+    margin-top: 1.5rem;
+}
+
+#detailFest-progText p {
+    font-size: 20px;
+    color: var(--contraste_labeur); 
+}
+
+#detailFest-right {
+    grid-column: 14/22;
+    grid-row: 1/2;
+    background-color: var(--midnightBlue);
+    border-radius: 39px;
+    padding: 0rem 2.5rem;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 25%);
+}
+
+#validTicket-title {
+    width: 100%;
+    height: 7.250rem;
+    display: flex;
+    align-items: center;
+}
+
+#validTicket-title h2{
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--whiteBkg);
+}
+
+
+#validTicket-title .picto-ticket{
+    margin-right: 1.375rem;
+}
+
+#detailFest-right hr {
+    border: 1px solid var(--whiteBkg);
+}
+
+/* 28.75rem */
+
+#validTicket-formDiv {
+    width: 100%;
+    /* height: 100%; */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+#validTicket-formDiv p {
+    color: var(--VLD-BILLET_Rose);
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+#validTicket-form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.ticket-div input {
+    width: 13.875rem;
+}
+
+.ticket-div {
+    margin-bottom: 14px;
+}
+
+.dateScan-div {
+    display: flex;
+    gap: 4.5rem;
+}
+
+.dateScan-div .ticket-div input {
+    width: 13.75rem;
+}
+
+.ticket-div input {
+    background-color: var(--whiteBkg);
+    width: 31.75rem;
+    height: 3.625rem;
+    border-radius: 1.938rem;
+    padding-left: 1.625rem;
+    color: var(--midnightBlue);
+}
+
+.ticket-div input::placeholder {
+    color: var(--midnightBlue);
+}
+
+.validBilletBtn {
+    width: 31.75rem;
+    height: 3.625rem;
+    background-color: var(--violetRehausse);
+    color: #fff;
+    font-family: poppins;
+    font-weight: 500;
+    font-size: 1.125rem;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-right: 0.813rem;
+    border-radius: 39px;
+    margin-top: 1.5rem;
+}
+
+.validBilletBtn span {
+    width: 2.125rem;
+    height: 2.125rem;
+    background-color: #fff;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 6.5rem;
 }

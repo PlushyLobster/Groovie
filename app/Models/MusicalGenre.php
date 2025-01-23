@@ -11,9 +11,9 @@ class MusicalGenre extends Model
     public $timestamps = true;
     protected $fillable = ['name'];
 
-    public function festivals(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function festivals(): \Illuminate\Database\Eloquent\Relations\belongsToMany
     {
-        return $this->hasMany(Festival::class, 'Id_musical_genre');
+        return $this->belongsToMany(Festival::class, 'Id_musical_genre');
     }
 
     public function settings(): \Illuminate\Database\Eloquent\Relations\BelongsToMany

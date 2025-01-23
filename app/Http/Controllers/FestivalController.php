@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Festival;
+use App\Models\{Festival, MusicalGenre};
 use Illuminate\Http\Request;
 
 class FestivalController extends Controller
@@ -12,7 +12,10 @@ class FestivalController extends Controller
      */
     public function index()
     {
-        return view('festival.listeFestival');
+        $data = [
+            'festivals' => Festival::all()
+        ];
+        return view('festival.listeFestival', $data);
     }
 
     /**
@@ -36,7 +39,11 @@ class FestivalController extends Controller
      */
     public function show(Festival $festival)
     {
-        //
+        $festival->load('musicalGenre');
+        $data = [
+            'festival' => $festival,
+        ];
+        return view('festival.detailFestival', $data);
     }
 
     /**
