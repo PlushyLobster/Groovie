@@ -201,7 +201,7 @@ class AdminController extends Controller
 
         return response()->json($festival);
     }
-    // ADMIN/PROMOTIONS
+    // ADMIN/PROMOTIONS////
     public function promotions(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         return view('admin.promotions');
