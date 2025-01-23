@@ -3,7 +3,7 @@
 @section('content')
     <div class="container mx-auto p-4">
         <div class="flex items-center justify-between mb-4">
-            <h1 class="text-3xl font-bold">Gestion des festivals</h1>
+            <h1 class="text-3xl font-bold">Catalogue des festivals</h1>
             <button id="add-festival" class="bg-green-500 text-white px-4 py-2 rounded">Ajouter un festival</button>
         </div>
         <div class="bg-white p-6 rounded-lg shadow-md">
@@ -29,13 +29,45 @@
                         <td class="px-6 py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($festival->created_at)->format('d/m/Y') }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($festival->updated_at)->format('d/m/Y') }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <button class="bg-orange-400 text-white px-4 py-2 rounded" onclick="updateFestival({{ $festival->Id_festival }})">Modifier</button>
+                            <button class="bg-blue-500 text-white px-4 py-2 rounded" onclick="showFestivalDetails({{ $festival->Id_festival }})">Détail</button>
                             <button class="bg-red-500 text-white px-4 py-2 rounded" onclick="deleteFestival({{ $festival->Id_festival }})">Supprimer</button>
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <!-- Modale pour ajouter un festival -->
+    <div id="addFestivalModal" class="hidden fixed z-10 inset-0 overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen">
+            <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+                <h2 class="text-2xl font-bold mb-4">Ajouter un Festival</h2>
+                <form id="addFestivalForm">
+                    @csrf
+                    <div class="mb-4">
+                        <label for="add-type" class="block text-sm font-medium text-gray-700">Type</label>
+                        <input type="text" name="type" id="add-type" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="add-name" class="block text-sm font-medium text-gray-700">Nom</label>
+                        <input type="text" name="name" id="add-name" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="add-start-datetime" class="block text-sm font-medium text-gray-700">Début</label>
+                        <input type="datetime-local" name="start_datetime" id="add-start-datetime" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="add-end-datetime" class="block text-sm font-medium text-gray-700">Fin</label>
+                        <input type="datetime-local" name="end_datetime" id="add-end-datetime" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                    </div>
+                    <div class="flex justify-center">
+                        <button type="submit" class="py-2 px-4 rounded bg-green-500 text-white">Ajouter</button>
+                        <button type="button" class="py-2 px-4 rounded bg-gray-500 text-white ml-2" onclick="closeModal()">Annuler</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -73,22 +105,18 @@
                         $('#festivals-table').DataTable().row.add([
                             response.type,
                             response.name,
-                            moment(response.start_datetime).format('DD/MM/YYYY'),
-                            moment(response.end_datetime).format('DD/MM/YYYY'),
-                            moment(response.created_at).format('DD/MM/YYYY'),
-                            moment(response.updated_at).format('DD/MM/YYYY'),
-                            '<button class="bg-orange-400 text-white px-4 py-2 rounded" onclick="updateFestival(' + response.Id_festival + ')">Modifier</button>' +
+                            response.start_datetime,
+                            response.end_datetime,
+                            response.created_at,
+                            response.updated_at,
+                            '<button class="bg-blue-500 text-white px-4 py-2 rounded" onclick="showFestivalDetails(' + response.Id_festival + ')">Détail</button>' +
                             '<button class="bg-red-500 text-white px-4 py-2 rounded" onclick="deleteFestival(' + response.Id_festival + ')">Supprimer</button>'
                         ]).draw(false);
                         closeModal();
                         alert('Festival ajouté avec succès !');
                     },
                     error: function(response) {
-                        let errorMessage = 'Erreur lors de l\'ajout du festival';
-                        if (response.responseJSON && response.responseJSON.error) {
-                            errorMessage = response.responseJSON.error;
-                        }
-                        alert(errorMessage);
+                        alert('Erreur lors de l\'ajout du festival');
                     }
                 });
             });

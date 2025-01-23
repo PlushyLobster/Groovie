@@ -28,13 +28,16 @@ Route::post('/admin/connexion', [AdminController::class, 'login']);
 Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 //CLIENTS
 Route::get('/admin/clients', [AdminController::class, 'clients'])->name('admin.clients');
-Route::post('/admin/clients/add', [AdminController::class, 'addClient'])->name('admin.clients.add');
 Route::get('/admin/clients/autocomplete', [AdminController::class, 'autocomplete'])->name('admin.clients.autocomplete');
+Route::post('/admin/clients/activate/{id}', [AdminController::class, 'activate'])->name('admin.clients.activate');
+Route::post('/admin/clients/deactivate/{id}', [AdminController::class, 'deactivate'])->name('admin.clients.deactivate');
+Route::get('/admin/clients/{id}', [AdminController::class, 'show'])->name('admin.clients.show');
+Route::put('/admin/clients/{id}', [AdminController::class, 'update'])->name('admin.clients.update');
 Route::get('/admin/transactions', [AdminController::class, 'transactions'])->name('admin.transactions');
 //FESTIVALS
 Route::get('/admin/festivals', [AdminController::class, 'festivals'])->name('admin.festivals');
-Route::post('/admin/festivals/add', [AdminController::class, 'addFestival'])->name('admin.festivals.add');
-Route::delete('/admin/festivals/{id}', [AdminController::class, 'deleteFestival'])->name('admin.festivals.delete');
+Route::post('/admin/festivals/add', [AdminController::class, 'addFestival'])->name('admin.festivals.add');Route::delete('/admin/festivals/{id}', [AdminController::class, 'deleteFestival'])->name('admin.festivals.delete');
+Route::get('/admin/festivals/{id}', [AdminController::class, 'showFestival'])->name('admin.festivals.show');
 Route::put('/admin/festivals/{id}', [AdminController::class, 'updateFestival'])->name('admin.festivals.update');
 //PROMOTIONS
 Route::get('/admin/promotions', [AdminController::class, 'promotions'])->name('admin.promotions');

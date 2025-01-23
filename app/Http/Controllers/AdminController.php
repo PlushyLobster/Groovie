@@ -63,22 +63,30 @@ class AdminController extends Controller
 // ADMIN/CLIENTS
     public function clients(Request $request)
     {
-        $users = User::where('role', '=', "groover")->get();
-        $users->load('groovers');
-
+        $users = User::where('role', '=', "groover")->with('groovers')->get();
         return view('admin.clients', compact('users'));
     }
-    public function addClient(Request $request)
+    public function show($id)
     {
-        $newUser = \DB::table('GRV1_Users')->insertGetId([
-            'email' => 'nouveauclient@example.com', // Remplacez par les données nécessaires
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
-        $user = \DB::table('GRV1_Users')->where('Id_user', $newUser)->first();
-
+        $user = User::with('groovers')->find($id);
         return response()->json($user);
+    }
+    public function activate($id)
+    {
+        $user = User::find($id);
+        $user->active = 1;
+        $user->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    public function deactivate($id)
+    {
+        $user = User::find($id);
+        $user->active = 0;
+        $user->save();
+
+        return response()->json(['success' => true]);
     }
     public function autocomplete(Request $request)
     {
@@ -88,6 +96,29 @@ class AdminController extends Controller
             ->pluck('email');
 
         return response()->json($results);
+    }
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'active' => 'required|boolean',
+            'name' => 'required|string|max:50',
+            'firstname' => 'required|string|max:50',
+            'city' => 'required|string|max:110',
+        ]);
+
+        $user = User::find($id);
+        $user->email = $request->email;
+        $user->active = $request->active;
+        $user->save();
+
+        $groover = $user->groovers;
+        $groover->name = $request->name;
+        $groover->firstname = $request->firstname;
+        $groover->city = $request->city;
+        $groover->save();
+
+        return response()->json(['success' => true]);
     }
 
     // ADMIN/TRANSACTIONS
@@ -104,46 +135,32 @@ class AdminController extends Controller
         $musicalGenres = \DB::table('GRV1_Musical_genres')->get(['Id_musical_genre', 'name']);
         return view('admin.festivals', compact('festivals', 'musicalGenres'));
     }
-    // app/Http/Controllers/AdminController.php
-    // app/Http/Controllers/AdminController.php
-
-    // app/Http/Controllers/AdminController.php
-
     public function addFestival(Request $request)
     {
-        try {
-            $request->validate([
-                'type' => 'required|string|max:50',
-                'name' => 'required|string|max:100',
-                'start_datetime' => 'required|date',
-                'end_datetime' => 'required|date',
-                'Id_musical_genre' => 'required|integer',
-            ]);
+        $request->validate([
+            'type' => 'required|string|max:50',
+            'name' => 'required|string|max:100',
+            'start_datetime' => 'required|date',
+            'end_datetime' => 'required|date',
+        ]);
 
-            // Insérer le festival dans la table GRV1_Festivals
-            $festivalId = \DB::table('GRV1_Festivals')->insertGetId([
-                'type' => $request->type,
-                'name' => $request->name,
-                'start_datetime' => $request->start_datetime,
-                'end_datetime' => $request->end_datetime,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+        $festivalId = \DB::table('GRV1_Festivals')->insertGetId([
+            'type' => $request->type,
+            'name' => $request->name,
+            'start_datetime' => $request->start_datetime,
+            'end_datetime' => $request->end_datetime,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
 
-            // Insérer la relation dans la table GRV1_Festivals_Musical_genres
-            \DB::table('GRV1_Festivals_Musical_genres')->insert([
-                'Id_festival' => $festivalId,
-                'Id_musical_genre' => $request->Id_musical_genre,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+        $festival = \DB::table('GRV1_Festivals')->where('Id_festival', $festivalId)->first();
 
-            $festival = \DB::table('GRV1_Festivals')->where('Id_festival', $festivalId)->first();
-
-            return response()->json($festival);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Erreur lors de l\'ajout du festival : ' . $e->getMessage()], 500);
-        }
+        return response()->json($festival);
+    }
+    public function showFestival($id)
+    {
+        $festival = \DB::table('GRV1_Festivals')->where('Id_festival', $id)->first();
+        return response()->json($festival);
     }
     public function deleteFestival($id)
     {
