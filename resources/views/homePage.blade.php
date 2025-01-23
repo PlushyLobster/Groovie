@@ -45,7 +45,3 @@
     </div>
 </main>
 @endsection
-
-@section('scripts')
-<script src="js/navBar.js"></script>
-@endsection

@@ -40,6 +40,7 @@
                                     {{-- <p class="fest-cardDate"> Du {{$festival->start_datetime}} au {{$festival->end_datetime}}</p> --}}
                                 </div>
                                 <div class="fest-cardImage">
+                                    <img src="" alt="">
                                 </div>
                             </div>
                         </button>

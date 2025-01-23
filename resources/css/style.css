@@ -85,7 +85,7 @@ body {
 }
 
 .signin-logo {
-    margin: 0.625rem 1.313rem 2.875rem 3.125rem;
+    margin: 0.625rem 1.313rem 2.875rem 1.313rem;
     width: 29.375rem;
     display: flex;
     flex-direction: column;

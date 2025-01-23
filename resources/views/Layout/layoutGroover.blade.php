@@ -21,7 +21,7 @@
 
 @yield('scripts')
 
-@vite(['resources/js/ResetPassword.js'])
+@vite(['resources/js/ResetPassword.js', 'resources/js/NavBar.js'])
 </body>
 
 </html>
