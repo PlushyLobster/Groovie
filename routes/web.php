@@ -9,6 +9,7 @@ use App\Http\Controllers\{
 };
 use App\Http\Middleware\IsAuth;
 use App\Http\Middleware\IsGuest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -31,7 +32,8 @@ Route::get('/admin', function () {
 });
 Route::controller(AdminController::class)->group(function () {
     Route::get('/admin/connexion', 'showLoginForm')->name('admin.login')->middleware(RedirectIfAdmin::class);
-    Route::post('/admin/connexion', 'login');
+    Route::post('/admin/connexion', 'login')->name('admin.login')->middleware(RedirectIfAdmin::class);
+    Route::post('/admin/deconnexion', 'logout')->name('admin.logout')->middleware(RedirectIfNotAdmin::class);
     Route::get('/admin/dashboard', 'index')->name('admin.dashboard')->middleware(RedirectIfNotAdmin::class);
 
     //CLIENTS

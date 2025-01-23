@@ -56,18 +56,23 @@ class AdminController extends Controller
             return back()->withErrors(['message' => 'Email ou mot de passe incorrect']);
         }
     }
+    public function logout(): \Illuminate\Http\RedirectResponse
+    {
+        Auth::guard('admin')->logout();
+        return redirect()->route('admin.login');
+    }
 // ADMIN/CLIENTS
     public function clients(Request $request): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         $users = User::where('role', '=', "groover")->with('groovers')->get();
         return view('admin.clients', compact('users'));
     }
-    public function show($id)
+    public function show($id): \Illuminate\Http\JsonResponse
     {
         $user = User::with('groovers')->find($id);
         return response()->json($user);
     }
-    public function activate($id)
+    public function activate($id): \Illuminate\Http\JsonResponse
     {
         $user = User::find($id);
         $user->active = 1;
@@ -76,7 +81,7 @@ class AdminController extends Controller
         return response()->json(['success' => true]);
     }
 
-    public function deactivate($id)
+    public function desactivate($id): \Illuminate\Http\JsonResponse
     {
         $user = User::find($id);
         $user->active = 0;
@@ -84,7 +89,7 @@ class AdminController extends Controller
 
         return response()->json(['success' => true]);
     }
-    public function autocomplete(Request $request)
+    public function autocomplete(Request $request): \Illuminate\Http\JsonResponse
     {
         $term = $request->get('term');
         $results = \DB::table('GRV1_Users')
@@ -93,7 +98,7 @@ class AdminController extends Controller
 
         return response()->json($results);
     }
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): \Illuminate\Http\JsonResponse
     {
         $request->validate([
             'email' => 'required|email',
@@ -131,7 +136,7 @@ class AdminController extends Controller
         $musicalGenres = \DB::table('GRV1_Musical_genres')->get(['Id_musical_genre', 'name']);
         return view('admin.festivals', compact('festivals', 'musicalGenres'));
     }
-    public function addFestival(Request $request)
+    public function addFestival(Request $request): \Illuminate\Http\JsonResponse
     {
         $request->validate([
             'type' => 'required|string|max:50',
@@ -153,12 +158,12 @@ class AdminController extends Controller
 
         return response()->json($festival);
     }
-    public function showFestival($id)
+    public function showFestival($id): \Illuminate\Http\JsonResponse
     {
         $festival = \DB::table('GRV1_Festivals')->where('Id_festival', $id)->first();
         return response()->json($festival);
     }
-    public function deleteFestival($id)
+    public function deleteFestival($id): \Illuminate\Http\JsonResponse
     {
         try {
             $festival = \DB::table('GRV1_Festivals')->where('Id_festival', $id)->first();
@@ -176,7 +181,7 @@ class AdminController extends Controller
             return response()->json(['error' => 'Erreur lors de la suppression du festival : ' . $e->getMessage()], 500);
         }
     }
-    public function updateFestival(Request $request, $id)
+    public function updateFestival(Request $request, $id): \Illuminate\Http\JsonResponse
     {
         $request->validate([
             'type' => 'required|string|max:50',
@@ -200,12 +205,12 @@ class AdminController extends Controller
     {
         return view('admin.promotions');
     }
-    public function getOffers()
+    public function getOffers(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         $offers = \DB::table('GRV1_Offers')->select('type', 'name', 'description', 'created_at')->get();
         return view('admin.promotions', compact('offers'));
     }
-    public function addOffer(Request $request)
+    public function addOffer(Request $request): \Illuminate\Http\JsonResponse
     {
         $request->validate([
             'type' => 'required|string|max:50',
@@ -233,7 +238,7 @@ class AdminController extends Controller
         return view('admin.actualites');
     }
     // ADMIN/NOTIFICATIONS
-    public function notifications()
+    public function notifications(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         $notifications = \DB::table('GRV1_Notifications')
             ->join('GRV1_Users_Notifications', 'GRV1_Notifications.Id_notification', '=', 'GRV1_Users_Notifications.Id_notification')

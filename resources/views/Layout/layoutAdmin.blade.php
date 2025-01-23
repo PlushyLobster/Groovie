@@ -29,8 +29,6 @@
                 </defs>
             </svg>
         </a>
-
-
             <span class="text-2xl font-bold">Espace Admin</span>
     </div>
     <nav>
@@ -59,7 +57,11 @@
                 <a href="{{ route('admin.notifications') }}" class="block py-2 px-4 rounded text-center hover:bg-[#A7BCD6]">Notifications</a>
             </li>
             <li class="mb-4">
-                <a href="{{ url('/admin/connexion') }}" class="block py-2 px-4 rounded text-white text-center" style="background-color: #F866A4;">Déconnexion</a>
+                <form action="{{ route('admin.logout') }}" method="POST" class="block py-2 px-4 rounded text-white text-center" style="background-color: #F866A4;">
+                    @method('POST')
+                    @csrf
+                    <button type="submit" class="w-full text-white">Déconnexion</button>
+                </form>
             </li>
         </ul>
     </nav>
