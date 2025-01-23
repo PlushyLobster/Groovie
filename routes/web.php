@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\RedirectIfAdmin;
 use App\Http\Middleware\RedirectIfNotAdmin;
 use App\Http\Controllers\{
     AuthController,
