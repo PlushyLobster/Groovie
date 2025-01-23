@@ -76,6 +76,47 @@
 
         <div id="right-nav">
             @auth()
+            <div id="redirection-div">
+                    <form action="{{route('home')}}" method="GET" id="left-nav">
+                        <button type="submit">
+                            @include('Include.svg.logoNav')
+                        </button>
+                        <div class="picto-ticket" id="ticket-open">
+                            <svg width="29" height="21" viewBox="0 0 29 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13.0524 16.7474V19.6667M13.0524 1.17778V4.09708M13.0524 8.96258V11.8819M27.2889 1.17778H1.86666V7.01638C1.86666 7.01638 5.93421 7.01638 5.93421 10.4222C5.93421 13.8281 1.86666 13.8281 1.86666 13.8281V19.6667H27.2889V13.8281C27.2889 13.8281 23.2213 13.8281 23.2213 10.4222C23.2213 7.01638 27.2889 7.01638 27.2889 7.01638V1.17778Z"
+                                    stroke="#000B58" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </form>
+
+                    <form action="{{route('home')}}" method="GET" id="left-nav">
+                        <button type="submit">
+                            @include('Include.svg.logoNav')
+                        </button>
+                        <div class="picto-ticket" id="ticket-open">
+                            <svg width="29" height="21" viewBox="0 0 29 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13.0524 16.7474V19.6667M13.0524 1.17778V4.09708M13.0524 8.96258V11.8819M27.2889 1.17778H1.86666V7.01638C1.86666 7.01638 5.93421 7.01638 5.93421 10.4222C5.93421 13.8281 1.86666 13.8281 1.86666 13.8281V19.6667H27.2889V13.8281C27.2889 13.8281 23.2213 13.8281 23.2213 10.4222C23.2213 7.01638 27.2889 7.01638 27.2889 7.01638V1.17778Z"
+                                    stroke="#000B58" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </form>
+
+                    <form action="{{route('home')}}" method="GET" id="left-nav">
+                        <button type="submit">
+                            @include('Include.svg.logoNav')
+                        </button>
+                        <div class="picto-ticket" id="ticket-open">
+                            <svg width="29" height="21" viewBox="0 0 29 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M13.0524 16.7474V19.6667M13.0524 1.17778V4.09708M13.0524 8.96258V11.8819M27.2889 1.17778H1.86666V7.01638C1.86666 7.01638 5.93421 7.01638 5.93421 10.4222C5.93421 13.8281 1.86666 13.8281 1.86666 13.8281V19.6667H27.2889V13.8281C27.2889 13.8281 23.2213 13.8281 23.2213 10.4222C23.2213 7.01638 27.2889 7.01638 27.2889 7.01638V1.17778Z"
+                                    stroke="#000B58" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </form>
+                </div>
+
                 {{--<a href="{{ route('dashboard') }}" class="logs-btn">Mon compte</a>--}}
                 <form action="{{ route('logout') }}" method="post">
                     @method('POST')
@@ -147,7 +188,7 @@
                     @enderror
                 </div>
                 <div class="signin-div">
-                    <input type="password" id="signin-password" name="signin-password" placeholder="Mot de passe oublié" required>
+                    <input type="password" id="signin-password" name="signin-password" placeholder="Vérification mot de passe" required>
                     @error('signin-password')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -168,7 +209,6 @@
                 </p>
             </form>
         </div>
-
 
         <!-- Dropdown Connexion -->
         <div id="loginDropdown" class="hidden">
@@ -220,6 +260,7 @@
                 </p>
             </form>
         </div>
+
         <!-- Modal de réinitialisation de mot de passe -->
         <modal id="resetPasswordModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center" style="z-index: 9999;">
             <div class="bg-white p-6 rounded-lg shadow-lg">
