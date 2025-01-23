@@ -22,22 +22,31 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/logout', 'logout')->name('logout')->middleware(IsAuth::class);
 });
 
-
+//ADMIN
 Route::get('/admin/connexion', [AdminController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/admin/connexion', [AdminController::class, 'login']);
 Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-
+//CLIENTS
 Route::get('/admin/clients', [AdminController::class, 'clients'])->name('admin.clients');
-
+Route::post('/admin/clients/add', [AdminController::class, 'addClient'])->name('admin.clients.add');
+Route::get('/admin/clients/autocomplete', [AdminController::class, 'autocomplete'])->name('admin.clients.autocomplete');
 Route::get('/admin/transactions', [AdminController::class, 'transactions'])->name('admin.transactions');
-
+//FESTIVALS
 Route::get('/admin/festivals', [AdminController::class, 'festivals'])->name('admin.festivals');
+Route::post('/admin/festivals/add', [AdminController::class, 'addFestival'])->name('admin.festivals.add');
 Route::delete('/admin/festivals/{id}', [AdminController::class, 'deleteFestival'])->name('admin.festivals.delete');
-
+Route::put('/admin/festivals/{id}', [AdminController::class, 'updateFestival'])->name('admin.festivals.update');
+//PROMOTIONS
 Route::get('/admin/promotions', [AdminController::class, 'promotions'])->name('admin.promotions');
-Route::get('/admin/actualites', [AdminController::class, 'actualites'])->name('admin.actualites');
-Route::get('/admin/notifications', [AdminController::class, 'notifications'])->name('admin.notifications');
-
+Route::get('/admin/promotions', [AdminController::class, 'getOffers'])->name('admin.promotions');
+Route::post('/admin/offers/add', [AdminController::class, 'addOffer'])->name('admin.offers.add');
+//PASSWORD RESET
 Route::post('/password/email', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
 Route::post('/password/verify-code', [AuthController::class, 'verifyResetCode'])->name('password.verifyCode');
 Route::post('/password/reset', [AuthController::class, 'resetPassword'])->name('password.reset');
+
+//NOTIFICATIONS
+Route::get('/admin/notifications', [AdminController::class, 'notifications'])->name('admin.notifications');
+
+//ACTUALITES
+Route::get('/admin/actualites', [AdminController::class, 'actualites'])->name('admin.actualites');

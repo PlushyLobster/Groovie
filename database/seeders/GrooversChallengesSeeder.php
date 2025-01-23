@@ -12,10 +12,13 @@ class GrooversChallengesSeeder extends Seeder
     {
         $faker = Faker::create();
 
+        // Assurez-vous que les Id_groover existent dans la table GRV1_Groovers
+        $grooverIds = DB::table('GRV1_Groovers')->pluck('Id_groover')->toArray();
+
         $grooversChallenges = [];
         for ($i = 0; $i < 10; $i++) {
             $grooversChallenges[] = [
-                'Id_groover' => $faker->numberBetween(1, 10),
+                'Id_groover' => $faker->randomElement($grooverIds),
                 'Id_challenge' => $faker->numberBetween(1, 10),
                 'created_at' => now(),
                 'updated_at' => now(),
