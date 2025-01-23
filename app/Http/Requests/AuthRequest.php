@@ -26,11 +26,11 @@ class AuthRequest extends FormRequest
                 'signin-name' => 'required',
                 'signin-firstname' => 'required',
                 'signin-city' => 'required',
-                'signin-email' => ['required','email','unique:GRV1_Users,email'],
+                'signin-email' => ['required', 'email', 'unique:GRV1_Users,email'],
                 'signin-password' => [
                     'required',
                     'min:8',
-                    'regex:#^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&;#^()\-_=+[\]{}|\\:,.<>?])[A-Za-z\d@$!%*?&;#^()\-_=+[\]{}|\\:,.<>?]{6,}#$'
+                    'regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&;])[A-Za-z\d@$!%*?&;]{8,}$/' // le mdp doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial
                 ],
             ];
         } elseif ($this->isMethod('post') && $this->routeIs('login')) {

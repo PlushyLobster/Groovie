@@ -19,7 +19,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public $timestamps = true;
 
-    protected $fillable = ['active','username','email','password','cgu_validated'];
+    protected $fillable = ['active','username','email','password','cgu_validated','role'];
     public function getEmailForPasswordReset()
     {
         return $this->email; // Assurez-vous que 'email' est le champ correct
