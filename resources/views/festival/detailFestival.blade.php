@@ -2,7 +2,7 @@
 {{-- @foreach($festival->musicalGenre as $genre)
             <p>{{ $genre->name}}</p>
         @endforeach --}}
-@section('content')
+@section ('content')
 <main id="detailFest-main">
     <div id="detailFest-left">
         <div id="detailFest-title">
@@ -89,7 +89,7 @@
                     </div>
                     
                     <div class="validBillet-div">
-                        <input type="text" id="validTicket-scan" name="scan" placeholder="Scan">
+                        <button id="validBillet-scanBtn">Scan</button>
                     </div>
                 </div>
                 
@@ -109,6 +109,18 @@
                         </svg>
                     </span>
                 </button>
+
+                <button id="buyBilletBtn">
+                    Acheter 
+                    <svg width="20" height="25" viewBox="0 0 20 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 24.057V4.8114H4.9005C4.9005 3.48827 5.38034 2.35558 6.34002 1.41335C7.2997 0.471116 8.45336 0 9.801 0C11.1486 0 12.3023 0.471116 13.262 1.41335C14.2217 2.35558 14.7015 3.48827 14.7015 4.8114H19.602V24.057H0ZM2.45025 21.6513H17.1517V7.2171H14.7015V10.8256H12.2512V7.2171H7.35075V10.8256H4.9005V7.2171H2.45025V21.6513ZM7.35075 4.8114H12.2512C12.2512 4.14983 12.0115 3.58369 11.5321 3.11298C11.0527 2.64226 10.4756 2.4065 9.801 2.4057C9.12636 2.4049 8.54974 2.64066 8.07112 3.11298C7.59251 3.58529 7.35238 4.15144 7.35075 4.8114Z" fill="#010F5C"/>
+                    </svg>                            
+                </button>
+
+                <div id="validTicket-scanDiv" class="hidden">
+                    <p>Scanner le code barre</p>
+                    <div id="validTicket-scan"></div>
+                </div>
             </form>
         </div>
     </div>
@@ -117,52 +129,20 @@
 
 @section('scripts')
 <script>
-    const signInBtn = document.getElementById('signIn-btn');
-    const signinDropdown = document.getElementById('signinDropdown');
-    const logInBtn = document.getElementById("logIn-btn");
-    const loginDropdown = document.getElementById("loginDropdown");
-    const loginClose = document.getElementById('login-close');
-    const signinClose = document.getElementById('signin-close');
+    const scanBtn = document.getElementById('validBillet-scanBtn');
+    const scanDiv = document.getElementById('validTicket-scanDiv');
 
-    if (signInBtn && signinDropdown && logInBtn && loginDropdown) {
-        signInBtn.addEventListener('click', (event) => {
-            event.stopPropagation();
-            loginDropdown.classList.add('hidden');
-            signinDropdown.classList.remove('hidden');
-            signinDropdown.classList.add('flex');
-            signinDropdown.classList.add('transition-right');
-        });
-
-        logInBtn.addEventListener("click", (event) => {
-            event.stopPropagation();
-            signinDropdown.classList.add('hidden');
-            loginDropdown.classList.remove("hidden");
-            loginDropdown.classList.add("flex");
-            loginDropdown.classList.add("transition-right-login");
-        });
-
-        loginClose.addEventListener('click', (event) => {
-            event.stopPropagation();
-            loginDropdown.classList.add('transition-backRight-login');
-            setTimeout(() => {
-                loginDropdown.classList.add('hidden');
-                loginDropdown.classList.remove('transition-backRight-login');
-            }, 800);
-        });
-
-        signinClose.addEventListener('click', (event) => {
-            event.stopPropagation();
-            signinDropdown.classList.add('transition-backRight');
-            setTimeout(() => {
-                signinDropdown.classList.add('hidden');
-                signinDropdown.classList.remove('transition-backRight');
-            }, 800);
-        });
-
-        // Ouvrir le dropdown si une erreur est présente
-        @if(session('dropdownError'))
-        signInDiv.classList.remove('hidden');
-        @endif
+    scanBtn.addEventListener('click', (event) => {
+    event.stopPropagation();
+    if (scanDiv.classList.contains('hidden')) {
+        scanDiv.classList.remove('hidden');
+        scanDiv.classList.add('flex');
+    } else {
+        scanDiv.classList.remove('flex');
+        scanDiv.classList.add('hidden');
     }
+});
+
+
 </script>
 @endsection

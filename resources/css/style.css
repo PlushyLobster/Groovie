@@ -13,10 +13,11 @@ body {
     width: 100%;
     height: 9.375rem;
     display: flex;
+    justify-content: space-between;
 }
 
 #left-nav {
-    width: 25%;
+    width: 30%;
     display: flex;
     align-items: center;
     gap: 3.875rem;
@@ -37,13 +38,85 @@ body {
     cursor: pointer;
 }
 
+#middle-nav {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #right-nav {
-    width: 75%;
+    width: 30%;
     display: flex;
     align-items: center;
     justify-content: end;
     gap: 1.75rem;
 }
+
+#redirection-div {
+    display: flex;
+    gap: 1.75rem;
+}
+
+.redirectBtn {
+    width: 46px;
+    height: 46px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--midnightBlue);
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 25%);
+}
+
+#redirectTrajet-hover {
+    display: none;
+}
+
+#redirectExperience-hover{
+    display: none;
+}
+
+#redirectGroovie-hover{
+    display: none;
+}
+
+#redirect-trajet:hover, #redirect-trajet:active {
+    background-color: var(--NAV_BtnTrajet);
+    
+    #redirectTrajet-normal{
+        display: none;
+    }
+
+    #redirectTrajet-hover {
+        display: block;
+    }
+}
+
+#redirect-experience:hover, #redirect-experience:active {
+    background-color: var(--NAV_BtnExperience);
+
+    #redirectExperience-normal{
+        display: none;
+    }
+
+    #redirectExperience-hover {
+        display: block;
+    }
+}
+
+#redirect-groovie:hover, #redirect-groovie:active {
+    background-color: var(--NAV_BtnGroovie);    
+
+    #redirectGroovie-normal{
+        display: none;
+    }
+
+    #redirectGroovie-hover {
+        display: block;
+    }
+}
+
 
 .logs-btn {
     width: 10.375rem;
@@ -60,6 +133,11 @@ body {
 
 #signIn-btn {
     background-color: var(--violetRehausse);
+}
+
+#profil-div {
+    display: flex;
+    gap: 1.75rem;
 }
 
 #notif-btn {
@@ -950,14 +1028,14 @@ main {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    margin-top: 3rem;
+    margin-top: 1.5rem;
 }
 
 #validTicket-formDiv p {
     color: var(--VLD-BILLET_Rose);
     font-size: 24px;
     font-weight: 500;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
 #validTicket-form {
@@ -994,6 +1072,18 @@ main {
     color: var(--midnightBlue);
 }
 
+#validBillet-scanBtn {
+    height: 3.625rem;
+    width: 13.75rem;
+    background-color: var(--whiteBkg);
+    border-radius: 1.938rem;
+    padding-left: 1.625rem;
+    color: var(--midnightBlue);
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
 .validBilletBtn {
     width: 31.75rem;
     height: 3.625rem;
@@ -1007,7 +1097,7 @@ main {
     justify-content: end;
     padding-right: 0.813rem;
     border-radius: 39px;
-    margin-top: 1.5rem;
+    margin-top: 0.5rem;
 }
 
 .validBilletBtn span {
@@ -1019,4 +1109,50 @@ main {
     justify-content: center;
     align-items: center;
     margin-left: 6.5rem;
+}
+
+#validTicket-scanDiv {
+    width: 100%;
+    height: 13.5rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+#validTicket-scanDiv p {
+    color: var(--VLD-BILLET_Rose);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+#validTicket-scanDiv div {
+    width: 95%;
+    height: 7.5rem;
+    border-radius: 13px;
+    border: 2px solid var(--whiteBkg);
+}
+
+#buyBilletBtn {
+    width: 31.75rem;
+    height: 3.625rem;
+    background-color: var(--clc_BtnCTA);
+    color: var(--midnightBlue);
+    font-family: poppins;
+    font-weight: 500;
+    font-size: 1.125rem;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-right: 0.813rem;
+    border-radius: 39px;
+    margin-top: 0.5rem;
+}
+
+#buyBilletBtn svg {
+    width: 2.2rem;
+    height: 2.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10rem;
 }
