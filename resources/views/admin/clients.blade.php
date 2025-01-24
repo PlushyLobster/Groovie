@@ -11,11 +11,13 @@
                 <tr>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Compte</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nb Groovies</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Niveau</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prénom</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ville</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Créé le</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mis à jour le</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">M.a.j</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
                 </thead>
@@ -26,18 +28,20 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             {{ $user->active ? 'Actif' : 'Suspendu' }}
                         </td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ e($user->groovers->nb_groovies) }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ e($user->groovers->level) }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ e($user->groovers->name) }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ e($user->groovers->firstname) }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ e($user->groovers->city) }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y') }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($user->updated_at)->format('d/m/Y') }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">
+                            <button class="bg-blue-500 text-white px-4 py-2 rounded ml-2" onclick="showUserDetails({{ $user->Id_user }})">Détail</button>
                             @if($user->active)
                                 <button class="bg-red-500 text-white px-4 py-2 rounded" onclick="deactivateUser({{ $user->Id_user }})">Suspendre</button>
                             @else
                                 <button class="bg-green-500 text-white px-4 py-2 rounded" onclick="activateUser({{ $user->Id_user }})">Activer</button>
                             @endif
-                            <button class="bg-blue-500 text-white px-4 py-2 rounded ml-2" onclick="showUserDetails({{ $user->Id_user }})">Détail</button>
                         </td>
                     </tr>
                 @endforeach
@@ -65,6 +69,14 @@
                             <option value="1">Actif</option>
                             <option value="0">Suspendu</option>
                         </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="detail-nb-groovies" class="block text-sm font-medium text-gray-700">Nb Groovies</label>
+                        <input type="text" id="detail-nb-groovies" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" readonly>
+                    </div>
+                    <div class="mb-4">
+                        <label for="detail-level" class="block text-sm font-medium text-gray-700">Niveau</label>
+                        <input type="text" id="detail-level" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" readonly>
                     </div>
                     <div class="mb-4">
                         <label for="detail-name" class="block text-sm font-medium text-gray-700">Nom</label>
@@ -136,6 +148,8 @@
                 $('#detail-user-id').val(userId);
                 $('#detail-email').val(data.email);
                 $('#detail-active').val(data.active ? 1 : 0);
+                $('#detail-nb-groovies').val(data.groovers.nb_groovies);
+                $('#detail-level').val(data.groovers.level);
                 $('#detail-name').val(data.groovers.name);
                 $('#detail-firstname').val(data.groovers.firstname);
                 $('#detail-city').val(data.groovers.city);
