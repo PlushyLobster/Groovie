@@ -27,7 +27,7 @@
         <div class="fest-cate" id="fest-proximite">
             <div class="fest-cateTitle">
                 <p>À proximité</p>
-                <p>Voir plus</p>  
+                <p>Voir plus</p>
             </div>
             <div class="fest-cateSlider">
                 @foreach($festivals as $festival)
@@ -53,7 +53,7 @@
         <div class="fest-cate" id="fest-populaire">
             <div class="fest-cateTitle">
                 <p>Les plus populaires</p>
-                <p>Voir plus</p>  
+                <p>Voir plus</p>
             </div>
             <div class="fest-cateSlider">
                 <div class="fest-card">
@@ -64,50 +64,14 @@
                     <div class="fest-cardImage">
                     </div>
                 </div>
-
-                <div class="fest-card">
-                    <div class="fest-cardTitle">
-                        <p class="fest-cardName">Terres du son</p>
-                        <p class="fest-cardDate">Du 1er au 4 juillet</p>
-                    </div>
-                    <div class="fest-cardImage">
-                    </div>
-                </div>
-
-                <div class="fest-card">
-                    <div class="fest-cardTitle">
-                        <p class="fest-cardName">Terres du son</p>
-                        <p class="fest-cardDate">Du 1er au 4 juillet</p>
-                    </div>
-                    <div class="fest-cardImage">
-                    </div>
-                </div>
-
-                <div class="fest-card">
-                    <div class="fest-cardTitle">
-                        <p class="fest-cardName">Terres du son</p>
-                        <p class="fest-cardDate">Du 1er au 4 juillet</p>
-                    </div>
-                    <div class="fest-cardImage">
-                    </div>
-                </div>
-
-                <div class="fest-card">
-                    <div class="fest-cardTitle">
-                        <p class="fest-cardName">Terres du son</p>
-                        <p class="fest-cardDate">Du 1er au 4 juillet</p>
-                    </div>
-                    <div class="fest-cardImage">
-                    </div>
-                </div>
-            </div>              
+            </div>
             <hr>
         </div>
 
         <div class="fest-cate" id="fest-nouveaute">
             <div class="fest-cateTitle">
                 <p>Nouveautés</p>
-                <p>Voir plus</p>  
+                <p>Voir plus</p>
             </div>
 
             <div class="fest-cateSlider">
@@ -119,7 +83,7 @@
                     <div class="fest-cardImage">
                     </div>
                 </div>
-                    
+
                 <div class="fest-card">
                     <div class="fest-cardTitle">
                         <p class="fest-cardName">Terres du son</p>
