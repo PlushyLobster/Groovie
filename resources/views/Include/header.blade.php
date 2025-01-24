@@ -36,6 +36,10 @@
                 @method('POST')
                 @csrf
                 <div class="ticket-div">
+                    <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 1H9C5.229 1 3.343 1 2.172 2.172C1.001 3.344 1 5.229 1 9V10C1 13.771 1 15.657 2.172 16.828C3.344 17.999 5.229 18 9 18H13C16.771 18 18.657 18 19.828 16.828C20.999 15.656 21 13.771 21 10V9C21 5.229 21 3.343 19.828 2.172C18.656 1.001 16.771 1 13 1Z" stroke="#000B58" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M4 13.5C5.036 10.919 8.896 10.75 10 13.5M13 6H18M13 9.5H18M13 13H15.5M8.75 7.25C8.75 7.71413 8.56563 8.15925 8.23744 8.48744C7.90925 8.81563 7.46413 9 7 9C6.53587 9 6.09075 8.81563 5.76256 8.48744C5.43437 8.15925 5.25 7.71413 5.25 7.25C5.25 6.78587 5.43437 6.34075 5.76256 6.01256C6.09075 5.68437 6.53587 5.5 7 5.5C7.46413 5.5 7.90925 5.68437 8.23744 6.01256C8.56563 6.34075 8.75 6.78587 8.75 7.25Z" stroke="#000B58" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                     <input type="text" id="ticket-code" name="ticket-code" placeholder="Code billet" required>
                     @error('ticket-code')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -43,19 +47,32 @@
                 </div>
 
                 <div class="dateScan-div">
-                    <div class="ticket-div">
+                    <div class="ticket-div" id="dateScan-date">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17 3H5C2.79086 3 1 4.79086 1 7V17C1 19.2091 2.79086 21 5 21H17C19.2091 21 21 19.2091 21 17V7C21 4.79086 19.2091 3 17 3Z" stroke="#000B58" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M7 1V5M15 1V5M1 9H21" stroke="#000B58" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                         <input type="text" id="ticket-date" name="ticket-date" placeholder="Date" required>
                         @error('ticket-date')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
                         
-                    <div class="ticket-div">
-                        <input type="text" id="ticket-scan" name="scan" placeholder="Scan">
+                    <div class="ticket-div" id="dateScan-scan">
+                        <div id="ticket-scan">
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17 3H5C2.79086 3 1 4.79086 1 7V17C1 19.2091 2.79086 21 5 21H17C19.2091 21 21 19.2091 21 17V7C21 4.79086 19.2091 3 17 3Z" stroke="#000B58" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M7 1V5M15 1V5M1 9H21" stroke="#000B58" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <p>Scan</p>
+                        </div>
                     </div>
                 </div>
                     
                 <div class="ticket-div">
+                    <svg width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 21C1.45 21 0.979333 20.8043 0.588 20.413C0.196666 20.0217 0.000666667 19.5507 0 19V9C0 8.45 0.196 7.97933 0.588 7.588C0.98 7.19667 1.45067 7.00067 2 7H3V5C3 3.61667 3.48767 2.43767 4.463 1.463C5.43833 0.488334 6.61733 0.000667349 8 6.82594e-07C9.38267 -0.000665984 10.562 0.487001 11.538 1.463C12.514 2.439 13.0013 3.618 13 5V7H14C14.55 7 15.021 7.196 15.413 7.588C15.805 7.98 16.0007 8.45067 16 9V19C16 19.55 15.8043 20.021 15.413 20.413C15.0217 20.805 14.5507 21.0007 14 21H2ZM2 19H14V9H2V19ZM8 16C8.55 16 9.021 15.8043 9.413 15.413C9.805 15.0217 10.0007 14.5507 10 14C9.99933 13.4493 9.80367 12.9787 9.413 12.588C9.02233 12.1973 8.55133 12.0013 8 12C7.44867 11.9987 6.978 12.1947 6.588 12.588C6.198 12.9813 6.002 13.452 6 14C5.998 14.548 6.194 15.019 6.588 15.413C6.982 15.807 7.45267 16.0027 8 16ZM5 7H11V5C11 4.16667 10.7083 3.45833 10.125 2.875C9.54167 2.29167 8.83333 2 8 2C7.16667 2 6.45833 2.29167 5.875 2.875C5.29167 3.45833 5 4.16667 5 5V7Z" fill="#000B58"/>
+                    </svg>
                     <input type="password" id="ticket-password" name="ticket-password" placeholder="Mot de passe" required>
                     @error('ticket-password')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -63,18 +80,23 @@
                 </div>
 
                 <button type="submit" class="ticketBtn">
-                    Confirmer l'inscription
+                    Valider le billet
                     <span>
-                        <svg width="19" height="15" viewBox="0 0 19 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2 7.09985L7.625 12.5999L17 1.59985" stroke="#9747FF" stroke-width="3"
-                                stroke-linecap="round" stroke-linejoin="round"/>
+                        <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.6004 17.5682L14.6062 15.4573L19.2276 10.6118L9.60554e-06 10.5925L0.00283743 7.61522L19.1782 7.63457L14.6345 2.82628L16.6371 0.72731L24.6136 9.16786L16.6004 17.5682Z" fill="#63FF9C"/>
                         </svg>
                     </span>
                 </button>
+
+                <div id="ticket-scanDiv" class="hidden">
+                    <p>Scanner le code barre</p>
+                    <div id="ticket-scanBox"></div>
+                </div>
             </form>       
         </div>
 
         <div id="middle-nav">
+            @auth()
             <div id="redirection-div">
                 <form action="{{route('home')}}" method="GET" class="redirectBtn" id="redirect-trajet">
                     <button type="submit">
@@ -116,6 +138,7 @@
                     </button>
                 </form>
             </div>
+            @endauth
         </div>
 
         <div id="right-nav">
@@ -125,11 +148,19 @@
                 {{--<a href="{{ route('dashboard') }}" class="logs-btn">Mon compte</a>--}}
                 
                 <div id="profil-div">
+                    <form action="{{ route('logout') }}" method="GET">
+                        @method('GET')
+                        @csrf
+                        <button id="profil-btn" type="submit">
+                        </button>
+                    </form>
+
                     <form action="{{ route('logout') }}" method="post">
                         @method('POST')
                         @csrf
-                        <button class="logs-btn" id="logIn-btn">Se déconnecter</button>
+                        <button class="logs-btn" id="logOut-btn">Se déconnecter</button>
                     </form>
+
             @endauth
             @guest()
                     <button class="logs-btn" id="logIn-btn">Se connecter</button>
@@ -196,7 +227,7 @@
                     @enderror
                 </div>
                 <div class="signin-div">
-                    <input type="password" id="signin-password" name="signin-password" placeholder="Vérification mot de passe" required>
+                    <input type="password" id="signin-verifPassword" name="signin-verifPassword" placeholder="Vérification mot de passe" required>
                     @error('signin-password')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror

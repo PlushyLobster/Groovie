@@ -89,7 +89,7 @@
                     </div>
                     
                     <div class="validBillet-div">
-                        <button id="validBillet-scanBtn">Scan</button>
+                        <div id="validBillet-scanBtn">Scan</div>
                     </div>
                 </div>
                 

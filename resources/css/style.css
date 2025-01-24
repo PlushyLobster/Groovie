@@ -73,18 +73,19 @@ body {
     display: none;
 }
 
-#redirectExperience-hover{
+#redirectExperience-hover {
     display: none;
 }
 
-#redirectGroovie-hover{
+#redirectGroovie-hover {
     display: none;
 }
 
-#redirect-trajet:hover, #redirect-trajet:active {
+#redirect-trajet:hover,
+#redirect-trajet:active {
     background-color: var(--NAV_BtnTrajet);
-    
-    #redirectTrajet-normal{
+
+    #redirectTrajet-normal {
         display: none;
     }
 
@@ -93,10 +94,11 @@ body {
     }
 }
 
-#redirect-experience:hover, #redirect-experience:active {
+#redirect-experience:hover,
+#redirect-experience:active {
     background-color: var(--NAV_BtnExperience);
 
-    #redirectExperience-normal{
+    #redirectExperience-normal {
         display: none;
     }
 
@@ -105,10 +107,11 @@ body {
     }
 }
 
-#redirect-groovie:hover, #redirect-groovie:active {
-    background-color: var(--NAV_BtnGroovie);    
+#redirect-groovie:hover,
+#redirect-groovie:active {
+    background-color: var(--NAV_BtnGroovie);
 
-    #redirectGroovie-normal{
+    #redirectGroovie-normal {
         display: none;
     }
 
@@ -135,9 +138,20 @@ body {
     background-color: var(--violetRehausse);
 }
 
+#logOut-btn {
+    background-color: var(--midnightBlue);
+}
+
 #profil-div {
     display: flex;
     gap: 1.75rem;
+}
+
+#profil-btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background-color: var(--midnightBlue);
 }
 
 #notif-btn {
@@ -296,14 +310,13 @@ body {
 
 #ticketDropdown {
     position: absolute;
-    height: 36rem;
-    width: 34.375rem;
+    height: 32rem;
+    width: 27rem;
     background-color: var(--yellowPrimary);
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     z-index: 10;
-    left: 4.718rem;
+    left: -35rem;
     top: 9.375rem;
     padding: 1.313rem;
     border-radius: 39px;
@@ -312,19 +325,21 @@ body {
 
 #ticket-header {
     margin: 0.625rem 0px 2.875rem 0px;
-    width: 29.375rem;
+    width: 100%;
     height: 4rem;
     display: flex;
+    align-items: start;
+    justify-content: space-between;
 }
 
-#ticket-title  {
+#ticket-title {
     display: flex;
     align-items: center;
     gap: 1rem;
 }
 
 #ticket-title h3 {
-    font-size: 1.625rem;
+    font-size: 22px;
     color: var(--midnightBlue);
     font-weight: 500;
 }
@@ -337,69 +352,118 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 6rem;
     align-self: start;
 }
 
 #ticket-form {
-    width: 29.375rem;
-    height: 24.7rem;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .ticket-div {
+    width: 100%;
     margin-bottom: 14px;
+    display: flex;
+    align-items: center;
 }
 
 #ticket-form .dateScan-div {
+    width: 100%;
     display: flex;
-    gap: 1.8rem;
+    gap: 1rem;
 }
 
-#ticket-form .dateScan-div .ticket-div input {
-    width: 13.5rem;
+#dateScan-date {
+    width: 55%;
+}
+
+#dateScan-scan {
+    width: 45%;
+    display: block;
+}
+
+#ticket-scanDiv {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#ticket-scanDiv p {
+    color: var(--midnightBlue);
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+#ticket-scanDiv div {
+    width: 100%;
+    height: 9.5rem;
+    border-radius: 13px;
+    border: 2px solid var(--midnightBlue);
+}
+
+#ticket-scan {
+    background-color: var(--whiteBkg);
+    height: 3.625rem;
+    border-radius: 1.938rem;
+    color: var(--midnightBlue);
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 15%);
+    cursor: pointer;
+}
+
+#ticket-scan p {
+    padding-left: 3.938rem;
 }
 
 .ticket-div input {
     background-color: var(--whiteBkg);
-    width: 29.375rem;
+    width: 100%;
     height: 3.625rem;
     border-radius: 1.938rem;
-    padding-left: 1.625rem;
+    padding-left: 3.938rem;
     color: var(--midnightBlue);
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 15%);
 }
 
 .ticket-div input::placeholder {
     color: var(--midnightBlue);
 }
 
+.ticket-div svg {
+    position: absolute;
+    margin-left: 1.750rem;
+}
+
 .ticketBtn {
-    width: 29.375rem;
+    width: 100%;
     height: 3.625rem;
-    background-color: var(--violetRehausse);
-    color: #fff;
+    background-color: var(--BILLET_BkgBtnValid-TextInput);
+    color: var(--BILLET_TextBtnValider-BkgPicto);
     font-family: poppins;
     font-weight: 500;
-    font-size: 1.125rem;
+    font-size: 22px;
     display: flex;
     align-items: center;
     justify-content: end;
-    padding-right: 0.813rem;
+    padding-right: 31px;
     border-radius: 39px;
 }
 
 .ticketBtn span {
     width: 2.125rem;
     height: 2.125rem;
-    background-color: #fff;
     border-radius: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 5.5rem;
+    margin-left: 5.625rem;
 }
 
 @keyframes slideInFromLeftTicket {
@@ -697,7 +761,13 @@ main {
     border: 0.125rem solid #000;
 }
 
-
+.arrow button {
+    width: 2.625rem;
+    height: 2.625rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 /***      PAGE FESTIVAL      ***/
 
@@ -726,7 +796,7 @@ main {
     justify-content: space-between;
 }
 
-#fest-title h2{
+#fest-title h2 {
     font-size: 26px;
     font-weight: 600;
     color: var(--midnightBlue);
@@ -739,7 +809,7 @@ main {
     align-items: center;
 }
 
-#fest-titleLeft .festival-picto{
+#fest-titleLeft .festival-picto {
     margin-right: 1.375rem;
 }
 
@@ -787,6 +857,7 @@ main {
     height: 14.500rem;
     margin-bottom: 1.65rem;
 }
+
 .fest-cate hr {
     border: 1px solid var(--contraste_labeur);
 }
@@ -887,7 +958,7 @@ main {
     color: var(--midnightBlue);
 }
 
-#detailFest-title .festival-picto{
+#detailFest-title .festival-picto {
     margin-right: 1.375rem;
 }
 
@@ -986,7 +1057,7 @@ main {
 
 #detailFest-progText p {
     font-size: 20px;
-    color: var(--contraste_labeur); 
+    color: var(--contraste_labeur);
 }
 
 #detailFest-right {
@@ -1005,14 +1076,14 @@ main {
     align-items: center;
 }
 
-#validTicket-title h2{
+#validTicket-title h2 {
     font-size: 26px;
     font-weight: 600;
     color: var(--whiteBkg);
 }
 
 
-#validTicket-title .picto-ticket{
+#validTicket-title .picto-ticket {
     margin-right: 1.375rem;
 }
 

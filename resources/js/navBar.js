@@ -1,13 +1,47 @@
+const ticketDropdown = document.getElementById("ticketDropdown");
+const ticketOpen = document.getElementById('ticket-open');
+const ticketClose = document.getElementById('ticket-close');
+const scanOpen = document.getElementById('ticket-scan')
+const scanDiv = document.getElementById('ticket-scanDiv')
+
+if (ticketOpen && ticketDropdown) {
+
+    ticketOpen.addEventListener("click", (event) => {
+        event.stopPropagation();
+        ticketDropdown.classList.remove("hidden");
+        ticketDropdown.classList.add("flex");
+        ticketDropdown.classList.add("transition-left-ticket");
+    });
+
+    ticketClose.addEventListener('click', (event) => {
+        event.stopPropagation();
+        ticketDropdown.classList.add('transition-backLeft-ticket');
+        setTimeout(() => {
+            ticketDropdown.classList.add('hidden');
+            ticketDropdown.classList.remove('transition-backLeft-ticket');
+        }, 800);
+    });
+}
+
+scanOpen.addEventListener('click', (event) => {
+    event.stopPropagation();
+    if (scanDiv.classList.contains('hidden')) {
+        scanDiv.classList.remove('hidden');
+        scanDiv.classList.add('flex');
+        ticketDropdown.style.height = "46rem"
+    } else {
+        scanDiv.classList.remove('flex');
+        scanDiv.classList.add('hidden');
+        ticketDropdown.style.height = "32rem"
+    }
+});
+
 const signInBtn = document.getElementById('signIn-btn');
 const signinDropdown = document.getElementById('signinDropdown');
 const logInBtn = document.getElementById("logIn-btn");
 const loginDropdown = document.getElementById("loginDropdown");
 const loginClose = document.getElementById('login-close');
 const signinClose = document.getElementById('signin-close');
-const ticketDropdown = document.getElementById("ticketDropdown");
-const ticketOpen = document.getElementById('ticket-open');
-const ticketClose = document.getElementById('ticket-close');
-
 
 if (signInBtn && signinDropdown && logInBtn && loginDropdown && ticketOpen && ticketDropdown) {
     signInBtn.addEventListener('click', (event) => {
@@ -42,21 +76,5 @@ if (signInBtn && signinDropdown && logInBtn && loginDropdown && ticketOpen && ti
             signinDropdown.classList.add('hidden');
             signinDropdown.classList.remove('transition-backRight');
         }, 800);
-    });
-
-    ticketOpen.addEventListener("click", (event) => {
-        event.stopPropagation();
-        ticketDropdown.classList.remove("hidden");
-        ticketDropdown.classList.add("flex");
-        ticketDropdown.classList.add("transition-left-ticket");
-    });
-
-    ticketClose.addEventListener('click', (event) => {
-        event.stopPropagation();
-        ticketDropdown.classList.add('transition-backLeft-ticket');
-        setTimeout(() => {
-            ticketDropdown.classList.add('hidden');
-            ticketDropdown.classList.remove('transition-backLeft-ticket');
-        }, 800);
-    });
+    });  
 }
