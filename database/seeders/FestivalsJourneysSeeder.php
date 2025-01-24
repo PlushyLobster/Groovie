@@ -16,7 +16,7 @@ class FestivalsJourneysSeeder extends Seeder
         for ($i = 0; $i < 10; $i++) {
             $festivalsJourneys[] = [
                 'Id_festival' => $faker->numberBetween(1, 10),
-                'Id_journey' => $faker->numberBetween(1, 10),
+                'Id_journey' => $faker->numberBetween(1, 9),
                 'created_at' => now(),
                 'updated_at' => now(),
             ];

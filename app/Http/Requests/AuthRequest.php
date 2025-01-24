@@ -30,7 +30,7 @@ class AuthRequest extends FormRequest
                 'signin-password' => [
                     'required',
                     'min:8',
-                    'regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&;])[A-Za-z\d@$!%*?&;]{8,}$/' // le mdp doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial
+                    'regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&;.#-_])[A-Za-z\d@$!%*?&;.#-_]{8,}$/' // le mdp doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial
                 ],
             ];
         } elseif ($this->isMethod('post') && $this->routeIs('login')) {

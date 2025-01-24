@@ -27,7 +27,7 @@
         <div class="fest-cate" id="fest-proximite">
             <div class="fest-cateTitle">
                 <p>À proximité</p>
-                <p>Voir plus</p>  
+                <p>Voir plus</p>
             </div>
             <div class="fest-cateSlider">
                 @foreach($festivals as $festival)
@@ -53,7 +53,7 @@
         <div class="fest-cate" id="fest-populaire">
             <div class="fest-cateTitle">
                 <p>Les plus populaires</p>
-                <p>Voir plus</p>  
+                <p>Voir plus</p>
             </div>
             <div class="fest-cateSlider">
                 <div class="fest-card">
@@ -64,50 +64,14 @@
                     <div class="fest-cardImage">
                     </div>
                 </div>
-
-                <div class="fest-card">
-                    <div class="fest-cardTitle">
-                        <p class="fest-cardName">Terres du son</p>
-                        <p class="fest-cardDate">Du 1er au 4 juillet</p>
-                    </div>
-                    <div class="fest-cardImage">
-                    </div>
-                </div>
-
-                <div class="fest-card">
-                    <div class="fest-cardTitle">
-                        <p class="fest-cardName">Terres du son</p>
-                        <p class="fest-cardDate">Du 1er au 4 juillet</p>
-                    </div>
-                    <div class="fest-cardImage">
-                    </div>
-                </div>
-
-                <div class="fest-card">
-                    <div class="fest-cardTitle">
-                        <p class="fest-cardName">Terres du son</p>
-                        <p class="fest-cardDate">Du 1er au 4 juillet</p>
-                    </div>
-                    <div class="fest-cardImage">
-                    </div>
-                </div>
-
-                <div class="fest-card">
-                    <div class="fest-cardTitle">
-                        <p class="fest-cardName">Terres du son</p>
-                        <p class="fest-cardDate">Du 1er au 4 juillet</p>
-                    </div>
-                    <div class="fest-cardImage">
-                    </div>
-                </div>
-            </div>              
+            </div>
             <hr>
         </div>
 
         <div class="fest-cate" id="fest-nouveaute">
             <div class="fest-cateTitle">
                 <p>Nouveautés</p>
-                <p>Voir plus</p>  
+                <p>Voir plus</p>
             </div>
 
             <div class="fest-cateSlider">
@@ -119,7 +83,7 @@
                     <div class="fest-cardImage">
                     </div>
                 </div>
-                    
+
                 <div class="fest-card">
                     <div class="fest-cardTitle">
                         <p class="fest-cardName">Terres du son</p>
@@ -163,4 +127,58 @@
 
     </div>
 </main>
+@endsection
+
+@section('scripts')
+
+<script>
+    const signInBtn = document.getElementById('signIn-btn');
+    const signinDropdown = document.getElementById('signinDropdown');
+    const logInBtn = document.getElementById("logIn-btn");
+    const loginDropdown = document.getElementById("loginDropdown");
+    const loginClose = document.getElementById('login-close');
+    const signinClose = document.getElementById('signin-close');
+
+    if (signInBtn && signinDropdown && logInBtn && loginDropdown) {
+        signInBtn.addEventListener('click', (event) => {
+            event.stopPropagation();
+            loginDropdown.classList.add('hidden');
+            signinDropdown.classList.remove('hidden');
+            signinDropdown.classList.add('flex');
+            signinDropdown.classList.add('transition-right');
+        });
+
+        logInBtn.addEventListener("click", (event) => {
+            event.stopPropagation();
+            signinDropdown.classList.add('hidden');
+            loginDropdown.classList.remove("hidden");
+            loginDropdown.classList.add("flex");
+            loginDropdown.classList.add("transition-right-login");
+        });
+
+        loginClose.addEventListener('click', (event) => {
+            event.stopPropagation();
+            loginDropdown.classList.add('transition-backRight-login');
+            setTimeout(() => {
+                loginDropdown.classList.add('hidden');
+                loginDropdown.classList.remove('transition-backRight-login');
+            }, 800);
+        });
+
+        signinClose.addEventListener('click', (event) => {
+            event.stopPropagation();
+            signinDropdown.classList.add('transition-backRight');
+            setTimeout(() => {
+                signinDropdown.classList.add('hidden');
+                signinDropdown.classList.remove('transition-backRight');
+            }, 800);
+        });
+
+        // Ouvrir le dropdown si une erreur est présente
+        @if(session('dropdownError'))
+        signInDiv.classList.remove('hidden');
+        @endif
+    }
+</script>
+
 @endsection

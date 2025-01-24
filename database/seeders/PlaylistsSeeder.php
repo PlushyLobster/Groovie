@@ -17,7 +17,7 @@ class PlaylistsSeeder extends Seeder
             $playlists[] = [
                 'name' => $faker->word,
                 'link' => $faker->url,
-                'Id_partner' => $faker->numberBetween(1, 10),
+                'Id_partner' => $faker->numberBetween(1, 6),
                 'Id_festival' => $faker->numberBetween(1, 10),
                 'created_at' => now(),
                 'updated_at' => now(),
