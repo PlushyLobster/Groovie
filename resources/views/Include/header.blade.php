@@ -143,10 +143,6 @@
 
         <div id="right-nav">
             @auth()
-                
-
-                {{--<a href="{{ route('dashboard') }}" class="logs-btn">Mon compte</a>--}}
-                
                 <div id="profil-div">
                     <form action="{{ route('logout') }}" method="GET">
                         @method('GET')

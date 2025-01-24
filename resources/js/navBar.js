@@ -16,6 +16,9 @@ if (ticketOpen && ticketDropdown) {
     ticketClose.addEventListener('click', (event) => {
         event.stopPropagation();
         ticketDropdown.classList.add('transition-backLeft-ticket');
+        scanDiv.classList.remove('flex');
+        scanDiv.classList.add('hidden');
+        ticketDropdown.style.height = "32rem"
         setTimeout(() => {
             ticketDropdown.classList.add('hidden');
             ticketDropdown.classList.remove('transition-backLeft-ticket');
