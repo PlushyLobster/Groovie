@@ -39,8 +39,7 @@ Route::controller(AdminController::class)->group(function () {
 //CLIENTS
     Route::get('/admin/clients', [AdminController::class, 'clients'])->name('admin.clients')->middleware(RedirectIfNotAdmin::class);
     Route::post('/admin/clients/activate/{id}', [AdminController::class, 'activate'])->name('admin.clients.activate')->middleware(RedirectIfNotAdmin::class);
-    Route::post('/admin/clients/deactivate/{id}', [AdminController::class, 'deactivate'])->name('admin.clients.deactivate')->middleware(RedirectIfNotAdmin::class);
-    Route::get('/admin/clients/{id}', [AdminController::class, 'show'])->name('admin.clients.show')->middleware(RedirectIfNotAdmin::class);
+    Route::post('/admin/clients/deactivate/{id}', [AdminController::class, 'deactivate'])->name('admin.clients.deactivate')->middleware(RedirectIfNotAdmin::class);Route::get('/admin/clients/{id}', [AdminController::class, 'show'])->name('admin.clients.show')->middleware(RedirectIfNotAdmin::class);
     Route::put('/admin/clients/{id}', [AdminController::class, 'update'])->name('admin.clients.update')->middleware(RedirectIfNotAdmin::class);
     Route::get('/admin/clients/autocomplete', [AdminController::class, 'autocomplete'])->name('admin.clients.autocomplete')->middleware(RedirectIfNotAdmin::class);
     Route::post('/admin/clients/add', [AdminController::class, 'addClient'])->name('admin.clients.add')->middleware(RedirectIfNotAdmin::class);

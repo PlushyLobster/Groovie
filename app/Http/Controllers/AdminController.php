@@ -82,7 +82,7 @@ class AdminController extends Controller
         return response()->json(['success' => true]);
     }
 
-    public function desactivate($id): \Illuminate\Http\JsonResponse
+    public function deactivate($id): \Illuminate\Http\JsonResponse
     {
         $user = User::find($id);
         $user->active = 0;

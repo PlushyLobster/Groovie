@@ -51,10 +51,10 @@
                         <label for="jsonFile" class="block text-sm font-medium text-gray-700">Fichier JSON</label>
                         <input type="file" name="jsonFile" id="jsonFile" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" accept=".json" required>
                     </div>
-                    <div class="flex justify-center">
-                        <button type="submit" class="py-2 px-4 rounded bg-green-500 text-white">Importer</button>
-                        <button type="button" class="py-2 px-4 rounded bg-gray-500 text-white ml-2" onclick="closeImportModal()">Annuler</button>
-                    </div>
+                    <td id="user-{{ $user->id }}">
+                        <button class="suspend-button bg-red-500 text-white px-4 py-2 rounded" data-id="{{ $user->id }}" {{ $user->active ? '' : 'hidden' }}>Suspendre</button>
+                        <button class="activate-button bg-green-500 text-white px-4 py-2 rounded" data-id="{{ $user->id }}" {{ $user->active ? 'hidden' : '' }}>Activer</button>
+                    </td>
                 </form>
             </div>
         </div>
@@ -134,103 +134,51 @@
     </script>
     <script>
         $(document).ready(function() {
-            $('#festivals-table').DataTable({
-                "language": {
-                    "url": "https://cdn.datatables.net/plug-ins/1.13.5/i18n/fr-FR.json"
-                },
-                "pageLength": 10,
-                "lengthMenu": [5, 10, 20, 50],
-                "deferRender": true,
-                "destroy": true,
-                "drawCallback": function() {
-                    $('#festivals-table').css("visibility", "visible");
-                }
-            });
-
-            $('#add-festival').on('click', function() {
-                $('#addFestivalModal').removeClass('hidden');
-            });
-
-            $('#addFestivalForm').on('submit', function(e) {
-                e.preventDefault();
+            $('.suspend-button').on('click', function() {
+                let userId = $(this).data('id');
                 $.ajax({
-                    url: '{{ route("admin.festivals.add") }}',
+                    url: '/admin/clients/deactivate/' + userId,
                     method: 'POST',
-                    data: $(this).serialize(),
-                    success: function(response) {
-                        $('#festivals-table').DataTable().row.add([
-                            response.type,
-                            response.name,
-                            response.start_datetime,
-                            response.end_datetime,
-                            response.created_at,
-                            response.updated_at,
-                            '<button class="bg-blue-500 text-white px-4 py-2 rounded" onclick="showFestivalDetails(' + response.Id_festival + ')">Détail</button>' +
-                            '<button class="bg-red-500 text-white px-4 py-2 rounded" onclick="deleteFestival(' + response.Id_festival + ')">Supprimer</button>'
-                        ]).draw(false);
-                        closeModal();
-                        alert('Festival ajouté avec succès !');
+                    data: {
+                        _token: '{{ csrf_token() }}'
                     },
-                    error: function(response) {
-                        alert('Erreur lors de l\'ajout du festival');
+                    success: function(response) {
+                        if (response.success) {
+                            $('#user-' + userId + ' .suspend-button').addClass('hidden');
+                            $('#user-' + userId + ' .activate-button').removeClass('hidden');
+                            alert('Compte suspendu avec succès.');
+                        } else {
+                            alert('Erreur lors de la suspension du compte.');
+                        }
+                    },
+                    error: function() {
+                        alert('Erreur lors de la suspension du compte.');
+                    }
+                });
+            });
+
+            $('.activate-button').on('click', function() {
+                let userId = $(this).data('id');
+                $.ajax({
+                    url: '/admin/clients/activate/' + userId,
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            $('#user-' + userId + ' .activate-button').addClass('hidden');
+                            $('#user-' + userId + ' .suspend-button').removeClass('hidden');
+                            alert('Compte activé avec succès.');
+                        } else {
+                            alert('Erreur lors de l\'activation du compte.');
+                        }
+                    },
+                    error: function() {
+                        alert('Erreur lors de l\'activation du compte.');
                     }
                 });
             });
         });
-
-        function closeModal() {
-            $('#addFestivalModal').addClass('hidden');
-        }
-
-        function showFestivalDetails(festivalId) {
-            $.get("/admin/festivals/" + festivalId, function(data) {
-                $('#detail-festival-id').val(festivalId);
-                $('#detail-type').val(data.type);
-                $('#detail-name').val(data.name);
-                $('#detail-start-datetime').val(data.start_datetime);
-                $('#detail-end-datetime').val(data.end_datetime);
-                $('#festivalDetailsModal').removeClass('hidden');
-            }).fail(function() {
-                alert('Erreur lors de la récupération des informations.');
-            });
-        }
-
-        function closeDetailModal() {
-            $('#festivalDetailsModal').addClass('hidden');
-        }
-
-        function updateFestival() {
-            let festivalId = $('#detail-festival-id').val();
-            let data = {
-                _token: '{{ csrf_token() }}',
-                type: $('#detail-type').val(),
-                name: $('#detail-name').val(),
-                start_datetime: $('#detail-start-datetime').val(),
-                end_datetime: $('#detail-end-datetime').val()
-            };
-
-            $.ajax({
-                url: '/admin/festivals/' + festivalId,
-                method: 'PUT',
-                data: data,
-                success: function(response) {
-                    $('#festivals-table').DataTable().row('#festival-' + festivalId).data([
-                        data.type,
-                        data.name,
-                        data.start_datetime,
-                        data.end_datetime,
-                        response.created_at,
-                        response.updated_at,
-                        '<button class="bg-blue-500 text-white px-4 py-2 rounded" onclick="showFestivalDetails(' + festivalId + ')">Détail</button>' +
-                        '<button class="bg-red-500 text-white px-4 py-2 rounded" onclick="deleteFestival(' + festivalId + ')">Supprimer</button>'
-                    ]).draw(false);
-                    closeDetailModal();
-                    alert('Festival mis à jour avec succès !');
-                },
-                error: function(response) {
-                    alert('Erreur lors de la mise à jour du festival');
-                }
-            });
-        }
     </script>
 @endsection
