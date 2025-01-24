@@ -10,6 +10,7 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
+
 class AdminController extends Controller
 {
     public function index(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
@@ -127,9 +128,8 @@ class AdminController extends Controller
     {
         return view('admin.transactions');
     }
-    // ADMIN/FESTIVALS
-    // app/Http/Controllers/AdminController.php
 
+    // ADMIN/FESTIVALS
     public function festivals(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         $festivals = \DB::table('GRV1_Festivals')->get(['Id_festival', 'type', 'name', 'start_datetime', 'end_datetime', 'created_at', 'updated_at']);
@@ -202,6 +202,20 @@ class AdminController extends Controller
 
         return response()->json($festival);
     }
+    public function importJson(Request $request): \Illuminate\Http\JsonResponse
+    {
+        $request->validate([
+            'jsonFile' => 'required|file|mimes:json',
+        ]);
+
+        $file = $request->file('jsonFile');
+        $jsonData = file_get_contents($file->getRealPath());
+        $data = json_decode($jsonData, true);
+
+        // Traitez les données JSON ici
+
+        return response()->json(['message' => 'JSON importé avec succès !']);
+    }
     // ADMIN/PROMOTIONS
     public function promotions(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
@@ -231,7 +245,6 @@ class AdminController extends Controller
         ]);
 
 
-
         return response()->json($offer);
     }
     // ADMIN/ACTUALITES
@@ -243,7 +256,7 @@ class AdminController extends Controller
     public function notifications(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         $notifications = \DB::table('GRV1_Notifications')
-            ->join('GRV1_Users_Notifications', 'GRV1_Notifications.Id_notification', '=', 'GRV1_Users_Notifications.Id_notification')
+            ->join('GRV1_Users_Notifications', 'GRV1_No     tifications.Id_notification', '=', 'GRV1_Users_Notifications.Id_notification')
             ->join('GRV1_Users', 'GRV1_Users_Notifications.Id_user', '=', 'GRV1_Users.Id_user')
             ->select('GRV1_Notifications.importance', 'GRV1_Notifications.message', 'GRV1_Notifications.created_at', 'GRV1_Users.email')
             ->get();

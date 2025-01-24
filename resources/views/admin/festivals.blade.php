@@ -4,6 +4,7 @@
     <div class="container mx-auto p-4">
         <div class="flex items-center justify-between mb-4">
             <h1 class="text-3xl font-bold">Catalogue des festivals</h1>
+            <button id="import-json" class="bg-blue-500 text-white px-4 py-2 rounded">Importer le JSON</button>
             <button id="add-festival" class="bg-green-500 text-white px-4 py-2 rounded">Ajouter un festival</button>
         </div>
         <div class="bg-white p-6 rounded-lg shadow-md">
@@ -36,6 +37,26 @@
                 @endforeach
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <!-- Modale pour importer le JSON -->
+    <div id="importJsonModal" class="hidden fixed z-10 inset-0 overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen">
+            <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+                <h2 class="text-2xl font-bold mb-4">Importer le JSON</h2>
+                <form id="importJsonForm" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mb-4">
+                        <label for="jsonFile" class="block text-sm font-medium text-gray-700">Fichier JSON</label>
+                        <input type="file" name="jsonFile" id="jsonFile" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" accept=".json" required>
+                    </div>
+                    <div class="flex justify-center">
+                        <button type="submit" class="py-2 px-4 rounded bg-green-500 text-white">Importer</button>
+                        <button type="button" class="py-2 px-4 rounded bg-gray-500 text-white ml-2" onclick="closeImportModal()">Annuler</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -80,6 +101,37 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#import-json').on('click', function() {
+                $('#importJsonModal').removeClass('hidden');
+            });
+
+            $('#importJsonForm').on('submit', function(e) {
+                e.preventDefault();
+                let formData = new FormData(this);
+                $.ajax({
+                    url: '{{ route("admin.festivals.importJson") }}',
+                    method: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        alert('JSON importé avec succès !');
+                        closeImportModal();
+                        // Actualisez la table des festivals si nécessaire
+                    },
+                    error: function(response) {
+                        alert('Erreur lors de l\'importation du JSON');
+                    }
+                });
+            });
+        });
+
+        function closeImportModal() {
+            $('#importJsonModal').addClass('hidden');
+        }
+    </script>
     <script>
         $(document).ready(function() {
             $('#festivals-table').DataTable({

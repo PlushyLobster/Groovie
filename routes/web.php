@@ -52,7 +52,7 @@ Route::controller(AdminController::class)->group(function () {
     Route::delete('/admin/festivals/{id}', [AdminController::class, 'deleteFestival'])->name('admin.festivals.delete')->middleware(RedirectIfNotAdmin::class);
     Route::get('/admin/festivals/{id}', [AdminController::class, 'showFestival'])->name('admin.festivals.show')->middleware(RedirectIfNotAdmin::class);
     Route::put('/admin/festivals/{id}', [AdminController::class, 'updateFestival'])->name('admin.festivals.update')->middleware(RedirectIfNotAdmin::class);
-
+    Route::post('/admin/festivals/importJson', [AdminController::class, 'importJson'])->name('admin.festivals.importJson');
 //PROMOTIONS
     Route::get('/admin/promotions', [AdminController::class, 'promotions'])->name('admin.promotions')->middleware(RedirectIfNotAdmin::class);
     Route::get('/admin/promotions', [AdminController::class, 'getOffers'])->name('admin.promotions')->middleware(RedirectIfNotAdmin::class);
