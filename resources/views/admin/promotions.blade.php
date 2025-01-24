@@ -28,6 +28,7 @@
                     <td class="px-6 py-4 whitespace-nowrap">{{ $offer->condition_purchase }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $offer->created_at }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">
+                        <button class="bg-blue-400 text-white px-4 py-2 rounded" onclick="showOfferDetails({{ $offer->Id_offer }})">Voir Promo</button>
                         <button class="bg-red-500 text-white px-4 py-2 rounded" onclick="deleteOffer({{ $offer->Id_offer }})">Supprimer</button>
                     </td>
                 </tr>
@@ -54,9 +55,9 @@
                     <div class="mb-4">
                         <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
                         <select name="type" id="type" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
-                            <option value="Transport">Transport</option>
-                            <option value="Snack">Snack</option>
-                            <option value="Loisirs">Loisirs</option>
+                            @foreach($types as $type)
+                                <option value="{{ $type->type }}">{{ $type->type }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="mb-4">
@@ -78,6 +79,51 @@
                     <div class="flex justify-center">
                         <button type="submit" class="py-2 px-4 rounded bg-green-500 text-white">Ajouter</button>
                         <button type="button" class="py-2 px-4 rounded bg-gray-500 text-white ml-2" onclick="closeModal()">Annuler</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modale pour afficher et modifier les détails de l'offre -->
+    <div id="offerDetailsModal" class="hidden fixed z-10 inset-0 overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen">
+            <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+                <h2 class="text-2xl font-bold mb-4">Détails de l'Offre</h2>
+                <form id="offerDetailsForm">
+                    @csrf
+                    <input type="hidden" id="detail-offer-id">
+                    <div class="mb-4">
+                        <label for="detail-partner" class="block text-sm font-medium text-gray-700">Partenaire</label>
+                        <input type="text" id="detail-partner" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" readonly>
+                    </div>
+                    <div class="mb-4">
+                        <label for="detail-type" class="block text-sm font-medium text-gray-700">Type</label>
+                        <select id="detail-type" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm">
+                            @foreach($types as $type)
+                                <option value="{{ $type->type }}">{{ $type->type }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="detail-name" class="block text-sm font-medium text-gray-700">Nom abonnement</label>
+                        <input type="text" id="detail-name" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+                    <div class="mb-4">
+                        <label for="detail-description" class="block text-sm font-medium text-gray-700">Description</label>
+                        <textarea id="detail-description" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm"></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label for="detail-condition" class="block text-sm font-medium text-gray-700">Condition</label>
+                        <textarea id="detail-condition" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm"></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label for="detail-created-at" class="block text-sm font-medium text-gray-700">Créé le</label>
+                        <input type="date" id="detail-created-at" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+                    <div class="flex justify-center">
+                        <button type="button" class="py-2 px-4 rounded bg-blue-500 text-white ml-2" onclick="updateOffer()">Mettre à jour</button>
+                        <button type="button" class="py-2 px-4 rounded bg-gray-500 text-white ml-2" onclick="closeDetailModal()">Fermer</button>
                     </div>
                 </form>
             </div>
@@ -129,6 +175,7 @@
                             response.description,
                             response.condition_purchase,
                             moment(response.created_at).format('DD/MM/YYYY'),
+                            '<button class="bg-blue-400 text-white px-4 py-2 rounded" onclick="showOfferDetails(' + response.Id_offer + ')">Voir Promo</button>' +
                             '<button class="bg-red-500 text-white px-4 py-2 rounded" onclick="deleteOffer(' + response.Id_offer + ')">Supprimer</button>'
                         ]).draw(false);
                         closeModal();
@@ -147,6 +194,68 @@
 
         function closeModal() {
             $('#addOfferModal').addClass('hidden');
+        }
+
+        function showOfferDetails(id) {
+            $.ajax({
+                url: '/admin/offers/' + id,
+                method: 'GET',
+                success: function(response) {
+                    console.log(response); // Ajoutez cette ligne pour vérifier la réponse
+                    $('#detail-offer-id').val(response.Id_offer);
+                    $('#detail-partner').val(response.partner_name);
+                    $('#detail-type').val(response.type);
+                    $('#detail-name').val(response.name);
+                    $('#detail-description').val(response.description);
+                    $('#detail-condition').val(response.condition_purchase);
+                    $('#detail-created-at').val(moment(response.created_at).format('YYYY-MM-DD'));
+                    $('#offerDetailsModal').removeClass('hidden');
+                },
+                error: function(response) {
+                    alert('Erreur lors de la récupération des détails de l\'offre');
+                }
+            });
+        }
+
+        function closeDetailModal() {
+            $('#offerDetailsModal').addClass('hidden');
+        }
+
+        function updateOffer() {
+            let id = $('#detail-offer-id').val();
+            let data = {
+                _token: '{{ csrf_token() }}',
+                type: $('#detail-type').val(),
+                name: $('#detail-name').val(),
+                description: $('#detail-description').val(),
+                condition_purchase: $('#detail-condition').val(),
+                created_at: $('#detail-created-at').val()
+            };
+
+            $.ajax({
+                url: '/admin/offers/' + id,
+                method: 'PUT',
+                data: data,
+                success: function(response) {
+                    let table = $('#offers-table').DataTable();
+                    let row = table.row('#offer-' + id).node();
+                    table.row(row).data([
+                        response.partner_name,
+                        response.type,
+                        response.name,
+                        response.description,
+                        response.condition_purchase,
+                        moment(response.created_at).format('DD/MM/YYYY'),
+                        '<button class="bg-blue-400 text-white px-4 py-2 rounded" onclick="showOfferDetails(' + response.Id_offer + ')">Voir Promo</button>' +
+                        '<button class="bg-red-500 text-white px-4 py-2 rounded" onclick="deleteOffer(' + response.Id_offer + ')">Supprimer</button>'
+                    ]).draw(false);
+                    closeDetailModal();
+                    alert('Offre mise à jour avec succès !');
+                },
+                error: function(response) {
+                    alert('Erreur lors de la mise à jour de l\'offre');
+                }
+            });
         }
 
         function deleteOffer(id) {

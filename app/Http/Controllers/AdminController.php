@@ -229,8 +229,9 @@ class AdminController extends Controller
             ->get();
 
         $partners = \DB::table('GRV1_Partners')->select('Id_partner', 'name')->get();
+        $types = \DB::table('GRV1_Offers')->select('type')->distinct()->get();
 
-        return view('admin.promotions', compact('offers', 'partners'));
+        return view('admin.promotions', compact('offers', 'partners', 'types'));
     }
     public function addOffer(Request $request): \Illuminate\Http\JsonResponse
     {
@@ -253,6 +254,47 @@ class AdminController extends Controller
         ]);
 
         $offer = \DB::table('GRV1_Offers')->select('Id_offer', 'type', 'name', 'description', 'condition_purchase', 'created_at')->where('Id_offer', $offerId)->first();
+
+        return response()->json($offer);
+    }
+    public function showOffer($id): \Illuminate\Http\JsonResponse
+    {
+        $offer = \DB::table('GRV1_Offers')
+            ->leftJoin('GRV1_Partners', 'GRV1_Offers.Id_partner', '=', 'GRV1_Partners.Id_partner')
+            ->select('GRV1_Partners.name as partner_name', 'GRV1_Offers.type', 'GRV1_Offers.name', 'GRV1_Offers.description', 'GRV1_Offers.condition_purchase', 'GRV1_Offers.created_at', 'GRV1_Offers.Id_offer')
+            ->where('GRV1_Offers.Id_offer', $id)
+            ->first();
+
+        if ($offer) {
+            return response()->json($offer);
+        } else {
+            return response()->json(['error' => 'Offre non trouvée'], 404);
+        }
+    }
+    public function updateOffer(Request $request, $id): \Illuminate\Http\JsonResponse
+    {
+        $request->validate([
+            'type' => 'required|string|max:50',
+            'name' => 'required|string|max:50',
+            'description' => 'required|string',
+            'condition_purchase' => 'required|string',
+            'created_at' => 'required|date',
+        ]);
+
+        \DB::table('GRV1_Offers')->where('Id_offer', $id)->update([
+            'type' => $request->type,
+            'name' => $request->name,
+            'description' => $request->description,
+            'condition_purchase' => $request->condition_purchase,
+            'created_at' => $request->created_at,
+            'updated_at' => now(),
+        ]);
+
+        $offer = \DB::table('GRV1_Offers')
+            ->leftJoin('GRV1_Partners', 'GRV1_Offers.Id_partner', '=', 'GRV1_Partners.Id_partner')
+            ->select('GRV1_Partners.name as partner_name', 'GRV1_Offers.type', 'GRV1_Offers.name', 'GRV1_Offers.description', 'GRV1_Offers.condition_purchase', 'GRV1_Offers.created_at', 'GRV1_Offers.Id_offer')
+            ->where('GRV1_Offers.Id_offer', $id)
+            ->first();
 
         return response()->json($offer);
     }
