@@ -46,7 +46,7 @@
                 <a href="{{ route('admin.promotions') }}" class="block py-2 px-4 rounded text-center hover:bg-[#A7BCD6] {{ request()->routeIs('admin.promotions') ? 'bg-[#A7BCD6]' : '' }}">Gestion des offres promo</a>
             </li>
             <li class="mb-4">
-                <a href="{{ route('admin.transactions') }}" class="block py-2 px-4 rounded text-center hover:bg-[#A7BCD6] {{ request()->routeIs('admin.transactions') ? 'bg-[#A7BCD6]' : '' }}">Surveillance des transactions</a>
+                <a href="{{ route('admin.transactions') }}" class="block py-2 px-4 rounded text-center hover:bg-[#A7BCD6] {{ request()->routeIs('admin.transactions') ? 'bg-[#A7BCD6]' : '' }}">Suivi des transactions</a>
             </li>
 
             <li class="mb-4">

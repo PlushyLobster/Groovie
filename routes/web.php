@@ -60,7 +60,8 @@ Route::controller(AdminController::class)->group(function () {
     Route::put('/admin/offers/{id}', [AdminController::class, 'updateOffer'])->name('admin.offers.update')->middleware(RedirectIfNotAdmin::class);
     Route::delete('/admin/offers/{id}', [AdminController::class, 'deleteOffer'])->name('admin.offers.delete')->middleware(RedirectIfNotAdmin::class);
 
-
+//TRANSACTIONS
+    Route::get('/admin/transactions', [AdminController::class, 'transactions'])->name('admin.transactions')->middleware(RedirectIfNotAdmin::class);
     //NOTIFICATIONS
     Route::get('/admin/notifications', [AdminController::class, 'notifications'])->name('admin.notifications')->middleware(RedirectIfNotAdmin::class);
 

@@ -123,11 +123,7 @@ class AdminController extends Controller
         return response()->json(['success' => true]);
     }
 
-    // ADMIN/TRANSACTIONS
-    public function transactions(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
-    {
-        return view('admin.transactions');
-    }
+
 
     // ADMIN/FESTIVALS
     public function festivals(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
@@ -307,10 +303,11 @@ class AdminController extends Controller
             return response()->json(['error' => 'Erreur lors de la suppression de l\'offre : ' . $e->getMessage()], 500);
         }
     }
-    // ADMIN/ACTUALITES
-    public function actualites(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
+    // ADMIN/TRANSACTIONS
+    public function transactions(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        return view('admin.actualites');
+        $groovers = \DB::table('GRV1_Groovers')->select('name', 'firstname', 'nb_groovies', 'level')->get();
+        return view('admin.transactions', compact('groovers'));
     }
     // ADMIN/NOTIFICATIONS
     public function notifications(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application

@@ -51,10 +51,10 @@
                         <label for="jsonFile" class="block text-sm font-medium text-gray-700">Fichier JSON</label>
                         <input type="file" name="jsonFile" id="jsonFile" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" accept=".json" required>
                     </div>
-                    <td id="user-{{ $user->id }}">
-                        <button class="suspend-button bg-red-500 text-white px-4 py-2 rounded" data-id="{{ $user->id }}" {{ $user->active ? '' : 'hidden' }}>Suspendre</button>
-                        <button class="activate-button bg-green-500 text-white px-4 py-2 rounded" data-id="{{ $user->id }}" {{ $user->active ? 'hidden' : '' }}>Activer</button>
-                    </td>
+                    <div class="flex justify-center">
+                        <button type="submit" class="py-2 px-4 rounded bg-blue-500 text-white">Importer</button>
+                        <button type="button" class="py-2 px-4 rounded bg-gray-500 text-white ml-2" onclick="closeImportModal()">Annuler</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -114,71 +114,111 @@
                     url: '{{ route("admin.festivals.importJson") }}',
                     method: 'POST',
                     data: formData,
-                    processData: false,
                     contentType: false,
+                    processData: false,
                     success: function(response) {
                         alert('JSON importé avec succès !');
                         closeImportModal();
-                        // Actualisez la table des festivals si nécessaire
                     },
                     error: function(response) {
                         alert('Erreur lors de l\'importation du JSON');
                     }
                 });
             });
+
+            $('#festivals-table').DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.13.5/i18n/fr-FR.json"
+                },
+                "pageLength": 10,
+                "lengthMenu": [5, 10, 20, 50],
+                "deferRender": true,
+                "destroy": true,
+                "drawCallback": function() {
+                    $('#festivals-table').css("visibility", "visible");
+                }
+            });
         });
 
         function closeImportModal() {
             $('#importJsonModal').addClass('hidden');
         }
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('.suspend-button').on('click', function() {
-                let userId = $(this).data('id');
-                $.ajax({
-                    url: '/admin/clients/deactivate/' + userId,
-                    method: 'POST',
-                    data: {
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            $('#user-' + userId + ' .suspend-button').addClass('hidden');
-                            $('#user-' + userId + ' .activate-button').removeClass('hidden');
-                            alert('Compte suspendu avec succès.');
-                        } else {
-                            alert('Erreur lors de la suspension du compte.');
-                        }
-                    },
-                    error: function() {
-                        alert('Erreur lors de la suspension du compte.');
-                    }
-                });
-            });
 
-            $('.activate-button').on('click', function() {
-                let userId = $(this).data('id');
+        function showFestivalDetails(id) {
+            $.ajax({
+                url: '/admin/festivals/' + id,
+                method: 'GET',
+                success: function(response) {
+                    $('#detail-festival-id').val(response.Id_festival);
+                    $('#detail-type').val(response.type);
+                    $('#detail-name').val(response.name);
+                    $('#detail-start-datetime').val(response.start_datetime);
+                    $('#detail-end-datetime').val(response.end_datetime);
+                    $('#festivalDetailsModal').removeClass('hidden');
+                },
+                error: function(response) {
+                    alert('Erreur lors de la récupération des détails du festival');
+                }
+            });
+        }
+
+        function closeDetailModal() {
+            $('#festivalDetailsModal').addClass('hidden');
+        }
+
+        function updateFestival() {
+            let id = $('#detail-festival-id').val();
+            let data = {
+                _token: '{{ csrf_token() }}',
+                type: $('#detail-type').val(),
+                name: $('#detail-name').val(),
+                start_datetime: $('#detail-start-datetime').val(),
+                end_datetime: $('#detail-end-datetime').val()
+            };
+
+            $.ajax({
+                url: '/admin/festivals/' + id,
+                method: 'PUT',
+                data: data,
+                success: function(response) {
+                    $('#festivals-table').DataTable().row('#festival-' + id).data([
+                        response.type,
+                        response.name,
+                        moment(response.start_datetime).format('DD/MM/YYYY'),
+                        moment(response.end_datetime).format('DD/MM/YYYY'),
+                        moment(response.created_at).format('DD/MM/YYYY'),
+                        moment(response.updated_at).format('DD/MM/YYYY'),
+                        '<button class="bg-blue-500 text-white px-4 py-2 rounded" onclick="showFestivalDetails(' + response.Id_festival + ')">Détail</button>' +
+                        '<button class="bg-red-500 text-white px-4 py-2 rounded" onclick="deleteFestival(' + response.Id_festival + ')">Supprimer</button>'
+                    ]).draw(false);
+                    closeDetailModal();
+                    alert('Festival mis à jour avec succès !');
+                },
+                error: function(response) {
+                    alert('Erreur lors de la mise à jour du festival');
+                }
+            });
+        }
+
+        function deleteFestival(id) {
+            if (confirm('Êtes-vous sûr de vouloir supprimer ce festival ?')) {
                 $.ajax({
-                    url: '/admin/clients/activate/' + userId,
-                    method: 'POST',
+                    url: '/admin/festivals/' + id,
+                    method: 'DELETE',
                     data: {
                         _token: '{{ csrf_token() }}'
                     },
                     success: function(response) {
-                        if (response.success) {
-                            $('#user-' + userId + ' .activate-button').addClass('hidden');
-                            $('#user-' + userId + ' .suspend-button').removeClass('hidden');
-                            alert('Compte activé avec succès.');
-                        } else {
-                            alert('Erreur lors de l\'activation du compte.');
+                        if (response.message) {
+                            $('#festivals-table').DataTable().row('#festival-' + id).remove().draw(false);
+                            alert('Festival supprimé avec succès !');
                         }
                     },
-                    error: function() {
-                        alert('Erreur lors de l\'activation du compte.');
+                    error: function(response) {
+                        alert('Erreur lors de la suppression du festival');
                     }
                 });
-            });
-        });
+            }
+        }
     </script>
 @endsection
