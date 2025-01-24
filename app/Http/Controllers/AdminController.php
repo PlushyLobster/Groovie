@@ -223,8 +223,14 @@ class AdminController extends Controller
     }
     public function getOffers(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        $offers = \DB::table('GRV1_Offers')->select('type', 'name', 'description', 'created_at')->get();
-        return view('admin.promotions', compact('offers'));
+        $offers = \DB::table('GRV1_Offers')
+            ->leftJoin('GRV1_Partners', 'GRV1_Offers.Id_partner', '=', 'GRV1_Partners.Id_partner')
+            ->select('GRV1_Partners.name as partner_name', 'GRV1_Offers.type', 'GRV1_Offers.name', 'GRV1_Offers.description', 'GRV1_Offers.condition_purchase', 'GRV1_Offers.created_at', 'GRV1_Offers.Id_offer')
+            ->get();
+
+        $partners = \DB::table('GRV1_Partners')->select('Id_partner', 'name')->get();
+
+        return view('admin.promotions', compact('offers', 'partners'));
     }
     public function addOffer(Request $request): \Illuminate\Http\JsonResponse
     {
@@ -232,20 +238,32 @@ class AdminController extends Controller
             'type' => 'required|string|max:50',
             'name' => 'required|string|max:50',
             'description' => 'required|string',
+            'condition_purchase' => 'required|string',
+            'created_at' => 'required|date',
         ]);
 
         $offerId = \DB::table('GRV1_Offers')->insertGetId([
             'type' => $request->type,
             'name' => $request->name,
             'description' => $request->description,
-            'created_at' => now(),
+            'condition_purchase' => $request->condition_purchase,
+            'created_at' => $request->created_at,
             'updated_at' => now(),
-            'Id_journey' => 1, // Remplacez par la valeur appropriée
             'Id_partner' => 1, // Remplacez par la valeur appropriée
         ]);
 
+        $offer = \DB::table('GRV1_Offers')->select('Id_offer', 'type', 'name', 'description', 'condition_purchase', 'created_at')->where('Id_offer', $offerId)->first();
 
         return response()->json($offer);
+    }
+    public function deleteOffer($id): \Illuminate\Http\JsonResponse
+    {
+        try {
+            \DB::table('GRV1_Offers')->where('Id_offer', $id)->delete();
+            return response()->json(['message' => 'Offre supprimée avec succès.'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Erreur lors de la suppression de l\'offre : ' . $e->getMessage()], 500);
+        }
     }
     // ADMIN/ACTUALITES
     public function actualites(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application

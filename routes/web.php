@@ -56,8 +56,8 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/admin/promotions', [AdminController::class, 'promotions'])->name('admin.promotions')->middleware(RedirectIfNotAdmin::class);
     Route::get('/admin/promotions', [AdminController::class, 'getOffers'])->name('admin.promotions')->middleware(RedirectIfNotAdmin::class);
     Route::post('/admin/offers/add', [AdminController::class, 'addOffer'])->name('admin.offers.add')->middleware(RedirectIfNotAdmin::class);
-
-//NOTIFICATIONS
+    Route::delete('/admin/offers/{id}', [AdminController::class, 'deleteOffer'])->name('admin.offers.delete')->middleware(RedirectIfNotAdmin::class);
+    //NOTIFICATIONS
     Route::get('/admin/notifications', [AdminController::class, 'notifications'])->name('admin.notifications')->middleware(RedirectIfNotAdmin::class);
 
 //ACTUALITES

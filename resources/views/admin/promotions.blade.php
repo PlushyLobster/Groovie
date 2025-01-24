@@ -9,23 +9,26 @@
         <table id="offers-table" class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
             <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Partenaire</th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom abonnement</th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Condition</th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Créé le</th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
             </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
             @foreach($offers as $offer)
-                <tr>
+                <tr id="offer-{{ $offer->Id_offer }}">
+                    <td class="px-6 py-4 whitespace-nowrap">{{ $offer->partner_name }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $offer->type }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $offer->name }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $offer->description }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ $offer->condition_purchase }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $offer->created_at }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <button class="bg-orange-400 text-white px-4 py-2 rounded" onclick="">Modifier</button>
-                        <button class="bg-red-500 text-white px-4 py-2 rounded" onclick="">Supprimer</button>
+                        <button class="bg-red-500 text-white px-4 py-2 rounded" onclick="deleteOffer({{ $offer->Id_offer }})">Supprimer</button>
                     </td>
                 </tr>
             @endforeach
@@ -41,16 +44,36 @@
                 <form id="addOfferForm">
                     @csrf
                     <div class="mb-4">
-                        <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
-                        <input type="text" name="type" id="type" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <label for="partner" class="block text-sm font-medium text-gray-700">Partenaire</label>
+                        <select name="partner" id="partner" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                            @foreach($partners as $partner)
+                                <option value="{{ $partner->Id_partner }}">{{ $partner->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="mb-4">
-                        <label for="name" class="block text-sm font-medium text-gray-700">Nom</label>
+                        <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
+                        <select name="type" id="type" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                            <option value="Transport">Transport</option>
+                            <option value="Snack">Snack</option>
+                            <option value="Loisirs">Loisirs</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="name" class="block text-sm font-medium text-gray-700">Nom abonnement</label>
                         <input type="text" name="name" id="name" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                     </div>
                     <div class="mb-4">
                         <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
                         <textarea name="description" id="description" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label for="condition_purchase" class="block text-sm font-medium text-gray-700">Condition</label>
+                        <textarea name="condition_purchase" id="condition_purchase" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label for="created_at" class="block text-sm font-medium text-gray-700">Créé le</label>
+                        <input type="date" name="created_at" id="created_at" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                     </div>
                     <div class="flex justify-center">
                         <button type="submit" class="py-2 px-4 rounded bg-green-500 text-white">Ajouter</button>
@@ -62,6 +85,7 @@
     </div>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script>
@@ -74,6 +98,14 @@
                 "lengthMenu": [5, 10, 20, 50],
                 "deferRender": true,
                 "destroy": true,
+                "columnDefs": [
+                    {
+                        "targets": 5, // Index de la colonne "Créé le"
+                        "render": function(data, type, row) {
+                            return moment(data).format('DD/MM/YYYY');
+                        }
+                    }
+                ],
                 "drawCallback": function() {
                     $('#offers-table').css("visibility", "visible");
                 }
@@ -91,11 +123,12 @@
                     data: $(this).serialize(),
                     success: function(response) {
                         $('#offers-table').DataTable().row.add([
+                            response.partner_name,
                             response.type,
                             response.name,
                             response.description,
-                            response.created_at,
-                            '<button class="bg-orange-400 text-white px-4 py-2 rounded" onclick="updateOffer(' + response.Id_offer + ')">Modifier</button>' +
+                            response.condition_purchase,
+                            moment(response.created_at).format('DD/MM/YYYY'),
                             '<button class="bg-red-500 text-white px-4 py-2 rounded" onclick="deleteOffer(' + response.Id_offer + ')">Supprimer</button>'
                         ]).draw(false);
                         closeModal();
@@ -116,14 +149,10 @@
             $('#addOfferModal').addClass('hidden');
         }
 
-        function updateOffer(id) {
-            // Ajoutez ici le code pour mettre à jour une offre
-        }
-
         function deleteOffer(id) {
             if (confirm('Êtes-vous sûr de vouloir supprimer cette offre ?')) {
                 $.ajax({
-                    url: '/' + id,
+                    url: '/admin/offers/' + id,
                     method: 'DELETE',
                     data: {
                         _token: '{{ csrf_token() }}'
