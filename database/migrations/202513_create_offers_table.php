@@ -15,8 +15,7 @@ return new class extends Migration
             $table->text('description');
             $table->text('condition_purchase');
             $table->timestamps();
-            $table->foreignId('Id_journey')->constrained('GRV1_Journeys')->references('Id_journey')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('Id_partner')->unique()->constrained('GRV1_Partners')->references('Id_partner')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('Id_partner')->nullable()->constrained('GRV1_Partners')->references('Id_partner')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -4,54 +4,131 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Faker\Factory as Faker;
 
 class JourneysSeeder extends Seeder
 {
     public function run(): void
     {
-        $faker = Faker::create();
+        $journeys = [
+            [
+                'departure_city' => 'Paris',
+                'arrival_city' => 'Lyon',
+                'departure_date' => '2025-05-01',
+                'arrival_date' => '2025-05-01',
+                'departure_time' => '08:00:00',
+                'arrival_time' => '11:00:00',
+                'Id_transport' => 1,
+                'groovie_won' => 0,
+                'Id_parent' => null,
+                'Id_offer' => null,
+                'status' => 'enregistré'
+            ],
+            [
+                'departure_city' => 'Paris',
+                'arrival_city' => 'Orléans',
+                'departure_date' => '2025-05-01',
+                'arrival_date' => '2025-05-01',
+                'departure_time' => '08:00:00',
+                'arrival_time' => '09:00:00',
+                'Id_transport' => 1,
+                'groovie_won' => 0,
+                'Id_parent' => 1,
+                'Id_offer' => 1,
+                'status' => 'validé'
+            ],
+            [
+                'departure_city' => 'Orléans',
+                'arrival_city' => 'Lyon',
+                'departure_date' => '2025-05-01',
+                'arrival_date' => '2025-05-01',
+                'departure_time' => '09:30:00',
+                'arrival_time' => '11:00:00',
+                'Id_transport' => 1,
+                'groovie_won' => 0,
+                'Id_parent' => 1,
+                'Id_offer' => null,
+                'status' => 'annulé'
+            ],
+            [
+                'departure_city' => 'Marseille',
+                'arrival_city' => 'Nice',
+                'departure_date' => '2025-06-15',
+                'arrival_date' => '2025-06-15',
+                'departure_time' => '10:00:00',
+                'arrival_time' => '12:00:00',
+                'Id_transport' => 2,
+                'groovie_won' => 0,
+                'Id_parent' => null,
+                'Id_offer' => 2,
+                'status' => 'enregistré'
+            ],
+            [
+                'departure_city' => 'Marseille',
+                'arrival_city' => 'Toulon',
+                'departure_date' => '2025-06-15',
+                'arrival_date' => '2025-06-15',
+                'departure_time' => '10:00:00',
+                'arrival_time' => '10:45:00',
+                'Id_transport' => 2,
+                'groovie_won' => 0,
+                'Id_parent' => 4,
+                'Id_offer' => null,
+                'status' => 'validé'
+            ],
+            [
+                'departure_city' => 'Toulon',
+                'arrival_city' => 'Nice',
+                'departure_date' => '2025-06-15',
+                'arrival_date' => '2025-06-15',
+                'departure_time' => '11:00:00',
+                'arrival_time' => '12:00:00',
+                'Id_transport' => 2,
+                'groovie_won' => 0,
+                'Id_parent' => 4,
+                'Id_offer' => 3,
+                'status' => 'annulé'
+            ],
+            [
+                'departure_city' => 'Bordeaux',
+                'arrival_city' => 'Toulouse',
+                'departure_date' => '2025-07-20',
+                'arrival_date' => '2025-07-20',
+                'departure_time' => '14:00:00',
+                'arrival_time' => '16:00:00',
+                'Id_transport' => 3,
+                'groovie_won' => 0,
+                'Id_parent' => null,
+                'Id_offer' => null,
+                'status' => 'enregistré'
+            ],
+            [
+                'departure_city' => 'Bordeaux',
+                'arrival_city' => 'Agen',
+                'departure_date' => '2025-07-20',
+                'arrival_date' => '2025-07-20',
+                'departure_time' => '14:00:00',
+                'arrival_time' => '15:00:00',
+                'Id_transport' => 3,
+                'groovie_won' => 0,
+                'Id_parent' => 7,
+                'Id_offer' => 4,
+                'status' => 'validé'
+            ],
+            [
+                'departure_city' => 'Agen',
+                'arrival_city' => 'Toulouse',
+                'departure_date' => '2025-07-20',
+                'arrival_date' => '2025-07-20',
+                'departure_time' => '15:15:00',
+                'arrival_time' => '16:00:00',
+                'Id_transport' => 3,
+                'groovie_won' => 0,
+                'Id_parent' => 7,
+                'Id_offer' => null,
+                'status' => 'annulé'
+            ]
+        ];
 
-        // Récupérer tous les Id_transports existants dans la table GRV1_Transports
-        $transportIds = DB::table('GRV1_Transports')->pluck('Id_transport')->toArray();
-
-        // Insérer des enregistrements sans Id_parent
-        $journeys = [];
-        for ($i = 0; $i < 10; $i++) {
-            $journeys[] = [
-                'departure_city' => $faker->city,
-                'arrival_city' => $faker->city,
-                'departure_date' => $faker->date,
-                'arrival_date' => $faker->date,
-                'departure_time' => $faker->time,
-                'arrival_time' => $faker->time,
-                'status' => $faker->randomElement(['enregitré','réservé','annulé']),
-                'groovie_won' => $faker->numberBetween(0, 500),
-                'Id_transport' => $faker->randomElement($transportIds),
-            ];
-        }
         DB::table('GRV1_Journeys')->insert($journeys);
-
-        // Récupérer les Id_journey des enregistrements insérés
-        $journeyIds = DB::table('GRV1_Journeys')->pluck('Id_journey')->toArray();
-
-        // Mettre à jour les enregistrements avec des valeurs valides pour Id_parent
-        $updatedJourneys = [];
-        foreach ($journeyIds as $id) {
-            $updatedJourneys[] = [
-                'Id_journey' => $id,
-                'Id_parent' => $faker->randomElement($journeyIds),
-                'departure_city' => $faker->city,
-                'arrival_city' => $faker->city,
-                'departure_date' => $faker->date,
-                'arrival_date' => $faker->date,
-                'departure_time' => $faker->time,
-                'arrival_time' => $faker->time,
-                'status' => $faker->randomElement(['enregitré','réservé','annulé']),
-                'groovie_won' => $faker->numberBetween(0, 500),
-                'Id_transport' => $faker->randomElement($transportIds),
-            ];
-        }
-        DB::table('GRV1_Journeys')->upsert($updatedJourneys, ['Id_journey'], ['Id_parent', 'departure_city', 'arrival_city', 'departure_date', 'arrival_date', 'departure_time', 'arrival_time', 'status', 'groovie_won', 'Id_transport']);
     }
 }

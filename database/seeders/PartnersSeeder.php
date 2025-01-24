@@ -4,22 +4,19 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Faker\Factory as Faker;
 
 class PartnersSeeder extends Seeder
 {
     public function run(): void
     {
-        $faker = Faker::create();
-
-        $partners = [];
-        for ($i = 0; $i < 10; $i++) {
-            $partners[] = [
-                'name' => $faker->company,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ];
-        }
+        $partners = [
+            ['name' => 'McDonald\'s', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'SNCF', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Deezer', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Coca-Cola', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'BlaBlaCar', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Loir à Vélo', 'created_at' => now(), 'updated_at' => now()],
+        ];
 
         DB::table('GRV1_Partners')->insert($partners);
     }

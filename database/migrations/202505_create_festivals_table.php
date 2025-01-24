@@ -15,7 +15,6 @@ return new class extends Migration
             $table->dateTime('start_datetime');
             $table->dateTime('end_datetime');
             $table->timestamps();
-            $table->foreignId('Id_musical_genre')->constrained('GRV1_Musical_genres')->references('Id_musical_genre')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->timestamps();
             $table->foreign('Id_parent')->references('Id_journey')->on('GRV1_Journeys')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('Id_transport')->constrained('GRV1_Transports')->references('Id_transport')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('Id_offer')->nullable()->constrained('GRV1_Offers')->references('Id_offer')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
