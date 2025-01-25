@@ -11,11 +11,11 @@
             <table id="festivals-table" class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                 <tr>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Début</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fin</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Créé le</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mis à jour le</th>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
@@ -23,12 +23,12 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                 @foreach($festivals as $festival)
                     <tr id="festival-{{ $festival->Id_festival }}">
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $festival->Id_festival }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $festival->type }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $festival->name }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($festival->start_datetime)->format('d/m/Y') }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($festival->end_datetime)->format('d/m/Y') }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($festival->created_at)->format('d/m/Y') }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($festival->updated_at)->format('d/m/Y') }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($festival->updated_at)->format('d/m/Y H:i') }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <button class="bg-blue-500 text-white px-4 py-2 rounded" onclick="showFestivalDetails({{ $festival->Id_festival }})">Détail</button>
                             <button class="bg-red-500 text-white px-4 py-2 rounded" onclick="deleteFestival({{ $festival->Id_festival }})">Supprimer</button>
@@ -118,7 +118,7 @@
                     processData: false,
                     success: function(response) {
                         alert('JSON importé avec succès !');
-                        closeImportModal();
+                        location.reload();
                     },
                     error: function(response) {
                         alert('Erreur lors de l\'importation du JSON');
@@ -166,39 +166,7 @@
             $('#festivalDetailsModal').addClass('hidden');
         }
 
-        function updateFestival() {
-            let id = $('#detail-festival-id').val();
-            let data = {
-                _token: '{{ csrf_token() }}',
-                type: $('#detail-type').val(),
-                name: $('#detail-name').val(),
-                start_datetime: $('#detail-start-datetime').val(),
-                end_datetime: $('#detail-end-datetime').val()
-            };
 
-            $.ajax({
-                url: '/admin/festivals/' + id,
-                method: 'PUT',
-                data: data,
-                success: function(response) {
-                    $('#festivals-table').DataTable().row('#festival-' + id).data([
-                        response.type,
-                        response.name,
-                        moment(response.start_datetime).format('DD/MM/YYYY'),
-                        moment(response.end_datetime).format('DD/MM/YYYY'),
-                        moment(response.created_at).format('DD/MM/YYYY'),
-                        moment(response.updated_at).format('DD/MM/YYYY'),
-                        '<button class="bg-blue-500 text-white px-4 py-2 rounded" onclick="showFestivalDetails(' + response.Id_festival + ')">Détail</button>' +
-                        '<button class="bg-red-500 text-white px-4 py-2 rounded" onclick="deleteFestival(' + response.Id_festival + ')">Supprimer</button>'
-                    ]).draw(false);
-                    closeDetailModal();
-                    alert('Festival mis à jour avec succès !');
-                },
-                error: function(response) {
-                    alert('Erreur lors de la mise à jour du festival');
-                }
-            });
-        }
 
         function deleteFestival(id) {
             if (confirm('Êtes-vous sûr de vouloir supprimer ce festival ?')) {

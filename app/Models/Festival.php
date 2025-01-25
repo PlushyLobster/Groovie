@@ -9,10 +9,10 @@ class Festival extends Model
     protected $table = 'GRV1_Festivals';
     protected $primaryKey = 'Id_festival';
     public $timestamps = true;
-    protected $fillable = ['type', 'name', 'start_datetime', 'end_datetime', 'Id_musical_genre'];
+    protected $fillable = ['Id_recup_api', 'type', 'name', 'start_datetime', 'end_datetime', 'created_at', 'updated_at'];
     protected $dates = ['start_datetime', 'end_datetime'];
 
-    public function musicalGenre(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function musicalGenres(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(MusicalGenre::class, 'GRV1_Festivals_Musical_genres', 'Id_festival', 'Id_musical_genre');
     }
@@ -35,5 +35,13 @@ class Festival extends Model
     public function users(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(User::class, 'GRV1_Users_Festivals', 'Id_festival', 'Id_user');
+    }
+    public function programs(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Program::class, 'Id_festival');
+    }
+    public function musicalBands(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(MusicalBand::class, 'GRV1_Festivals_Musical_Bands', 'Id_festival', 'Id_musical_band');
     }
 }

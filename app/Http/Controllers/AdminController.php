@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Festival;
+use App\Models\MusicalBand;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -200,16 +202,94 @@ class AdminController extends Controller
     }
     public function importJson(Request $request): \Illuminate\Http\JsonResponse
     {
+        // Valider le fichier JSON
         $request->validate([
             'jsonFile' => 'required|file|mimes:json',
         ]);
 
+        // Lire et décoder le contenu du fichier JSON
         $file = $request->file('jsonFile');
         $jsonData = file_get_contents($file->getRealPath());
         $data = json_decode($jsonData, true);
 
-        // Traitez les données JSON ici
+        // Vérifier que le JSON est bien décodé en tableau
+        if (!is_array($data)) {
+            return response()->json(['message' => 'Le fichier JSON est invalide.'], 400);
+        }
 
+        // Parcourir les données et insérer ou mettre à jour les festivals et les groupes musicaux
+        foreach ($data as $festivalData) {
+            if (!isset($festivalData['Id_recup_api'])) {
+                continue; // Ignorer les entrées sans Id_recup_api
+            }
+
+            $festival = Festival::updateOrCreate(
+                ['Id_recup_api' => $festivalData['Id_recup_api']],
+                [
+                    'type' => $festivalData['type'] ?? null,
+                    'name' => $festivalData['name'] ?? null,
+                    'start_datetime' => $festivalData['start_date'] ?? null,
+                    'end_datetime' => $festivalData['end_date'] ?? null,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]
+            );
+
+            // Journal de débogage
+            \Log::info('Festival créé ou mis à jour', ['festival' => $festival]);
+
+            // Mettre à jour les groupes musicaux associés
+            $musicalBandIds = [];
+            if (isset($festivalData['artists']) && is_array($festivalData['artists'])) {
+                foreach ($festivalData['artists'] as $artistName) {
+                    if (!empty($artistName)) {
+                        $musicalBand = MusicalBand::firstOrCreate([
+                            'name' => $artistName,
+                        ]);
+                        if ($musicalBand->id) {
+                            $musicalBandIds[] = $musicalBand->id;
+                        }
+                    }
+                }
+            }
+
+            // Journal de débogage
+            \Log::info('Groupes musicaux associés', ['musicalBandIds' => $musicalBandIds]);
+
+            // Synchroniser les groupes musicaux avec le festival
+            if (!empty($musicalBandIds)) {
+                $festival->musicalBands()->sync($musicalBandIds);
+            }
+
+            // Mettre à jour la programmation
+            if (isset($festivalData['programmation']) && is_array($festivalData['programmation'])) {
+                foreach ($festivalData['programmation'] as $dayData) {
+                    foreach ($dayData['artists'] as $artistData) {
+                        if (!empty($artistData['name'])) {
+                            $musicalBand = MusicalBand::firstOrCreate([
+                                'name' => $artistData['name'],
+                            ]);
+
+                            if ($musicalBand->id) {
+                                // Ajouter la programmation
+                                $festival->programs()->updateOrCreate(
+                                    [
+                                        'festival_id' => $festival->id,
+                                        'date' => $dayData['day'],
+                                        'musical_band_id' => $musicalBand->id,
+                                    ],
+                                    [
+                                        'time' => $artistData['time'],
+                                    ]
+                                );
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Retourner une réponse JSON
         return response()->json(['message' => 'JSON importé avec succès !']);
     }
     // ADMIN/PROMOTIONS
@@ -308,6 +388,11 @@ class AdminController extends Controller
     {
         $groovers = \DB::table('GRV1_Groovers')->select('name', 'firstname', 'nb_groovies', 'level')->get();
         return view('admin.transactions', compact('groovers'));
+    }
+    //ADMIN/ACTUALITES
+    public function actualites(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
+    {
+        return view('admin.actualites');
     }
     // ADMIN/NOTIFICATIONS
     public function notifications(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application

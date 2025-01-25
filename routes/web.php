@@ -66,8 +66,7 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/admin/notifications', [AdminController::class, 'notifications'])->name('admin.notifications')->middleware(RedirectIfNotAdmin::class);
 
 //ACTUALITES
-    Route::get('/admin/actualites', [AdminController::class, 'actualites'])->name('admin.actualites')->middleware(RedirectIfNotAdmin::class);
-});
+    Route::get('/admin/actualites', [AdminController::class, 'actualites'])->name('admin.actualites')->middleware(RedirectIfNotAdmin::class);});
 //PASSWORD RESET
     Route::post('/password/email', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
     Route::post('/password/verify-code', [AuthController::class, 'verifyResetCode'])->name('password.verifyCode');
