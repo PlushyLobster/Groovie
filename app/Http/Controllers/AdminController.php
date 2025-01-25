@@ -18,6 +18,7 @@ class AdminController extends Controller
     public function index(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         $admins = Admin::all();
+        $admins = Admin::all();
         $userCount = \DB::table('GRV1_Users')->count();
         $festivalCount = \DB::table('GRV1_Festivals')->count();
         $partnerCount = \DB::table('GRV1_Partners')->count();
@@ -132,7 +133,8 @@ class AdminController extends Controller
     {
         $festivals = \DB::table('GRV1_Festivals')->get(['Id_festival', 'type', 'name', 'start_datetime', 'end_datetime', 'created_at', 'updated_at']);
         $musicalGenres = \DB::table('GRV1_Musical_genres')->get(['Id_musical_genre', 'name']);
-        return view('admin.festivals', compact('festivals', 'musicalGenres'));
+        $types = \DB::table('GRV1_Festivals')->distinct()->pluck('type');
+        return view('admin.festivals', compact('festivals', 'musicalGenres', 'types'));
     }
     public function addFestival(Request $request): \Illuminate\Http\JsonResponse
     {

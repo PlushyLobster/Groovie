@@ -5,7 +5,7 @@
         <div class="flex items-center justify-between mb-4">
             <h1 class="text-3xl font-bold">Catalogue des festivals</h1>
             <button id="import-json" class="bg-blue-500 text-white px-4 py-2 rounded">Importer le JSON</button>
-            <button id="add-festival" class="bg-green-500 text-white px-4 py-2 rounded">Ajouter un festival</button>
+            <button id="add-festival" class="bg-green-500 text-white px-4 py-2 rounded" onclick="openAddFestivalModal()">Ajouter un festival</button>
         </div>
         <div class="bg-white p-6 rounded-lg shadow-md">
             <table id="festivals-table" class="min-w-full divide-y divide-gray-200">
@@ -40,20 +40,72 @@
         </div>
     </div>
 
-    <!-- Modale pour importer le JSON -->
-    <div id="importJsonModal" class="hidden fixed z-10 inset-0 overflow-y-auto">
+    <!-- Modale pour ajouter un festival -->
+    <div id="addFestivalModal" class="hidden fixed z-10 inset-0 overflow-y-auto">
         <div class="flex items-center justify-center min-h-screen">
             <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
-                <h2 class="text-2xl font-bold mb-4">Importer le JSON</h2>
-                <form id="importJsonForm" enctype="multipart/form-data">
+                <h2 class="text-2xl font-bold mb-4">Ajouter un Festival</h2>
+                <form id="addFestivalForm">
                     @csrf
                     <div class="mb-4">
-                        <label for="jsonFile" class="block text-sm font-medium text-gray-700">Fichier JSON</label>
-                        <input type="file" name="jsonFile" id="jsonFile" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" accept=".json" required>
+                        <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
+                        <select name="type" id="type" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                            @foreach($types as $type)
+                                <option value="{{ $type }}">{{ $type }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="name" class="block text-sm font-medium text-gray-700">Nom</label>
+                        <input type="text" name="name" id="name" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="start_datetime" class="block text-sm font-medium text-gray-700">Début</label>
+                        <input type="datetime-local" name="start_datetime" id="start_datetime" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="end_datetime" class="block text-sm font-medium text-gray-700">Fin</label>
+                        <input type="datetime-local" name="end_datetime" id="end_datetime" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                     </div>
                     <div class="flex justify-center">
-                        <button type="submit" class="py-2 px-4 rounded bg-blue-500 text-white">Importer</button>
-                        <button type="button" class="py-2 px-4 rounded bg-gray-500 text-white ml-2" onclick="closeImportModal()">Annuler</button>
+                        <button type="submit" class="py-2 px-4 rounded bg-blue-500 text-white">Ajouter</button>
+                        <button type="button" class="py-2 px-4 rounded bg-gray-500 text-white ml-2" onclick="closeAddFestivalModal()">Annuler</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modale pour ajouter un festival -->
+    <div id="addFestivalModal" class="hidden fixed z-10 inset-0 overflow-y-auto">
+        <div class="flex items-center justify-center min-h-screen">
+            <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+                <h2 class="text-2xl font-bold mb-4">Ajouter un Festival</h2>
+                <form id="addFestivalForm">
+                    @csrf
+                    <div class="mb-4">
+                        <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
+                        <select name="type" id="type" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                            @foreach($types as $type)
+                                <option value="{{ $type }}">{{ $type }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="name" class="block text-sm font-medium text-gray-700">Nom</label>
+                        <input type="text" name="name" id="name" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="start_datetime" class="block text-sm font-medium text-gray-700">Début</label>
+                        <input type="datetime-local" name="start_datetime" id="start_datetime" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="end_datetime" class="block text-sm font-medium text-gray-700">Fin</label>
+                        <input type="datetime-local" name="end_datetime" id="end_datetime" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                    </div>
+                    <div class="flex justify-center">
+                        <button type="submit" class="py-2 px-4 rounded bg-blue-500 text-white">Ajouter</button>
+                        <button type="button" class="py-2 px-4 rounded bg-gray-500 text-white ml-2" onclick="closeAddFestivalModal()">Annuler</button>
                     </div>
                 </form>
             </div>
@@ -144,6 +196,31 @@
             $('#importJsonModal').addClass('hidden');
         }
 
+        function openAddFestivalModal() {
+            $('#addFestivalModal').removeClass('hidden');
+        }
+
+        function closeAddFestivalModal() {
+            $('#addFestivalModal').addClass('hidden');
+        }
+
+        $('#addFestivalForm').on('submit', function(e) {
+            e.preventDefault();
+            let formData = $(this).serialize();
+            $.ajax({
+                url: '{{ route("admin.festivals.add") }}',
+                method: 'POST',
+                data: formData,
+                success: function(response) {
+                    alert('Festival ajouté avec succès !');
+                    location.reload();
+                },
+                error: function(response) {
+                    alert('Erreur lors de l\'ajout du festival');
+                }
+            });
+        });
+
         function showFestivalDetails(id) {
             $.ajax({
                 url: '/admin/festivals/' + id,
@@ -166,7 +243,28 @@
             $('#festivalDetailsModal').addClass('hidden');
         }
 
-
+        function updateFestival() {
+            let id = $('#detail-festival-id').val();
+            let formData = {
+                _token: '{{ csrf_token() }}',
+                type: $('#detail-type').val(),
+                name: $('#detail-name').val(),
+                start_datetime: $('#detail-start-datetime').val(),
+                end_datetime: $('#detail-end-datetime').val()
+            };
+            $.ajax({
+                url: '/admin/festivals/' + id,
+                method: 'PUT',
+                data: formData,
+                success: function(response) {
+                    alert('Festival mis à jour avec succès !');
+                    location.reload();
+                },
+                error: function(response) {
+                    alert('Erreur lors de la mise à jour du festival');
+                }
+            });
+        }
 
         function deleteFestival(id) {
             if (confirm('Êtes-vous sûr de vouloir supprimer ce festival ?')) {
