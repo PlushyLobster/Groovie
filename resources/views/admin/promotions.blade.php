@@ -28,7 +28,7 @@
                     <td class="px-6 py-4 whitespace-nowrap">{{ $offer->condition_purchase }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ $offer->created_at }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <button class="bg-blue-400 text-white px-4 py-2 rounded" onclick="showOfferDetails({{ $offer->Id_offer }})">Voir Promo</button>
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded" onclick="showOfferDetails({{ $offer->Id_offer }})">Voir Promo</button>
                         <button class="bg-red-500 text-white px-4 py-2 rounded" onclick="deleteOffer({{ $offer->Id_offer }})">Supprimer</button>
                     </td>
                 </tr>

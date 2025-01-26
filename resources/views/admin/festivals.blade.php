@@ -40,36 +40,28 @@
         </div>
     </div>
 
-    <!-- Modale pour ajouter un festival -->
-    <div id="addFestivalModal" class="hidden fixed z-10 inset-0 overflow-y-auto">
+    <!-- Modale pour importer le JSON -->
+    <div id="importJsonModal" class="hidden fixed z-10 inset-0 overflow-y-auto">
         <div class="flex items-center justify-center min-h-screen">
             <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
-                <h2 class="text-2xl font-bold mb-4">Ajouter un Festival</h2>
-                <form id="addFestivalForm">
+                <h2 class="text-2xl font-bold mb-4">Importer le JSON</h2>
+                <form id="importJsonForm" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-4">
-                        <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
-                        <select name="type" id="type" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
-                            @foreach($types as $type)
-                                <option value="{{ $type }}">{{ $type }}</option>
-                            @endforeach
-                        </select>
+                        <label for="jsonFile" class="block text-sm font-medium text-gray-700">Fichier JSON</label>
+                        <input type="file" name="jsonFile" id="jsonFile" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" accept=".json" required>
                     </div>
                     <div class="mb-4">
-                        <label for="name" class="block text-sm font-medium text-gray-700">Nom</label>
-                        <input type="text" name="name" id="name" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="start_datetime" class="block text-sm font-medium text-gray-700">Début</label>
-                        <input type="datetime-local" name="start_datetime" id="start_datetime" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
-                    </div>
-                    <div class="mb-4">
-                        <label for="end_datetime" class="block text-sm font-medium text-gray-700">Fin</label>
-                        <input type="datetime-local" name="end_datetime" id="end_datetime" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <div id="progress-container" class="hidden">
+                            <label for="progress-bar" class="block text-sm font-medium text-gray-700">Progression</label>
+                            <div class="w-full bg-gray-200 rounded-full">
+                                <div id="progress-bar" class="bg-blue-500 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 0%">0%</div>
+                            </div>
+                        </div>
                     </div>
                     <div class="flex justify-center">
-                        <button type="submit" class="py-2 px-4 rounded bg-blue-500 text-white">Ajouter</button>
-                        <button type="button" class="py-2 px-4 rounded bg-gray-500 text-white ml-2" onclick="closeAddFestivalModal()">Annuler</button>
+                        <button type="submit" class="py-2 px-4 rounded bg-blue-500 text-white">Importer</button>
+                        <button type="button" class="py-2 px-4 rounded bg-gray-500 text-white ml-2" onclick="closeImportModal()">Annuler</button>
                     </div>
                 </form>
             </div>
@@ -123,8 +115,9 @@
                     <div class="mb-4">
                         <label for="detail-type" class="block text-sm font-medium text-gray-700">Type</label>
                         <select id="detail-type" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm">
-                            <option value="Intérieur">Intérieur</option>
-                            <option value="Extérieur">Extérieur</option>
+                            @foreach($types as $type)
+                                <option value="{{ $type }}">{{ $type }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="mb-4">
@@ -162,12 +155,25 @@
             $('#importJsonForm').on('submit', function(e) {
                 e.preventDefault();
                 let formData = new FormData(this);
+                $('#progress-container').removeClass('hidden');
                 $.ajax({
                     url: '{{ route("admin.festivals.importJson") }}',
                     method: 'POST',
                     data: formData,
                     contentType: false,
                     processData: false,
+                    xhr: function() {
+                        let xhr = new window.XMLHttpRequest();
+                        xhr.upload.addEventListener("progress", function(evt) {
+                            if (evt.lengthComputable) {
+                                let percentComplete = evt.loaded / evt.total;
+                                percentComplete = parseInt(percentComplete * 100);
+                                $('#progress-bar').width(percentComplete + '%');
+                                $('#progress-bar').text(percentComplete + '%');
+                            }
+                        }, false);
+                        return xhr;
+                    },
                     success: function(response) {
                         alert('JSON importé avec succès !');
                         location.reload();
@@ -194,6 +200,9 @@
 
         function closeImportModal() {
             $('#importJsonModal').addClass('hidden');
+            $('#progress-container').addClass('hidden');
+            $('#progress-bar').width('0%');
+            $('#progress-bar').text('0%');
         }
 
         function openAddFestivalModal() {
@@ -276,8 +285,8 @@
                     },
                     success: function(response) {
                         if (response.message) {
-                            $('#festivals-table').DataTable().row('#festival-' + id).remove().draw(false);
-                            alert('Festival supprimé avec succès !');
+                            alert(response.message);
+                            location.reload();
                         }
                     },
                     error: function(response) {
