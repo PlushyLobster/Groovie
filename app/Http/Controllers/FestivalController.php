@@ -18,6 +18,11 @@ class FestivalController extends Controller
         return view('festival.listeFestival', $data);
     }
 
+    public function mesFestivals()
+    {
+        return view('festival.mesFestivals');
+    }
+
     /**
      * Show the form for creating a new resource.
      */

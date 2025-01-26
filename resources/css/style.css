@@ -1095,7 +1095,6 @@ main {
 
 #validTicket-formDiv {
     width: 100%;
-    /* height: 100%; */
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -1226,4 +1225,343 @@ main {
     justify-content: center;
     align-items: center;
     margin-left: 10rem;
+}
+
+
+
+/***      PAGE MES FESTIVALS      ***/
+
+#mesFestivals-main {
+    width: 100%;
+    max-height: 55.75rem;
+    display: grid;
+    grid-template-columns: repeat(21, 1fr);
+    grid-template-rows: 1fr;
+    gap: 1.25rem;
+}
+
+#mesFestivals-left {
+    grid-column: 1/16;
+    grid-row: 1/2;
+    background-color: var(--MFEST_Bkg);
+    border-radius: 39px;
+    padding: 0rem 1.813rem 0rem 2.5rem;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 25%);
+}
+
+#mesFestivals-header {
+    width: 100%;
+    height: 10.875rem;
+    display: flex;
+    flex-direction: column;
+    padding-top: 2.5rem;
+}
+
+#mesFestivals-title {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    align-items: center;
+}
+
+#mesFestivals-title span {
+    margin-right: 1.375rem;
+    height: 2.875rem;
+    width: 2.875rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--MFEST_BtnAjout);
+
+}
+
+#mesFestivals-title h2 {
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--contraste_labeur);
+}
+
+#mesFestivals-filter {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.festFilter {
+    padding: 0rem 1rem;
+    height: 1.875rem;
+    border-radius: 6.6px;
+    color: var(--contraste_labeur);
+    border: 1px solid var(--contraste_labeur);
+    font-size: 16.5px;
+}
+
+.festFilter:hover {
+    color: var(--whiteBkg);
+    border: 1px solid var(--contraste_labeur);
+    background-color: var(--contraste_labeur);
+}
+
+#mesFestivals-festContainer {
+    width: 100%;
+    height: 44.8rem;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    scrollbar-color: var(--MFEST_Bkg) var(--MFEST_Bkg);
+    scrollbar-width: thin;
+    padding-bottom: 2.5rem;
+}
+
+#mesFestivals-festContainer hr {
+    border: 1px solid var(--contraste_labeur);
+}
+
+#mesFestivals-hr {
+    border: 5px solid var(--contraste_labeur) !important;
+}
+
+.mesFestivals-fest {
+    width: 100%;
+    height: 9.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0rem 1rem;
+}
+
+.mesFestivals-fest:hover {
+    background-color: #E8BAB9;
+}
+
+.mesFestivals-fest-mainInfoContainer {
+    width: 100%;
+    height: 9.5rem;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.mesFestivals-fest-mainInfo {
+    width: 100%;
+    height: 99%;
+    display: flex;
+    align-items: center;
+}
+
+.mesFestivals-fest-mainInfo div {
+    height: 4.313rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.mesFestivals-festName {
+    width: 17.500rem;
+}
+
+.mesFestivals-fest-mainInfo h3 {
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--contraste_labeur);
+}
+
+.mesFestivals-fest-mainInfo p {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--contraste_labeur);
+}
+
+.mesFestivals-fest-mainInfo h4 {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--contraste_labeur);
+}
+
+.mesFestivals-festGenre {
+    width: 12.500rem;
+}
+
+.mesFestivals-festDate {
+    width: 18.500rem;
+}
+
+.mesFestivals-arrow {
+    width: 16.5rem;
+    height: 100%;
+    display: flex;
+    align-items: end;
+    justify-content: center !important;
+}
+
+.mesFestivals-arrow span {
+    height: 44px;
+    width: 44px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--contraste_labeur);
+}
+
+@media screen and (min-width: 1920px) {
+    .mesFestivals-arrow {
+        width: 22rem;
+    }
+}
+
+#mesFestivals-right {
+    grid-column: 16/22;
+    grid-row: 1/2;
+    border-radius: 39px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.mesFestivals-aside {
+    width: 100%;
+    height: 27.375rem;
+    border-radius: 39px;
+    background-color: var(--whiteBkg);
+    padding: 2.5rem;
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 25%);
+    display: flex;
+    flex-direction: column;
+}
+
+.mesFestivals-asideTitle {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    align-items: center;
+}
+
+.mesFestivals-asideTitle h3 {
+    font-size: 23px;
+    font-weight: 500;
+    color: #000;
+}
+
+.mesFestivals-asideBtn {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: end;
+    margin-top: 1.5rem;
+}
+
+.mesFestivals-asideBtn button {
+    height: 3.438rem;
+    padding: 0rem 1.375rem;
+    font-size: 19px;
+    font-weight: 500;
+    border-radius: 50px;
+    color: var(--contraste_labeur);
+    border: 1px solid var(--contraste_labeur);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+
+
+
+
+/***      PAGE PROFIL REDIRECT      ***/
+
+#profilRedirect-main {
+    width: 100%;
+    max-height: 55.75rem;
+    display: grid;
+    grid-template-columns: repeat(21, 1fr);
+    grid-template-rows: 1fr;
+    gap: 1.25rem;
+}
+
+.profilRedirect-card {
+    padding: 2.5rem;
+    border-radius: 39px;
+    transition: 3s;
+    /* box-shadow: 0px 0px 6px rgba(0, 0, 0, 25%); */
+}
+
+#profilRedirect-cardLeft {
+    grid-column: 1/8;
+    grid-row: 1/2;
+    background-color: var(--GRV_Profil);
+}
+
+#profilRedirect-cardMiddle {
+    grid-column: 8/15;
+    grid-row: 1/2;
+    background-color: var(--PRFL_Bkg);
+}
+
+#profilRedirect-cardRight {
+    grid-column: 15/22;
+    grid-row: 1/2;
+    background-color: var(--MFEST_Bkg);
+}
+
+.profilRedirect-card form, .profilRedirect-card button {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profilRedirect-card h2 {
+    font-size: 40px;
+    font-weight: 600;
+    color: #000;
+}
+
+.profilRedirect-card p {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--contraste_labeur);
+}
+
+.profilRedirect-card span {
+    width: 7.375rem;
+    height: 7.375rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid #000;
+}
+
+#hl-arrow, #hm-arrow, #hr-arrow {
+    display: none;
+}
+
+.profilRedirect-bloc1 {
+    width: 100%;
+    height: 20%;
+}
+
+.profilRedirect-bloc2 {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profilRedirect-bloc3{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+}
+
+.profilRedirect-bloc4 {
+    width: 100%;
+    height: 40%;
 }
