@@ -144,7 +144,7 @@
         <div id="right-nav">
             @auth()
                 <div id="profil-div">
-                    <form action="{{ route('logout') }}" method="GET">
+                    <form action="{{ route('profil', ['profil' => Auth::user()->Id_user]) }}" method="GET">
                         @method('GET')
                         @csrf
                         <button id="profil-btn" type="submit">

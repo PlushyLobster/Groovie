@@ -22,6 +22,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/register', 'register')->name('register')->middleware(IsGuest::class);
     Route::post('/login', 'login')->name('login')->middleware(IsGuest::class);
     Route::post('/logout', 'logout')->name('logout')->middleware(IsAuth::class);
+    Route::get('/profil', 'profil')->name('profil')->middleware(IsAuth::class);    
 });
 
 Route::get('/admin', function () {

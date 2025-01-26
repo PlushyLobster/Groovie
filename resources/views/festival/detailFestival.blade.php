@@ -1,7 +1,5 @@
 @extends('layout.layoutGroover')
-{{-- @foreach($festival->musicalGenre as $genre)
-            <p>{{ $genre->name}}</p>
-        @endforeach --}}
+
 @section ('content')
 <main id="detailFest-main">
     <div id="detailFest-left">
