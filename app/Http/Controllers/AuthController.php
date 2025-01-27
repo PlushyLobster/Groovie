@@ -117,6 +117,10 @@ class AuthController extends Controller
     }
 
     public function profilRedirect() {
+        return view('profil.profil-redirect');
+    }
+
+    public function profil() {
         $user = User::find(Auth::user()->Id_user);
         $user->load('groovers');
         $data = [

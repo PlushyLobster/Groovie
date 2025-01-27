@@ -44,9 +44,9 @@
                 
                 <div class="profilRedirect-bloc3">
                     <span id="hm-picto">
-                        <svg width="62" height="62" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3 57.25C3 53.1391 4.63303 49.1967 7.53984 46.2898C10.4467 43.383 14.3891 41.75 18.5 41.75H49.5C53.6109 41.75 57.5533 43.383 60.4602 46.2898C63.367 49.1967 65 53.1391 65 57.25C65 59.3054 64.1835 61.2767 62.7301 62.7301C61.2767 64.1835 59.3054 65 57.25 65H10.75C8.69457 65 6.72333 64.1835 5.26992 62.7301C3.81652 61.2767 3 59.3054 3 57.25Z" stroke="black" stroke-width="6" stroke-linejoin="round"/>
-                            <path d="M34 26.25C40.4203 26.25 45.625 21.0453 45.625 14.625C45.625 8.20469 40.4203 3 34 3C27.5797 3 22.375 8.20469 22.375 14.625C22.375 21.0453 27.5797 26.25 34 26.25Z" stroke="black" stroke-width="6"/>
+                       <svg width="66" height="66" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M64 64V57C64 53.287 62.2581 49.726 59.1575 47.1005C56.0569 44.475 51.8516 43 47.4667 43H18.5333C14.1484 43 9.9431 44.475 6.8425 47.1005C3.7419 49.726 2 53.287 2 57V64" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M33 32C41.2843 32 48 25.2843 48 17C48 8.71573 41.2843 2 33 2C24.7157 2 18 8.71573 18 17C18 25.2843 24.7157 32 33 32Z" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </span>
 

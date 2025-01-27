@@ -6,6 +6,7 @@ use App\Http\Controllers\{
     AuthController,
     AdminController,
     FestivalController,
+    trajetController,
 };
 use App\Http\Middleware\IsAuth;
 use App\Http\Middleware\IsGuest;
@@ -17,7 +18,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/festival/mesFestivals', [FestivalController::class, 'mesFestivals'])->name('festival.mesFestivals');
-
+Route::get('/trajet', [trajetController::class, 'trajet'])->name('trajet');
 Route::resource('festival', FestivalController::class)->only(['index', 'show',]);
 
 // Route::resource('mesFestivals', FestivalController::class)->only(['mesFestIndex']);
