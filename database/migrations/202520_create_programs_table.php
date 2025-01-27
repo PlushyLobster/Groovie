@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('GRV1_Festivals_Musical_genres', function (Blueprint $table) {
-            $table->id('Id_festival_musical_genre');
+        Schema::create('GRV1_Programs', function (Blueprint $table) {
+            $table->id('Id_program');
+            $table->string('day_presence', 100);
             $table->timestamps();
             $table->foreignId('Id_festival')->constrained('GRV1_Festivals')->references('Id_festival')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('Id_musical_genre')->constrained('GRV1_Musical_genres')->references('Id_musical_genre')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('GRV1_Festivals_Musical_Genres');
+        Schema::dropIfExists('GRV1_Programs');
     }
 };

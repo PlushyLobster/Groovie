@@ -1,0 +1,592 @@
+[
+    {
+        "id_recup_api": 1,
+        "name": "festival de cannes",
+        "start_date": "2025-05-13",
+        "end_date": "2025-05-24",
+        "artists": ["Johnny Hallyday", "Michael Jackson", "Kurt Cobain", "Avicii", "Beethoven", "Bob Marley"],
+        "programmation": [
+            {
+                "day": "2025-05-13",
+                "artists": [
+                    {"name": "Johnny Hallyday", "time": "18:00"},
+                    {"name": "Michael Jackson", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-14",
+                "artists": [
+                    {"name": "Kurt Cobain", "time": "18:00"},
+                    {"name": "Avicii", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-15",
+                "artists": [
+                    {"name": "Beethoven", "time": "18:00"},
+                    {"name": "Bob Marley", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-16",
+                "artists": [
+                    {"name": "Johnny Hallyday", "time": "18:00"},
+                    {"name": "Michael Jackson", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-17",
+                "artists": [
+                    {"name": "Kurt Cobain", "time": "18:00"},
+                    {"name": "Avicii", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-18",
+                "artists": [
+                    {"name": "Beethoven", "time": "18:00"},
+                    {"name": "Bob Marley", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-19",
+                "artists": [
+                    {"name": "Johnny Hallyday", "time": "18:00"},
+                    {"name": "Michael Jackson", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-20",
+                "artists": [
+                    {"name": "Kurt Cobain", "time": "18:00"},
+                    {"name": "Avicii", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-21",
+                "artists": [
+                    {"name": "Beethoven", "time": "18:00"},
+                    {"name": "Bob Marley", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-22",
+                "artists": [
+                    {"name": "Johnny Hallyday", "time": "18:00"},
+                    {"name": "Michael Jackson", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-23",
+                "artists": [
+                    {"name": "Kurt Cobain", "time": "18:00"},
+                    {"name": "Avicii", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-24",
+                "artists": [
+                    {"name": "Beethoven", "time": "18:00"},
+                    {"name": "Bob Marley", "time": "20:00"}
+                ]
+            }
+        ],
+        "location": "Intérieur"
+    },
+    {
+        "id_recup_api": 2,
+        "name": "printemps de bourges",
+        "start_date": "2025-04-15",
+        "end_date": "2025-04-20",
+        "artists": ["Clara Luciani", "Fatboy Slim", "The Avener", "Mc Solaar", "Yodelice"],
+        "programmation": [
+            {
+                "day": "2025-04-15",
+                "artists": [
+                    {"name": "Clara Luciani", "time": "18:00"},
+                    {"name": "Fatboy Slim", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-04-16",
+                "artists": [
+                    {"name": "The Avener", "time": "18:00"},
+                    {"name": "Mc Solaar", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-04-17",
+                "artists": [
+                    {"name": "Yodelice", "time": "18:00"},
+                    {"name": "Clara Luciani", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-04-18",
+                "artists": [
+                    {"name": "Fatboy Slim", "time": "18:00"},
+                    {"name": "The Avener", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-04-19",
+                "artists": [
+                    {"name": "Mc Solaar", "time": "18:00"},
+                    {"name": "Yodelice", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-04-20",
+                "artists": [
+                    {"name": "Clara Luciani", "time": "18:00"},
+                    {"name": "Fatboy Slim", "time": "20:00"}
+                ]
+            }
+        ],
+        "location": "Intérieur"
+    },
+    {
+        "id_recup_api": 3,
+        "name": "les vieilles charrues",
+        "start_date": "2025-07-17",
+        "end_date": "2025-07-20",
+        "artists": ["Amelie Lens", "Damso", "Ben Mazué", "Macklemore", "Ofenbach"],
+        "programmation": [
+            {
+                "day": "2025-07-17",
+                "artists": [
+                    {"name": "Amelie Lens", "time": "18:00"},
+                    {"name": "Damso", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-07-18",
+                "artists": [
+                    {"name": "Ben Mazué", "time": "18:00"},
+                    {"name": "Macklemore", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-07-19",
+                "artists": [
+                    {"name": "Ofenbach", "time": "18:00"},
+                    {"name": "Amelie Lens", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-07-20",
+                "artists": [
+                    {"name": "Damso", "time": "18:00"},
+                    {"name": "Ben Mazué", "time": "20:00"}
+                ]
+            }
+        ],
+        "location": "Extérieur"
+    },
+    {
+        "id_recup_api": 4,
+        "name": "rock en seine",
+        "start_date": "2025-08-20",
+        "end_date": "2025-08-24",
+        "artists": ["Chappell Roan", "London Grammar", "Luvcat", "Maes", "Booba"],
+        "programmation": [
+            {
+                "day": "2025-08-20",
+                "artists": [
+                    {"name": "Chappell Roan", "time": "18:00"},
+                    {"name": "London Grammar", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-08-21",
+                "artists": [
+                    {"name": "Luvcat", "time": "18:00"},
+                    {"name": "Maes", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-08-22",
+                "artists": [
+                    {"name": "Booba", "time": "18:00"},
+                    {"name": "Chappell Roan", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-08-23",
+                "artists": [
+                    {"name": "London Grammar", "time": "18:00"},
+                    {"name": "Luvcat", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-08-24",
+                "artists": [
+                    {"name": "Maes", "time": "18:00"},
+                    {"name": "Booba", "time": "20:00"}
+                ]
+            }
+        ],
+        "location": "Extérieur"
+    },
+    {
+        "id_recup_api": 5,
+        "name": "yzeures n rock",
+        "start_date": "2025-08-01",
+        "end_date": "2025-08-03",
+        "artists": ["Damso", "BillX", "Aya Nakamura", "Niska", "Biga Ranx"],
+        "programmation": [
+            {
+                "day": "2025-08-01",
+                "artists": [
+                    {"name": "Damso", "time": "18:00"},
+                    {"name": "BillX", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-08-02",
+                "artists": [
+                    {"name": "Aya Nakamura", "time": "18:00"},
+                    {"name": "Niska", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-08-03",
+                "artists": [
+                    {"name": "Biga Ranx", "time": "18:00"},
+                    {"name": "Damso", "time": "20:00"}
+                ]
+            }
+        ],
+        "location": "Extérieur"
+    },
+    {
+        "id_recup_api": 6,
+        "name": "Festival Terres du Son",
+        "start_date": "2025-05-13",
+        "end_date": "2025-05-24",
+        "artists": ["Philippe Katerine", "Danakil", "Chinese Man", "Worakis", "Lamomali"],
+        "programmation": [
+            {
+                "day": "2025-05-13",
+                "artists": [
+                    {"name": "Philippe Katerine", "time": "18:00"},
+                    {"name": "Danakil", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-14",
+                "artists": [
+                    {"name": "Chinese Man", "time": "18:00"},
+                    {"name": "Worakis", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-15",
+                "artists": [
+                    {"name": "Lamomali", "time": "18:00"},
+                    {"name": "Philippe Katerine", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-16",
+                "artists": [
+                    {"name": "Danakil", "time": "18:00"},
+                    {"name": "Chinese Man", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-17",
+                "artists": [
+                    {"name": "Worakis", "time": "18:00"},
+                    {"name": "Lamomali", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-18",
+                "artists": [
+                    {"name": "Philippe Katerine", "time": "18:00"},
+                    {"name": "Danakil", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-19",
+                "artists": [
+                    {"name": "Chinese Man", "time": "18:00"},
+                    {"name": "Worakis", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-20",
+                "artists": [
+                    {"name": "Lamomali", "time": "18:00"},
+                    {"name": "Philippe Katerine", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-21",
+                "artists": [
+                    {"name": "Danakil", "time": "18:00"},
+                    {"name": "Chinese Man", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-22",
+                "artists": [
+                    {"name": "Worakis", "time": "18:00"},
+                    {"name": "Lamomali", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-23",
+                "artists": [
+                    {"name": "Philippe Katerine", "time": "18:00"},
+                    {"name": "Danakil", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-24",
+                "artists": [
+                    {"name": "Chinese Man", "time": "18:00"},
+                    {"name": "Worakis", "time": "20:00"}
+                ]
+            }
+        ],
+        "location": "Extérieur"
+    },
+    {
+        "id_recup_api": 7,
+        "name": "hellfest",
+        "start_date": "2025-06-19",
+        "end_date": "2025-06-22",
+        "artists": ["Muse", "Linkin Park", "Korn", "Artic Monkeys", "The Kovenant"],
+        "programmation": [
+            {
+                "day": "2025-06-19",
+                "artists": [
+                    {"name": "Muse", "time": "18:00"},
+                    {"name": "Linkin Park", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-06-20",
+                "artists": [
+                    {"name": "Korn", "time": "18:00"},
+                    {"name": "Artic Monkeys", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-06-21",
+                "artists": [
+                    {"name": "The Kovenant", "time": "18:00"},
+                    {"name": "Muse", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-06-22",
+                "artists": [
+                    {"name": "Linkin Park", "time": "18:00"},
+                    {"name": "Korn", "time": "20:00"}
+                ]
+            }
+        ],
+        "location": "Extérieur"
+    },
+    {
+        "id_recup_api": 8,
+        "name": "Jazz à vienne",
+        "start_date": "2025-06-26",
+        "end_date": "2025-07-11",
+        "artists": ["Thomas Dutronc", "Parov Stelar", "Jamie Cullum", "NickyB", "Celia Kameni"],
+        "programmation": [
+            {
+                "day": "2025-06-26",
+                "artists": [
+                    {"name": "Thomas Dutronc", "time": "18:00"},
+                    {"name": "Parov Stelar", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-06-27",
+                "artists": [
+                    {"name": "Jamie Cullum", "time": "18:00"},
+                    {"name": "NickyB", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-06-28",
+                "artists": [
+                    {"name": "Celia Kameni", "time": "18:00"},
+                    {"name": "Thomas Dutronc", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-06-29",
+                "artists": [
+                    {"name": "Parov Stelar", "time": "18:00"},
+                    {"name": "Jamie Cullum", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-06-30",
+                "artists": [
+                    {"name": "NickyB", "time": "18:00"},
+                    {"name": "Celia Kameni", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-07-01",
+                "artists": [
+                    {"name": "Thomas Dutronc", "time": "18:00"},
+                    {"name": "Parov Stelar", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-07-02",
+                "artists": [
+                    {"name": "Jamie Cullum", "time": "18:00"},
+                    {"name": "NickyB", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-07-03",
+                "artists": [
+                    {"name": "Celia Kameni", "time": "18:00"},
+                    {"name": "Thomas Dutronc", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-07-04",
+                "artists": [
+                    {"name": "Parov Stelar", "time": "18:00"},
+                    {"name": "Jamie Cullum", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-07-05",
+                "artists": [
+                    {"name": "NickyB", "time": "18:00"},
+                    {"name": "Celia Kameni", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-07-06",
+                "artists": [
+                    {"name": "Thomas Dutronc", "time": "18:00"},
+                    {"name": "Parov Stelar", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-07-07",
+                "artists": [
+                    {"name": "Jamie Cullum", "time": "18:00"},
+                    {"name": "NickyB", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-07-08",
+                "artists": [
+                    {"name": "Celia Kameni", "time": "18:00"},
+                    {"name": "Thomas Dutronc", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-07-09",
+                "artists": [
+                    {"name": "Parov Stelar", "time": "18:00"},
+                    {"name": "Jamie Cullum", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-07-10",
+                "artists": [
+                    {"name": "NickyB", "time": "18:00"},
+                    {"name": "Celia Kameni", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-07-11",
+                "artists": [
+                    {"name": "Thomas Dutronc", "time": "18:00"},
+                    {"name": "Parov Stelar", "time": "20:00"}
+                ]
+            }
+        ],
+        "location": "Extérieur"
+    },
+    {
+        "id_recup_api": 9,
+        "name": "Garorock",
+        "start_date": "2025-07-03",
+        "end_date": "2025-07-06",
+        "artists": ["Afrojack", "Biga Ranx", "J Balvin", "Dj Snake", "Rilès"],
+        "programmation": [
+            {
+                "day": "2025-07-03",
+                "artists": [
+                    {"name": "Afrojack", "time": "18:00"},
+                    {"name": "Biga Ranx", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-07-04",
+                "artists": [
+                    {"name": "J Balvin", "time": "18:00"},
+                    {"name": "Dj Snake", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-07-05",
+                "artists": [
+                    {"name": "Rilès", "time": "18:00"},
+                    {"name": "Afrojack", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-07-06",
+                "artists": [
+                    {"name": "Biga Ranx", "time": "18:00"},
+                    {"name": "J Balvin", "time": "20:00"}
+                ]
+            }
+        ],
+        "location": "Extérieur"
+    },
+    {
+        "id_recup_api": 10,
+        "name": "Nuits sonores",
+        "start_date": "2025-05-28",
+        "end_date": "2025-05-31",
+        "artists": ["Fanny", "Officium", "Angèle", "Machine Girl", "Dj Chuimix"],
+        "programmation": [
+            {
+                "day": "2025-05-28",
+                "artists": [
+                    {"name": "Fanny", "time": "18:00"},
+                    {"name": "Officium", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-29",
+                "artists": [
+                    {"name": "Angèle", "time": "18:00"},
+                    {"name": "Machine Girl", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-30",
+                "artists": [
+                    {"name": "Dj Chuimix", "time": "18:00"},
+                    {"name": "Fanny", "time": "20:00"}
+                ]
+            },
+            {
+                "day": "2025-05-31",
+                "artists": [
+                    {"name": "Officium", "time": "18:00"},
+                    {"name": "Angèle", "time": "20:00"}
+                ]
+            }
+        ],
+        "location": "Intérieur"
+    }
+]
