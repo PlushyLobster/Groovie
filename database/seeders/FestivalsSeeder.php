@@ -17,6 +17,7 @@ class FestivalsSeeder extends Seeder
                 'end_datetime' => '2025-05-25 23:59:00',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'id_recup_api' => 1,
             ],
             [
                 'type' => 'Intérieur',
@@ -25,6 +26,7 @@ class FestivalsSeeder extends Seeder
                 'end_datetime' => '2025-04-27 23:59:00',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'id_recup_api' => 2,
             ],
             [
                 'type' => 'Extérieur',
@@ -33,6 +35,7 @@ class FestivalsSeeder extends Seeder
                 'end_datetime' => '2025-07-21 23:59:00',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'id_recup_api' => 3,
             ],
             [
                 'type' => 'Extérieur',
@@ -41,6 +44,7 @@ class FestivalsSeeder extends Seeder
                 'end_datetime' => '2025-08-25 23:00:00',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'id_recup_api' => 4,
             ],
             [
                 'type' => 'Intérieur',
@@ -49,6 +53,7 @@ class FestivalsSeeder extends Seeder
                 'end_datetime' => '2025-10-20 23:59:00',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'id_recup_api' => NULL,
             ],
             [
                 'type' => 'Extérieur',
@@ -57,6 +62,7 @@ class FestivalsSeeder extends Seeder
                 'end_datetime' => '2025-06-21 23:59:00',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'id_recup_api' => NULL,
             ],
             [
                 'type' => 'Intérieur',
@@ -65,6 +71,7 @@ class FestivalsSeeder extends Seeder
                 'end_datetime' => '2025-06-23 02:00:00',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'id_recup_api' => 7,
             ],
             [
                 'type' => 'Extérieur',
@@ -73,6 +80,7 @@ class FestivalsSeeder extends Seeder
                 'end_datetime' => '2025-07-13 23:59:00',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'id_recup_api' => NULL,
             ],
             [
                 'type' => 'Extérieur',
@@ -81,6 +89,7 @@ class FestivalsSeeder extends Seeder
                 'end_datetime' => '2025-07-26 23:59:00',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'id_recup_api' => NULL,
             ],
             [
                 'type' => 'Intérieur',
@@ -89,6 +98,7 @@ class FestivalsSeeder extends Seeder
                 'end_datetime' => '2025-06-01 23:59:00',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'id_recup_api' => NULL,
             ],
         ];
 

@@ -26,10 +26,10 @@
                 </div>
 
                 <div id="detailFest-genreMusic">
-                    <p>Genre musical : <br>
+                    <p>Genre musical :
                         @if($festival->musicalGenres)
                             @foreach($festival->musicalGenres as $genre)
-                                {{ $genre->name }}
+                                {{ $genre->name }}@if(!$loop->last), @endif
                             @endforeach
                         @else
                             Aucun genre musical disponible.
@@ -38,19 +38,39 @@
                 </div>
 
                 <div id="detailFest-artistes">
-                    <p>Artistes présents : <br> XXXXXX, XXXXXXX, XXXXXXXXXXX, XXXXXXXXX</p>
+                    <p>Artistes : <br> </p>
+                    @if($festival->musicalBands)
+                        @foreach($festival->musicalBands as $artist)
+                            <div class="inline-block px-3 py-1 m-1 bg-gray-200 border border-gray-300 rounded">
+                            {{ $artist->name }}
+                            </div>
+                        @endforeach
+                    @else
+                        Aucun artiste programmé.
+                    @endif
                 </div>
             </div>
 
             <div id="detailFest-bloc2">
                 <div id="detailFest-progTitle">
-                    <p>Programmation</p>
+                    <p class="text-xl font-bold mb-4">Programmation</p>
                 </div>
 
                 <div id="detailFest-progText">
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum earum minus exercitationem et nesciunt veniam eius quaerat ipsa est ut iusto possimus laudantium, amet laboriosam necessitatibus deleniti accusamus quo dolores?
-                    </p>
+                    @foreach($programmation as $program)
+                        <div class="mb-6">
+                            <p class="text-lg font-semibold">{{ $program['day_presence'] }}</p>
+                            <div class="flex items-center justify-between bg-gray-100 p-4 rounded-lg shadow-md mb-2">
+                                <span class="text-gray-800 font-medium">{{ $program['event_name'] }}</span>
+                                <span class="text-gray-600">{{ $program['start_time'] }}</span>
+                            </div>
+                            @foreach($program['artists'] as $artist)
+                                <div class="flex items-center justify-between bg-gray-100 p-4 rounded-lg shadow-md mb-2">
+                                    <span class="text-gray-800 font-medium">{{ $artist }}</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
