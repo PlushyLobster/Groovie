@@ -80,7 +80,7 @@ class FestivalsSeeder extends Seeder
                 'end_datetime' => '2025-07-13 23:59:00',
                 'created_at' => now(),
                 'updated_at' => now(),
-                'id_recup_api' => NULL,
+                'id_recup_api' => 8,
             ],
             [
                 'type' => 'Extérieur',
@@ -98,7 +98,7 @@ class FestivalsSeeder extends Seeder
                 'end_datetime' => '2025-06-01 23:59:00',
                 'created_at' => now(),
                 'updated_at' => now(),
-                'id_recup_api' => NULL,
+                'id_recup_api' => 10,
             ],
         ];
 
