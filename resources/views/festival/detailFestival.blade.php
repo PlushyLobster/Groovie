@@ -31,7 +31,7 @@
                     </div>
 
                     <div id="detailFest-genreMusic">
-                        <p>Genre musical :
+                    <p>Genre musicaux :
                             @if($festival->musicalGenres)
                                 @foreach($festival->musicalGenres as $genre)
                                     {{ $genre->name }}@if(!$loop->last)
@@ -41,11 +41,11 @@
                             @else
                                 Aucun genre musical disponible.
                             @endif
-                        </p>
+                            </p>
                     </div>
 
+                    <p>Liste des Artistes présent  : </p>
                     <div id="detailFest-artistes">
-                        <p>Artistes :</p>
                         @if($festival->musicalBands)
                             @foreach($festival->musicalBands as $artist)
                                 <div class="inline-block px-3 py-1 m-1 bg-gray-200 border border-gray-300 rounded">
