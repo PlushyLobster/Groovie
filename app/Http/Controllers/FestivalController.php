@@ -27,7 +27,7 @@ class FestivalController extends Controller
      */
     public function show(Festival $festival): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        $festival->load('musicalGenre');
+        $festival->load('musicalGenres');
         $data = [
             'festival' => $festival,
         ];

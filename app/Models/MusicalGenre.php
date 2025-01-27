@@ -13,7 +13,7 @@ class MusicalGenre extends Model
 
     public function festivals(): \Illuminate\Database\Eloquent\Relations\belongsToMany
     {
-        return $this->belongsToMany(Festival::class, 'Id_musical_genre');
+        return $this->belongsToMany(Festival::class, 'GRV1_Festivals_Musical_genres','Id_musical_genre','Id_festival');
     }
 
     public function settings(): \Illuminate\Database\Eloquent\Relations\BelongsToMany

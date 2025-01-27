@@ -10,7 +10,7 @@ class Festival extends Model
     protected $primaryKey = 'Id_festival';
     public $timestamps = true;
     protected $fillable = ['Id_recup_api', 'type', 'name', 'start_datetime', 'end_datetime', 'created_at', 'updated_at'];
-    protected $dates = ['start_datetime', 'end_datetime'];
+    protected array $dates = ['start_datetime', 'end_datetime'];
 
     public function musicalGenres(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
