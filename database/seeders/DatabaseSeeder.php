@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
         DB::table('GRV1_Playlists')->truncate();
         DB::table('GRV1_Games')->truncate();
         DB::table('GRV1_Tickets')->truncate();
+        DB::table('GRV1_Musical_Bands')->truncate();
+        DB::table('GRV1_Programs')->truncate();
         DB::table('GRV1_Festivals_Musical_genres')->truncate();
         DB::table('GRV1_Groovers_Challenges')->truncate();
         DB::table('GRV1_Groovers_Settings')->truncate();
@@ -40,6 +42,8 @@ class DatabaseSeeder extends Seeder
         DB::table('GRV1_Users_Journeys')->truncate();
         DB::table('GRV1_Users_Notifications')->truncate();
         DB::table('GRV1_Festivals_Journeys')->truncate();
+        DB::table('GRV1_Festivals_Musical_Bands')->truncate();
+        DB::table('GRV1_Musical_Bands_Programs')->truncate();
 
         // Réactiver les contraintes de clé étrangère
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
@@ -47,6 +51,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             MusicalGenresSeeder::class,
             FestivalsSeeder::class,
+            MusicalBandsSeeder::class,
+            ProgramsSeeder::class,
             UsersSeeder::class,
             TransportsSeeder::class,
             SettingsSeeder::class,
@@ -70,6 +76,7 @@ class DatabaseSeeder extends Seeder
             UsersJourneysSeeder::class,
             UsersNotificationsSeeder::class,
             FestivalsJourneysSeeder::class,
+            FestivalsMusicalBandsSeeder::class,
         ]);
     }
 }

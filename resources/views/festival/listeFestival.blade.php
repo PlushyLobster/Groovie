@@ -29,25 +29,31 @@
                 <p>À proximité</p>
                 <p>Voir plus</p>
             </div>
-            <div class="fest-cateSlider">
-                @foreach($festivals as $festival)
-                    <form action="{{route('festival.show', ['festival' => $festival->Id_festival])}}" method="GET" class="arrow fest-card">
-                        <button type="submit">
-                            <div class="fest-card">
-                                <div class="fest-cardTitle">
-                                    <p class="fest-cardName">{{ $festival->name }}</p>
-                                    <p class="fest-cardDate"> Du {{$festival->start_datetime}}</p>
-                                    {{-- <p class="fest-cardDate"> Du {{$festival->start_datetime}} au {{$festival->end_datetime}}</p> --}}
+            <div class="relative">
+                <div class="fest-cateSlider overflow-x-hidden whitespace-nowrap scroll-smooth" id="slider">
+                    @foreach($festivals as $festival)
+                        <form action="{{ route('festival.show', ['festival' => $festival->Id_festival]) }}" method="GET" class="inline-block">
+                            <button type="submit" class="arrow fest-card">
+                                <div class="fest-card bg-white shadow-md rounded-lg overflow-hidden m-2">
+                                    <div class="fest-cardTitle p-4">
+                                        <p class="fest-cardName text-lg font-semibold">{{ $festival->name }}</p>
+                                        <p class="fest-cardDate text-sm text-gray-600">Du {{ $festival->start_datetime }}</p>
+                                    </div>
+                                    <div class="fest-cardImage">
+                                        <img src="" alt="" class="w-full h-32 object-cover">
+                                    </div>
                                 </div>
-                                <div class="fest-cardImage">
-                                    <img src="" alt="">
-                                </div>
-                            </div>
-                        </button>
-                    </form>
-                @endforeach
+                            </button>
+                        </form>
+                    @endforeach
+                </div>
+                <button class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-800 text-white p-2" onclick="scrollLeft()">
+                    &#9664;
+                </button>
+                <button class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-800 text-white p-2" onclick="scrollRight()">
+                    &#9654;
+                </button>
             </div>
-            <hr>
         </div>
 
         <div class="fest-cate" id="fest-populaire">
@@ -127,4 +133,22 @@
 
     </div>
 </main>
+@endsection
+
+@section('scripts')
+    <script>
+        function scrollLeft() {
+            document.getElementById('slider').scrollBy({
+                left: -300,
+                behavior: 'smooth'
+            });
+        }
+
+        function scrollRight() {
+            document.getElementById('slider').scrollBy({
+                left: 300,
+                behavior: 'smooth'
+            });
+        }
+    </script>
 @endsection

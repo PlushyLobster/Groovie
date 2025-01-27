@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('GRV1_Programs', function (Blueprint $table) {
             $table->id('Id_program');
+            $table->string('name', 100);
             $table->string('day_presence', 100);
+            $table->time('start_time');
             $table->timestamps();
             $table->foreignId('Id_festival')->constrained('GRV1_Festivals')->references('Id_festival')->onDelete('cascade')->onUpdate('cascade');
         });

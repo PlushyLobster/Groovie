@@ -12,8 +12,8 @@ return new class extends Migration
             $table->id('Id_festival');
             $table->string('type', 50);
             $table->string('name', 100)->unique();
-            $table->dateTime('start_datetime');
-            $table->dateTime('end_datetime');
+            $table->date('start_datetime');
+            $table->date('end_datetime');
             $table->timestamps();
             $table->unsignedInteger('Id_recup_api')->unique()->nullable();
         });

@@ -26,29 +26,53 @@
                 </div>
 
                 <div id="detailFest-genreMusic">
-                    <p>Genre musical : <br>
-                        @foreach($festival->musicalGenre as $genre)
-                            {{ $genre->name}}
-                        @endforeach
+                    <p>Genre musical :
+                        @if($festival->musicalGenres)
+                            @foreach($festival->musicalGenres as $genre)
+                                {{ $genre->name }}@if(!$loop->last), @endif
+                            @endforeach
+                        @else
+                            Aucun genre musical disponible.
+                        @endif
                     </p>
                 </div>
 
                 <div id="detailFest-artistes">
-                    <p>Artistes présents : <br> XXXXXX, XXXXXXX, XXXXXXXXXXX, XXXXXXXXX</p>
+                    <p>Artistes : <br> </p>
+                    @if($festival->musicalBands)
+                        @foreach($festival->musicalBands as $artist)
+                            <div class="inline-block px-3 py-1 m-1 bg-gray-200 border border-gray-300 rounded">
+                            {{ $artist->name }}
+                            </div>
+                        @endforeach
+                    @else
+                        Aucun artiste programmé.
+                    @endif
                 </div>
             </div>
 
             <div id="detailFest-bloc2">
                 <div id="detailFest-progTitle">
-                    <p>Programmation</p>
+                    <p class="text-xl font-bold mb-4">Programmation</p>
                 </div>
 
                 <div id="detailFest-progText">
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum earum minus exercitationem et nesciunt veniam eius quaerat ipsa est ut iusto possimus laudantium, amet laboriosam necessitatibus deleniti accusamus quo dolores?
-                    </p>
+                    @foreach($programmation as $program)
+                        <div class="mb-6">
+                            <p class="text-lg font-semibold">{{ $program['day_presence'] }}</p>
+                            <div class="flex items-center justify-between bg-gray-100 p-4 rounded-lg shadow-md mb-2">
+                                <span class="text-gray-800 font-medium">{{ $program['event_name'] }}</span>
+                                <span class="text-gray-600">{{ $program['start_time'] }}</span>
+                            </div>
+                            @foreach($program['artists'] as $artist)
+                                <div class="flex items-center justify-between bg-gray-100 p-4 rounded-lg shadow-md mb-2">
+                                    <span class="text-gray-800 font-medium">{{ $artist }}</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endforeach
                 </div>
-            </div>      
+            </div>
         </div>
     </div>
 
@@ -85,12 +109,12 @@
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
-                    
+
                     <div class="validBillet-div">
                         <div id="validBillet-scanBtn">Scan</div>
                     </div>
                 </div>
-                
+
                 <div class="validBillet-div">
                     <input type="password" id="validTicket-password" name="validTicket-password" placeholder="Mot de passe" required>
                     @error('validTicket-password')
@@ -109,10 +133,10 @@
                 </button>
 
                 <button id="buyBilletBtn">
-                    Acheter 
+                    Acheter
                     <svg width="20" height="25" viewBox="0 0 20 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 24.057V4.8114H4.9005C4.9005 3.48827 5.38034 2.35558 6.34002 1.41335C7.2997 0.471116 8.45336 0 9.801 0C11.1486 0 12.3023 0.471116 13.262 1.41335C14.2217 2.35558 14.7015 3.48827 14.7015 4.8114H19.602V24.057H0ZM2.45025 21.6513H17.1517V7.2171H14.7015V10.8256H12.2512V7.2171H7.35075V10.8256H4.9005V7.2171H2.45025V21.6513ZM7.35075 4.8114H12.2512C12.2512 4.14983 12.0115 3.58369 11.5321 3.11298C11.0527 2.64226 10.4756 2.4065 9.801 2.4057C9.12636 2.4049 8.54974 2.64066 8.07112 3.11298C7.59251 3.58529 7.35238 4.15144 7.35075 4.8114Z" fill="#010F5C"/>
-                    </svg>                            
+                    </svg>
                 </button>
 
                 <div id="validTicket-scanDiv" class="hidden">

@@ -27,10 +27,24 @@ class FestivalController extends Controller
      */
     public function show(Festival $festival): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        $festival->load('musicalGenre');
+        $festival->load('musicalGenres', 'musicalBands', 'programs');
+
+        $programmation = $festival->programs()->with('musicalBands')->get()->map(function ($program) {
+            return [
+                'event_name' => $program->name,
+                'day_presence' => $program->day_presence,
+                'start_time' => $program->start_time,
+                'artists' => $program->musicalBands->map(function ($band) {
+                    return $band->name;
+                })->toArray()
+            ];
+        });
+
         $data = [
             'festival' => $festival,
+            'programmation' => $programmation,
         ];
+
         return view('festival.detailFestival', $data);
     }
 }
