@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="{{env("APP_LOCALE","en")}}">
+<html lang="{{env('APP_LOCALE','en')}}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Concept Page</title>
+    <link rel="icon" href="{{ asset('storage/images/LOGO.ico') }}" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     @vite(['resources/css/reset.css', 'resources/css/root.css', 'resources/css/style.css'])
     <link rel="preconnect" href="https://fonts.googleapis.com">

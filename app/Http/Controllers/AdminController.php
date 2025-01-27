@@ -204,95 +204,77 @@ class AdminController extends Controller
     }
     public function importJson(Request $request): \Illuminate\Http\JsonResponse
     {
-        // Valider le fichier JSON
         $request->validate([
             'jsonFile' => 'required|file|mimes:json',
         ]);
 
-        // Lire et décoder le contenu du fichier JSON
-        $file = $request->file('jsonFile');
-        $jsonData = file_get_contents($file->getRealPath());
-        $data = json_decode($jsonData, true);
+        try {
+            $file = $request->file('jsonFile');
+            $jsonData = file_get_contents($file->getRealPath());
+            $data = json_decode($jsonData, true);
 
-        // Vérifier que le JSON est bien décodé en tableau
-        if (!is_array($data)) {
-            return response()->json(['message' => 'Le fichier JSON est invalide.'], 400);
-        }
-
-        // Parcourir les données et insérer ou mettre à jour les festivals et les groupes musicaux
-        foreach ($data as $festivalData) {
-            if (!isset($festivalData['Id_recup_api'])) {
-                continue; // Ignorer les entrées sans Id_recup_api
+            if (!is_array($data)) {
+                return response()->json(['message' => 'Le fichier JSON est invalide.'], 400);
             }
 
-            $festival = Festival::updateOrCreate(
-                ['Id_recup_api' => $festivalData['Id_recup_api']],
-                [
-                    'type' => $festivalData['type'] ?? null,
-                    'name' => $festivalData['name'] ?? null,
-                    'start_datetime' => $festivalData['start_date'] ?? null,
-                    'end_datetime' => $festivalData['end_date'] ?? null,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]
-            );
+            foreach ($data as $festivalData) {
+                $festival = Festival::updateOrCreate(
+                    ['Id_recup_api' => $festivalData['Id_recup_api']],
+                    [
+                        'type' => $festivalData['type'] ?? null,
+                        'name' => $festivalData['name'] ?? null,
+                        'start_datetime' => $festivalData['start_date'] ?? null,
+                        'end_datetime' => $festivalData['end_date'] ?? null,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]
+                );
 
-            // Journal de débogage
-            \Log::info('Festival créé ou mis à jour', ['festival' => $festival]);
-
-            // Mettre à jour les groupes musicaux associés
-            $musicalBandIds = [];
-            if (isset($festivalData['artists']) && is_array($festivalData['artists'])) {
-                foreach ($festivalData['artists'] as $artistName) {
-                    if (!empty($artistName)) {
-                        $musicalBand = MusicalBand::firstOrCreate([
-                            'name' => $artistName,
-                        ]);
-                        if ($musicalBand->id) {
-                            $musicalBandIds[] = $musicalBand->id;
+                $musicalBandIds = [];
+                if (isset($festivalData['artists']) && is_array($festivalData['artists'])) {
+                    foreach ($festivalData['artists'] as $artistName) {
+                        if (!empty($artistName)) {
+                            $musicalBand = MusicalBand::firstOrCreate(['name' => $artistName]);
+                            $musicalBandIds[] = $musicalBand->Id_musical_band;
                         }
                     }
                 }
-            }
 
-            // Journal de débogage
-            \Log::info('Groupes musicaux associés', ['musicalBandIds' => $musicalBandIds]);
+                if (!empty($musicalBandIds)) {
+                    foreach ($musicalBandIds as $musicalBandId) {
+                        DB::table('GRV1_Festivals_Musical_Bands')->updateOrInsert(
+                            ['Id_festival' => $festival->Id_festival, 'Id_musical_band' => $musicalBandId],
+                            ['created_at' => now(), 'updated_at' => now()]
+                        );
+                    }
+                }
 
-            // Synchroniser les groupes musicaux avec le festival
-            if (!empty($musicalBandIds)) {
-                $festival->musicalBands()->sync($musicalBandIds);
-            }
+                if (isset($festivalData['programmation']) && is_array($festivalData['programmation'])) {
+                    foreach ($festivalData['programmation'] as $dayData) {
+                        $program = DB::table('GRV1_Programs')->updateOrInsert(
+                            ['Id_festival' => $festival->Id_festival, 'day_presence' => $dayData['day']],
+                            ['created_at' => now(), 'updated_at' => now()]
+                        );
 
-            // Mettre à jour la programmation
-            if (isset($festivalData['programmation']) && is_array($festivalData['programmation'])) {
-                foreach ($festivalData['programmation'] as $dayData) {
-                    foreach ($dayData['artists'] as $artistData) {
-                        if (!empty($artistData['name'])) {
-                            $musicalBand = MusicalBand::firstOrCreate([
-                                'name' => $artistData['name'],
-                            ]);
-
-                            if ($musicalBand->id) {
-                                // Ajouter la programmation
-                                $festival->programs()->updateOrCreate(
-                                    [
-                                        'festival_id' => $festival->id,
-                                        'date' => $dayData['day'],
-                                        'musical_band_id' => $musicalBand->id,
-                                    ],
-                                    [
-                                        'time' => $artistData['time'],
-                                    ]
-                                );
+                        if ($program) {
+                            foreach ($dayData['artists'] as $artistData) {
+                                if (!empty($artistData['name'])) {
+                                    $musicalBand = MusicalBand::firstOrCreate(['name' => $artistData['name']]);
+                                    DB::table('GRV1_Musical_Bands_Programs')->updateOrInsert(
+                                        ['Id_musical_band' => $musicalBand->Id_musical_band, 'Id_program' => $program->Id_program],
+                                        ['created_at' => now(), 'updated_at' => now()]
+                                    );
+                                }
                             }
                         }
                     }
                 }
             }
-        }
 
-        // Retourner une réponse JSON
-        return response()->json(['message' => 'JSON importé avec succès !']);
+            return response()->json(['message' => 'JSON importé avec succès !']);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Erreur lors de l\'importation du JSON : ' . $e->getMessage()], 500);
+        }
     }
     // ADMIN/PROMOTIONS
     public function promotions(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application

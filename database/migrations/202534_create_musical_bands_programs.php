@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('GRV1_musical_bands_programs', function (Blueprint $table) {
+        Schema::create('GRV1_Musical_Bands_Programs', function (Blueprint $table) {
             $table->id('Id_musical_band_program');
             $table->timestamps();
             $table->foreignId('Id_musical_band')->constrained('GRV1_Musical_Bands')->references('Id_musical_band')->onDelete('cascade')->onUpdate('cascade');
