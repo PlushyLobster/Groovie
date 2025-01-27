@@ -160,20 +160,20 @@ class AdminController extends Controller
     }
     public function showFestival($id): \Illuminate\Http\JsonResponse
     {
-        $festival = \DB::table('GRV1_Festivals')->where('Id_festival', $id)->first();
+        $festival = Festival::where('Id_festival', $id)->with('musicalGenres')->first();
         return response()->json($festival);
     }
     public function deleteFestival($id): \Illuminate\Http\JsonResponse
     {
         try {
-            $festival = \DB::table('GRV1_Festivals')->where('Id_festival', $id)->first();
-            $userFestival = \DB::table('GRV1_Users_Festivals')->where('Id_festival', $id)->exists();
+            $festival = Festival::where('Id_festival', $id)->first();
+            $userFestival = Festival::where('Id_festival', $id)->exists();
 
             if ($userFestival) {
                 return response()->json(['message' => 'Ce festival est lié à un utilisateur et ne peut pas être supprimé.'], 400);
             }
 
-            \DB::table('GRV1_Festivals')->where('Id_festival', $id)->delete();
+            Festival::where('Id_festival', $id)->delete();
             \DB::table('GRV1_Festivals_Musical_genres')->where('Id_festival', $id)->delete();
 
             return response()->json(['message' => 'Festival supprimé avec succès.'], 200);
@@ -190,7 +190,7 @@ class AdminController extends Controller
             'end_datetime' => 'required|date',
         ]);
 
-        \DB::table('GRV1_Festivals')->where('Id_festival', $id)->update([
+        Festival::where('Id_festival', $id)->update([
             'type' => $request->type,
             'name' => $request->name,
             'start_datetime' => $request->start_datetime,
@@ -198,7 +198,7 @@ class AdminController extends Controller
             'updated_at' => now(),
         ]);
 
-        $festival = \DB::table('GRV1_Festivals')->where('Id_festival', $id)->first();
+        $festival = Festival::where('Id_festival', $id)->first();
 
         return response()->json($festival);
     }
