@@ -6,14 +6,6 @@
         <div class="concept-title">
             <h1>Groovie</h1>
             <h2>L'Expérience de la mobilité durable :</h2>
-
-            <form action="{{ route('festival.mesFestivals') }}" method="GET" class="arrow">
-                <button type="submit" id="redirect-fest">
-                    <svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.7307 0.727051L11.2724 2.23116L14.652 5.68383L0.59082 5.69762L0.592888 7.81907L14.6159 7.80528L11.293 11.2314L12.7576 12.7271L18.5908 6.71273L12.7307 0.727051Z" fill="#fff"/>
-                    </svg>
-                </button>
-            </form>
         </div>
 
         <div>
