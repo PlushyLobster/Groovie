@@ -23,15 +23,15 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                 @foreach($festivals as $festival)
                     <tr id="festival-{{ $festival->Id_festival }}">
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $festival->Id_festival }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $festival->type }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $festival->name }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($festival->start_datetime)->format('d/m/Y') }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($festival->end_datetime)->format('d/m/Y') }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($festival->updated_at)->format('d/m/Y H:i') }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <button class="bg-blue-500 text-white px-4 py-2 rounded" onclick="showFestivalDetails({{ $festival->Id_festival }})">Détail</button>
-                            <button class="bg-red-500 text-white px-4 py-2 rounded" onclick="deleteFestival({{ $festival->Id_festival }})">Supprimer</button>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $festival->Id_festival }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $festival->type }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $festival->name }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $festival->start_datetime }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $festival->end_datetime }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $festival->updated_at }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            <button class="bg-blue-500 text-white px-4 py-2 rounded ml-2" onclick="showFestivalDetails({{ $festival->Id_festival }})">Détail</button>
+                            <button class="bg-red-500 text-white px-4 py-2 rounded ml-2" onclick="deleteFestival({{ $festival->Id_festival }})">Supprimer</button>
                         </td>
                     </tr>
                 @endforeach
@@ -49,14 +49,11 @@
                     @csrf
                     <div class="mb-4">
                         <label for="jsonFile" class="block text-sm font-medium text-gray-700">Fichier JSON</label>
-                        <input type="file" name="jsonFile" id="jsonFile" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" accept=".json" required>
+                        <input type="file" name="jsonFile" id="jsonFile" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                     </div>
                     <div class="mb-4">
                         <div id="progress-container" class="hidden">
-                            <label for="progress-bar" class="block text-sm font-medium text-gray-700">Progression</label>
-                            <div class="w-full bg-gray-200 rounded-full">
-                                <div id="progress-bar" class="bg-blue-500 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 0%">0%</div>
-                            </div>
+                            <div id="progress-bar" class="h-2 bg-blue-500 rounded" style="width: 0%;">0%</div>
                         </div>
                     </div>
                     <div class="flex justify-center">
@@ -133,8 +130,8 @@
                         <input type="datetime-local" id="detail-end-datetime" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm">
                     </div>
                     <div class="flex justify-center">
-                        <button type="button" class="py-2 px-4 rounded bg-gray-500 text-white ml-2" onclick="closeDetailModal()">Fermer</button>
                         <button type="button" class="py-2 px-4 rounded bg-blue-500 text-white ml-2" onclick="updateFestival()">Mettre à jour</button>
+                        <button type="button" class="py-2 px-4 rounded bg-gray-500 text-white ml-2" onclick="closeDetailModal()">Fermer</button>
                     </div>
                 </form>
             </div>
@@ -175,11 +172,11 @@
                         return xhr;
                     },
                     success: function(response) {
-                        alert('JSON importé avec succès !');
+                        alert(response.message);
                         location.reload();
                     },
                     error: function(response) {
-                        alert('Erreur lors de l\'importation du JSON');
+                        alert(response.responseJSON.message);
                     }
                 });
             });

@@ -6,7 +6,6 @@
     <title>Espace Administrateur</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
-
 </head>
 <body class="bg-gray-100 flex">
 <aside class="w-64 bg-[#E2FC98] text-[#000B58] h-screen p-4">
