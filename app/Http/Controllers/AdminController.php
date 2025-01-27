@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Festival;
+use App\Models\MusicalBand;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -10,10 +12,12 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
+
 class AdminController extends Controller
 {
     public function index(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
+        $admins = Admin::all();
         $admins = Admin::all();
         $userCount = \DB::table('GRV1_Users')->count();
         $festivalCount = \DB::table('GRV1_Festivals')->count();
@@ -81,7 +85,7 @@ class AdminController extends Controller
         return response()->json(['success' => true]);
     }
 
-    public function desactivate($id): \Illuminate\Http\JsonResponse
+    public function deactivate($id): \Illuminate\Http\JsonResponse
     {
         $user = User::find($id);
         $user->active = 0;
@@ -122,19 +126,15 @@ class AdminController extends Controller
         return response()->json(['success' => true]);
     }
 
-    // ADMIN/TRANSACTIONS
-    public function transactions(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
-    {
-        return view('admin.transactions');
-    }
-    // ADMIN/FESTIVALS
-    // app/Http/Controllers/AdminController.php
 
+
+    // ADMIN/FESTIVALS
     public function festivals(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         $festivals = \DB::table('GRV1_Festivals')->get(['Id_festival', 'type', 'name', 'start_datetime', 'end_datetime', 'created_at', 'updated_at']);
         $musicalGenres = \DB::table('GRV1_Musical_genres')->get(['Id_musical_genre', 'name']);
-        return view('admin.festivals', compact('festivals', 'musicalGenres'));
+        $types = \DB::table('GRV1_Festivals')->distinct()->pluck('type');
+        return view('admin.festivals', compact('festivals', 'musicalGenres', 'types'));
     }
     public function addFestival(Request $request): \Illuminate\Http\JsonResponse
     {
@@ -202,6 +202,98 @@ class AdminController extends Controller
 
         return response()->json($festival);
     }
+    public function importJson(Request $request): \Illuminate\Http\JsonResponse
+    {
+        // Valider le fichier JSON
+        $request->validate([
+            'jsonFile' => 'required|file|mimes:json',
+        ]);
+
+        // Lire et décoder le contenu du fichier JSON
+        $file = $request->file('jsonFile');
+        $jsonData = file_get_contents($file->getRealPath());
+        $data = json_decode($jsonData, true);
+
+        // Vérifier que le JSON est bien décodé en tableau
+        if (!is_array($data)) {
+            return response()->json(['message' => 'Le fichier JSON est invalide.'], 400);
+        }
+
+        // Parcourir les données et insérer ou mettre à jour les festivals et les groupes musicaux
+        foreach ($data as $festivalData) {
+            if (!isset($festivalData['Id_recup_api'])) {
+                continue; // Ignorer les entrées sans Id_recup_api
+            }
+
+            $festival = Festival::updateOrCreate(
+                ['Id_recup_api' => $festivalData['Id_recup_api']],
+                [
+                    'type' => $festivalData['type'] ?? null,
+                    'name' => $festivalData['name'] ?? null,
+                    'start_datetime' => $festivalData['start_date'] ?? null,
+                    'end_datetime' => $festivalData['end_date'] ?? null,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]
+            );
+
+            // Journal de débogage
+            \Log::info('Festival créé ou mis à jour', ['festival' => $festival]);
+
+            // Mettre à jour les groupes musicaux associés
+            $musicalBandIds = [];
+            if (isset($festivalData['artists']) && is_array($festivalData['artists'])) {
+                foreach ($festivalData['artists'] as $artistName) {
+                    if (!empty($artistName)) {
+                        $musicalBand = MusicalBand::firstOrCreate([
+                            'name' => $artistName,
+                        ]);
+                        if ($musicalBand->id) {
+                            $musicalBandIds[] = $musicalBand->id;
+                        }
+                    }
+                }
+            }
+
+            // Journal de débogage
+            \Log::info('Groupes musicaux associés', ['musicalBandIds' => $musicalBandIds]);
+
+            // Synchroniser les groupes musicaux avec le festival
+            if (!empty($musicalBandIds)) {
+                $festival->musicalBands()->sync($musicalBandIds);
+            }
+
+            // Mettre à jour la programmation
+            if (isset($festivalData['programmation']) && is_array($festivalData['programmation'])) {
+                foreach ($festivalData['programmation'] as $dayData) {
+                    foreach ($dayData['artists'] as $artistData) {
+                        if (!empty($artistData['name'])) {
+                            $musicalBand = MusicalBand::firstOrCreate([
+                                'name' => $artistData['name'],
+                            ]);
+
+                            if ($musicalBand->id) {
+                                // Ajouter la programmation
+                                $festival->programs()->updateOrCreate(
+                                    [
+                                        'festival_id' => $festival->id,
+                                        'date' => $dayData['day'],
+                                        'musical_band_id' => $musicalBand->id,
+                                    ],
+                                    [
+                                        'time' => $artistData['time'],
+                                    ]
+                                );
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Retourner une réponse JSON
+        return response()->json(['message' => 'JSON importé avec succès !']);
+    }
     // ADMIN/PROMOTIONS
     public function promotions(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
@@ -209,8 +301,15 @@ class AdminController extends Controller
     }
     public function getOffers(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        $offers = \DB::table('GRV1_Offers')->select('type', 'name', 'description', 'created_at')->get();
-        return view('admin.promotions', compact('offers'));
+        $offers = \DB::table('GRV1_Offers')
+            ->leftJoin('GRV1_Partners', 'GRV1_Offers.Id_partner', '=', 'GRV1_Partners.Id_partner')
+            ->select('GRV1_Partners.name as partner_name', 'GRV1_Offers.type', 'GRV1_Offers.name', 'GRV1_Offers.description', 'GRV1_Offers.condition_purchase', 'GRV1_Offers.created_at', 'GRV1_Offers.Id_offer')
+            ->get();
+
+        $partners = \DB::table('GRV1_Partners')->select('Id_partner', 'name')->get();
+        $types = \DB::table('GRV1_Offers')->select('type')->distinct()->get();
+
+        return view('admin.promotions', compact('offers', 'partners', 'types'));
     }
     public function addOffer(Request $request): \Illuminate\Http\JsonResponse
     {
@@ -218,23 +317,81 @@ class AdminController extends Controller
             'type' => 'required|string|max:50',
             'name' => 'required|string|max:50',
             'description' => 'required|string',
+            'condition_purchase' => 'required|string',
+            'created_at' => 'required|date',
         ]);
 
         $offerId = \DB::table('GRV1_Offers')->insertGetId([
             'type' => $request->type,
             'name' => $request->name,
             'description' => $request->description,
-            'created_at' => now(),
+            'condition_purchase' => $request->condition_purchase,
+            'created_at' => $request->created_at,
             'updated_at' => now(),
-            'Id_journey' => 1, // Remplacez par la valeur appropriée
             'Id_partner' => 1, // Remplacez par la valeur appropriée
         ]);
 
-
+        $offer = \DB::table('GRV1_Offers')->select('Id_offer', 'type', 'name', 'description', 'condition_purchase', 'created_at')->where('Id_offer', $offerId)->first();
 
         return response()->json($offer);
     }
-    // ADMIN/ACTUALITES
+    public function showOffer($id): \Illuminate\Http\JsonResponse
+    {
+        $offer = \DB::table('GRV1_Offers')
+            ->leftJoin('GRV1_Partners', 'GRV1_Offers.Id_partner', '=', 'GRV1_Partners.Id_partner')
+            ->select('GRV1_Partners.name as partner_name', 'GRV1_Offers.type', 'GRV1_Offers.name', 'GRV1_Offers.description', 'GRV1_Offers.condition_purchase', 'GRV1_Offers.created_at', 'GRV1_Offers.Id_offer')
+            ->where('GRV1_Offers.Id_offer', $id)
+            ->first();
+
+        if ($offer) {
+            return response()->json($offer);
+        } else {
+            return response()->json(['error' => 'Offre non trouvée'], 404);
+        }
+    }
+    public function updateOffer(Request $request, $id): \Illuminate\Http\JsonResponse
+    {
+        $request->validate([
+            'type' => 'required|string|max:50',
+            'name' => 'required|string|max:50',
+            'description' => 'required|string',
+            'condition_purchase' => 'required|string',
+            'created_at' => 'required|date',
+        ]);
+
+        \DB::table('GRV1_Offers')->where('Id_offer', $id)->update([
+            'type' => $request->type,
+            'name' => $request->name,
+            'description' => $request->description,
+            'condition_purchase' => $request->condition_purchase,
+            'created_at' => $request->created_at,
+            'updated_at' => now(),
+        ]);
+
+        $offer = \DB::table('GRV1_Offers')
+            ->leftJoin('GRV1_Partners', 'GRV1_Offers.Id_partner', '=', 'GRV1_Partners.Id_partner')
+            ->select('GRV1_Partners.name as partner_name', 'GRV1_Offers.type', 'GRV1_Offers.name', 'GRV1_Offers.description', 'GRV1_Offers.condition_purchase', 'GRV1_Offers.created_at', 'GRV1_Offers.Id_offer')
+            ->where('GRV1_Offers.Id_offer', $id)
+            ->first();
+
+        return response()->json($offer);
+    }
+    public function deleteOffer($id): \Illuminate\Http\JsonResponse
+    {
+        try {
+            \DB::table('GRV1_Offers')->where('Id_offer', $id)->delete();
+            return response()->json(['message' => 'Offre supprimée avec succès.'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Erreur lors de la suppression de l\'offre : ' . $e->getMessage()], 500);
+        }
+    }
+    // ADMIN/TRANSACTIONS
+    public function transactions(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
+    {
+        $groovers = \DB::table('GRV1_Groovers')->select('name', 'firstname', 'nb_groovies', 'level')->get();
+        return view('admin.transactions', compact('groovers'));
+    }
+    //ADMIN/ACTUALITES
     public function actualites(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         return view('admin.actualites');
@@ -243,7 +400,7 @@ class AdminController extends Controller
     public function notifications(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
         $notifications = \DB::table('GRV1_Notifications')
-            ->join('GRV1_Users_Notifications', 'GRV1_Notifications.Id_notification', '=', 'GRV1_Users_Notifications.Id_notification')
+            ->join('GRV1_Users_Notifications', 'GRV1_No     tifications.Id_notification', '=', 'GRV1_Users_Notifications.Id_notification')
             ->join('GRV1_Users', 'GRV1_Users_Notifications.Id_user', '=', 'GRV1_Users.Id_user')
             ->select('GRV1_Notifications.importance', 'GRV1_Notifications.message', 'GRV1_Notifications.created_at', 'GRV1_Users.email')
             ->get();

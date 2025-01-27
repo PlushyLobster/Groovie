@@ -39,8 +39,7 @@ Route::controller(AdminController::class)->group(function () {
 //CLIENTS
     Route::get('/admin/clients', [AdminController::class, 'clients'])->name('admin.clients')->middleware(RedirectIfNotAdmin::class);
     Route::post('/admin/clients/activate/{id}', [AdminController::class, 'activate'])->name('admin.clients.activate')->middleware(RedirectIfNotAdmin::class);
-    Route::post('/admin/clients/deactivate/{id}', [AdminController::class, 'deactivate'])->name('admin.clients.deactivate')->middleware(RedirectIfNotAdmin::class);
-    Route::get('/admin/clients/{id}', [AdminController::class, 'show'])->name('admin.clients.show')->middleware(RedirectIfNotAdmin::class);
+    Route::post('/admin/clients/deactivate/{id}', [AdminController::class, 'deactivate'])->name('admin.clients.deactivate')->middleware(RedirectIfNotAdmin::class);Route::get('/admin/clients/{id}', [AdminController::class, 'show'])->name('admin.clients.show')->middleware(RedirectIfNotAdmin::class);
     Route::put('/admin/clients/{id}', [AdminController::class, 'update'])->name('admin.clients.update')->middleware(RedirectIfNotAdmin::class);
     Route::get('/admin/clients/autocomplete', [AdminController::class, 'autocomplete'])->name('admin.clients.autocomplete')->middleware(RedirectIfNotAdmin::class);
     Route::post('/admin/clients/add', [AdminController::class, 'addClient'])->name('admin.clients.add')->middleware(RedirectIfNotAdmin::class);
@@ -52,18 +51,22 @@ Route::controller(AdminController::class)->group(function () {
     Route::delete('/admin/festivals/{id}', [AdminController::class, 'deleteFestival'])->name('admin.festivals.delete')->middleware(RedirectIfNotAdmin::class);
     Route::get('/admin/festivals/{id}', [AdminController::class, 'showFestival'])->name('admin.festivals.show')->middleware(RedirectIfNotAdmin::class);
     Route::put('/admin/festivals/{id}', [AdminController::class, 'updateFestival'])->name('admin.festivals.update')->middleware(RedirectIfNotAdmin::class);
-
+    Route::post('/admin/festivals/importJson', [AdminController::class, 'importJson'])->name('admin.festivals.importJson');
 //PROMOTIONS
     Route::get('/admin/promotions', [AdminController::class, 'promotions'])->name('admin.promotions')->middleware(RedirectIfNotAdmin::class);
     Route::get('/admin/promotions', [AdminController::class, 'getOffers'])->name('admin.promotions')->middleware(RedirectIfNotAdmin::class);
     Route::post('/admin/offers/add', [AdminController::class, 'addOffer'])->name('admin.offers.add')->middleware(RedirectIfNotAdmin::class);
+    Route::get('/admin/offers/{id}', [AdminController::class, 'showOffer'])->name('admin.offers.show')->middleware(RedirectIfNotAdmin::class);
+    Route::put('/admin/offers/{id}', [AdminController::class, 'updateOffer'])->name('admin.offers.update')->middleware(RedirectIfNotAdmin::class);
+    Route::delete('/admin/offers/{id}', [AdminController::class, 'deleteOffer'])->name('admin.offers.delete')->middleware(RedirectIfNotAdmin::class);
 
-//NOTIFICATIONS
+//TRANSACTIONS
+    Route::get('/admin/transactions', [AdminController::class, 'transactions'])->name('admin.transactions')->middleware(RedirectIfNotAdmin::class);
+    //NOTIFICATIONS
     Route::get('/admin/notifications', [AdminController::class, 'notifications'])->name('admin.notifications')->middleware(RedirectIfNotAdmin::class);
 
 //ACTUALITES
-    Route::get('/admin/actualites', [AdminController::class, 'actualites'])->name('admin.actualites')->middleware(RedirectIfNotAdmin::class);
-});
+    Route::get('/admin/actualites', [AdminController::class, 'actualites'])->name('admin.actualites')->middleware(RedirectIfNotAdmin::class);});
 //PASSWORD RESET
     Route::post('/password/email', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
     Route::post('/password/verify-code', [AuthController::class, 'verifyResetCode'])->name('password.verifyCode');

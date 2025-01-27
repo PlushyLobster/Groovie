@@ -1,61 +1,77 @@
 @extends('Layout.layoutAdmin')
 
 @section('content')
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
     <div class="container mx-auto p-4">
         <h1 class="text-3xl font-bold mb-6">Surveillance des transactions</h1>
 
-        <!-- Section: Groovies par utilisateur -->
-        <div class="bg-white p-6 rounded-lg shadow-md mt-6">
-            <h2 class="text-2xl font-bold mb-4">Groovies par utilisateur</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div class="bg-gray-100 p-4 rounded-lg shadow">
-                    <h3 class="text-xl font-bold mb-2">Utilisateur 1</h3>
-                    <p>Nombre de Groovies: 100</p>
-                    <p>Nom: Doe</p>
-                    <p>Prénom: John</p>
-                    <p>Ville: Paris</p>
-                    <p>Niveau: 5</p>
+        <div class="carousel-card relative border border-solid border-gray-200 rounded-2xl p-4 transition-all duration-500">
+            <h2 class="font-bold mb-6">Transactions par Groover</h2>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    @foreach($groovers as $groover)
+                        <div class="swiper-slide">
+                            <div class="relative max-w-xs border border-solid border-gray-200 rounded-2xl p-4 transition-all duration-500 card">
+                                <h4 class="text-base font-semibold text-gray-900 mb-2 capitalize transition-all duration-500">{{ $groover->name }} {{ $groover->firstname }}</h4>
+                                <p class="text-sm font-normal text-gray-500 transition-all duration-500 leading-5 mb-4">Nombre de groovies : {{ $groover->nb_groovies }}</p>
+                                <p class="text-sm font-normal text-gray-500 transition-all duration-500 leading-5 mb-4">Niveau : {{ $groover->level }}</p>
+                                <a href="javascript:;" class="group flex items-center gap-2 text-sm font-semibold text-indigo-600 transition-all duration-500">Détail
+                                    <svg class="transition-all duration-500 group-hover:translate-x-1" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2.25 9L14.25 9M10.5 13.5L14.4697 9.53033C14.7197 9.28033 14.8447 9.15533 14.8447 9C14.8447 8.84467 14.7197 8.71967 14.4697 8.46967L10.5 4.5" stroke="#4F46E5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
-                <div class="bg-gray-100 p-4 rounded-lg shadow">
-                    <h3 class="text-xl font-bold mb-2">Utilisateur 2</h3>
-                    <p>Nombre de Groovies: 150</p>
-                    <p>Nom: Smith</p>
-                    <p>Prénom: Jane</p>
-                    <p>Ville: Lyon</p>
-                    <p>Niveau: 4</p>
-                </div>
-                <!-- Ajoutez plus de cards ici -->
-            </div>
-        </div>
-
-        <!-- Section: Contrôle des transactions techniques -->
-        <div class="bg-white p-6 rounded-lg shadow-md mt-6">
-            <h2 class="text-2xl font-bold mb-4">Contrôle des transactions techniques</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-gray-100 p-4 rounded-lg shadow">
-                    <h3 class="text-xl font-bold mb-2">Moyens de transport utilisés</h3>
-                    <!-- Contenu pour les moyens de transport -->
-                </div>
-                <div class="bg-gray-100 p-4 rounded-lg shadow">
-                    <h3 class="text-xl font-bold mb-2">Empreinte carbone</h3>
-                    <!-- Contenu pour l'empreinte carbone -->
-                </div>
-            </div>
-        </div>
-
-        <!-- Section: Analyse des aspects marketing -->
-        <div class="bg-white p-6 rounded-lg shadow-md mt-6">
-            <h2 class="text-2xl font-bold mb-4">Analyse des aspects marketing</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-gray-100 p-4 rounded-lg shadow">
-                    <h3 class="text-xl font-bold mb-2">Promotions</h3>
-                    <!-- Contenu pour les promotions -->
-                </div>
-                <div class="bg-gray-100 p-4 rounded-lg shadow">
-                    <h3 class="text-xl font-bold mb-2">Réductions obtenues</h3>
-                    <!-- Contenu pour les réductions obtenues -->
-                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+                <!-- Add Navigation -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
         </div>
     </div>
+
+    <style>
+        .swiper-container {
+            width: 100%;
+            padding: 20px 0;
+        }
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+        }
+        .card {
+            width: 100%;
+            max-width: 300px;
+        }
+        .carousel-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .swiper-button-next, .swiper-button-prev {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var swiper = new Swiper('.swiper-container', {
+                slidesPerView: 4,
+                spaceBetween: 20,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+            });
+        });
+    </script>
 @endsection

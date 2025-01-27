@@ -27,26 +27,7 @@
             </table>
         </div>
 
-        <!-- Section: Formulaire d'ajout/modification -->
-        <div class="bg-white p-4 rounded-lg shadow-md mt-6 max-w-md mx-auto">
-            <h2 class="text-2xl font-bold mb-4">Ajouter/Modifier une actualité</h2>
-            <form id="actualite-form">
-                <div class="mb-4">
-                    <label for="title" class="block text-sm font-medium text-gray-700">Titre</label>
-                    <input type="text" id="title" name="title" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
-                </div>
-                <div class="mb-4">
-                    <label for="content" class="block text-sm font-medium text-gray-700">Contenu</label>
-                    <textarea id="content" name="content" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"></textarea>
-                </div>
-                <div class="mb-4">
-                    <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
-                    <input type="date" id="date" name="date" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
-                </div>
-                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Enregistrer</button>
-            </form>
-        </div>
-    </div>
+
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
