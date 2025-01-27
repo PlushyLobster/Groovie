@@ -17,6 +17,11 @@ class FestivalController extends Controller
         ];
         return view('festival.listeFestival', $data);
     }
+
+    public function mesFestivals(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
+    {
+        return view('festival.mesFestivals');
+    }
     /**
      * Display the specified resource.
      */

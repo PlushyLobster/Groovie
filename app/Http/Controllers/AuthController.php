@@ -115,4 +115,13 @@ class AuthController extends Controller
             return response()->json(['message' => 'Erreur interne du serveur.'], 500); // Code d'erreur 500 en cas d'exception
         }
     }
+
+    public function profilRedirect() {
+        $user = User::find(Auth::user()->Id_user);
+        $user->load('groovers');
+        $data = [
+            'profil' => $user,
+        ];
+        return view('profil.profil-redirect', $data);
+    }
 }

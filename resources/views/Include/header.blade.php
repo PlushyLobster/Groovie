@@ -143,12 +143,8 @@
 
         <div id="right-nav">
             @auth()
-                
-
-                {{--<a href="{{ route('dashboard') }}" class="logs-btn">Mon compte</a>--}}
-                
                 <div id="profil-div">
-                    <form action="{{ route('logout') }}" method="GET">
+                    <form action="{{ route('profil', ['profil' => Auth::user()->Id_user]) }}" method="GET">
                         @method('GET')
                         @csrf
                         <button id="profil-btn" type="submit">
