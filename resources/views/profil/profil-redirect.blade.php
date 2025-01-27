@@ -91,6 +91,4 @@
 </main>
 @endsection
 
-@section('scripts')
-    @vite(['resources/js/profilRedirect.js'])
-@endsection
+@vite(['resources/js/profilRedirect.js'])
