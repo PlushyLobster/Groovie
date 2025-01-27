@@ -1503,7 +1503,8 @@ main {
     background-color: var(--MFEST_Bkg);
 }
 
-.profilRedirect-card form, .profilRedirect-card button {
+.profilRedirect-card form,
+.profilRedirect-card button {
     width: 100%;
     height: 100%;
     display: flex;
@@ -1534,7 +1535,9 @@ main {
     border: 5px solid #000;
 }
 
-#hl-arrow, #hm-arrow, #hr-arrow {
+#hl-arrow,
+#hm-arrow,
+#hr-arrow {
     display: none;
 }
 
@@ -1551,7 +1554,7 @@ main {
     justify-content: center;
 }
 
-.profilRedirect-bloc3{
+.profilRedirect-bloc3 {
     width: 100%;
     height: 20%;
     display: flex;
@@ -1561,4 +1564,74 @@ main {
 .profilRedirect-bloc4 {
     width: 100%;
     height: 40%;
+}
+
+
+
+
+
+
+/***      PAGE TRAJET      ***/
+
+#trajet-left {
+    grid-row: 1/2;
+    grid-column: 1/15;
+    background-color: var(--yellowPrimary);
+}
+
+#trajet-right {
+    grid-row: 1/2;
+    grid-column: 16/22;
+    background-color: var(--yellowPrimary);
+}
+
+.trajet-card {
+    width: 100%;   
+}
+
+.trajet-cardHeader {
+    height: 7.500rem;
+    padding: 2.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.trajet-headerLeft {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+}
+
+.trajet-cardHeader span {
+    height: 2.875rem;
+    width: 2.875rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#trajet-cardPref {
+    background-color: var(--PRF_Section);
+}
+
+#trajet-logoPref {
+    background-color: #E29998;
+}
+
+#trajet-cardOffre {
+    background-color: var(--FLTR-TRJ_BkgMenuDropdown);    
+}
+
+#trajet-logoOffre {
+    background-color: #4ABF75;
+}
+
+#trajet-cardMesTrajets {
+    background-color: var(--MTRJ_Section);    
+}
+
+#trajet-logoMesTrajets {
+    background-color: #8D6CD9;
 }
