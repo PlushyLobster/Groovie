@@ -1576,7 +1576,7 @@ main {
 #trajet-left {
     grid-row: 1/2;
     grid-column: 1/15;
-    background-color: var(--yellowPrimary);
+    position: relative;
 }
 
 #trajet-right {
@@ -1586,14 +1586,27 @@ main {
 }
 
 .trajet-card {
-    width: 100%;   
+    width: 100%;
+    padding: 0rem 2.5rem;
+    position: absolute;
+    border-radius: 39px;
+    color: white;
+    transition: height 0.4s ease, z-index 0.4s ease;
+    overflow: hidden;
 }
 
 .trajet-cardHeader {
     height: 7.500rem;
-    padding: 2.5rem;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.trajet-cardHeader h2 {
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--contraste_labeur);
 }
 
 .trajet-headerLeft {
@@ -1601,6 +1614,7 @@ main {
     display: flex;
     align-items: center;
     gap: 0.875rem;
+    color: #000;
 }
 
 .trajet-cardHeader span {
@@ -1614,6 +1628,9 @@ main {
 
 #trajet-cardPref {
     background-color: var(--PRF_Section);
+    height: 100%;
+    width: 100%;
+    z-index: 1;
 }
 
 #trajet-logoPref {
@@ -1621,7 +1638,13 @@ main {
 }
 
 #trajet-cardOffre {
-    background-color: var(--FLTR-TRJ_BkgMenuDropdown);    
+    background-color: var(--FLTR-TRJ_BkgMenuDropdown);
+    /* height: 271px; */
+    height: 773px;
+    bottom: 0;
+    z-index: 2;
+    overflow: hidden;
+    overflow-y: auto;
 }
 
 #trajet-logoOffre {
@@ -1629,9 +1652,259 @@ main {
 }
 
 #trajet-cardMesTrajets {
-    background-color: var(--MTRJ_Section);    
+    background-color: var(--MTRJ_Section);
+    height: 164px;
+    bottom: 0;
+    z-index: 3;
+    overflow: hidden;
+    overflow-y: auto;  
 }
 
 #trajet-logoMesTrajets {
     background-color: #8D6CD9;
 }
+
+#trajet-prefContent {
+    width: 100%;
+    height: 31.25rem;
+}
+
+#trajet-prefContent hr {
+    border: 1px solid var(--contraste_labeur);
+}
+
+.trajet-cardContent hr {
+    border: 1px solid var(--contraste_labeur);
+}
+
+.prefContent-row {
+    width: 100%;
+    height: 7.938rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prefContent-row h3 {
+    color: #000;
+    font-weight: 500;
+    font-size: 26px;
+}
+
+.prefContent-row div {
+    width: 45%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prefContent-row select {
+    height: 2rem;
+    padding: 0rem 1rem;
+    border-radius: 50px;
+    background-color: var(--whiteBkg);
+    color: var(--contraste_labeur);
+}
+
+.prefContent-row option {
+    height: 2rem;
+    padding: 0rem 1rem;
+    color: var(--midnightBlue);
+}
+
+.prefContent-row span {
+    width: 3.375rem;
+    height: 3.375rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--FLTR-PREF-TRJ_BkgBtnSelect);
+}
+
+
+.trajet-cardContent {
+    /* display: none; */
+}
+
+#voitureSVG-ON, #veloSVG-ON, #vanSVG-ON, #busSVG-ON, #trainSVG-ON {
+    display: none;
+}
+
+#voiture-span:hover,
+#voiture-span:active {
+    background-color: var(--whiteBkg);
+    border: 1px solid #000;
+
+    #voitureSVG-OFF {
+        display: none;
+    }
+
+    #voitureSVG-ON {
+        display: block;
+    }
+}
+
+#velo-span:hover,
+#velo-span:active {
+    background-color: var(--whiteBkg);
+    border: 1px solid #000;
+
+    #veloSVG-OFF {
+        display: none;
+    }
+
+    #veloSVG-ON {
+        display: block;
+    }
+}
+
+#van-span:hover,
+#van-span:active {
+    background-color: var(--whiteBkg);
+    border: 1px solid #000;
+
+    #vanSVG-OFF {
+        display: none;
+    }
+
+    #vanSVG-ON {
+        display: block;
+    }
+}
+
+#bus-span:hover,
+#bus-span:active {
+    background-color: var(--whiteBkg);
+    border: 1px solid #000;
+
+    #busSVG-OFF {
+        display: none;
+    }
+
+    #busSVG-ON {
+        display: block;
+    }
+}
+
+#train-span:hover,
+#train-span:active {
+    background-color: var(--whiteBkg);
+    border: 1px solid #000;
+
+    #trainSVG-OFF {
+        display: none;
+    }
+
+    #trainSVG-ON {
+        display: block;
+    }
+}
+
+.trajet-cardContent {
+    width: 100%;
+    height: 31.25rem;
+}
+
+#trajetOffre-row1 {
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+#trajetOffre-row1 button {
+    height: 28px;
+    border-radius: 6px;
+    padding: 0px 12px;
+    font-size: 15;
+    font-weight: 400;
+}
+
+#trajetOffre-row2 {
+    width: 100%;
+    height: 23.000rem;
+    background-color: #8df8b4;
+}
+
+#trajetOffre-row3 {
+    width: 100%;
+    height: 5rem;
+}
+
+.filtreOffre-selected {
+    background-color: var(--FLTR-TRJ_FiltreSelect);
+}
+
+.filtreOffre-notSelected {
+    color: var(--FLTR-TRJ_FiltreNonSelect);
+    border: 1px solid var(--FLTR-TRJ_FiltreNonSelect);
+}
+
+#filtreDropdown {
+    position: absolute;
+    width: 33.000rem;
+    height: 12.125rem;
+    background-color: var(--FLTR-TRJ_BkgMenuDropdown);
+    /* display: flex; */
+    flex-direction: column;
+    align-items: center;
+    z-index: 20;
+    left: 39px;
+    top: 15.1rem;
+    padding: 1.313rem;
+    box-shadow: 0rem 0rem 1.5rem rgba(0, 0, 0, 25%);
+}
+
+#filtreDropdown-btnContainer {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+}
+
+#filtreDropdown-btnContainer button {
+    width: 14rem;
+    height: 2.25rem;
+    border-radius: 50px;
+    font-size: 17px;
+}
+
+#filtreDropdown-validBtn {
+    background-color: var(--FLTR-TRJ_FiltreSelect);
+    color: var(--whiteBkg);
+}
+
+#filtreDropdown-cancelBtn {
+    border: 1px solid var(--FLTR-TRJ_FiltreNonSelect);
+    color: var(--FLTR-TRJ_FiltreNonSelect);
+}
+
+/* @keyframes slideInFiltreOffre {
+    from {
+        right: -35rem;
+    }
+
+    to {
+        right: 4.75rem;
+    }
+}
+
+.transition-rightFiltre {
+    animation: slideInFiltreOffre 0.8s forwards;
+}
+
+@keyframes slideOutFiltreOffre {
+    from {
+        right: 4.75rem;
+    }
+
+    to {
+        right: -35rem;
+    }
+}
+
+.transition-backFiltre {
+    animation: slideOutFiltreOffre 0.8s forwards;
+} */
