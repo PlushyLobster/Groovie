@@ -1639,7 +1639,8 @@ main {
 
 #trajet-cardOffre {
     background-color: var(--FLTR-TRJ_BkgMenuDropdown);
-    height: 271px;
+    /* height: 271px; */
+    height: 164px;
     bottom: 0;
     z-index: 2;
     overflow: hidden;
@@ -1652,9 +1653,11 @@ main {
 
 #trajet-cardMesTrajets {
     background-color: var(--MTRJ_Section);
-    height: 164px;
+    /* height: 164px; */
+    height: 773px;
     bottom: 0;
-    z-index: 3;
+    /* z-index: 3; */
+    z-index: 1;
     overflow: hidden;
     overflow-y: auto;
 }
@@ -1674,6 +1677,7 @@ main {
 
 .trajet-cardContent hr {
     border: 1px solid var(--contraste_labeur);
+    width: 100%;
 }
 
 .prefContent-row {
@@ -1724,7 +1728,7 @@ main {
 
 
 .trajet-cardContent {
-    display: none;
+    /* display: none; */
 }
 
 #voitureSVG-ON,
