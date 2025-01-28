@@ -1639,8 +1639,7 @@ main {
 
 #trajet-cardOffre {
     background-color: var(--FLTR-TRJ_BkgMenuDropdown);
-    /* height: 271px; */
-    height: 773px;
+    height: 271px;
     bottom: 0;
     z-index: 2;
     overflow: hidden;
@@ -1657,7 +1656,7 @@ main {
     bottom: 0;
     z-index: 3;
     overflow: hidden;
-    overflow-y: auto;  
+    overflow-y: auto;
 }
 
 #trajet-logoMesTrajets {
@@ -1725,10 +1724,14 @@ main {
 
 
 .trajet-cardContent {
-    /* display: none; */
+    display: none;
 }
 
-#voitureSVG-ON, #veloSVG-ON, #vanSVG-ON, #busSVG-ON, #trainSVG-ON {
+#voitureSVG-ON,
+#veloSVG-ON,
+#vanSVG-ON,
+#busSVG-ON,
+#trainSVG-ON {
     display: none;
 }
 
@@ -1827,6 +1830,86 @@ main {
     width: 100%;
     height: 23.000rem;
     background-color: #8df8b4;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    scrollbar-color: #8df8b4 #8df8b4;
+    scrollbar-width: thin;
+    padding: 1.5rem;
+    gap: 32px;
+}
+
+.trajetOffre-card {
+    height: 12rem;
+    width: 17.75rem;
+    border-radius: 25px;
+    padding: 24px;
+    background-color: #E0FFEB;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.trajetOffre-card p {
+    color: var(--contraste_labeur);
+}
+
+.trajetOffre-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.trajetOffre-top div {
+    display: flex;
+}
+
+.trajetOffre-top span {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.trajetOffre-topSpan1 {
+    z-index: 3;
+    font-size: 24px;
+    background-color: #33CD6B;
+}
+
+.trajetOffre-topSpan2 {
+    z-index: 2;
+    position: absolute;
+    margin-left: 28px;
+}
+
+.trajetOffre-topSpan2 img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+}
+
+.trajetOffre-bot {
+    display: flex;
+    justify-content: space-between;
+}
+
+.trajetOffre-heure {
+    font-size: 23px;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.trajetOffre-nbGroovie {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.trajetOffre-botRight {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
 }
 
 #trajetOffre-row3 {
@@ -1845,8 +1928,8 @@ main {
 
 #filtreDropdown {
     position: absolute;
-    width: 33.000rem;
-    height: 12.125rem;
+    width: 40.000rem;
+    height: 14.5rem;
     background-color: var(--FLTR-TRJ_BkgMenuDropdown);
     /* display: flex; */
     flex-direction: column;
@@ -1856,6 +1939,32 @@ main {
     top: 15.1rem;
     padding: 1.313rem;
     box-shadow: 0rem 0rem 1.5rem rgba(0, 0, 0, 25%);
+}
+
+#filtreDropdown-box {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.filtreDropdown-container {
+    width: 46%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.filtreDropdown-toggleContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.filtreDropdown-toggleContainer p {
+    font-size: 17px;
+    color: var(--contraste_labeur);
 }
 
 #filtreDropdown-btnContainer {
@@ -1868,7 +1977,7 @@ main {
     width: 14rem;
     height: 2.25rem;
     border-radius: 50px;
-    font-size: 17px;
+    font-size: 16px;
 }
 
 #filtreDropdown-validBtn {
@@ -1881,30 +1990,28 @@ main {
     color: var(--FLTR-TRJ_FiltreNonSelect);
 }
 
-/* @keyframes slideInFiltreOffre {
-    from {
-        right: -35rem;
-    }
-
-    to {
-        right: 4.75rem;
-    }
+.filtreDropdown-toggleContainer div {
+    width: 56px;
+    display: flex;
+    cursor: pointer;
 }
 
-.transition-rightFiltre {
-    animation: slideInFiltreOffre 0.8s forwards;
+.filtreDropdown-toggle {
+    width: 56px;
+    height: 27px;
+    border-radius: 50px;
+    background-color: var(--FLTR-TRJ_ToggleOFF);
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
-@keyframes slideOutFiltreOffre {
-    from {
-        right: 4.75rem;
-    }
-
-    to {
-        right: -35rem;
-    }
+.filtreDropdown-toggleBtn {
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background-color: var(--FLTR-TRJ_BtnToggleOFF);
+    position: absolute;
+    left: 6px;
+    transition: 0.5s;
 }
-
-.transition-backFiltre {
-    animation: slideOutFiltreOffre 0.8s forwards;
-} */
