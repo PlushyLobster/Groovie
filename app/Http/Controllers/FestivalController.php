@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\{Festival, MusicalGenre};
 use Illuminate\Http\Request;
 
@@ -38,11 +39,16 @@ class FestivalController extends Controller
                     return $band->name;
                 })->toArray()
             ];
+        })->toArray(); // Convertir en tableau
+
+        $uniqueDates = collect($programmation)->pluck('day_presence')->unique()->sortBy(function ($date) {
+            return Carbon::parse($date);
         });
 
         $data = [
             'festival' => $festival,
             'programmation' => $programmation,
+            'uniqueDates' => $uniqueDates,
         ];
 
         return view('festival.detailFestival', $data);

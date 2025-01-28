@@ -24,30 +24,32 @@
             </div>
         </div>
 
-        <div class="fest-cate" id="fest-proximite">
-            <div class="fest-cateTitle">
-                <p>À proximité</p>
-                <p>Voir plus</p>
-            </div>
-            <div class="fest-cateSlider">
+
+        <div class="fest-cateSlider swiper-container w-full mx-auto relative">
+            <div class="swiper-wrapper ml-0 mr-0">
                 @foreach($festivals as $festival)
-                    <form action="{{route('festival.show', ['festival' => $festival->Id_festival])}}" method="GET" class="arrow fest-card">
-                        <button type="submit">
-                            <div class="fest-card">
-                                <div class="fest-cardTitle">
-                                    <p class="fest-cardName">{{ $festival->name }}</p>
-                                    <p class="fest-cardDate"> Du {{$festival->start_datetime}}</p>
-                                    {{-- <p class="fest-cardDate"> Du {{$festival->start_datetime}} au {{$festival->end_datetime}}</p> --}}
+                    <div class="swiper-slide mr-1">
+                        <form action="{{route('festival.show', ['festival' => $festival->Id_festival])}}" method="GET" >
+                            <button type="submit">
+                                <div class="fest-card">
+                                    <div class="fest-cardTitle">
+                                        <p class="fest-cardName">{{ $festival->name }}</p>
+                                        <p class="fest-cardDate"> Du {{$festival->start_datetime}}</p>
+                                    </div>
+                                    <div class="fest-cardImage">
+                                        <img src="" alt="">
+                                    </div>
                                 </div>
-                                <div class="fest-cardImage">
-                                    <img src="" alt="">
-                                </div>
-                            </div>
-                        </button>
-                    </form>
+                            </button>
+                        </form>
+                    </div>
                 @endforeach
             </div>
-            <hr>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add Navigation -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
 
         <div class="fest-cate" id="fest-populaire">
@@ -127,4 +129,32 @@
 
     </div>
 </main>
+@endsection
+
+@section('scripts')
+    <script>
+        const swiper = new Swiper('.swiper-container', {
+            loop: true,
+            slidesPerView: 6,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                },
+                768: {
+                    slidesPerView: 3,
+                },
+                1024: {
+                    slidesPerView: 6,
+                },
+            },
+        });
+    </script>
 @endsection

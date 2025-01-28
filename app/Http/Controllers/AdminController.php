@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Festival;
 use App\Models\MusicalBand;
+use App\Models\Program;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -160,20 +161,20 @@ class AdminController extends Controller
     }
     public function showFestival($id): \Illuminate\Http\JsonResponse
     {
-        $festival = \DB::table('GRV1_Festivals')->where('Id_festival', $id)->first();
+        $festival = Festival::where('Id_festival', $id)->with('musicalGenres')->first();
         return response()->json($festival);
     }
     public function deleteFestival($id): \Illuminate\Http\JsonResponse
     {
         try {
-            $festival = \DB::table('GRV1_Festivals')->where('Id_festival', $id)->first();
-            $userFestival = \DB::table('GRV1_Users_Festivals')->where('Id_festival', $id)->exists();
+            $festival = Festival::where('Id_festival', $id)->first();
+            $userFestival = Festival::where('Id_festival', $id)->exists();
 
             if ($userFestival) {
                 return response()->json(['message' => 'Ce festival est lié à un utilisateur et ne peut pas être supprimé.'], 400);
             }
 
-            \DB::table('GRV1_Festivals')->where('Id_festival', $id)->delete();
+            $festival = Festival::where('Id_festival', $id)->delete();
             \DB::table('GRV1_Festivals_Musical_genres')->where('Id_festival', $id)->delete();
 
             return response()->json(['message' => 'Festival supprimé avec succès.'], 200);
@@ -190,7 +191,7 @@ class AdminController extends Controller
             'end_datetime' => 'required|date',
         ]);
 
-        \DB::table('GRV1_Festivals')->where('Id_festival', $id)->update([
+        $festival = Festival::where('Id_festival', $id)->update([
             'type' => $request->type,
             'name' => $request->name,
             'start_datetime' => $request->start_datetime,
@@ -198,7 +199,7 @@ class AdminController extends Controller
             'updated_at' => now(),
         ]);
 
-        $festival = \DB::table('GRV1_Festivals')->where('Id_festival', $id)->first();
+        $festival = Festival::where('Id_festival', $id)->first();
 
         return response()->json($festival);
     }
@@ -221,7 +222,7 @@ class AdminController extends Controller
                 $festival = Festival::updateOrCreate(
                     ['Id_recup_api' => $festivalData['Id_recup_api']],
                     [
-                        'type' => $festivalData['type'] ?? null,
+                        'type' => $festivalData['location'] ?? null,
                         'name' => $festivalData['name'] ?? null,
                         'start_datetime' => $festivalData['start_date'] ?? null,
                         'end_datetime' => $festivalData['end_date'] ?? null,
@@ -230,41 +231,31 @@ class AdminController extends Controller
                     ]
                 );
 
-                $musicalBandIds = [];
                 if (isset($festivalData['artists']) && is_array($festivalData['artists'])) {
                     foreach ($festivalData['artists'] as $artistName) {
                         if (!empty($artistName)) {
                             $musicalBand = MusicalBand::firstOrCreate(['name' => $artistName]);
-                            $musicalBandIds[] = $musicalBand->Id_musical_band;
+                            $festival->musicalBands()->syncWithoutDetaching([$musicalBand->Id_musical_band]);
                         }
-                    }
-                }
-
-                if (!empty($musicalBandIds)) {
-                    foreach ($musicalBandIds as $musicalBandId) {
-                        DB::table('GRV1_Festivals_Musical_Bands')->updateOrInsert(
-                            ['Id_festival' => $festival->Id_festival, 'Id_musical_band' => $musicalBandId],
-                            ['created_at' => now(), 'updated_at' => now()]
-                        );
                     }
                 }
 
                 if (isset($festivalData['programmation']) && is_array($festivalData['programmation'])) {
                     foreach ($festivalData['programmation'] as $dayData) {
-                        $program = DB::table('GRV1_Programs')->updateOrInsert(
-                            ['Id_festival' => $festival->Id_festival, 'day_presence' => $dayData['day']],
-                            ['created_at' => now(), 'updated_at' => now()]
-                        );
+                        foreach ($dayData['artists'] as $artistData) {
+                            if (!empty($artistData['name'])) {
+                                $program = Program::updateOrCreate(
+                                    [
+                                        'Id_festival' => $festival->Id_festival,
+                                        'day_presence' => $dayData['day'],
+                                        'name' => $dayData['name'], // Utilisez le nom de l'artiste pour éviter les duplications
+                                        'start_time' => $artistData['time']
+                                    ],
+                                    ['created_at' => now(), 'updated_at' => now()]
+                                );
 
-                        if ($program) {
-                            foreach ($dayData['artists'] as $artistData) {
-                                if (!empty($artistData['name'])) {
-                                    $musicalBand = MusicalBand::firstOrCreate(['name' => $artistData['name']]);
-                                    DB::table('GRV1_Musical_Bands_Programs')->updateOrInsert(
-                                        ['Id_musical_band' => $musicalBand->Id_musical_band, 'Id_program' => $program->Id_program],
-                                        ['created_at' => now(), 'updated_at' => now()]
-                                    );
-                                }
+                                $musicalBand = MusicalBand::firstOrCreate(['name' => $artistData['name']]);
+                                $program->musicalBands()->syncWithoutDetaching([$musicalBand->Id_musical_band]);
                             }
                         }
                     }
