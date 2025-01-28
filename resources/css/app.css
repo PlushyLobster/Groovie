@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.swiper-container {
+overflow: hidden;
+}
+.swiper-button-next, .swiper-button-prev {
+    top: 50%; /* Alignez les flèches verticalement au centre */
+    transform: translateY(-50%);
+    width: 30px; /* Ajustez la largeur des flèches */
+    height: 30px; /* Ajustez la hauteur des flèches */
+}
+
+.swiper-button-next {
+    right: 0; /* Positionnez la flèche de droite à l'extrémité droite */
+}
+
+.swiper-button-prev {
+    left: 0; /* Positionnez la flèche de gauche à l'extrémité gauche */
+}
