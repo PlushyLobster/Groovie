@@ -29,7 +29,7 @@
             <div class="swiper-wrapper ml-0 mr-0">
                 @foreach($festivals as $festival)
                     <div class="swiper-slide mr-1">
-                        <form action="{{route('festival.show', ['festival' => $festival->Id_festival])}}" method="GET" >
+                        <form action="{{route('festivals.show', ['festival' => $festival->Id_festival])}}" method="GET" >
                             <button type="submit">
                                 <div class="fest-card">
                                     <div class="fest-cardTitle">
