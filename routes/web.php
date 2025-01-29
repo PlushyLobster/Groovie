@@ -19,16 +19,14 @@ Route::get('/', function () {
 
 Route::get('/festival/mesFestivals', [FestivalController::class, 'mesFestivals'])->name('festival.mesFestivals');
 Route::get('/trajet', [trajetController::class, 'trajet'])->name('trajet');
+Route::get('/trajet/experience', [trajetController::class, 'experience'])->name('experience');
 Route::resource('festival', FestivalController::class)->only(['index', 'show',]);
-
-// Route::resource('mesFestivals', FestivalController::class)->only(['mesFestIndex']);
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('/register', 'register')->name('register')->middleware(IsGuest::class);
     Route::post('/login', 'login')->name('login')->middleware(IsGuest::class);
     Route::post('/logout', 'logout')->name('logout')->middleware(IsAuth::class);
     Route::get('/profil', 'profilRedirect')->name('profil')->middleware(IsAuth::class);
-    Route::post('/mesFestivals', 'logout')->name('mesFestivals')->middleware(IsAuth::class);
 });
 
 Route::get('/admin', function () {
