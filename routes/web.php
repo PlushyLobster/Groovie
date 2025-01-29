@@ -7,7 +7,6 @@ use App\Http\Controllers\{
     AdminController,
     FestivalController,
     trajetController,
-    WalletController,
 };
 use App\Http\Middleware\IsAuth;
 use App\Http\Middleware\IsGuest;

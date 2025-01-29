@@ -146,26 +146,25 @@
                     }
                 });
         });
-        function openModal(field) {
-            document.getElementById('modal-field').value = field;
-            document.getElementById('modal-field-name').innerText = field === 'email' ? 'l\'adresse mail' : 'la ville';
-            document.getElementById('editModal').classList.remove('hidden');
-        }
 
-        function closeModal() {
-            document.getElementById('editModal').classList.add('hidden');
-        }
         function openModal(field) {
             if (field === 'password') {
                 document.getElementById('editPasswordModal').classList.remove('hidden');
+            } else {
+                document.getElementById('modal-field').value = field;
+                document.getElementById('modal-field-name').innerText = field === 'email' ? 'l\'adresse mail' : 'la ville';
+                document.getElementById('editModal').classList.remove('hidden');
             }
         }
 
         function closeModal(field) {
             if (field === 'password') {
                 document.getElementById('editPasswordModal').classList.add('hidden');
+            } else {
+                document.getElementById('editModal').classList.add('hidden');
             }
         }
+
         function updateAvatar(event) {
             const input = event.target;
             if (input.files && input.files[0]) {

@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Program extends Model
 {
     protected $table = 'GRV1_Programs';
-    protected $primaryKey = 'id_program';
+    protected $primaryKey = 'Id_program';
     public $timestamps = true;
-    protected $fillable = ['day_presence'];
+    protected $fillable = ['name','day_presence','start_time','Id_festival'];
 
     public function festivals(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

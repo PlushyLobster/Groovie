@@ -38,7 +38,7 @@ class AuthController extends Controller
         Auth::guard('web')->login($newUser);
 
         // Rediriger vers une page de succès ou de connexion
-        return redirect()->route('home');
+        return redirect()->back();
     }
 
     public function login(AuthRequest $authRequest): RedirectResponse
@@ -49,11 +49,11 @@ class AuthController extends Controller
         // Authentifier l'utilisateur avec l'email et le mot de passe en utilisant le guard approprié
         if (Auth::guard('web')->attempt(['email' => $validated['login-email'], 'password' => $validated['login-password']])) {
             // Rediriger vers la page d'accueil en cas de succès
-            return redirect()->route('home');
+            return redirect()->back();
         }
 
         // Rediriger vers la page de connexion avec un message d'erreur en cas d'échec
-        return redirect()->route('home')->withErrors(['login-error' => 'Les informations d\'identification sont incorrectes.']);
+        return redirect()->back()->withErrors(['login-error' => 'Les informations d\'identification sont incorrectes.']);
     }
 
     public function logout(): RedirectResponse
@@ -62,7 +62,7 @@ class AuthController extends Controller
         Auth::logout();
 
         // Rediriger vers une page de succès ou de connexion
-        return redirect()->route('home');
+        return redirect()->back();
     }
 
     public function sendResetLinkEmail(SendResetLinkEmailRequest $request): \Illuminate\Http\JsonResponse
@@ -116,12 +116,14 @@ class AuthController extends Controller
         }
     }
 
-    public function profilRedirect() {
+    public function profilRedirect(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
+    {
         return view('profil.profil-redirect');
     }
 
-    public function profil() {
-        $user = User::find(Auth::user()->Id_user);
+    public function profil(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
+    {
+        $user = Auth::user();
         $user->load('groovers');
         $data = [
             'profil' => $user,

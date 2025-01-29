@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Festival, MusicalGenre};
+use Carbon\Carbon;
+use App\Models\{Festival, MusicalGenre, User};
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FestivalController extends Controller
 {
@@ -20,14 +22,19 @@ class FestivalController extends Controller
 
     public function mesFestivals(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        return view('festival.mesFestivals');
+        $user = Auth::user();
+        $user->load(['festivals.musicalGenres']);
+        $data = [
+            'user' => $user
+        ];
+        return view('festival.mesFestivals', $data);
     }
     /**
      * Display the specified resource.
      */
     public function show(Festival $festival): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        $festival->load('musicalGenres', 'musicalBands', 'programs');
+        $festival->load('musicalGenres', 'musicalBands', 'programs','tickets');
 
         $programmation = $festival->programs()->with('musicalBands')->get()->map(function ($program) {
             return [
@@ -38,11 +45,16 @@ class FestivalController extends Controller
                     return $band->name;
                 })->toArray()
             ];
+        })->toArray(); // Convertir en tableau
+
+        $uniqueDates = collect($programmation)->pluck('day_presence')->unique()->sortBy(function ($date) {
+            return Carbon::parse($date);
         });
 
         $data = [
             'festival' => $festival,
             'programmation' => $programmation,
+            'uniqueDates' => $uniqueDates,
         ];
 
         return view('festival.detailFestival', $data);
