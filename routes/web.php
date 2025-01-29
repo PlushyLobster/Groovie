@@ -7,6 +7,7 @@ use App\Http\Controllers\{
     AdminController,
     FestivalController,
     trajetController,
+    WalletController,
 };
 use App\Http\Middleware\IsAuth;
 use App\Http\Middleware\IsGuest;
@@ -78,3 +79,12 @@ Route::controller(AdminController::class)->group(function () {
     Route::post('/password/email', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
     Route::post('/password/verify-code', [AuthController::class, 'verifyResetCode'])->name('password.verifyCode');
     Route::post('/password/reset', [AuthController::class, 'resetPassword'])->name('password.reset');
+
+
+
+
+    //WALLETCONTROLLER - PAGE PROFIL
+Route::get('/profil/profil', [WalletController::class, 'profil'])->name('profil.profil');
+Route::post('/profil/cloturer', [WalletController::class, 'cloturer'])->name('profil.cloturer');
+Route::post('/profil/update', [WalletController::class, 'update'])->name('profil.update');
+Route::get('/', function () {return view('homePage');})->name('home');
