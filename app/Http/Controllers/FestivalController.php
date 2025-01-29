@@ -34,7 +34,7 @@ class FestivalController extends Controller
      */
     public function show(Festival $festival): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        $festival->load('musicalGenres', 'musicalBands', 'programs','tickets');
+        $festival->load('musicalGenres', 'musicalBands', 'programs');
 
         $programmation = $festival->programs()->with('musicalBands')->get()->map(function ($program) {
             return [
