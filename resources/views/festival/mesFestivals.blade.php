@@ -78,7 +78,7 @@
             </div>
 
             <div class="mesFestivals-asideBtn">
-                <form action="{{route('festival.index')}}" method="GET">
+                <form action="{{route('festivals.index')}}" method="GET">
                     <button type="submit" id="redirect-fest">
                         Tout les festivals
                         <svg width="21" height="15" viewBox="0 0 21 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -95,7 +95,7 @@
             </div>
 
             <div class="mesFestivals-asideBtn">
-                <form action="{{route('festival.index')}}" method="GET">
+                <form action="{{route('festivals.index')}}" method="GET">
                     <button type="submit" id="redirect-fest">
                         Utiliser mes Groovies
                         <svg width="21" height="15" viewBox="0 0 21 15" fill="none" xmlns="http://www.w3.org/2000/svg">

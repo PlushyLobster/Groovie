@@ -2147,3 +2147,458 @@ main {
     left: 6px;
     transition: 0.5s;
 }
+
+
+
+
+
+
+
+/***      PAGE TRAJET      ***/
+
+#trajet-left {
+    grid-row: 1/2;
+    grid-column: 1/15;
+    position: relative;
+}
+
+#trajet-right {
+    grid-row: 1/2;
+    grid-column: 16/22;
+    background-color: var(--yellowPrimary);
+}
+
+.trajet-card {
+    width: 100%;
+    padding: 0rem 2.5rem;
+    position: absolute;
+    border-radius: 39px;
+    color: white;
+    transition: height 0.4s ease, z-index 0.4s ease;
+    overflow: hidden;
+}
+
+.trajet-cardHeader {
+    height: 7.500rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.trajet-cardHeader h2 {
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--contraste_labeur);
+}
+
+.trajet-headerLeft {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    color: #000;
+}
+
+.trajet-cardHeader span {
+    height: 2.875rem;
+    width: 2.875rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#trajet-cardPref {
+    background-color: var(--PRF_Section);
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+}
+
+#trajet-logoPref {
+    background-color: #E29998;
+}
+
+#trajet-cardOffre {
+    background-color: var(--FLTR-TRJ_BkgMenuDropdown);
+    /* height: 271px; */
+    height: 164px;
+    bottom: 0;
+    z-index: 2;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+#trajet-logoOffre {
+    background-color: #4ABF75;
+}
+
+#trajet-cardMesTrajets {
+    background-color: var(--MTRJ_Section);
+    /* height: 164px; */
+    height: 773px;
+    bottom: 0;
+    /* z-index: 3; */
+    z-index: 1;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+#trajet-logoMesTrajets {
+    background-color: #8D6CD9;
+}
+
+#trajet-prefContent {
+    width: 100%;
+    height: 31.25rem;
+}
+
+#trajet-prefContent hr {
+    border: 1px solid var(--contraste_labeur);
+}
+
+.trajet-cardContent hr {
+    border: 1px solid var(--contraste_labeur);
+    width: 100%;
+}
+
+.prefContent-row {
+    width: 100%;
+    height: 7.938rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prefContent-row h3 {
+    color: #000;
+    font-weight: 500;
+    font-size: 26px;
+}
+
+.prefContent-row div {
+    width: 45%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prefContent-row select {
+    height: 2rem;
+    padding: 0rem 1rem;
+    border-radius: 50px;
+    background-color: var(--whiteBkg);
+    color: var(--contraste_labeur);
+}
+
+.prefContent-row option {
+    height: 2rem;
+    padding: 0rem 1rem;
+    color: var(--midnightBlue);
+}
+
+.prefContent-row span {
+    width: 3.375rem;
+    height: 3.375rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--FLTR-PREF-TRJ_BkgBtnSelect);
+}
+
+
+.trajet-cardContent {
+    /* display: none; */
+}
+
+#voitureSVG-ON,
+#veloSVG-ON,
+#vanSVG-ON,
+#busSVG-ON,
+#trainSVG-ON {
+    display: none;
+}
+
+#voiture-span:hover,
+#voiture-span:active {
+    background-color: var(--whiteBkg);
+    border: 1px solid #000;
+
+    #voitureSVG-OFF {
+        display: none;
+    }
+
+    #voitureSVG-ON {
+        display: block;
+    }
+}
+
+#velo-span:hover,
+#velo-span:active {
+    background-color: var(--whiteBkg);
+    border: 1px solid #000;
+
+    #veloSVG-OFF {
+        display: none;
+    }
+
+    #veloSVG-ON {
+        display: block;
+    }
+}
+
+#van-span:hover,
+#van-span:active {
+    background-color: var(--whiteBkg);
+    border: 1px solid #000;
+
+    #vanSVG-OFF {
+        display: none;
+    }
+
+    #vanSVG-ON {
+        display: block;
+    }
+}
+
+#bus-span:hover,
+#bus-span:active {
+    background-color: var(--whiteBkg);
+    border: 1px solid #000;
+
+    #busSVG-OFF {
+        display: none;
+    }
+
+    #busSVG-ON {
+        display: block;
+    }
+}
+
+#train-span:hover,
+#train-span:active {
+    background-color: var(--whiteBkg);
+    border: 1px solid #000;
+
+    #trainSVG-OFF {
+        display: none;
+    }
+
+    #trainSVG-ON {
+        display: block;
+    }
+}
+
+.trajet-cardContent {
+    width: 100%;
+    height: 31.25rem;
+}
+
+#trajetOffre-row1 {
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+#trajetOffre-row1 button {
+    height: 28px;
+    border-radius: 6px;
+    padding: 0px 12px;
+    font-size: 15;
+    font-weight: 400;
+}
+
+#trajetOffre-row2 {
+    width: 100%;
+    height: 23.000rem;
+    background-color: #8df8b4;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    scrollbar-color: #8df8b4 #8df8b4;
+    scrollbar-width: thin;
+    padding: 1.5rem;
+    gap: 32px;
+}
+
+.trajetOffre-card {
+    height: 12rem;
+    width: 17.75rem;
+    border-radius: 25px;
+    padding: 24px;
+    background-color: #E0FFEB;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.trajetOffre-card p {
+    color: var(--contraste_labeur);
+}
+
+.trajetOffre-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.trajetOffre-top div {
+    display: flex;
+}
+
+.trajetOffre-top span {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.trajetOffre-topSpan1 {
+    z-index: 3;
+    font-size: 24px;
+    background-color: #33CD6B;
+}
+
+.trajetOffre-topSpan2 {
+    z-index: 2;
+    position: absolute;
+    margin-left: 28px;
+}
+
+.trajetOffre-topSpan2 img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+}
+
+.trajetOffre-bot {
+    display: flex;
+    justify-content: space-between;
+}
+
+.trajetOffre-heure {
+    font-size: 23px;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.trajetOffre-nbGroovie {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.trajetOffre-botRight {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+#trajetOffre-row3 {
+    width: 100%;
+    height: 5rem;
+}
+
+.filtreOffre-selected {
+    background-color: var(--FLTR-TRJ_FiltreSelect);
+}
+
+.filtreOffre-notSelected {
+    color: var(--FLTR-TRJ_FiltreNonSelect);
+    border: 1px solid var(--FLTR-TRJ_FiltreNonSelect);
+}
+
+#filtreDropdown {
+    position: absolute;
+    width: 40.000rem;
+    height: 14.5rem;
+    background-color: var(--FLTR-TRJ_BkgMenuDropdown);
+    /* display: flex; */
+    flex-direction: column;
+    align-items: center;
+    z-index: 20;
+    left: 39px;
+    top: 15.1rem;
+    padding: 1.313rem;
+    box-shadow: 0rem 0rem 1.5rem rgba(0, 0, 0, 25%);
+}
+
+#filtreDropdown-box {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.filtreDropdown-container {
+    width: 46%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.filtreDropdown-toggleContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.filtreDropdown-toggleContainer p {
+    font-size: 17px;
+    color: var(--contraste_labeur);
+}
+
+#filtreDropdown-btnContainer {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+}
+
+#filtreDropdown-btnContainer button {
+    width: 14rem;
+    height: 2.25rem;
+    border-radius: 50px;
+    font-size: 16px;
+}
+
+#filtreDropdown-validBtn {
+    background-color: var(--FLTR-TRJ_FiltreSelect);
+    color: var(--whiteBkg);
+}
+
+#filtreDropdown-cancelBtn {
+    border: 1px solid var(--FLTR-TRJ_FiltreNonSelect);
+    color: var(--FLTR-TRJ_FiltreNonSelect);
+}
+
+.filtreDropdown-toggleContainer div {
+    width: 56px;
+    display: flex;
+    cursor: pointer;
+}
+
+.filtreDropdown-toggle {
+    width: 56px;
+    height: 27px;
+    border-radius: 50px;
+    background-color: var(--FLTR-TRJ_ToggleOFF);
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.filtreDropdown-toggleBtn {
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background-color: var(--FLTR-TRJ_BtnToggleOFF);
+    position: absolute;
+    left: 6px;
+    transition: 0.5s;
+}

@@ -43,12 +43,12 @@
                 </div>
 
                 <div class="profilRedirect-bloc3">
-                <span id="hm-picto">
-                   <svg width="66" height="66" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M64 64V57C64 53.287 62.2581 49.726 59.1575 47.1005C56.0569 44.475 51.8516 43 47.4667 43H18.5333C14.1484 43 9.9431 44.475 6.8425 47.1005C3.7419 49.726 2 53.287 2 57V64" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M33 32C41.2843 32 48 25.2843 48 17C48 8.71573 41.2843 2 33 2C24.7157 2 18 8.71573 18 17C18 25.2843 24.7157 32 33 32Z" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </span>
+                    <span id="hm-picto">
+                       <svg width="66" height="66" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M64 64V57C64 53.287 62.2581 49.726 59.1575 47.1005C56.0569 44.475 51.8516 43 47.4667 43H18.5333C14.1484 43 9.9431 44.475 6.8425 47.1005C3.7419 49.726 2 53.287 2 57V64" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M33 32C41.2843 32 48 25.2843 48 17C48 8.71573 41.2843 2 33 2C24.7157 2 18 8.71573 18 17C18 25.2843 24.7157 32 33 32Z" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
 
                     <svg id="hm-arrow" width="201" height="46" viewBox="0 0 201 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <line x1="0.000244141" y1="23.3" x2="196.3" y2="23.3" stroke="white" stroke-width="1.5"/>
