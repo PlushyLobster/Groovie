@@ -17,11 +17,16 @@ Route::get('/', function () {
     return view('homePage');
 })->name('home');
 
-Route::get('/festival/mesFestivals', [FestivalController::class, 'mesFestivals'])->name('festival.mesFestivals');
+
 Route::get('/trajet', [trajetController::class, 'trajet'])->name('trajet');
 Route::get('/trajet/experience', [trajetController::class, 'experience'])->name('experience');
 Route::resource('festival', FestivalController::class)->only(['index', 'show',]);
 
+
+Route::prefix('festival')->group(function () {
+    Route::get('/mesFestivals', [FestivalController::class, 'mesFestivals'])->name('mesFestivals');
+    Route::resource('festivals', FestivalController::class)->only(['index', 'show']);
+});
 Route::controller(AuthController::class)->group(function () {
     Route::post('/register', 'register')->name('register')->middleware(IsGuest::class);
     Route::post('/login', 'login')->name('login')->middleware(IsGuest::class);
@@ -35,44 +40,62 @@ Route::get('/admin', function () {
     }
     return redirect('/admin/connexion');
 });
-Route::controller(AdminController::class)->group(function () {
-    Route::get('/admin/connexion', 'showLoginForm')->name('admin.login')->middleware(RedirectIfAdmin::class);
-    Route::post('/admin/connexion', 'login')->name('admin.login')->middleware(RedirectIfAdmin::class);
-    Route::post('/admin/deconnexion', 'logout')->name('admin.logout')->middleware(RedirectIfNotAdmin::class);
-    Route::get('/admin/dashboard', 'index')->name('admin.dashboard')->middleware(RedirectIfNotAdmin::class);
+Route::prefix('admin')->group(function () {
+    Route::controller(AdminController::class)->group(function () {
+        Route::middleware(RedirectIfAdmin::class)->group(function () {
+            Route::get('/connexion', 'showLoginForm')->name('admin.login');
+            Route::post('/connexion', 'login')->name('admin.login');
+        });
 
-//CLIENTS
-    Route::get('/admin/clients', [AdminController::class, 'clients'])->name('admin.clients')->middleware(RedirectIfNotAdmin::class);
-    Route::post('/admin/clients/activate/{id}', [AdminController::class, 'activate'])->name('admin.clients.activate')->middleware(RedirectIfNotAdmin::class);
-    Route::post('/admin/clients/deactivate/{id}', [AdminController::class, 'deactivate'])->name('admin.clients.deactivate')->middleware(RedirectIfNotAdmin::class);Route::get('/admin/clients/{id}', [AdminController::class, 'show'])->name('admin.clients.show')->middleware(RedirectIfNotAdmin::class);
-    Route::put('/admin/clients/{id}', [AdminController::class, 'update'])->name('admin.clients.update')->middleware(RedirectIfNotAdmin::class);
-    Route::get('/admin/clients/autocomplete', [AdminController::class, 'autocomplete'])->name('admin.clients.autocomplete')->middleware(RedirectIfNotAdmin::class);
-    Route::post('/admin/clients/add', [AdminController::class, 'addClient'])->name('admin.clients.add')->middleware(RedirectIfNotAdmin::class);
-    Route::get('/admin/transactions', [AdminController::class, 'transactions'])->name('admin.transactions')->middleware(RedirectIfNotAdmin::class);
+        Route::middleware(RedirectIfNotAdmin::class)->group(function () {
+            Route::post('/deconnexion', 'logout')->name('admin.logout');
+            Route::get('/dashboard', 'index')->name('admin.dashboard');
 
-//FESTIVALS
-    Route::get('/admin/festivals', [AdminController::class, 'festivals'])->name('admin.festivals')->middleware(RedirectIfNotAdmin::class);
-    Route::post('/admin/festivals/add', [AdminController::class, 'addFestival'])->name('admin.festivals.add')->middleware(RedirectIfNotAdmin::class);
-    Route::delete('/admin/festivals/{id}', [AdminController::class, 'deleteFestival'])->name('admin.festivals.delete')->middleware(RedirectIfNotAdmin::class);
-    Route::get('/admin/festivals/{id}', [AdminController::class, 'showFestival'])->name('admin.festivals.show')->middleware(RedirectIfNotAdmin::class);
-    Route::put('/admin/festivals/{id}', [AdminController::class, 'updateFestival'])->name('admin.festivals.update')->middleware(RedirectIfNotAdmin::class);
-    Route::post('/admin/festivals/importJson', [AdminController::class, 'importJson'])->name('admin.festivals.importJson');
-    //PROMOTIONS
-    Route::get('/admin/promotions', [AdminController::class, 'promotions'])->name('admin.promotions')->middleware(RedirectIfNotAdmin::class);
-    Route::get('/admin/promotions', [AdminController::class, 'getOffers'])->name('admin.promotions')->middleware(RedirectIfNotAdmin::class);
-    Route::post('/admin/offers/add', [AdminController::class, 'addOffer'])->name('admin.offers.add')->middleware(RedirectIfNotAdmin::class);
-    Route::get('/admin/offers/{id}', [AdminController::class, 'showOffer'])->name('admin.offers.show')->middleware(RedirectIfNotAdmin::class);
-    Route::put('/admin/offers/{id}', [AdminController::class, 'updateOffer'])->name('admin.offers.update')->middleware(RedirectIfNotAdmin::class);
-    Route::delete('/admin/offers/{id}', [AdminController::class, 'deleteOffer'])->name('admin.offers.delete')->middleware(RedirectIfNotAdmin::class);
+            // CLIENTS
+            Route::prefix('clients')->group(function () {
+                Route::get('/', 'clients')->name('admin.clients');
+                Route::post('/activate/{id}', 'activate')->name('admin.clients.activate');
+                Route::post('/deactivate/{id}', 'deactivate')->name('admin.clients.deactivate');
+                Route::get('/{id}', 'show')->name('admin.clients.show');
+                Route::put('/{id}', 'update')->name('admin.clients.update');
+                Route::get('/autocomplete', 'autocomplete')->name('admin.clients.autocomplete');
+                Route::post('/add', 'addClient')->name('admin.clients.add');
+            });
 
-//TRANSACTIONS
-    Route::get('/admin/transactions', [AdminController::class, 'transactions'])->name('admin.transactions')->middleware(RedirectIfNotAdmin::class);
-    //NOTIFICATIONS
-    Route::get('/admin/notifications', [AdminController::class, 'notifications'])->name('admin.notifications')->middleware(RedirectIfNotAdmin::class);
+            // FESTIVALS
+            Route::prefix('festivals')->group(function () {
+                Route::get('/', 'festivals')->name('admin.festivals');
+                Route::post('/add', 'addFestival')->name('admin.festivals.add');
+                Route::delete('/{id}', 'deleteFestival')->name('admin.festivals.delete');
+                Route::get('/{id}', 'showFestival')->name('admin.festivals.show');
+                Route::put('/{id}', 'updateFestival')->name('admin.festivals.update');
+                Route::post('/importJson', 'importJson')->name('admin.festivals.importJson');
+            });
 
-//ACTUALITES
-    Route::get('/admin/actualites', [AdminController::class, 'actualites'])->name('admin.actualites')->middleware(RedirectIfNotAdmin::class);});
+            // PROMOTIONS
+            Route::prefix('promotions')->group(function () {
+                Route::get('/', 'promotions')->name('admin.promotions');
+                Route::get('/', 'getOffers')->name('admin.promotions');
+                Route::post('/offers/add', 'addOffer')->name('admin.offers.add');
+                Route::get('/offers/{id}', 'showOffer')->name('admin.offers.show');
+                Route::put('/offers/{id}', 'updateOffer')->name('admin.offers.update');
+                Route::delete('/offers/{id}', 'deleteOffer')->name('admin.offers.delete');
+            });
+
+            // TRANSACTIONS
+            Route::get('/transactions', 'transactions')->name('admin.transactions');
+
+            // NOTIFICATIONS
+            Route::get('/notifications', 'notifications')->name('admin.notifications');
+
+            // ACTUALITES
+            Route::get('/actualites', 'actualites')->name('admin.actualites');
+        });
+    });
+});
 //PASSWORD RESET
-    Route::post('/password/email', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
-    Route::post('/password/verify-code', [AuthController::class, 'verifyResetCode'])->name('password.verifyCode');
-    Route::post('/password/reset', [AuthController::class, 'resetPassword'])->name('password.reset');
+Route::prefix('password')->group(function () {
+    Route::post('/email', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
+    Route::post('/verify-code', [AuthController::class, 'verifyResetCode'])->name('password.verifyCode');
+    Route::post('/reset', [AuthController::class, 'resetPassword'])->name('password.reset');
+});
