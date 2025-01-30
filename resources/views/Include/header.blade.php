@@ -148,9 +148,8 @@
                 <div id="profil-div">
                     <form action="{{ route('profil.profil') }}" method="GET" class="redirectBtn" id="redirect-profil">
                         @csrf
-                        <button type="submit">Profil</button>
+                        <button type="submit">{{ $initialsHead }}</button>
                     </form>
-
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button class="logs-btn" id="logOut-btn">Se déconnecter</button>

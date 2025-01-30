@@ -15,7 +15,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
-@include('include.header')
+{{--// Include du header en mode components pour pouvoir accéder au initials dans bulle du profil --}}
+<x-header />
 
 @yield('content')
 
