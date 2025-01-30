@@ -1503,7 +1503,8 @@ main {
     background-color: var(--MFEST_Bkg);
 }
 
-.profilRedirect-card form, .profilRedirect-card button {
+.profilRedirect-card form,
+.profilRedirect-card button {
     width: 100%;
     height: 100%;
     display: flex;
@@ -1534,7 +1535,9 @@ main {
     border: 5px solid #000;
 }
 
-#hl-arrow, #hm-arrow, #hr-arrow {
+#hl-arrow,
+#hm-arrow,
+#hr-arrow {
     display: none;
 }
 
@@ -1551,7 +1554,7 @@ main {
     justify-content: center;
 }
 
-.profilRedirect-bloc3{
+.profilRedirect-bloc3 {
     width: 100%;
     height: 20%;
     display: flex;
@@ -1581,11 +1584,13 @@ main {
     padding: 21px;
     position: relative;
 }
+
 .profil-card hr {
     border: 1px solid #1E1E1E;
     width: 70%;
     margin: 10px auto;
 }
+
 .profil-title {
     width: 100%;
     height: 2rem;
@@ -1594,12 +1599,14 @@ main {
     display: flex;
     flex-direction: row;
 }
+
 .profil-title h2 {
     font-size: 1.625rem;
     font-weight: 500;
     color: var(--midnightBlue);
 
 }
+
 .profil-info {
     display: flex;
     flex-direction: column;
@@ -1620,6 +1627,7 @@ main {
 .info-item span {
     color: var(--midnightBlue);
 }
+
 .edit-btn {
     border: 1px solid var(--contraste_labeur);
     background-color: var(--whiteBkg);
@@ -1633,6 +1641,7 @@ main {
     background-color: var(--midnightBlue);
     color: var(--whiteBkg);
 }
+
 .profil-avatar {
     position: relative;
     display: flex;
@@ -1642,8 +1651,8 @@ main {
 }
 
 .avatar-img {
-    width: 150px; /* Augmenter la taille de l'avatar */
-    height: 150px; /* Augmenter la taille de l'avatar */
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
     background-color: #9747FF;
@@ -1652,25 +1661,30 @@ main {
 .avatar-img.default-avatar {
     display: none;
 }
+
 #user-fullname {
     font-weight: bold;
 }
-.avatar-svg{
+
+.avatar-svg {
     position: absolute;
     background-color: var(--whiteBkg);
     border-radius: 50%;
 
     right: 20rem;
 }
+
 .profil-cloture {
     display: flex;
     justify-content: center;
 }
+
 .details-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem; /* Espace entre le texte et le SVG */
+    gap: 0.5rem;
 }
+
 .cloture-btn {
     width: 400px;
     padding: 10px 20px;
@@ -1686,6 +1700,7 @@ main {
 .cloture-btn:hover {
     background-color: #8639E6;
 }
+
 .profil-svg {
     position: absolute;
     top: 10px;
@@ -1767,8 +1782,7 @@ main {
 
 #trajet-cardOffre {
     background-color: var(--FLTR-TRJ_BkgMenuDropdown);
-    /* height: 271px; */
-    height: 164px;
+    height: 271px;
     bottom: 0;
     z-index: 2;
     overflow: hidden;
@@ -1781,11 +1795,9 @@ main {
 
 #trajet-cardMesTrajets {
     background-color: var(--MTRJ_Section);
-    /* height: 164px; */
-    height: 773px;
+    height: 164px;
     bottom: 0;
-    /* z-index: 3; */
-    z-index: 1;
+    z-index: 3;
     overflow: hidden;
     overflow-y: auto;
 }
@@ -1856,7 +1868,7 @@ main {
 
 
 .trajet-cardContent {
-    /* display: none; */
+    display: none;
 }
 
 #voitureSVG-ON,
@@ -1904,6 +1916,249 @@ main {
         display: none;
     }
 
+    #vanSVG-ON {
+        display: block;
+    }
+}
+
+#bus-span:hover,
+#bus-span:active {
+    background-color: var(--whiteBkg);
+    border: 1px solid #000;
+
+    #busSVG-OFF {
+        display: none;
+    }
+
+    #busSVG-ON {
+        display: block;
+    }
+}
+
+#train-span:hover,
+#train-span:active {
+    background-color: var(--whiteBkg);
+    border: 1px solid #000;
+
+    #trainSVG-OFF {
+        display: none;
+    }
+
+    #trainSVG-ON {
+        display: block;
+    }
+}
+
+.trajet-cardContent {
+    width: 100%;
+    height: 31.25rem;
+}
+
+#trajetOffre-row1 {
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+#trajetOffre-row1 button {
+    height: 28px;
+    border-radius: 6px;
+    padding: 0px 12px;
+    font-size: 15;
+    font-weight: 400;
+}
+
+#trajetOffre-row2 {
+    width: 100%;
+    height: 23.000rem;
+    background-color: #8df8b4;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    scrollbar-color: #8df8b4 #8df8b4;
+    scrollbar-width: thin;
+    padding: 1.5rem;
+    gap: 32px;
+}
+
+.trajetOffre-card {
+    height: 12rem;
+    width: 17.75rem;
+    border-radius: 25px;
+    padding: 24px;
+    background-color: #E0FFEB;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.trajetOffre-card p {
+    color: var(--contraste_labeur);
+}
+
+.trajetOffre-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.trajetOffre-top div {
+    display: flex;
+}
+
+.trajetOffre-top span {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.trajetOffre-topSpan1 {
+    z-index: 3;
+    font-size: 24px;
+    background-color: #33CD6B;
+}
+
+.trajetOffre-topSpan2 {
+    z-index: 2;
+    position: absolute;
+    margin-left: 28px;
+}
+
+.trajetOffre-topSpan2 img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+}
+
+.trajetOffre-bot {
+    display: flex;
+    justify-content: space-between;
+}
+
+.trajetOffre-heure {
+    font-size: 23px;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.trajetOffre-nbGroovie {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.trajetOffre-botRight {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+#trajetOffre-row3 {
+    width: 100%;
+    height: 5rem;
+}
+
+.filtreOffre-selected {
+    background-color: var(--FLTR-TRJ_FiltreSelect);
+}
+
+.filtreOffre-notSelected {
+    color: var(--FLTR-TRJ_FiltreNonSelect);
+    border: 1px solid var(--FLTR-TRJ_FiltreNonSelect);
+}
+
+#filtreDropdown {
+    position: absolute;
+    width: 40.000rem;
+    height: 14.5rem;
+    background-color: var(--FLTR-TRJ_BkgMenuDropdown);
+    /* display: flex; */
+    flex-direction: column;
+    align-items: center;
+    z-index: 20;
+    left: 39px;
+    top: 15.1rem;
+    padding: 1.313rem;
+    box-shadow: 0rem 0rem 1.5rem rgba(0, 0, 0, 25%);
+}
+
+#filtreDropdown-box {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.filtreDropdown-container {
+    width: 46%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.filtreDropdown-toggleContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.filtreDropdown-toggleContainer p {
+    font-size: 17px;
+    color: var(--contraste_labeur);
+}
+
+#filtreDropdown-btnContainer {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+}
+
+#filtreDropdown-btnContainer button {
+    width: 14rem;
+    height: 2.25rem;
+    border-radius: 50px;
+    font-size: 16px;
+}
+
+#filtreDropdown-validBtn {
+    background-color: var(--FLTR-TRJ_FiltreSelect);
+    color: var(--whiteBkg);
+}
+
+#filtreDropdown-cancelBtn {
+    border: 1px solid var(--FLTR-TRJ_FiltreNonSelect);
+    color: var(--FLTR-TRJ_FiltreNonSelect);
+}
+
+.filtreDropdown-toggleContainer div {
+    width: 56px;
+    display: flex;
+    cursor: pointer;
+}
+
+.filtreDropdown-toggle {
+    width: 56px;
+    height: 27px;
+    border-radius: 50px;
+    background-color: var(--FLTR-TRJ_ToggleOFF);
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.filtreDropdown-toggleBtn {
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background-color: var(--FLTR-TRJ_BtnToggleOFF);
+    position: absolute;
+    left: 6px;
+    transition: 0.5s;
+}
     #vanSVG-ON {
         display: block;
     }
