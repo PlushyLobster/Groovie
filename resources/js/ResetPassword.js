@@ -144,8 +144,4 @@ document.addEventListener('DOMContentLoaded', function () {
         emailStep.classList.remove('hidden');
     });
 
-    backToCodeStep.addEventListener('click', function () {
-        passwordStep.classList.add('hidden');
-        codeStep.classList.remove('hidden');
-    });
 });
