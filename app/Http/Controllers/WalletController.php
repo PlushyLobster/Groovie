@@ -12,7 +12,7 @@ class WalletController extends Controller
 {
     public function profil(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        $user = auth()->user();
+        $user = Auth::user();
         $groover = Groover::where('Id_user', $user->Id_user)->first();
         $initials = strtoupper(substr($groover->firstname, 0, 1) . substr($groover->name, 0, 1));
         return view('profil.profil', compact('user', 'groover', 'initials'));
@@ -42,5 +42,9 @@ class WalletController extends Controller
         }
 
         return redirect()->route('profil.profil')->with('success', 'Information mise à jour avec succès');
+    }
+
+    public function useGroovies() {
+        return redirect()->route('wallet.useGroovies');
     }
 }
