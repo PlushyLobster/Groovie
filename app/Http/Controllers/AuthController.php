@@ -130,4 +130,5 @@ class AuthController extends Controller
         ];
         return view('profil.profil-redirect', $data);
     }
+
 }

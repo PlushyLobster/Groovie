@@ -68,6 +68,10 @@ body {
     box-shadow: 0px 0px 24px rgba(0, 0, 0, 25%);
 }
 
+#redirect-profil {
+    background: #9747FF;
+}
+
 #redirectTrajet-hover {
     display: none;
 }
@@ -76,7 +80,7 @@ body {
     display: none;
 }
 
-#redirectGroovie-hover {
+#redirectWallet-hover {
     display: none;
 }
 
@@ -106,19 +110,18 @@ body {
     }
 }
 
-#redirect-groovie:hover,
-#redirect-groovie:active {
+#redirect-wallet:hover,
+#redirect-wallet:active {
     background-color: var(--NAV_BtnGroovie);
 
-    #redirectGroovie-normal {
+    #redirectWallet-normal {
         display: none;
     }
 
-    #redirectGroovie-hover {
+    #redirectWallet-hover {
         display: block;
     }
 }
-
 
 .logs-btn {
     width: 10.375rem;
@@ -1018,9 +1021,8 @@ main {
 
 #detailFest-artistes {
     width: 100%;
-    height: 4rem;
+    height: 3.5rem;
     display: flex;
-    text-align: center;
     gap: 1.5rem;
     margin-top: 1.5rem;
 }
@@ -1029,6 +1031,8 @@ main {
     font-size: 20px;
     color: var(--contraste_labeur);
 }
+
+
 
 #detailFest-bloc2 {
     width: 22.144rem;
@@ -1568,6 +1572,157 @@ main {
     height: 40%;
 }
 
+/***      PAGE PROFIL      ***/
+#profil-main {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(21, 1fr);
+    grid-template-rows: 1fr;
+    background-color: var(--whiteBkg);
+}
+
+.profil-card {
+    grid-column: 2 /15;
+    height: 100%;
+    background-color: var(--PRFL_Bkg);
+    border-radius: 39px;
+    padding: 21px;
+    position: relative;
+}
+
+.profil-card hr {
+    border: 1px solid #1E1E1E;
+    width: 70%;
+    margin: 10px auto;
+}
+
+.profil-title {
+    width: 100%;
+    height: 2rem;
+    font-size: 1.625rem;
+    font-weight: 500;
+    display: flex;
+    flex-direction: row;
+}
+
+.profil-title h2 {
+    font-size: 1.625rem;
+    font-weight: 500;
+    color: var(--midnightBlue);
+
+}
+
+.profil-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.info-item {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.info-item label {
+    font-weight: bold;
+    color: var(--contraste_labeur);
+}
+
+.info-item span {
+    color: var(--midnightBlue);
+}
+
+.edit-btn {
+    border: 1px solid var(--contraste_labeur);
+    background-color: var(--whiteBkg);
+    color: var(--midnightBlue);
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background-color: var(--midnightBlue);
+    color: var(--whiteBkg);
+}
+
+.profil-avatar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    margin-left: 3rem;
+}
+
+.avatar-img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #9747FF;
+    color: #F7F7F7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.875rem;
+}
+
+#user-fullname {
+    font-weight: bold;
+}
+
+.avatar-svg {
+    position: absolute;
+    background-color: var(--whiteBkg);
+    border-radius: 50%;
+
+    right: 20rem;
+}
+
+.profil-cloture {
+    display: flex;
+    justify-content: center;
+}
+
+.details-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cloture-btn {
+    width: 400px;
+    padding: 10px 20px;
+    background-color: var(--violetRehausse);
+    color: var(--whiteBkg);
+    border: none;
+    border-radius: 26px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.cloture-btn:hover {
+    background-color: #8639E6;
+}
+
+.profil-svg {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #1E1E1E;
+}
+
+.profil-pref {
+    grid-column: 16 / 22;
+    height: 100%;
+    background-color: var(--PRFL_Bkg);
+    border-radius: 39px;
+    padding: 21px;
+    position: relative;
+}
 
 
 
@@ -1824,7 +1979,7 @@ main {
     height: 28px;
     border-radius: 6px;
     padding: 0px 12px;
-    font-size: 15;
+    font-size: 15px;
     font-weight: 400;
 }
 

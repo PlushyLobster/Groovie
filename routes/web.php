@@ -2,12 +2,7 @@
 
 use App\Http\Middleware\RedirectIfAdmin;
 use App\Http\Middleware\RedirectIfNotAdmin;
-use App\Http\Controllers\{
-    AuthController,
-    AdminController,
-    FestivalController,
-    trajetController,
-};
+use App\Http\Controllers\{AuthController, AdminController, FestivalController, trajetController, WalletController};
 use App\Http\Middleware\IsAuth;
 use App\Http\Middleware\IsGuest;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +22,7 @@ Route::prefix('festival')->group(function () {
     Route::get('/mesFestivals', [FestivalController::class, 'mesFestivals'])->name('mesFestivals');
     Route::resource('festivals', FestivalController::class)->only(['index', 'show']);
 });
+
 Route::controller(AuthController::class)->group(function () {
     Route::post('/register', 'register')->name('register')->middleware(IsGuest::class);
     Route::post('/login', 'login')->name('login')->middleware(IsGuest::class);
@@ -99,3 +95,18 @@ Route::prefix('password')->group(function () {
     Route::post('/verify-code', [AuthController::class, 'verifyResetCode'])->name('password.verifyCode');
     Route::post('/reset', [AuthController::class, 'resetPassword'])->name('password.reset');
 });
+
+
+// WALLETCONTROLLER - PAGE PROFIL
+Route::prefix('profil')->group(function () {
+    Route::middleware(IsAuth::class)->group(function () {
+        Route::get('/', [WalletController::class, 'profil'])->name('profil.profil');
+        Route::post('/AddAvatar', [WalletController::class, 'addAvatar'])->name('profil.addAvatar');
+        Route::get('/redirect', [WalletController::class, 'redirectToProfil'])->name('profil.redirect');
+        Route::post('/cloturer', [WalletController::class, 'cloturer'])->name('profil.cloturer');
+        Route::post('/update', [WalletController::class, 'update'])->name('profil.update');
+    });
+});
+
+    //WALLETCONTROLLER - USE GROOVIES
+Route::get('/wallet/useGroovies', [WalletController::class, 'useGroovies'])->name('wallet.useGroovies');

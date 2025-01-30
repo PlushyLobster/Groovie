@@ -2,8 +2,8 @@
 
 @section('content')
 <main id="profilRedirect-main">
-    <div class="profilRedirect-card" id="profilRedirect-cardLeft" style="background: urlstorage/images/h-img-fest.jpg)">
-        <form action="{{ route('mesFestivals')}}" method="GET">
+    <div class="profilRedirect-card" id="profilRedirect-cardLeft">
+        <form action="{{ route('wallet.useGroovies') }}" method="GET">
             <button type="submit">
                 <div class="profilRedirect-bloc1"></div>
 
@@ -33,7 +33,7 @@
         </form>
     </div>
     <div class="profilRedirect-card" id="profilRedirect-cardMiddle">
-        <form action="{{ route('mesFestivals') }}" method="GET">
+        <form action="{{ route('profil.profil') }}" method="GET">
             <button type="submit">
                 <div class="profilRedirect-bloc1"></div>
 
