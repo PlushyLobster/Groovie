@@ -154,7 +154,7 @@
                         </form>
                     @else
                         <div class="avatar-img default-avatar" style="background-color: #9747FF; color: #F7F7F7; display: flex; justify-content: center; align-items: center; font-size: 2rem;">
-                            {{ $initials }}
+                            {{ $initialsHead }}
                         </div>
                     @endif
                     <form action="{{ route('logout') }}" method="POST">
