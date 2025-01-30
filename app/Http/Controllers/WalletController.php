@@ -15,8 +15,7 @@ class WalletController extends Controller
     {
         $user = Auth::user();
         $groover = Groover::where('Id_user', $user->Id_user)->first();
-        $initials = strtoupper(substr($groover->firstname, 0, 1) . substr($groover->name, 0, 1));
-        return view('profil.profil', compact('user', 'groover', 'initials'));
+        return view('profil.profil', compact('user', 'groover'));
     }
 
     public function redirectToProfil(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
@@ -70,7 +69,8 @@ class WalletController extends Controller
         return redirect()->back();
     }
 
-    public function useGroovies() {
+    public function useGroovies(): \Illuminate\Http\RedirectResponse
+    {
         return redirect()->route('wallet.useGroovies');
     }
 }

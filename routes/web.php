@@ -96,12 +96,14 @@ Route::prefix('password')->group(function () {
 
 // WALLETCONTROLLER - PAGE PROFIL
 Route::prefix('profil')->group(function () {
-    Route::get('/', [WalletController::class, 'profil'])->name('profil.profil');
-    Route::post('/AddAvatar', [WalletController::class, 'addAvatar'])->name('profil.addAvatar');
-    Route::get('/redirect', [WalletController::class, 'redirectToProfil'])->name('profil.redirect');
-    Route::post('/cloturer', [WalletController::class, 'cloturer'])->name('profil.cloturer');
-    Route::post('/update', [WalletController::class, 'update'])->name('profil.update');
+    Route::middleware(IsAuth::class)->group(function () {
+        Route::get('/', [WalletController::class, 'profil'])->name('profil.profil');
+        Route::post('/AddAvatar', [WalletController::class, 'addAvatar'])->name('profil.addAvatar');
+        Route::get('/redirect', [WalletController::class, 'redirectToProfil'])->name('profil.redirect');
+        Route::post('/cloturer', [WalletController::class, 'cloturer'])->name('profil.cloturer');
+        Route::post('/update', [WalletController::class, 'update'])->name('profil.update');
+    });
 });
 
     //WALLETCONTROLLER - USE GROOVIES
-Route::post('/wallet/useGroovies', [WalletController::class, 'useGroovies'])->name('wallet.useGroovies');
+Route::get('/wallet/useGroovies', [WalletController::class, 'useGroovies'])->name('wallet.useGroovies');

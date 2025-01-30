@@ -11,7 +11,7 @@ if (window.innerWidth > 500) {
     if (cardLeft.style.background.match("var(--GRV_Profil)")) {
       cardLeft.style.background = "var(--GRV_Profil)";
     } else {
-      cardLeft.style.background = "url(storage/images/h-img-groovie.jpg)";
+      cardLeft.style.background = "url(../storage/images/h-img-groovie.jpg)";
       cardLeft.style.backgroundPosition = "center";
       cardLeft.style.backgroundSize = "cover";
       cardLeft.style.backgroundRepeat = "no-repeat";
@@ -44,7 +44,7 @@ cardMiddle.addEventListener("mouseover", function imgHover() {
     if (cardMiddle.style.background.match("var(--PRFL_Bkg)")) {
       cardMiddle.style.background = "var(--PRFL_Bkg)";
     } else {
-      cardMiddle.style.background = "url(storage/images/h-img-profil.jpg)";
+      cardMiddle.style.background = "url(../storage/images/h-img-profil.jpg)";
       cardMiddle.style.backgroundPosition = "center";
       cardMiddle.style.backgroundSize = "cover";
       cardMiddle.style.backgroundRepeat = "no-repeat";
@@ -78,7 +78,7 @@ cardMiddle.addEventListener("mouseover", function imgHover() {
     if (cardRight.style.background.match("var(--MFEST_Bkg)")) {
       cardRight.style.background = "var(--MFEST_Bkg)";
     } else {
-      cardRight.style.background = "url(storage/images/h-img-fest.jpg)";
+      cardRight.style.background = "url(../storage/images/h-img-fest.jpg)";
       cardRight.style.backgroundPosition = "center";
       cardRight.style.backgroundSize = "cover";
       cardRight.style.backgroundRepeat = "no-repeat";

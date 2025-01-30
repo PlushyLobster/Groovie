@@ -19,7 +19,7 @@
                     <img src="{{ asset('storage/avatars/avatarUser_' . $user->Id_user . '.png') }}" alt="" class="avatar-img" id="avatar-img">
                 @else
                     <div class="avatar-img default-avatar" style="background-color: #9747FF; color: #F7F7F7; display: flex; justify-content: center; align-items: center; font-size: 2rem;">
-                        {{ $initials }}
+                        {{ $initialsHead }}
                     </div>
                 @endif
                     <form id="avatar-form" action="{{ route('profil.addAvatar') }}" method="POST" enctype="multipart/form-data">
@@ -91,7 +91,7 @@
             <form id="editForm" method="POST" action="{{ route('profil.update') }}">
                 @csrf
                 <input type="hidden" name="field" id="modal-field">
-                <input type="text" name="new_value" id="modal-new-value" class="border p-2 w-full mb-4">
+                <input type="text" name="new_value"  class="border p-2 w-full mb-4 input-city">
                 <div class="flex justify-end">
                     <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded mr-2" onclick="closeModal()">Annuler</button>
                     <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded">Enregistrer</button>
@@ -130,7 +130,9 @@
             </div>
         </div>
     </div>
-
+@endsection
+@vite('resources/js/autoCompletion.js')
+@section('scripts')
     <script>
         document.getElementById('clotureButton').addEventListener('click', function() {
             document.getElementById('confirmationModal').classList.remove('hidden');
@@ -162,6 +164,14 @@
                 document.getElementById('modal-field').value = field;
                 document.getElementById('modal-field-name').innerText = field === 'email' ? 'l\'adresse mail' : 'la ville';
                 document.getElementById('editModal').classList.remove('hidden');
+                if (field === 'city') {
+                    document.getElementsByClassName('input-city')[0].id = 'city';
+                    document.getElementsByClassName('input-city')[0].value = '{{$user->groovers->city}}';
+                } else {
+                    document.getElementsByClassName('input-city')[0].id = '';
+                    document.getElementsByClassName('input-city')[0].value = '{{ $user->email }}';
+                }
+
             }
         }
 
@@ -210,3 +220,4 @@
         }
     </script>
 @endsection
+
