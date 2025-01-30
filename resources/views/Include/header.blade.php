@@ -219,7 +219,7 @@
                     @enderror
                 </div>
                 <div class="signin-div">
-                    <input type="text" id="signin-city" name="signin-city" placeholder="Ville" required>
+                    <input type="text" id="city" name="signin-city" placeholder="Ville" required>
                     @error('signin-city')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -358,3 +358,6 @@
     </nav>
 </header>
 
+@section('scripts')
+@vite('resources/js/autoCompletion.js')
+@endsection
