@@ -122,8 +122,7 @@
                     </button>
                 </form>
 
-                <form action="{{route('profil', ['profil' => Auth::user()->Id_user])}}" method="GET" class="redirectBtn" id="redirect-groovie">
-                    @method('GET')
+                <form action="{{ route('profil.redirect') }}" method="GET" class="redirectBtn" id="redirect-groovie">
                     @csrf
                     <button type="submit">
                         <svg width="25" height="22" viewBox="0 0 25 22" fill="none" xmlns="http://www.w3.org/2000/svg" id="redirectGroovie-normal">
@@ -147,10 +146,9 @@
         <div id="right-nav">
             @auth()
                 <div id="profil-div">
-                    <form action="{{ route('profil.profil') }}" method="GET">
+                    <form action="{{ route('profil.profil') }}" method="GET" class="redirectBtn" id="redirect-groovie">
                         @csrf
-                        <button id="profil-btn" type="submit">
-                        </button>
+                        <button type="submit">Profil</button>
                     </form>
 
                     <form action="{{ route('logout') }}" method="POST">
