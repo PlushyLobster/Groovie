@@ -76,7 +76,7 @@ body {
     display: none;
 }
 
-#redirectGroovie-hover {
+#redirectWallet-hover {
     display: none;
 }
 
@@ -106,15 +106,15 @@ body {
     }
 }
 
-#redirect-groovie:hover,
-#redirect-groovie:active {
+#redirect-wallet:hover,
+#redirect-wallet:active {
     background-color: var(--NAV_BtnGroovie);
 
-    #redirectGroovie-normal {
+    #redirectWallet-normal {
         display: none;
     }
 
-    #redirectGroovie-hover {
+    #redirectWallet-hover {
         display: block;
     }
 }
@@ -2158,7 +2158,4 @@ main {
     position: absolute;
     left: 6px;
     transition: 0.5s;
-}
-#vanSVG-ON {
-    display: block;
 }
