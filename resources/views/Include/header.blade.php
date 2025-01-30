@@ -146,7 +146,7 @@
         <div id="right-nav">
             @auth()
                 <div id="profil-div">
-                    <form action="{{ route('profil.profil') }}" method="GET" class="redirectBtn" id="redirect-groovie">
+                    <form action="{{ route('profil.profil') }}" method="GET" class="redirectBtn" id="redirect-profil">
                         @csrf
                         <button type="submit">Profil</button>
                     </form>
