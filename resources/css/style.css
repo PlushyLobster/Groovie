@@ -119,6 +119,10 @@ body {
     }
 }
 
+#redirect-profil{
+    background-color: var(--GRV_Profil);
+    color: var(--whiteBkg);
+}
 
 .logs-btn {
     width: 10.375rem;
@@ -1577,7 +1581,7 @@ main {
 }
 
 .profil-card {
-    grid-column: 6 / 17;
+    grid-column: 2 /15;
     height: 100%;
     background-color: var(--PRFL_Bkg);
     border-radius: 39px;
@@ -1708,7 +1712,14 @@ main {
     color: #1E1E1E;
 }
 
-
+.profil-pref {
+    grid-column: 16 / 22;
+    height: 100%;
+    background-color: var(--PRFL_Bkg);
+    border-radius: 39px;
+    padding: 21px;
+    position: relative;
+}
 
 
 
