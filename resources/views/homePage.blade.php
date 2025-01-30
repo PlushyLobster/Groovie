@@ -8,8 +8,13 @@
             <h2>L'Expérience de la mobilité durable :</h2>
         </div>
 
-        <div>
-
+        <div id="concept-content">
+            <p> <b style="font-size: 34px">Groovie</b>, <br> est une application, conçue pour réduire l'impact environnemental des transports liés aux festivals. <br> 
+                Elle centralise des offres de transport durable à pris réduit, grâce à des acteurs du secteur. <br>
+                Cela permet aux festivaliers de réserver facilement des trajets tout en accumulant des crédits réutilisables 
+                auprès des partenaires. <br> En intégrant des expériences ludiques, Groovie rend le transport plus attractif 
+                et en fait une part intégrante de l'expérience du festival. <br> L'objectif est d'encourager des habitudes de mobilité 
+                durable chez les utilisateurs, en commençant par les festivals avant de s'étendre à d'autres types d'événements.</p>
         </div>
     </div>
 

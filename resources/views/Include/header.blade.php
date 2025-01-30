@@ -200,12 +200,18 @@
                 @csrf
                 <div class="nameDiv">
                     <div class="signin-div">
+                        <svg class="signinPicto signIn-namePicto" width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.4454 12.8502C14.2873 12.8078 13.2884 12.4381 13.9126 10.8799H13.9036C15.5308 9.50383 16.7742 7.28948 16.7742 5.10941C16.7742 1.75728 14.0597 0 10.9048 0C7.74799 0 5.04837 1.75646 5.04837 5.10941C5.04837 7.29846 6.28487 9.52178 7.92194 10.8946C8.56007 12.2691 7.41899 12.7792 7.18044 12.8511C3.87648 13.8321 0 15.6204 0 17.3859V18.0478C0 20.4531 5.67954 21 10.9357 21C16.1997 21 21.8077 20.4531 21.8077 18.0478V17.3859C21.8077 15.5674 17.9123 13.793 14.4454 12.8502Z" fill="#010F5C"/>
+                        </svg>
                         <input type="text" id="signin-name" name="signin-name" placeholder="Nom" required>
                         @error('signin-name')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="signin-div">
+                        <svg class="signinPicto signIn-namePicto" width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.4454 12.8502C14.2873 12.8078 13.2884 12.4381 13.9126 10.8799H13.9036C15.5308 9.50383 16.7742 7.28948 16.7742 5.10941C16.7742 1.75728 14.0597 0 10.9048 0C7.74799 0 5.04837 1.75646 5.04837 5.10941C5.04837 7.29846 6.28487 9.52178 7.92194 10.8946C8.56007 12.2691 7.41899 12.7792 7.18044 12.8511C3.87648 13.8321 0 15.6204 0 17.3859V18.0478C0 20.4531 5.67954 21 10.9357 21C16.1997 21 21.8077 20.4531 21.8077 18.0478V17.3859C21.8077 15.5674 17.9123 13.793 14.4454 12.8502Z" fill="#010F5C"/>
+                        </svg>
                         <input type="text" id="signin-firstname" name="signin-firstname" placeholder="Prénom" required>
                         @error('signin-firstname')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -213,24 +219,36 @@
                     </div>
                 </div>
                 <div class="signin-div">
+                    <svg class="signinPicto" id="signIn-emailPicto" width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 2C20 0.9 19.1 0 18 0H2C0.9 0 0 0.9 0 2V14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V2ZM18 2L10 7L2 2H18ZM18 14H2V4L10 9L18 4V14Z" fill="#010F5C"/>
+                    </svg>                        
                     <input type="email" id="signin-email" name="signin-email" placeholder="Adresse email" required>
                     @error('signin-email')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="signin-div">
+                    <svg class="signinPicto" id="signIn-cityPicto" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 12.3158H14V10.4211H16M16 16.1053H14V14.2105H16M10 4.73684H8V2.84211H10M10 8.52632H8V6.63158H10M10 12.3158H8V10.4211H10M10 16.1053H8V14.2105H10M4 8.52632H2V6.63158H4M4 12.3158H2V10.4211H4M4 16.1053H2V14.2105H4M12 8.52632V2.84211L9 0L6 2.84211V4.73684H0V18H18V8.52632H12Z" fill="#010F5C"/>
+                    </svg>                        
                     <input type="text" id="city" name="signin-city" placeholder="Ville" required>
                     @error('signin-city')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="signin-div">
+                    <svg class="signinPicto signIn-mdpPicto" width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 16C7.46957 16 6.96086 15.7893 6.58579 15.4142C6.21071 15.0391 6 14.5304 6 14C6 12.89 6.89 12 8 12C8.53043 12 9.03914 12.2107 9.41421 12.5858C9.78929 12.9609 10 13.4696 10 14C10 14.5304 9.78929 15.0391 9.41421 15.4142C9.03914 15.7893 8.53043 16 8 16ZM14 19V9H2V19H14ZM14 7C14.5304 7 15.0391 7.21071 15.4142 7.58579C15.7893 7.96086 16 8.46957 16 9V19C16 19.5304 15.7893 20.0391 15.4142 20.4142C15.0391 20.7893 14.5304 21 14 21H2C1.46957 21 0.960859 20.7893 0.585786 20.4142C0.210714 20.0391 0 19.5304 0 19V9C0 7.89 0.89 7 2 7H3V5C3 3.67392 3.52678 2.40215 4.46447 1.46447C5.40215 0.526784 6.67392 0 8 0C8.65661 0 9.30679 0.129329 9.91342 0.380602C10.52 0.631876 11.0712 1.00017 11.5355 1.46447C11.9998 1.92876 12.3681 2.47995 12.6194 3.08658C12.8707 3.69321 13 4.34339 13 5V7H14ZM8 2C7.20435 2 6.44129 2.31607 5.87868 2.87868C5.31607 3.44129 5 4.20435 5 5V7H11V5C11 4.20435 10.6839 3.44129 10.1213 2.87868C9.55871 2.31607 8.79565 2 8 2Z" fill="#010F5C"/>
+                    </svg>
                     <input type="password" id="signin-password" name="signin-password" placeholder="Mot de passe" required>
                     @error('signin-password')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="signin-div">
+                    <svg class="signinPicto signIn-mdpPicto" width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 16C7.46957 16 6.96086 15.7893 6.58579 15.4142C6.21071 15.0391 6 14.5304 6 14C6 12.89 6.89 12 8 12C8.53043 12 9.03914 12.2107 9.41421 12.5858C9.78929 12.9609 10 13.4696 10 14C10 14.5304 9.78929 15.0391 9.41421 15.4142C9.03914 15.7893 8.53043 16 8 16ZM14 19V9H2V19H14ZM14 7C14.5304 7 15.0391 7.21071 15.4142 7.58579C15.7893 7.96086 16 8.46957 16 9V19C16 19.5304 15.7893 20.0391 15.4142 20.4142C15.0391 20.7893 14.5304 21 14 21H2C1.46957 21 0.960859 20.7893 0.585786 20.4142C0.210714 20.0391 0 19.5304 0 19V9C0 7.89 0.89 7 2 7H3V5C3 3.67392 3.52678 2.40215 4.46447 1.46447C5.40215 0.526784 6.67392 0 8 0C8.65661 0 9.30679 0.129329 9.91342 0.380602C10.52 0.631876 11.0712 1.00017 11.5355 1.46447C11.9998 1.92876 12.3681 2.47995 12.6194 3.08658C12.8707 3.69321 13 4.34339 13 5V7H14ZM8 2C7.20435 2 6.44129 2.31607 5.87868 2.87868C5.31607 3.44129 5 4.20435 5 5V7H11V5C11 4.20435 10.6839 3.44129 10.1213 2.87868C9.55871 2.31607 8.79565 2 8 2Z" fill="#010F5C"/>
+                    </svg>
                     <input type="password" id="signin-verifPassword" name="signin-verifPassword" placeholder="Vérification mot de passe" required>
                     @error('signin-password')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -280,10 +298,16 @@
                     </div>
                 @enderror
                 <div class="login-div">
+                    <svg class="loginPicto" id="logIn-emailPicto" width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 2C20 0.9 19.1 0 18 0H2C0.9 0 0 0.9 0 2V14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V2ZM18 2L10 7L2 2H18ZM18 14H2V4L10 9L18 4V14Z" fill="#010F5C"/>
+                    </svg>
                     <input type="text" name="login-email" id="login-email" placeholder="Email">
                 </div>
 
                 <div class="login-div">
+                    <svg class="loginPicto" id="logIn-mdpPicto" width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 16C7.46957 16 6.96086 15.7893 6.58579 15.4142C6.21071 15.0391 6 14.5304 6 14C6 12.89 6.89 12 8 12C8.53043 12 9.03914 12.2107 9.41421 12.5858C9.78929 12.9609 10 13.4696 10 14C10 14.5304 9.78929 15.0391 9.41421 15.4142C9.03914 15.7893 8.53043 16 8 16ZM14 19V9H2V19H14ZM14 7C14.5304 7 15.0391 7.21071 15.4142 7.58579C15.7893 7.96086 16 8.46957 16 9V19C16 19.5304 15.7893 20.0391 15.4142 20.4142C15.0391 20.7893 14.5304 21 14 21H2C1.46957 21 0.960859 20.7893 0.585786 20.4142C0.210714 20.0391 0 19.5304 0 19V9C0 7.89 0.89 7 2 7H3V5C3 3.67392 3.52678 2.40215 4.46447 1.46447C5.40215 0.526784 6.67392 0 8 0C8.65661 0 9.30679 0.129329 9.91342 0.380602C10.52 0.631876 11.0712 1.00017 11.5355 1.46447C11.9998 1.92876 12.3681 2.47995 12.6194 3.08658C12.8707 3.69321 13 4.34339 13 5V7H14ZM8 2C7.20435 2 6.44129 2.31607 5.87868 2.87868C5.31607 3.44129 5 4.20435 5 5V7H11V5C11 4.20435 10.6839 3.44129 10.1213 2.87868C9.55871 2.31607 8.79565 2 8 2Z" fill="#010F5C"/>
+                    </svg>                        
                     <input type="password" name="login-password" id="login-password" placeholder="Mot de passe">
                 </div>
                 <div class="signin-forgot">

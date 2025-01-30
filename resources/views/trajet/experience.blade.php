@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div id="experience-trajetCol2">
-                    <img src="storage/images/map.png" alt="map">
+                    <img src="../storage/images/map.png" alt="map">
                 </div>
 
                 <div id="experience-trajetCol3">

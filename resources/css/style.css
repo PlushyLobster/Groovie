@@ -237,6 +237,7 @@ body {
 
 .signin-div input::placeholder {
     color: var(--midnightBlue);
+    padding-left: 2rem;
 }
 
 .signinBtn {
@@ -559,6 +560,41 @@ body {
 
 .login-div input::placeholder {
     color: var(--midnightBlue);
+    padding-left: 2rem;
+}
+
+.loginPicto {
+    position: absolute;
+    margin-left: 1.5rem;
+}
+
+#logIn-emailPicto {
+    margin-top: 1.3rem;
+}
+
+#logIn-mdpPicto {
+    margin-top: 1.1rem;
+}
+
+.signinPicto {
+    position: absolute;
+    margin-left: 1.5rem; 
+}
+
+.signIn-namePicto {
+    margin-top: 1.15rem;
+}
+
+#signIn-emailPicto {
+    margin-top: 1.3rem;
+}
+
+#signIn-cityPicto {
+    margin-top: 1.1rem;
+}
+
+.signIn-mdpPicto {
+    margin-top: 1.1rem;
 }
 
 .signin-forgot {
@@ -681,6 +717,18 @@ main {
     font-size: 1.8rem;
     color: var(--magenta);
     font-weight: 500;
+}
+
+#concept-content {
+    width: 100%;
+    height: 43.75rem;
+    padding-left: 21px;
+}
+
+#concept-content p {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 400;
 }
 
 #home-right {
