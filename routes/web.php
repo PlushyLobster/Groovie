@@ -2,14 +2,7 @@
 
 use App\Http\Middleware\RedirectIfAdmin;
 use App\Http\Middleware\RedirectIfNotAdmin;
-use App\Http\Controllers\{
-    AuthController,
-    AdminController,
-    FestivalController,
-    trajetController,
-    ProfilController,
-    WalletController,
-};
+use App\Http\Controllers\{AuthController, AdminController, FestivalController, trajetController, WalletController};
 use App\Http\Middleware\IsAuth;
 use App\Http\Middleware\IsGuest;
 use Illuminate\Support\Facades\Auth;
@@ -108,4 +101,3 @@ Route::get('/profil-redirect', function () {
     return view('profil.profil-redirect');
 })->name('profil.redirect');Route::post('/profil/cloturer', [WalletController::class, 'cloturer'])->name('profil.cloturer');
 Route::post('/profil/update', [WalletController::class, 'update'])->name('profil.update');
-Route::get('/', function () {return view('homePage');})->name('home');
