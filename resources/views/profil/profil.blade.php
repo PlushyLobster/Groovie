@@ -73,6 +73,11 @@
                 </div>
             </div>
         </div>
+        <div class="profil-pref">
+            <div class="profil-title">
+                <h2>Préférences</h2>
+            </div>
+        </div>
     </main>
 
     <!-- Modale de modification -->
@@ -133,8 +138,7 @@
 
         document.getElementById('confirmButton').addEventListener('click', function() {
             fetch('{{ route('profil.cloturer') }}', {
-                method: 'POST',
-                headers: {
+                method: 'POST', headers: {
                     'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 }
