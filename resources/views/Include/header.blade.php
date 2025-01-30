@@ -145,18 +145,18 @@
         <div id="right-nav">
             @auth()
                 <div id="profil-div">
-                    @if(Auth::check() && file_exists(storage_path('app/public/avatars/' . 'avatarUser_' . Auth::id() . '.png')))
+                    <div class="avatar-img default-avatar" style="color: #F7F7F7; display: flex; justify-content: center; font-size: 2rem;">
                         <form action="{{ route('profil.profil') }}" method="GET" class="redirectBtn" id="redirect-profil">
-                            @csrf
-                            <button type="submit">
-                                <img src="{{ asset('storage/avatars/avatarUser_' . Auth::id() . '.png') }}" alt="" class="avatar-img" id="avatar-img" style="height: auto !important;">
-                            </button>
+                            @if(Auth::check() && file_exists(storage_path('app/public/avatars/' . 'avatarUser_' . Auth::id() . '.png')))
+                                @csrf
+                                <button type="submit" class="avatar-btn">
+                                    <img src="{{ asset('storage/avatars/avatarUser_' . Auth::id() . '.png') }}" alt="" class="avatar-img" id="avatar-img" style="height: auto !important;">
+                                </button>
+                            @else
+                            <button type="submit">{{ $initialsHead }}</button>
+                            @endif
                         </form>
-                    @else
-                        <div class="avatar-img default-avatar" style="background-color: #9747FF; color: #F7F7F7; display: flex; justify-content: center; align-items: center; font-size: 2rem;">
-                            {{ $initialsHead }}
-                        </div>
-                    @endif
+                    </div>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button class="logs-btn" id="logOut-btn">Se déconnecter</button>

@@ -15,7 +15,8 @@ class WalletController extends Controller
     {
         $user = Auth::user();
         $groover = Groover::where('Id_user', $user->Id_user)->first();
-        return view('profil.profil', compact('user', 'groover'));
+        $initialsHead = strtoupper(substr($groover->firstname, 0, 1) . substr($groover->name, 0, 1));
+        return view('profil.profil', compact('user', 'groover', 'initialsHead'));
     }
 
     public function redirectToProfil(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
