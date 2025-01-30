@@ -153,9 +153,12 @@
                             </button>
                         </form>
                     @else
-                        <div class="avatar-img default-avatar" style="background-color: #9747FF; color: #F7F7F7; display: flex; justify-content: center; align-items: center; font-size: 2rem;">
-                            {{ $initialsHead }}
-                        </div>
+                    <form action="{{ route('profil.profil') }}" method="GET" class="redirectBtn" id="redirect-profil">
+                            @csrf
+                            <button type="submit" class="avatar-img default-avatar" id="avatar-img">
+                                {{ $initialsHead }}
+                            </button>
+                        </form>
                     @endif
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
