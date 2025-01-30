@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Festival;
+use App\Models\Groover;
 use App\Models\MusicalBand;
+use App\Models\MusicalGenre;
+use App\Models\Notification;
+use App\Models\Offer;
+use App\Models\Partner;
 use App\Models\Program;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -132,9 +137,9 @@ class AdminController extends Controller
     // ADMIN/FESTIVALS
     public function festivals(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        $festivals = \DB::table('GRV1_Festivals')->get(['Id_festival', 'type', 'name', 'start_datetime', 'end_datetime', 'created_at', 'updated_at']);
-        $musicalGenres = \DB::table('GRV1_Musical_genres')->get(['Id_musical_genre', 'name']);
-        $types = \DB::table('GRV1_Festivals')->distinct()->pluck('type');
+        $festivals = Festival::get(['Id_festival', 'type', 'name', 'start_datetime', 'end_datetime', 'created_at', 'updated_at']);
+        $musicalGenres = MusicalGenre::get(['Id_musical_genre', 'name']);
+        $types = Festival::distinct()->pluck('type');
         return view('admin.festivals', compact('festivals', 'musicalGenres', 'types'));
     }
     public function addFestival(Request $request): \Illuminate\Http\JsonResponse
@@ -146,7 +151,7 @@ class AdminController extends Controller
             'end_datetime' => 'required|date',
         ]);
 
-        $festivalId = \DB::table('GRV1_Festivals')->insertGetId([
+        $festivalId = Festival::insertGetId([
             'type' => $request->type,
             'name' => $request->name,
             'start_datetime' => $request->start_datetime,
@@ -155,7 +160,7 @@ class AdminController extends Controller
             'updated_at' => now(),
         ]);
 
-        $festival = \DB::table('GRV1_Festivals')->where('Id_festival', $festivalId)->first();
+        $festival = Festival::where('Id_festival', $festivalId)->first();
 
         return response()->json($festival);
     }
@@ -274,13 +279,12 @@ class AdminController extends Controller
     }
     public function getOffers(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        $offers = \DB::table('GRV1_Offers')
-            ->leftJoin('GRV1_Partners', 'GRV1_Offers.Id_partner', '=', 'GRV1_Partners.Id_partner')
+        $offers = Offer::leftJoin('GRV1_Partners', 'GRV1_Offers.Id_partner', '=', 'GRV1_Partners.Id_partner')
             ->select('GRV1_Partners.name as partner_name', 'GRV1_Offers.type', 'GRV1_Offers.name', 'GRV1_Offers.description', 'GRV1_Offers.condition_purchase', 'GRV1_Offers.created_at', 'GRV1_Offers.Id_offer')
             ->get();
 
-        $partners = \DB::table('GRV1_Partners')->select('Id_partner', 'name')->get();
-        $types = \DB::table('GRV1_Offers')->select('type')->distinct()->get();
+        $partners = Partner::select('Id_partner', 'name')->get();
+        $types = Offer::select('type')->distinct()->get();
 
         return view('admin.promotions', compact('offers', 'partners', 'types'));
     }
@@ -294,7 +298,7 @@ class AdminController extends Controller
             'created_at' => 'required|date',
         ]);
 
-        $offerId = \DB::table('GRV1_Offers')->insertGetId([
+        $offerId = Offer::insertGetId([
             'type' => $request->type,
             'name' => $request->name,
             'description' => $request->description,
@@ -304,14 +308,13 @@ class AdminController extends Controller
             'Id_partner' => 1, // Remplacez par la valeur appropriée
         ]);
 
-        $offer = \DB::table('GRV1_Offers')->select('Id_offer', 'type', 'name', 'description', 'condition_purchase', 'created_at')->where('Id_offer', $offerId)->first();
+        $offer = Offer::select('Id_offer', 'type', 'name', 'description', 'condition_purchase', 'created_at')->where('Id_offer', $offerId)->first();
 
         return response()->json($offer);
     }
     public function showOffer($id): \Illuminate\Http\JsonResponse
     {
-        $offer = \DB::table('GRV1_Offers')
-            ->leftJoin('GRV1_Partners', 'GRV1_Offers.Id_partner', '=', 'GRV1_Partners.Id_partner')
+        $offer = Offer::leftJoin('GRV1_Partners', 'GRV1_Offers.Id_partner', '=', 'GRV1_Partners.Id_partner')
             ->select('GRV1_Partners.name as partner_name', 'GRV1_Offers.type', 'GRV1_Offers.name', 'GRV1_Offers.description', 'GRV1_Offers.condition_purchase', 'GRV1_Offers.created_at', 'GRV1_Offers.Id_offer')
             ->where('GRV1_Offers.Id_offer', $id)
             ->first();
@@ -332,7 +335,7 @@ class AdminController extends Controller
             'created_at' => 'required|date',
         ]);
 
-        \DB::table('GRV1_Offers')->where('Id_offer', $id)->update([
+        Offer::where('Id_offer', $id)->update([
             'type' => $request->type,
             'name' => $request->name,
             'description' => $request->description,
@@ -341,8 +344,7 @@ class AdminController extends Controller
             'updated_at' => now(),
         ]);
 
-        $offer = \DB::table('GRV1_Offers')
-            ->leftJoin('GRV1_Partners', 'GRV1_Offers.Id_partner', '=', 'GRV1_Partners.Id_partner')
+        $offer = Offer::leftJoin('GRV1_Partners', 'GRV1_Offers.Id_partner', '=', 'GRV1_Partners.Id_partner')
             ->select('GRV1_Partners.name as partner_name', 'GRV1_Offers.type', 'GRV1_Offers.name', 'GRV1_Offers.description', 'GRV1_Offers.condition_purchase', 'GRV1_Offers.created_at', 'GRV1_Offers.Id_offer')
             ->where('GRV1_Offers.Id_offer', $id)
             ->first();
@@ -352,7 +354,7 @@ class AdminController extends Controller
     public function deleteOffer($id): \Illuminate\Http\JsonResponse
     {
         try {
-            \DB::table('GRV1_Offers')->where('Id_offer', $id)->delete();
+            Offer::where('Id_offer', $id)->delete();
             return response()->json(['message' => 'Offre supprimée avec succès.'], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Erreur lors de la suppression de l\'offre : ' . $e->getMessage()], 500);
@@ -361,7 +363,7 @@ class AdminController extends Controller
     // ADMIN/TRANSACTIONS
     public function transactions(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        $groovers = \DB::table('GRV1_Groovers')->select('name', 'firstname', 'nb_groovies', 'level')->get();
+        $groovers = Groover::select('name', 'firstname', 'nb_groovies', 'level')->get();
         return view('admin.transactions', compact('groovers'));
     }
     //ADMIN/ACTUALITES
@@ -372,8 +374,7 @@ class AdminController extends Controller
     // ADMIN/NOTIFICATIONS
     public function notifications(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application
     {
-        $notifications = \DB::table('GRV1_Notifications')
-            ->join('GRV1_Users_Notifications', 'GRV1_No     tifications.Id_notification', '=', 'GRV1_Users_Notifications.Id_notification')
+        $notifications = Notification::join('GRV1_Users_Notifications', 'GRV1_Notifications.Id_notification', '=', 'GRV1_Users_Notifications.Id_notification')
             ->join('GRV1_Users', 'GRV1_Users_Notifications.Id_user', '=', 'GRV1_Users.Id_user')
             ->select('GRV1_Notifications.importance', 'GRV1_Notifications.message', 'GRV1_Notifications.created_at', 'GRV1_Users.email')
             ->get();

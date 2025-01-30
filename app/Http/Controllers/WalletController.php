@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Groover;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,7 +25,7 @@ class WalletController extends Controller
     public function cloturer(): \Illuminate\Http\JsonResponse
     {
         $user = Auth::user();
-        \DB::table('GRV1_Users')->where('Id_user', $user->Id_user)->update(['active' => 0]);
+        $user = User::where('Id_user', $user->Id_user)->update(['active' => 0]);
         Auth::logout();
         return response()->json(['message' => 'Compte désactivé'], 200);
     }
@@ -35,9 +36,9 @@ class WalletController extends Controller
         $newValue = $request->input('new_value');
 
         if ($field === 'email') {
-            \DB::table('GRV1_Users')->where('Id_user', $user->Id_user)->update(['email' => $newValue]);
+            $user = User::where('Id_user', $user->Id_user)->update(['email' => $newValue]);
         } elseif ($field === 'city') {
-            \DB::table('GRV1_Groovers')->where('Id_user', $user->Id_user)->update(['city' => $newValue]);
+            $user = User::where('Id_user', $user->Id_user)->update(['city' => $newValue]);
         }
 
         return redirect()->route('profil.profil')->with('success', 'Information mise à jour avec succès');
