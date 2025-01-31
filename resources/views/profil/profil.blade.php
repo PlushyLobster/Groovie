@@ -18,7 +18,7 @@
                 @if(file_exists(storage_path('app/public/avatars/' . 'avatarUser_' . $user->Id_user . '.png')))
                     <img src="{{ asset('storage/avatars/avatarUser_' . $user->Id_user . '.png') }}" alt="" class="avatar-img" id="avatar-img">
                 @else
-                    <div class="avatar-img default-avatar" style="background-color: #9747FF; color: #F7F7F7; display: flex; justify-content: center; align-items: center; font-size: 2rem;">
+                    <div id="profil-defaultAvatar" class="avatar-img default-avatar" style="background-color: #9747FF; color: #F7F7F7; display: flex; justify-content: center; align-items: center; font-size: 2rem;">
                         {{ $initialsHead }}
                     </div>
                 @endif

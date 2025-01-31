@@ -1715,6 +1715,11 @@ main {
     font-size: 0.875rem;
 }
 
+#profil-defaultAvatar {
+    width: 150px;
+    height: 150px;
+}
+
 #user-fullname {
     font-weight: bold;
 }
