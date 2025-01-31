@@ -18,8 +18,8 @@ Route::get('/trajet/experience', [trajetController::class, 'experience'])->name(
 
 
 Route::prefix('festival')->group(function () {
-    route::middleware(IsAuth::class)->group(function () {
-        Route::get('/mesFestivals', [FestivalController::class, 'mesFestivals'])->name('mesFestivals');
+    Route::controller(FestivalController::class)->group(function () {
+        Route::get('/mesFestivals', [FestivalController::class, 'mesFestivals'])->name('mesFestivals')->middleware(IsAuth::class);
         Route::resource('festivals', FestivalController::class)->only(['index', 'show']);
     });
 });
