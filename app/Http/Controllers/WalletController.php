@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Groover;
+use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,4 +44,6 @@ class WalletController extends Controller
 
         return redirect()->route('profil.profil')->with('success', 'Information mise à jour avec succès');
     }
+
+
 }

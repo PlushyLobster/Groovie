@@ -99,3 +99,4 @@ Route::get('/profil/profil', [WalletController::class, 'profil'])->name('profil.
 Route::get('/profil-redirect', [WalletController::class, 'redirectToProfil'])->name('profil.redirect');
 Route::post('/profil/cloturer', [WalletController::class, 'cloturer'])->name('profil.cloturer');
 Route::post('/profil/update', [WalletController::class, 'update'])->name('profil.update');
+Route::post('/profil/toggle-geolocation', [WalletController::class, 'toggleGeolocation'])->name('profil.toggleGeolocation');
