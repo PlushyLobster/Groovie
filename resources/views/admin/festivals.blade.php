@@ -1,23 +1,40 @@
-@extends('Layout.layoutAdmin')
+@extends('layout.layoutAdmin')
 
 @section('content')
     <div class="container mx-auto p-4">
         <div class="flex items-center justify-between mb-4">
             <h1 class="text-3xl font-bold">Catalogue des festivals</h1>
             <button id="import-json" class="bg-blue-500 text-white px-4 py-2 rounded">Importer le JSON</button>
-            <button id="add-festival" class="bg-green-500 text-white px-4 py-2 rounded" onclick="openAddFestivalModal()">Ajouter un festival</button>
+            <button id="add-festival" class="bg-green-500 text-white px-4 py-2 rounded"
+                    onclick="openAddFestivalModal()">Ajouter un festival
+            </button>
         </div>
         <div class="bg-white p-6 rounded-lg shadow-md">
             <table id="festivals-table" class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                 <tr>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Début</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fin</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mis à jour le</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID
+                    </th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type
+                    </th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom
+                    </th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Début
+                    </th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fin
+                    </th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mis à
+                        jour le
+                    </th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions
+                    </th>
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
@@ -30,8 +47,12 @@
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $festival->end_datetime }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $festival->updated_at }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                            <button class="bg-blue-500 text-white px-4 py-2 rounded ml-2" onclick="showFestivalDetails({{ $festival->Id_festival }})">Détail</button>
-                            <button class="bg-red-500 text-white px-4 py-2 rounded ml-2" onclick="deleteFestival({{ $festival->Id_festival }})">Supprimer</button>
+                            <button class="bg-blue-500 text-white px-4 py-2 rounded ml-2"
+                                    onclick="showFestivalDetails({{ $festival->Id_festival }})">Détail
+                            </button>
+                            <button class="bg-red-500 text-white px-4 py-2 rounded ml-2"
+                                    onclick="deleteFestival({{ $festival->Id_festival }})">Supprimer
+                            </button>
                         </td>
                     </tr>
                 @endforeach
@@ -49,7 +70,8 @@
                     @csrf
                     <div class="mb-4">
                         <label for="jsonFile" class="block text-sm font-medium text-gray-700">Fichier JSON</label>
-                        <input type="file" name="jsonFile" id="jsonFile" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <input type="file" name="jsonFile" id="jsonFile"
+                               class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                     </div>
                     <div class="mb-4">
                         <div id="progress-container" class="hidden">
@@ -58,7 +80,9 @@
                     </div>
                     <div class="flex justify-center">
                         <button type="submit" class="py-2 px-4 rounded bg-blue-500 text-white">Importer</button>
-                        <button type="button" class="py-2 px-4 rounded bg-gray-500 text-white ml-2" onclick="closeImportModal()">Annuler</button>
+                        <button type="button" class="py-2 px-4 rounded bg-gray-500 text-white ml-2"
+                                onclick="closeImportModal()">Annuler
+                        </button>
                     </div>
                 </form>
             </div>
@@ -74,7 +98,8 @@
                     @csrf
                     <div class="mb-4">
                         <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
-                        <select name="type" id="type" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <select name="type" id="type" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm"
+                                required>
                             @foreach($types as $type)
                                 <option value="{{ $type }}">{{ $type }}</option>
                             @endforeach
@@ -82,19 +107,24 @@
                     </div>
                     <div class="mb-4">
                         <label for="name" class="block text-sm font-medium text-gray-700">Nom</label>
-                        <input type="text" name="name" id="name" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <input type="text" name="name" id="name"
+                               class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                     </div>
                     <div class="mb-4">
                         <label for="start_datetime" class="block text-sm font-medium text-gray-700">Début</label>
-                        <input type="datetime-local" name="start_datetime" id="start_datetime" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <input type="datetime-local" name="start_datetime" id="start_datetime"
+                               class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                     </div>
                     <div class="mb-4">
                         <label for="end_datetime" class="block text-sm font-medium text-gray-700">Fin</label>
-                        <input type="datetime-local" name="end_datetime" id="end_datetime" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
+                        <input type="datetime-local" name="end_datetime" id="end_datetime"
+                               class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm" required>
                     </div>
                     <div class="flex justify-center">
                         <button type="submit" class="py-2 px-4 rounded bg-blue-500 text-white">Ajouter</button>
-                        <button type="button" class="py-2 px-4 rounded bg-gray-500 text-white ml-2" onclick="closeAddFestivalModal()">Annuler</button>
+                        <button type="button" class="py-2 px-4 rounded bg-gray-500 text-white ml-2"
+                                onclick="closeAddFestivalModal()">Annuler
+                        </button>
                     </div>
                 </form>
             </div>
@@ -119,19 +149,26 @@
                     </div>
                     <div class="mb-4">
                         <label for="detail-name" class="block text-sm font-medium text-gray-700">Nom</label>
-                        <input type="text" id="detail-name" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm">
+                        <input type="text" id="detail-name"
+                               class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm">
                     </div>
                     <div class="mb-4">
                         <label for="detail-start-datetime" class="block text-sm font-medium text-gray-700">Début</label>
-                        <input type="datetime-local" id="detail-start-datetime" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm">
+                        <input type="datetime-local" id="detail-start-datetime"
+                               class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm">
                     </div>
                     <div class="mb-4">
                         <label for="detail-end-datetime" class="block text-sm font-medium text-gray-700">Fin</label>
-                        <input type="datetime-local" id="detail-end-datetime" class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm">
+                        <input type="datetime-local" id="detail-end-datetime"
+                               class="mt-1 p-1 block w-full border-gray-300 rounded-md shadow-sm">
                     </div>
                     <div class="flex justify-center">
-                        <button type="button" class="py-2 px-4 rounded bg-blue-500 text-white ml-2" onclick="updateFestival()">Mettre à jour</button>
-                        <button type="button" class="py-2 px-4 rounded bg-gray-500 text-white ml-2" onclick="closeDetailModal()">Fermer</button>
+                        <button type="button" class="py-2 px-4 rounded bg-blue-500 text-white ml-2"
+                                onclick="updateFestival()">Mettre à jour
+                        </button>
+                        <button type="button" class="py-2 px-4 rounded bg-gray-500 text-white ml-2"
+                                onclick="closeDetailModal()">Fermer
+                        </button>
                     </div>
                 </form>
             </div>
@@ -144,12 +181,12 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#import-json').on('click', function() {
+        $(document).ready(function () {
+            $('#import-json').on('click', function () {
                 $('#importJsonModal').removeClass('hidden');
             });
 
-            $('#importJsonForm').on('submit', function(e) {
+            $('#importJsonForm').on('submit', function (e) {
                 e.preventDefault();
                 let formData = new FormData(this);
                 $('#progress-container').removeClass('hidden');
@@ -159,9 +196,9 @@
                     data: formData,
                     contentType: false,
                     processData: false,
-                    xhr: function() {
+                    xhr: function () {
                         let xhr = new window.XMLHttpRequest();
-                        xhr.upload.addEventListener("progress", function(evt) {
+                        xhr.upload.addEventListener("progress", function (evt) {
                             if (evt.lengthComputable) {
                                 let percentComplete = evt.loaded / evt.total;
                                 percentComplete = parseInt(percentComplete * 100);
@@ -171,11 +208,11 @@
                         }, false);
                         return xhr;
                     },
-                    success: function(response) {
+                    success: function (response) {
                         alert(response.message);
                         location.reload();
                     },
-                    error: function(response) {
+                    error: function (response) {
                         alert(response.responseJSON.message);
                     }
                 });
@@ -189,7 +226,7 @@
                 "lengthMenu": [5, 10, 20, 50],
                 "deferRender": true,
                 "destroy": true,
-                "drawCallback": function() {
+                "drawCallback": function () {
                     $('#festivals-table').css("visibility", "visible");
                 }
             });
@@ -210,18 +247,18 @@
             $('#addFestivalModal').addClass('hidden');
         }
 
-        $('#addFestivalForm').on('submit', function(e) {
+        $('#addFestivalForm').on('submit', function (e) {
             e.preventDefault();
             let formData = $(this).serialize();
             $.ajax({
                 url: '{{ route("admin.festivals.add") }}',
                 method: 'POST',
                 data: formData,
-                success: function(response) {
+                success: function (response) {
                     alert('Festival ajouté avec succès !');
                     location.reload();
                 },
-                error: function(response) {
+                error: function (response) {
                     alert('Erreur lors de l\'ajout du festival');
                 }
             });
@@ -231,7 +268,7 @@
             $.ajax({
                 url: '/admin/festivals/' + id,
                 method: 'GET',
-                success: function(response) {
+                success: function (response) {
                     $('#detail-festival-id').val(response.Id_festival);
                     $('#detail-type').val(response.type);
                     $('#detail-name').val(response.name);
@@ -239,7 +276,7 @@
                     $('#detail-end-datetime').val(response.end_datetime);
                     $('#festivalDetailsModal').removeClass('hidden');
                 },
-                error: function(response) {
+                error: function (response) {
                     alert('Erreur lors de la récupération des détails du festival');
                 }
             });
@@ -262,11 +299,11 @@
                 url: '/admin/festivals/' + id,
                 method: 'PUT',
                 data: formData,
-                success: function(response) {
+                success: function (response) {
                     alert('Festival mis à jour avec succès !');
                     location.reload();
                 },
-                error: function(response) {
+                error: function (response) {
                     alert('Erreur lors de la mise à jour du festival');
                 }
             });
@@ -280,13 +317,13 @@
                     data: {
                         _token: '{{ csrf_token() }}'
                     },
-                    success: function(response) {
+                    success: function (response) {
                         if (response.message) {
                             alert(response.message);
                             location.reload();
                         }
                     },
-                    error: function(response) {
+                    error: function (response) {
                         alert('Erreur lors de la suppression du festival');
                     }
                 });

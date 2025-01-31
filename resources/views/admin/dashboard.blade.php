@@ -1,4 +1,4 @@
-@extends('Layout.layoutAdmin')
+@extends('layout.layoutAdmin')
 
 @section('content')
     <div class="container mx-auto p-4">
@@ -19,7 +19,10 @@
         </div>
         <div class="bg-[#DDD9DF] p-6 rounded-lg shadow-md admin-card mt-6 md:col-span-2" style="border-radius: 39px;">
             <h2 class="text-xl font-bold mb-2">Inscriptions mensuelles</h2>
-            <div><canvas class="chart-container" style="position: relative; height:40vh; width:80vw" id="monthlyRegistrationsChart"></canvas></div>
+            <div>
+                <canvas class="chart-container" style="position: relative; height:40vh; width:80vw"
+                        id="monthlyRegistrationsChart"></canvas>
+            </div>
         </div>
     </div>
 
@@ -36,7 +39,7 @@
             const endDate = new Date(); // Aujourd'hui
 
             for (let date = startDate; date <= endDate; date.setMonth(date.getMonth() + 1)) {
-                const monthLabel = date.toLocaleString('fr', { month: 'long', year: 'numeric' });
+                const monthLabel = date.toLocaleString('fr', {month: 'long', year: 'numeric'});
                 labels.push(monthLabel);
                 const year = date.getFullYear();
                 const month = date.getMonth() + 1;
