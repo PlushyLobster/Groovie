@@ -68,6 +68,10 @@ body {
     box-shadow: 0px 0px 24px rgba(0, 0, 0, 25%);
 }
 
+#redirect-profil {
+    background: #9747FF;
+}
+
 #redirectTrajet-hover {
     display: none;
 }
@@ -119,11 +123,6 @@ body {
     }
 }
 
-#redirect-profil{
-    background-color: var(--GRV_Profil);
-    color: var(--whiteBkg);
-}
-
 .logs-btn {
     width: 10.375rem;
     height: 2.625rem;
@@ -155,6 +154,9 @@ body {
     height: 46px;
     border-radius: 50%;
     background-color: var(--midnightBlue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #notif-btn {
@@ -235,6 +237,7 @@ body {
 
 .signin-div input::placeholder {
     color: var(--midnightBlue);
+    padding-left: 2rem;
 }
 
 .signinBtn {
@@ -557,6 +560,41 @@ body {
 
 .login-div input::placeholder {
     color: var(--midnightBlue);
+    padding-left: 2rem;
+}
+
+.loginPicto {
+    position: absolute;
+    margin-left: 1.5rem;
+}
+
+#logIn-emailPicto {
+    margin-top: 1.3rem;
+}
+
+#logIn-mdpPicto {
+    margin-top: 1.1rem;
+}
+
+.signinPicto {
+    position: absolute;
+    margin-left: 1.5rem; 
+}
+
+.signIn-namePicto {
+    margin-top: 1.15rem;
+}
+
+#signIn-emailPicto {
+    margin-top: 1.3rem;
+}
+
+#signIn-cityPicto {
+    margin-top: 1.1rem;
+}
+
+.signIn-mdpPicto {
+    margin-top: 1.1rem;
 }
 
 .signin-forgot {
@@ -679,6 +717,18 @@ main {
     font-size: 1.8rem;
     color: var(--magenta);
     font-weight: 500;
+}
+
+#concept-content {
+    width: 100%;
+    height: 43.75rem;
+    padding-left: 21px;
+}
+
+#concept-content p {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 400;
 }
 
 #home-right {
@@ -1655,15 +1705,16 @@ main {
 }
 
 .avatar-img {
-    width: 150px;
-    height: 150px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     object-fit: cover;
     background-color: #9747FF;
-}
-
-.avatar-img.default-avatar {
-    display: none;
+    color: #F7F7F7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.875rem;
 }
 
 #user-fullname {
@@ -1736,7 +1787,6 @@ main {
 #trajet-right {
     grid-row: 1/2;
     grid-column: 16/22;
-    background-color: var(--yellowPrimary);
 }
 
 .trajet-card {
@@ -2169,4 +2219,368 @@ main {
     position: absolute;
     left: 6px;
     transition: 0.5s;
+}
+
+#mesTrajets-row1 {
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+#mesTrajets-row1 button {
+    height: 28px;
+    border-radius: 6px;
+    padding: 0px 12px;
+    font-size: 15;
+    font-weight: 400;
+}
+
+.mesTrajets-filtre {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.mesTrajets-filtre div {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+}
+
+#mesTrajets-filtreReserve p {
+    font-weight: 400;
+}
+
+#mesTrajets-row2 {
+    width: 100%;
+    height: 23.000rem;
+    background-color: #debdff;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    scrollbar-color: #debdff #debdff;
+    scrollbar-width: thin;
+    padding: 1.5rem;
+    gap: 32px;
+}
+
+.mesTrajets-card {
+    height: 12rem;
+    width: 17.75rem;
+    border-radius: 25px;
+    padding: 24px;
+    background-color: #F2EAF9;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.mesTrajets-card p {
+    color: var(--contraste_labeur);
+}
+
+.mesTrajets-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mesTrajets-top div {
+    display: flex;
+}
+
+.mesTrajets-top span {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mesTrajets-topSpan1 {
+    z-index: 3;
+    font-size: 24px;
+    background-color: var(--violetRehausse);
+}
+
+.mesTrajets-topSpan2 {
+    z-index: 2;
+    position: absolute;
+    margin-left: 28px;
+}
+
+.mesTrajets-topSpan2 img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+}
+
+.mesTrajets-bot {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mesTrajets-heure {
+    font-size: 23px;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.mesTrajets-nbGroovie {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.mesTrajets-botRight {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+#mesTrajets-row3 {
+    width: 100%;
+    height: 5rem;
+}
+
+#trajetFest-selectDiv {
+    width: 100%;
+    height: 27.375rem;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #000;
+    border-radius: 39px;
+    padding: 0rem 2.5rem;
+}
+
+#trajetFest-div1 {
+    width: 100%;
+    height: 8rem;
+    display: flex;
+    align-items: center;
+}
+
+#trajetFest-div1 h2 {
+    font-size: 42px;
+    font-weight: 600;
+}
+
+#trajetFest-div2 {
+    width: 100%;
+    height: 6rem;
+}
+
+#trajetFest-div2 p {
+    font-size: 21px;
+    font-weight: 400;
+}
+
+#trajetFest-div3 {
+    width: 100%;
+    height: 8.375rem;
+    display: flex;
+    align-items: center;
+}
+
+#trajetFest-selectDiv select {
+  padding-left: 2rem;
+  width: 100%;
+  height: 4rem;
+  font-size: 22px;
+  font-weight: 500;
+  border-radius: 34px;
+  border: 1px solid #000;
+}
+
+
+
+
+
+/***      PAGE EXPERIENCE      ***/
+
+#experience-main {
+    grid-template-columns: repeat(21, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+#experience-trajet {
+    grid-row: 1/2;
+    grid-column: 1/15;
+    position: relative;
+    padding: 0rem 2rem;
+    border-radius: 39px;
+    background-color: var(--DISC_TrajetAugmente);
+}
+
+#experience-playlist {
+    grid-row: 2/3;
+    grid-column: 1/8;
+    position: relative;
+    padding: 0rem 2rem;
+    border-radius: 39px;
+    background-color: var(--DISC_Playlist);
+}
+
+#experience-jeu {
+    grid-row: 2/3;
+    grid-column: 8/15;
+    position: relative;
+    padding: 0rem 2rem;
+    border-radius: 39px;
+    background-color: var(--DISC_JeuxPartager);
+}
+
+#experience-right {
+    grid-row: 1/3;
+    grid-column: 16/22;
+    background-color: var(--DISC_ActuFest);
+}
+
+#experienceFest-selectDiv {
+    width: 100%;
+    height: 27.375rem;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #000;
+    border-radius: 39px;
+    padding: 0rem 2.5rem;
+    background-color: var(--whiteBkg);
+}
+
+#experienceFest-div1 {
+    width: 100%;
+    height: 8rem;
+    display: flex;
+    align-items: center;
+}
+
+#experienceFest-div1 h2 {
+    font-size: 42px;
+    font-weight: 600;
+}
+
+#experienceFest-div2 {
+    width: 100%;
+    height: 6rem;
+}
+
+#experienceFest-div2 p {
+    font-size: 21px;
+    font-weight: 400;
+}
+
+#experienceFest-div3 {
+    width: 100%;
+    height: 8.375rem;
+    display: flex;
+    align-items: center;
+}
+
+#experienceFest-selectDiv select {
+  padding-left: 2rem;
+  width: 100%;
+  height: 4rem;
+  font-size: 22px;
+  font-weight: 500;
+  border-radius: 34px;
+  border: 1px solid #000;
+}
+
+.experience-header {
+    width: 100%;
+    height: 22%;
+    display: flex;
+    align-items: center;
+}
+
+.experience-header span {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1.375rem;
+}
+
+#experience-trajet .experience-header span {
+    background-color: #8D6CD9;
+}
+
+#experience-playlist .experience-header span {
+    background-color: #FA70BC;
+}
+
+#experience-jeu .experience-header span {
+    background-color: #329C98;
+}
+
+
+#experience-trajetContainer {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#experience-trajetCol1 {
+    width: 9.375rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #fff;
+}
+
+.experience-statTrajet-p1 {
+    height: 2.75rem;
+}
+
+#experience-trajetCol1 h3 {
+    font-size: 34px;
+    font-weight: 500;
+}
+
+#experience-trajetCol1 p {
+    font-size: 15px;
+}
+
+.experience-statTrajet {
+    width: 100%;
+    height: 9.375rem;
+    background-color: var(--midnightBlue);
+    border-radius: 27.42px;
+    padding: 18px;
+}
+
+#experience-trajetCol2 {
+    width: 55%;
+    height: 100%;
+    border-radius: 27.42px;
+    background-color: var(--midnightBlue);
+} 
+
+#experience-trajetCol2 img {
+    width: 100%;
+    height: auto;
+}
+
+#experience-trajetCol3 {
+    width: 28%;
+    height: 100%;   
+    border-radius: 27.42px;
+    padding: 2rem 1.5rem;
+    background-color: var(--midnightBlue);
+}
+
+#experience-trajetCol3 h3 {
+    font-size: 21px;
+    font-weight: 500;
+    color: #fff;
 }

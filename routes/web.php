@@ -14,6 +14,8 @@ Route::get('/', function () {
 
 
 Route::get('/trajet', [trajetController::class, 'trajet'])->name('trajet');
+Route::get('/trajet/experience', [trajetController::class, 'experience'])->name('experience');
+
 
 Route::prefix('festival')->group(function () {
     Route::get('/mesFestivals', [FestivalController::class, 'mesFestivals'])->name('mesFestivals');
