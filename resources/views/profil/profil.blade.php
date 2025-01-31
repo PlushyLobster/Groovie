@@ -77,10 +77,15 @@
                 </div>
             </div>
         </div>
-        <div class="profil-pref">
+        <div class="pref-item">
             <div class="profil-title">
                 <h2>Préférences</h2>
             </div>
+            <label for="geolocation">Géolocalisation:</label>
+            <label class="switch">
+                <input type="checkbox" id="geolocation-toggle" onclick="toggleGeolocation()">
+                <span class="slider round"></span>
+            </label>
         </div>
     </main>
 
@@ -218,6 +223,8 @@
         function updateAvatar(event) {
             document.getElementById('avatar-form').submit();
         }
+
+
     </script>
 @endsection
 
