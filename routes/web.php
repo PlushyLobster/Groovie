@@ -18,8 +18,10 @@ Route::get('/trajet/experience', [trajetController::class, 'experience'])->name(
 
 
 Route::prefix('festival')->group(function () {
-    Route::get('/mesFestivals', [FestivalController::class, 'mesFestivals'])->name('mesFestivals');
-    Route::resource('festivals', FestivalController::class)->only(['index', 'show']);
+    route::middleware(IsAuth::class)->group(function () {
+        Route::get('/mesFestivals', [FestivalController::class, 'mesFestivals'])->name('mesFestivals');
+        Route::resource('festivals', FestivalController::class)->only(['index', 'show']);
+    });
 });
 
 Route::controller(AuthController::class)->group(function () {
@@ -98,14 +100,15 @@ Route::prefix('password')->group(function () {
 
 // WALLETCONTROLLER - PAGE PROFIL
 Route::prefix('profil')->group(function () {
-    Route::middleware(IsAuth::class)->group(function () {
-        Route::get('/', [WalletController::class, 'profil'])->name('profil.profil');
-        Route::post('/AddAvatar', [WalletController::class, 'addAvatar'])->name('profil.addAvatar');
-        Route::get('/redirect', [WalletController::class, 'redirectToProfil'])->name('profil.redirect');
-        Route::post('/cloturer', [WalletController::class, 'cloturer'])->name('profil.cloturer');
-        Route::post('/update', [WalletController::class, 'update'])->name('profil.update');
+    Route::controller(WalletController::class)->group(function () {
+        Route::middleware(IsAuth::class)->group(function () {
+            Route::get('/', 'profil')->name('profil.profil');
+            Route::post('/AddAvatar', 'addAvatar')->name('profil.addAvatar');
+            Route::get('/redirect', 'redirectToProfil')->name('profil.redirect');
+            Route::post('/cloturer', 'cloturer')->name('profil.cloturer');
+            Route::post('/update', 'update')->name('profil.update');
+        });
+        Route::get('/wallet/useGroovies', 'useGroovies')->name('wallet.useGroovies');
     });
 });
 
-    //WALLETCONTROLLER - USE GROOVIES
-Route::get('/wallet/useGroovies', [WalletController::class, 'useGroovies'])->name('wallet.useGroovies');
