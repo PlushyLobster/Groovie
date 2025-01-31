@@ -11,4 +11,9 @@ class trajetController extends Controller
     {
         return view('trajet.trajet');
     }
+
+    public function experience()
+    {
+        return view('trajet.experience');
+    }
 }

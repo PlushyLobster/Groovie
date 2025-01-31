@@ -14,10 +14,14 @@ Route::get('/', function () {
 
 
 Route::get('/trajet', [trajetController::class, 'trajet'])->name('trajet');
+Route::get('/trajet/experience', [trajetController::class, 'experience'])->name('experience');
+
 
 Route::prefix('festival')->group(function () {
-    Route::get('/mesFestivals', [FestivalController::class, 'mesFestivals'])->name('mesFestivals');
-    Route::resource('festivals', FestivalController::class)->only(['index', 'show']);
+    route::middleware(IsAuth::class)->group(function () {
+        Route::get('/mesFestivals', [FestivalController::class, 'mesFestivals'])->name('mesFestivals');
+        Route::resource('festivals', FestivalController::class)->only(['index', 'show']);
+    });
 });
 
 Route::controller(AuthController::class)->group(function () {
@@ -94,9 +98,17 @@ Route::prefix('password')->group(function () {
 });
 
 
-    //WALLETCONTROLLER - PAGE PROFIL
-Route::get('/profil/profil', [WalletController::class, 'profil'])->name('profil.profil');
-Route::get('/profil-redirect', [WalletController::class, 'redirectToProfil'])->name('profil.redirect');
-Route::post('/profil/cloturer', [WalletController::class, 'cloturer'])->name('profil.cloturer');
-Route::post('/profil/update', [WalletController::class, 'update'])->name('profil.update');
-Route::post('/profil/toggle-geolocation', [WalletController::class, 'toggleGeolocation'])->name('profil.toggleGeolocation');
+// WALLETCONTROLLER - PAGE PROFIL
+Route::prefix('profil')->group(function () {
+    Route::controller(WalletController::class)->group(function () {
+        Route::middleware(IsAuth::class)->group(function () {
+            Route::get('/', 'profil')->name('profil.profil');
+            Route::post('/AddAvatar', 'addAvatar')->name('profil.addAvatar');
+            Route::get('/redirect', 'redirectToProfil')->name('profil.redirect');
+            Route::post('/cloturer', 'cloturer')->name('profil.cloturer');
+            Route::post('/update', 'update')->name('profil.update');
+        });
+        Route::get('/wallet/useGroovies', 'useGroovies')->name('wallet.useGroovies');
+    });
+});
+
