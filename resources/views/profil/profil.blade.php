@@ -96,7 +96,7 @@
             <form id="editForm" method="POST" action="{{ route('profil.update') }}">
                 @csrf
                 <input type="hidden" name="field" id="modal-field">
-                <input type="text" name="new_value"  class="border p-2 w-full mb-4 input-city">
+                <input type="text" name="new_value"  id="new_value" class="border p-2 w-full mb-4">
                 <div class="flex justify-end">
                     <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded mr-2" onclick="closeModal()">Annuler</button>
                     <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded">Enregistrer</button>
@@ -136,7 +136,6 @@
         </div>
     </div>
 @endsection
-@vite('resources/js/autoCompletion.js')
 @section('scripts')
     <script>
         document.getElementById('clotureButton').addEventListener('click', function() {
@@ -169,16 +168,53 @@
                 document.getElementById('modal-field').value = field;
                 document.getElementById('modal-field-name').innerText = field === 'email' ? 'l\'adresse mail' : 'la ville';
                 document.getElementById('editModal').classList.remove('hidden');
-                if (field === 'city') {
-                    document.getElementsByClassName('input-city')[0].id = 'city';
-                    document.getElementsByClassName('input-city')[0].value = '{{$user->groovers->city}}';
-                } else {
-                    document.getElementsByClassName('input-city')[0].id = '';
-                    document.getElementsByClassName('input-city')[0].value = '{{ $user->email }}';
-                }
 
+                const Input = document.getElementById('new_value');
+                if (field === 'city') {
+                    Input.classList.add('city');
+                    Input.value = '{{$user->groovers->city}}';
+
+                    // Initialiser l'autocomplétion pour ce champ, ici c'est direct
+                    $(Input).autocomplete({
+                        source: function(request, response) {
+                            $.ajax({
+                                url: "http://api.geonames.org/searchJSON",
+                                dataType: "json",
+                                data: {
+                                    q: request.term,
+                                    maxRows: 10,
+                                    username: "itscastoor",
+                                    country: "FR",
+                                    featureClass: "P"
+                                },
+                                success: function(data) {
+                                    response($.map(data.geonames, function(item) {
+                                        return {
+                                            label: item.name,
+                                            value: item.name
+                                        };
+                                    }));
+                                }
+                            });
+                        },
+                        minLength: 2,
+                        select: function(event, ui) {
+                            // Action à effectuer lors de la sélection d'une ville
+                        },
+                        change: function(event, ui) {
+                            if (!ui.item) {
+                                $(this).val(''); // Si aucune ville n'est sélectionnée, vider le champ
+                            }
+                        }
+                    });
+
+                } else {
+                    Input.classList.remove('city');
+                    Input.value = '{{ $user->email }}';
+                }
             }
         }
+
 
         function closeModal(field) {
             if (field === 'password') {

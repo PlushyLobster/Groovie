@@ -18,7 +18,7 @@
                         <hr>
                         <div class="prefContent-row">
                             <h3>Ville de départ</h3>
-                            <input type="text" id="city" name="city" style="color: black" placeholder="Entrez votre ville" required>
+                            <input type="text" class="city" name="city" style="color: black" placeholder="Entrez votre ville" required>
                         </div>
                         <hr>
                         <div class="prefContent-row">
@@ -526,7 +526,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="mesTrajets-card">
                                 <div class="mesTrajets-top">
                                     <div>
@@ -763,7 +763,7 @@
                         <div id="mesTrajets-row3"></div>
                     </div>
 
-                    
+
                 </div>
             </div>
         </div>
@@ -774,7 +774,7 @@
                 <div id="trajetFest-div2"><p>Sélectionnez un festival <br> auquel vous souhaitez <br> programmer un trajet</p></div>
                 <div id="trajetFest-div3">
                     <select>
-                        <option>Terres du Son</option>        
+                        <option>Terres du Son</option>
                     </select>
                 </div>
             </div>
@@ -783,7 +783,6 @@
 @endsection
 
 @section('scripts')
-    @vite('resources/js/autoCompletion.js')
     <script>
         function toggleCard(header) {
             const card = header.parentElement;

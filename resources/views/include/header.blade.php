@@ -290,7 +290,7 @@
                             d="M16 12.3158H14V10.4211H16M16 16.1053H14V14.2105H16M10 4.73684H8V2.84211H10M10 8.52632H8V6.63158H10M10 12.3158H8V10.4211H10M10 16.1053H8V14.2105H10M4 8.52632H2V6.63158H4M4 12.3158H2V10.4211H4M4 16.1053H2V14.2105H4M12 8.52632V2.84211L9 0L6 2.84211V4.73684H0V18H18V8.52632H12Z"
                             fill="#010F5C"/>
                     </svg>
-                    <input type="text" id="city" name="signin-city" placeholder="Ville" required>
+                    <input type="text" class="city" name="signin-city" placeholder="Ville" required>
                     @error('signin-city')
                     <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
@@ -472,10 +472,5 @@
                 </form>
             </div>
         </modal>
-
     </nav>
 </header>
-
-@section('scripts')
-    @vite('resources/js/autoCompletion.js')
-@endsection

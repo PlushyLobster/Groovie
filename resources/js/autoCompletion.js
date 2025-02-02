@@ -1,5 +1,5 @@
 $(function() {
-    $("#city").autocomplete({
+    $(".city").autocomplete({
         source: function(request, response) {
             $.ajax({
                 url: "http://api.geonames.org/searchJSON",

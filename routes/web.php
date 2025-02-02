@@ -13,8 +13,8 @@ Route::get('/', function () {
 })->name('home');
 
 
-Route::get('/trajet', [TrajetController::class, 'trajet'])->name('trajet');
-Route::get('/trajet/experience', [TrajetController::class, 'experience'])->name('experience');
+Route::get('/trajet', [TrajetController::class, 'trajet'])->name('trajet')->middleware(IsAuth::class);
+Route::get('/trajet/experience', [TrajetController::class, 'experience'])->name('experience')->middleware(IsAuth::class);
 
 
 Route::prefix('festival')->group(function () {

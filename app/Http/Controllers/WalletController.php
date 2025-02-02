@@ -38,9 +38,9 @@ class WalletController extends Controller
         $newValue = $request->input('new_value');
 
         if ($field === 'email') {
-            $user = User::where('Id_user', $user->Id_user)->update(['email' => $newValue]);
+            $user->update(['email' => $newValue]);
         } elseif ($field === 'city') {
-            $user = User::where('Id_user', $user->Id_user)->update(['city' => $newValue]);
+            $user->groovers->update(['city' => $newValue]);
         }
 
         return redirect()->route('profil.profil')->with('success', 'Information mise à jour avec succès');

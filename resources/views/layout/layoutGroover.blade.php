@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Concept Page</title>
     <link rel="icon" href="{{ asset('storage/images/LOGO.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
 
     <!-- Styles -->
     @vite(['resources/css/app.css', 'resources/css/reset.css', 'resources/css/root.css', 'resources/css/style.css'])
@@ -36,7 +38,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
-@vite(['resources/js/resetPassword.js', 'resources/js/navBar.js'])
+@vite(['resources/js/resetPassword.js', 'resources/js/navBar.js','resources/js/autoCompletion.js'])
 @yield('scripts')
 </body>
 </html>
