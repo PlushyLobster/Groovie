@@ -2,7 +2,7 @@
 
 use App\Http\Middleware\RedirectIfAdmin;
 use App\Http\Middleware\RedirectIfNotAdmin;
-use App\Http\Controllers\{AuthController, AdminController, FestivalController, trajetController, WalletController};
+use App\Http\Controllers\{AuthController, AdminController, FestivalController, TrajetController, WalletController};
 use App\Http\Middleware\IsAuth;
 use App\Http\Middleware\IsGuest;
 use Illuminate\Support\Facades\Auth;
@@ -13,8 +13,8 @@ Route::get('/', function () {
 })->name('home');
 
 
-Route::get('/trajet', [trajetController::class, 'trajet'])->name('trajet');
-Route::get('/trajet/experience', [trajetController::class, 'experience'])->name('experience');
+Route::get('/trajet', [TrajetController::class, 'trajet'])->name('trajet');
+Route::get('/trajet/experience', [TrajetController::class, 'experience'])->name('experience');
 
 
 Route::prefix('festival')->group(function () {
