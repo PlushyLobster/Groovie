@@ -33,8 +33,12 @@
                             <button type="submit">
                                 <div class="fest-card">
                                     <div class="fest-cardTitle">
+
                                         <p class="fest-cardName">{{ $festival->name }}</p>
-                                        <p class="fest-cardDate"> Du {{$festival->start_datetime}}</p>
+                                        <p class="fest-cardDate">
+                                            Du {{ \Carbon\Carbon::parse($festival->start_datetime)->locale('fr')->isoFormat('D') }}
+                                            Au {{ \Carbon\Carbon::parse($festival->end_datetime)->locale('fr')->isoFormat('D MMMM') }}
+                                        </p>
                                     </div>
                                     <div class="fest-cardImage">
                                         <img src="" alt="">
