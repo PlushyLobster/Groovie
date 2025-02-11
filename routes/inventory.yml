@@ -1,0 +1,7 @@
+---
+all:
+  hosts:
+    target:
+      ansible_host: 91.134.64.160
+      ansible_user: debian
+      ansible_ssh_private_key_file: /home/debian/.ssh/formation

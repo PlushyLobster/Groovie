@@ -1,0 +1,101 @@
+---
+- name: Deploy Groovie
+  hosts: all
+#  vars:
+#    db_user_pass: grooviepass
+  vars_files:
+    - vars/secret.yml
+  tasks:
+    - name : Install & Upgrade pkgs
+      become: true
+      ansible.builtin.apt:
+        state: present
+        update_cache: true
+        name:
+          - acl
+          - apache2
+          - composer
+          - git
+          - libapache2-mod-php
+          - mariadb-server
+          - npm
+          - php
+          - php-dompdf
+          - php-mysql
+          - php-xml
+          - python3-mysqldb
+
+    - name: Setup Database
+      become: true
+      community.mysql.mysql_db:
+        name: "{{db_user_name}}"
+        login_user: "{{db_root_user}}"
+        login_unix_socket: "{{db_login_sock}}"
+        state: present
+
+    - name: Create User
+      become: true
+      community.mysql.mysql_user:
+        name: groovie
+        priv: 'groovie.*:ALL'
+        login_user: "{{db_root_user}}"
+        password: "{{db_pass}}"
+        login_unix_socket: "{{db_login_sock}}"
+        state: present
+
+    - name: 'Apache2 : Enable modules'
+      loop: "{{apache2_module}}"
+      become: true
+      register: apache2
+      community.general.apache2_module:
+          state: present
+          name: "{{item}}"
+
+    - name : "Apache2 : Restart"
+      become: true
+      when: apache2.changed
+      ansible.builtin.service:
+          name: apache2
+          state: restarted
+
+    - name : "Apache2 : Copy Config"
+      become: true
+      register: apache_groovie
+      ansible.builtin.copy:
+        src: ./files/groovie.conf
+        dest: /etc/apache2/sites-available/groovie.conf
+
+    - name: "Apache : Check if groovie.conf exists"
+      register: apache_groovie_conf
+      ansible.builtin.stat:
+        path: /etc/apache2/sites-enabled/groovie.conf
+
+    - name : "Apache2 : Enable Groovie.conf"
+      become: true
+      when: not apache_groovie_conf.stat.exists
+      notify: reload apache2
+      ansible.builtin.shell:
+        cmd: a2ensite groovie.conf
+
+    - name : "Groovie : Create site folder"
+      become: true
+      ansible.builtin.file:
+        path : "{{groovie_dir}}"
+        state: directory
+        owner: www-data
+        group: www-data
+
+    - name: "Groovie : Clone sources"
+      become: true
+      become_user: www-data
+      ansible.builtin.git:
+         repo: "{{groovie_repo}}"
+         dest: "{{groovie_dir}}"
+         key_file: "{{ssh_key}}"
+
+  handlers:
+    - name: reload apache2
+      become : true
+      ansible.builtin.service:
+        name: apache2
+        state: reloaded
