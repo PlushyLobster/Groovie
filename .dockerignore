@@ -1,0 +1,4 @@
+.env
+public/build/
+vendor
+node_modules

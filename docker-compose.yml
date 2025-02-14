@@ -1,0 +1,25 @@
+---
+
+name: groovie
+
+services:
+    db:
+        image: mariadb:10.5
+        restart: unless-stopped
+        environment:
+            MYSQL_ROOT_PASSWORD: rootpassword
+            MYSQL_DATABASE: groovie
+            MYSQL_USER: groovie
+            MYSQL_PASSWORD: password
+    web:
+        build:
+            context: .
+            dockerfile: docker/Dockerfile
+        image: groovie:latest
+        restart: unless-stopped
+        depends_on:
+            -   db
+        ports:
+            -   "8000:80"
+        volumes:
+            -   ./.env:/var/www/html/.env
